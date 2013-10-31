@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B223163D18226B23009A5A2B /* ADClusterAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = B223163618226B23009A5A2B /* ADClusterAnnotation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		B223163E18226B23009A5A2B /* ADClusterMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = B223163818226B23009A5A2B /* ADClusterMapView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		B223163F18226B23009A5A2B /* ADMapCluster.m in Sources */ = {isa = PBXBuildFile; fileRef = B223163A18226B23009A5A2B /* ADMapCluster.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		B223164018226B23009A5A2B /* ADMapPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = B223163C18226B23009A5A2B /* ADMapPointAnnotation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B2CD5CBD182238B900340E43 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2CD5CBC182238B900340E43 /* Foundation.framework */; };
 		B2CD5CBF182238B900340E43 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2CD5CBE182238B900340E43 /* CoreGraphics.framework */; };
 		B2CD5CC1182238B900340E43 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2CD5CC0182238B900340E43 /* UIKit.framework */; };
@@ -21,6 +25,12 @@
 		B2CD5CDE182238B900340E43 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2CD5CC0182238B900340E43 /* UIKit.framework */; };
 		B2CD5CE6182238B900340E43 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B2CD5CE4182238B900340E43 /* InfoPlist.strings */; };
 		B2CD5CE8182238B900340E43 /* MappedInIsraelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CD5CE7182238B900340E43 /* MappedInIsraelTests.m */; };
+		B2CD5CF3182239A400340E43 /* MIICompany.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CD5CF2182239A400340E43 /* MIICompany.m */; };
+		B2CD5CF91822431600340E43 /* MIICommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CD5CF81822431600340E43 /* MIICommunicator.m */; };
+		B2CD5CFC1822452500340E43 /* MIICompanyBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CD5CFB1822452500340E43 /* MIICompanyBuilder.m */; };
+		B2CD5D001822488200340E43 /* MIIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CD5CFF1822488200340E43 /* MIIManager.m */; };
+		B2CD5D02182252EE00340E43 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2CD5D01182252EE00340E43 /* CoreLocation.framework */; };
+		B2CD5D04182252F700340E43 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2CD5D03182252F700340E43 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +44,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B223163518226B23009A5A2B /* ADClusterAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADClusterAnnotation.h; sourceTree = "<group>"; };
+		B223163618226B23009A5A2B /* ADClusterAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADClusterAnnotation.m; sourceTree = "<group>"; };
+		B223163718226B23009A5A2B /* ADClusterMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADClusterMapView.h; sourceTree = "<group>"; };
+		B223163818226B23009A5A2B /* ADClusterMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADClusterMapView.m; sourceTree = "<group>"; };
+		B223163918226B23009A5A2B /* ADMapCluster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADMapCluster.h; sourceTree = "<group>"; };
+		B223163A18226B23009A5A2B /* ADMapCluster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADMapCluster.m; sourceTree = "<group>"; };
+		B223163B18226B23009A5A2B /* ADMapPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADMapPointAnnotation.h; sourceTree = "<group>"; };
+		B223163C18226B23009A5A2B /* ADMapPointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADMapPointAnnotation.m; sourceTree = "<group>"; };
 		B2CD5CB9182238B900340E43 /* MappedInIsrael.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MappedInIsrael.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2CD5CBC182238B900340E43 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B2CD5CBE182238B900340E43 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -53,6 +71,18 @@
 		B2CD5CE3182238B900340E43 /* MappedInIsraelTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MappedInIsraelTests-Info.plist"; sourceTree = "<group>"; };
 		B2CD5CE5182238B900340E43 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B2CD5CE7182238B900340E43 /* MappedInIsraelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MappedInIsraelTests.m; sourceTree = "<group>"; };
+		B2CD5CF1182239A400340E43 /* MIICompany.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIICompany.h; sourceTree = "<group>"; };
+		B2CD5CF2182239A400340E43 /* MIICompany.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIICompany.m; sourceTree = "<group>"; };
+		B2CD5CF41822427600340E43 /* MIICommunicatorDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MIICommunicatorDelegate.h; sourceTree = "<group>"; };
+		B2CD5CF71822431600340E43 /* MIICommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIICommunicator.h; sourceTree = "<group>"; };
+		B2CD5CF81822431600340E43 /* MIICommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIICommunicator.m; sourceTree = "<group>"; };
+		B2CD5CFA1822452500340E43 /* MIICompanyBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIICompanyBuilder.h; sourceTree = "<group>"; };
+		B2CD5CFB1822452500340E43 /* MIICompanyBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIICompanyBuilder.m; sourceTree = "<group>"; };
+		B2CD5CFD1822484300340E43 /* MIIManagerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MIIManagerDelegate.h; sourceTree = "<group>"; };
+		B2CD5CFE1822488200340E43 /* MIIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIIManager.h; sourceTree = "<group>"; };
+		B2CD5CFF1822488200340E43 /* MIIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIIManager.m; sourceTree = "<group>"; };
+		B2CD5D01182252EE00340E43 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		B2CD5D03182252F700340E43 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +90,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2CD5D04182252F700340E43 /* MapKit.framework in Frameworks */,
+				B2CD5D02182252EE00340E43 /* CoreLocation.framework in Frameworks */,
 				B2CD5CBF182238B900340E43 /* CoreGraphics.framework in Frameworks */,
 				B2CD5CC1182238B900340E43 /* UIKit.framework in Frameworks */,
 				B2CD5CBD182238B900340E43 /* Foundation.framework in Frameworks */,
@@ -79,6 +111,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B223163418226B23009A5A2B /* ADClusterMapView */ = {
+			isa = PBXGroup;
+			children = (
+				B223163518226B23009A5A2B /* ADClusterAnnotation.h */,
+				B223163618226B23009A5A2B /* ADClusterAnnotation.m */,
+				B223163718226B23009A5A2B /* ADClusterMapView.h */,
+				B223163818226B23009A5A2B /* ADClusterMapView.m */,
+				B223163918226B23009A5A2B /* ADMapCluster.h */,
+				B223163A18226B23009A5A2B /* ADMapCluster.m */,
+				B223163B18226B23009A5A2B /* ADMapPointAnnotation.h */,
+				B223163C18226B23009A5A2B /* ADMapPointAnnotation.m */,
+			);
+			path = ADClusterMapView;
+			sourceTree = "<group>";
+		};
 		B2CD5CB0182238B900340E43 = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +148,8 @@
 		B2CD5CBB182238B900340E43 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B2CD5D03182252F700340E43 /* MapKit.framework */,
+				B2CD5D01182252EE00340E43 /* CoreLocation.framework */,
 				B2CD5CBC182238B900340E43 /* Foundation.framework */,
 				B2CD5CBE182238B900340E43 /* CoreGraphics.framework */,
 				B2CD5CC0182238B900340E43 /* UIKit.framework */,
@@ -112,12 +161,23 @@
 		B2CD5CC2182238B900340E43 /* MappedInIsrael */ = {
 			isa = PBXGroup;
 			children = (
+				B2CD5CCE182238B900340E43 /* Main.storyboard */,
 				B2CD5CCB182238B900340E43 /* MIIAppDelegate.h */,
 				B2CD5CCC182238B900340E43 /* MIIAppDelegate.m */,
-				B2CD5CCE182238B900340E43 /* Main.storyboard */,
 				B2CD5CD1182238B900340E43 /* MIIViewController.h */,
 				B2CD5CD2182238B900340E43 /* MIIViewController.m */,
+				B2CD5CF1182239A400340E43 /* MIICompany.h */,
+				B2CD5CF2182239A400340E43 /* MIICompany.m */,
+				B2CD5CF41822427600340E43 /* MIICommunicatorDelegate.h */,
+				B2CD5CF71822431600340E43 /* MIICommunicator.h */,
+				B2CD5CF81822431600340E43 /* MIICommunicator.m */,
+				B2CD5CFA1822452500340E43 /* MIICompanyBuilder.h */,
+				B2CD5CFB1822452500340E43 /* MIICompanyBuilder.m */,
+				B2CD5CFD1822484300340E43 /* MIIManagerDelegate.h */,
+				B2CD5CFE1822488200340E43 /* MIIManager.h */,
+				B2CD5CFF1822488200340E43 /* MIIManager.m */,
 				B2CD5CD4182238B900340E43 /* Images.xcassets */,
+				B223163418226B23009A5A2B /* ADClusterMapView */,
 				B2CD5CC3182238B900340E43 /* Supporting Files */,
 			);
 			path = MappedInIsrael;
@@ -250,7 +310,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2CD5D001822488200340E43 /* MIIManager.m in Sources */,
 				B2CD5CCD182238B900340E43 /* MIIAppDelegate.m in Sources */,
+				B223164018226B23009A5A2B /* ADMapPointAnnotation.m in Sources */,
+				B223163D18226B23009A5A2B /* ADClusterAnnotation.m in Sources */,
+				B2CD5CFC1822452500340E43 /* MIICompanyBuilder.m in Sources */,
+				B223163F18226B23009A5A2B /* ADMapCluster.m in Sources */,
+				B223163E18226B23009A5A2B /* ADClusterMapView.m in Sources */,
+				B2CD5CF3182239A400340E43 /* MIICompany.m in Sources */,
+				B2CD5CF91822431600340E43 /* MIICommunicator.m in Sources */,
 				B2CD5CC9182238B900340E43 /* main.m in Sources */,
 				B2CD5CD3182238B900340E43 /* MIIViewController.m in Sources */,
 			);
@@ -319,7 +387,6 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -358,7 +425,6 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -379,10 +445,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MappedInIsrael/MappedInIsrael-Prefix.pch";
 				INFOPLIST_FILE = "MappedInIsrael/MappedInIsrael-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "873BA2BC-48CE-4D21-8264-638237509AE4";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -392,10 +460,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MappedInIsrael/MappedInIsrael-Prefix.pch";
 				INFOPLIST_FILE = "MappedInIsrael/MappedInIsrael-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "8509E56D-A91C-4CC2-9A18-2E796685D158";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -461,6 +531,7 @@
 				B2CD5CED182238B900340E43 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B2CD5CEE182238B900340E43 /* Build configuration list for PBXNativeTarget "MappedInIsraelTests" */ = {
 			isa = XCConfigurationList;
@@ -469,6 +540,7 @@
 				B2CD5CF0182238B900340E43 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

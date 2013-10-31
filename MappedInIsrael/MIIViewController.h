@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
+#import "ADClusterMapView.h"
 
-@interface MIIViewController : UIViewController
+@interface MIIViewController : UIViewController <MKMapViewDelegate>
+
+@property (nonatomic, strong) IBOutlet ADClusterMapView *mapView;
 
 @end
