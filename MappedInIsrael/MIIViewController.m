@@ -12,7 +12,6 @@
 #import "MIIManager.h"
 
 @interface MIIViewController () <MIIManagerDelegate> {
-    NSArray *_companies;
     MIIManager *_manager;
 }
 @end
@@ -20,6 +19,7 @@
 @implementation MIIViewController
 
 @synthesize mapView;
+@synthesize _companies;
 
 - (void)viewDidLoad
 {
@@ -47,7 +47,7 @@
 
 - (void)didReceiveCompanies:(NSArray *)companies
 {
-    _companies = companies;
+    self._companies = companies;
     dispatch_async(dispatch_get_main_queue(), ^{
         [self reloadMap];
     });
@@ -62,7 +62,7 @@
 {
     NSMutableArray * annotations = [[NSMutableArray alloc] init];
     
-    for (MIICompany *company in _companies) {
+    for (MIICompany *company in self._companies) {
         // Coordinate
         CLLocationCoordinate2D coordinate;
         coordinate.latitude = [company.lat doubleValue];

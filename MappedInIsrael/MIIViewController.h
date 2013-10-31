@@ -13,5 +13,6 @@
 @interface MIIViewController : UIViewController <MKMapViewDelegate>
 
 @property (nonatomic, strong) IBOutlet ADClusterMapView *mapView;
+@property (nonatomic, strong) NSArray *_companies;
 
 @end

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>6E4B379A-5C52-4A8A-90EC-4A37B92279F8</string>
+	<key>IDESourceControlProjectName</key>
+	<string>MappedInIsrael</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>581FB8D8-1AB1-457F-B580-2E7B815D40DF</key>
+		<string>https://github.com/iodie/mappedinisrael.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>MappedInIsrael.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>581FB8D8-1AB1-457F-B580-2E7B815D40DF</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/iodie/mappedinisrael.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>581FB8D8-1AB1-457F-B580-2E7B815D40DF</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>581FB8D8-1AB1-457F-B580-2E7B815D40DF</string>
+			<key>IDESourceControlWCCName</key>
+			<string>MappedInIsrael</string>
+		</dict>
+	</array>
+</dict>
+</plist>
