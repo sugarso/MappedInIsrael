@@ -11,7 +11,7 @@
 		B223163E18226B23009A5A2B /* ADClusterMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = B223163818226B23009A5A2B /* ADClusterMapView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B223163F18226B23009A5A2B /* ADMapCluster.m in Sources */ = {isa = PBXBuildFile; fileRef = B223163A18226B23009A5A2B /* ADMapCluster.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B223164018226B23009A5A2B /* ADMapPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = B223163C18226B23009A5A2B /* ADMapPointAnnotation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		B2AB879B1822EE760075966D /* MIIHiringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2AB879A1822EE760075966D /* MIIHiringViewController.m */; };
+		B2B6C19118240171007773D7 /* MIICompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2B6C19018240171007773D7 /* MIICompanyViewController.m */; };
 		B2CD5CBD182238B900340E43 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2CD5CBC182238B900340E43 /* Foundation.framework */; };
 		B2CD5CBF182238B900340E43 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2CD5CBE182238B900340E43 /* CoreGraphics.framework */; };
 		B2CD5CC1182238B900340E43 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2CD5CC0182238B900340E43 /* UIKit.framework */; };
@@ -53,8 +53,8 @@
 		B223163A18226B23009A5A2B /* ADMapCluster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADMapCluster.m; sourceTree = "<group>"; };
 		B223163B18226B23009A5A2B /* ADMapPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADMapPointAnnotation.h; sourceTree = "<group>"; };
 		B223163C18226B23009A5A2B /* ADMapPointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADMapPointAnnotation.m; sourceTree = "<group>"; };
-		B2AB87991822EE760075966D /* MIIHiringViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIIHiringViewController.h; sourceTree = "<group>"; };
-		B2AB879A1822EE760075966D /* MIIHiringViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIIHiringViewController.m; sourceTree = "<group>"; };
+		B2B6C18F18240171007773D7 /* MIICompanyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIICompanyViewController.h; sourceTree = "<group>"; };
+		B2B6C19018240171007773D7 /* MIICompanyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIICompanyViewController.m; sourceTree = "<group>"; };
 		B2CD5CB9182238B900340E43 /* MappedInIsrael.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MappedInIsrael.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2CD5CBC182238B900340E43 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B2CD5CBE182238B900340E43 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -169,8 +169,8 @@
 				B2CD5CCC182238B900340E43 /* MIIAppDelegate.m */,
 				B2CD5CD1182238B900340E43 /* MIIViewController.h */,
 				B2CD5CD2182238B900340E43 /* MIIViewController.m */,
-				B2AB87991822EE760075966D /* MIIHiringViewController.h */,
-				B2AB879A1822EE760075966D /* MIIHiringViewController.m */,
+				B2B6C18F18240171007773D7 /* MIICompanyViewController.h */,
+				B2B6C19018240171007773D7 /* MIICompanyViewController.m */,
 				B2CD5CF1182239A400340E43 /* MIICompany.h */,
 				B2CD5CF2182239A400340E43 /* MIICompany.m */,
 				B2CD5CF41822427600340E43 /* MIICommunicatorDelegate.h */,
@@ -342,8 +342,8 @@
 				B2CD5CF3182239A400340E43 /* MIICompany.m in Sources */,
 				B2CD5CF91822431600340E43 /* MIICommunicator.m in Sources */,
 				B2CD5CC9182238B900340E43 /* main.m in Sources */,
+				B2B6C19118240171007773D7 /* MIICompanyViewController.m in Sources */,
 				B2CD5CD3182238B900340E43 /* MIIViewController.m in Sources */,
-				B2AB879B1822EE760075966D /* MIIHiringViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,7 +488,7 @@
 				GCC_PREFIX_HEADER = "MappedInIsrael/MappedInIsrael-Prefix.pch";
 				INFOPLIST_FILE = "MappedInIsrael/MappedInIsrael-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8509E56D-A91C-4CC2-9A18-2E796685D158";
+				PROVISIONING_PROFILE = "F672E6DE-AAC4-4FF4-B510-336C19FAC474";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

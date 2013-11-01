@@ -10,9 +10,9 @@
 #import <MapKit/MapKit.h>
 #import "ADClusterMapView.h"
 
-@interface MIIViewController : UIViewController <MKMapViewDelegate>
+@interface MIIViewController : UIViewController <MKMapViewDelegate,UISearchDisplayDelegate,UISearchBarDelegate>
 
+@property (nonatomic, strong) IBOutlet UISearchBar *searchBar;
 @property (nonatomic, strong) IBOutlet ADClusterMapView *mapView;
-@property (nonatomic, strong) NSArray *_companies;
 
 @end

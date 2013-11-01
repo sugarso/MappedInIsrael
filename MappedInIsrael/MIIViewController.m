@@ -13,26 +13,35 @@
 
 @interface MIIViewController () <MIIManagerDelegate> {
     MIIManager *_manager;
+    NSArray *_companies;
 }
 @end
 
 @implementation MIIViewController
 
 @synthesize mapView;
-@synthesize _companies;
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     self.mapView.delegate = self;
+    self.searchBar.delegate = self;
     
     _manager = [[MIIManager alloc] init];
     _manager.communicator = [[MIICommunicator alloc] init];
     _manager.communicator.delegate = _manager;
     _manager.delegate = self;
     
+    // TBD:
     [_manager getAllCompanies];
+    
     //[[NSNotificationCenter defaultCenter] addObserver:self
     //                                         selector:@selector(startFetchingCompanies:)
     //                                             name:@"kCLAuthorizationStatusAuthorized"
@@ -47,7 +56,7 @@
 
 - (void)didReceiveCompanies:(NSArray *)companies
 {
-    self._companies = companies;
+    _companies = companies;
     dispatch_async(dispatch_get_main_queue(), ^{
         [self reloadMap];
     });
@@ -62,7 +71,7 @@
 {
     NSMutableArray * annotations = [[NSMutableArray alloc] init];
     
-    for (MIICompany *company in self._companies) {
+    for (MIICompany *company in _companies) {
         // Coordinate
         CLLocationCoordinate2D coordinate;
         coordinate.latitude = [company.lat doubleValue];
@@ -89,12 +98,10 @@
     return @"%d companies";
 }
 
-- (MKAnnotationView *)mapView:(ADClusterMapView *)mapView viewForClusterAnnotation:(id <MKAnnotation>)annotation
-{
-    static NSString *reuseId = @"MapViewController";
-    MKAnnotationView *view = [self.mapView dequeueReusableAnnotationViewWithIdentifier:reuseId];
-    return view;
-}
+// TBD:
+//- (MKAnnotationView *)mapView:(ADClusterMapView *)mapView viewForClusterAnnotation:(id <MKAnnotation>)annotation
+//{
+//}
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
@@ -128,6 +135,11 @@
         UIViewController *mdvc = segue.destinationViewController;
         mdvc.title = aView.annotation.title;
     }
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [self.view endEditing:YES];
 }
 
 @end
