@@ -84,4 +84,50 @@
     });
 }
 
+- (NSString *)clusterTitleForMapView:(ADClusterMapView *)mapView
+{
+    return @"%d companies";
+}
+
+- (MKAnnotationView *)mapView:(ADClusterMapView *)mapView viewForClusterAnnotation:(id <MKAnnotation>)annotation
+{
+    static NSString *reuseId = @"MapViewController";
+    MKAnnotationView *view = [self.mapView dequeueReusableAnnotationViewWithIdentifier:reuseId];
+    return view;
+}
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
+{
+    static NSString *reuseId = @"MapViewController";
+    MKAnnotationView *view = [self.mapView dequeueReusableAnnotationViewWithIdentifier:reuseId];
+    
+    if (!view) {
+        view = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseId];
+        view.canShowCallout = YES;
+        view.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+        view.leftCalloutAccessoryView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,30,30)];
+    }
+    
+    if ([view.leftCalloutAccessoryView isKindOfClass:[UIImageView class]]) {
+        UIImageView *imageView = (UIImageView *)(view.leftCalloutAccessoryView);
+        imageView.image = nil;
+    }
+    
+    return view;
+}
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
+{
+    [self performSegueWithIdentifier:@"setCompany:" sender:view];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"setCompany:"]) {
+        MKAnnotationView *aView = sender;
+        UIViewController *mdvc = segue.destinationViewController;
+        mdvc.title = aView.annotation.title;
+    }
+}
+
 @end

@@ -26,11 +26,31 @@
                     <navigationItem key="navigationItem" title="Mapped In Israel" id="khK-a1-aps"/>
                     <connections>
                         <outlet property="mapView" destination="p5p-LC-dgA" id="bOK-71-KIH"/>
+                        <segue destination="9uK-M2-kGv" kind="push" identifier="setCompany:" id="BdU-l6-vnE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="660" y="73"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Wm8-2E-5cB">
+            <objects>
+                <viewController id="9uK-M2-kGv" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="aZD-k1-6cf"/>
+                        <viewControllerLayoutGuide type="bottom" id="BgV-Gm-ozF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qIq-X2-sZQ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="BKQ-BH-g4D"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6sL-bF-kqe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1202" y="440"/>
         </scene>
         <!--Hiring View Controller - Who's hiring?-->
         <scene sceneID="rc7-nO-kuG">
@@ -54,6 +74,7 @@
                     <navigationItem key="navigationItem" title="Who's hiring?" id="KjF-xW-SzW"/>
                     <connections>
                         <outlet property="mapView" destination="m1K-Dk-wq8" id="wLK-Y7-VcI"/>
+                        <segue destination="9uK-M2-kGv" kind="push" identifier="setCompany:" id="akv-Gw-yx0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MGb-BY-cwN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -120,4 +141,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="BdU-l6-vnE"/>
+    </inferredMetricsTieBreakers>
 </document>
