@@ -32,6 +32,13 @@
 		B2CD5D001822488200340E43 /* MIIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CD5CFF1822488200340E43 /* MIIManager.m */; };
 		B2CD5D02182252EE00340E43 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2CD5D01182252EE00340E43 /* CoreLocation.framework */; };
 		B2CD5D04182252F700340E43 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2CD5D03182252F700340E43 /* MapKit.framework */; };
+		B2DDDC1F182997EF00CC59BF /* accelerator.png in Resources */ = {isa = PBXBuildFile; fileRef = B2DDDC18182997EF00CC59BF /* accelerator.png */; };
+		B2DDDC20182997EF00CC59BF /* community.png in Resources */ = {isa = PBXBuildFile; fileRef = B2DDDC19182997EF00CC59BF /* community.png */; };
+		B2DDDC21182997EF00CC59BF /* coworking.png in Resources */ = {isa = PBXBuildFile; fileRef = B2DDDC1A182997EF00CC59BF /* coworking.png */; };
+		B2DDDC22182997EF00CC59BF /* investor.png in Resources */ = {isa = PBXBuildFile; fileRef = B2DDDC1B182997EF00CC59BF /* investor.png */; };
+		B2DDDC23182997EF00CC59BF /* rdcenter.png in Resources */ = {isa = PBXBuildFile; fileRef = B2DDDC1C182997EF00CC59BF /* rdcenter.png */; };
+		B2DDDC24182997EF00CC59BF /* service.png in Resources */ = {isa = PBXBuildFile; fileRef = B2DDDC1D182997EF00CC59BF /* service.png */; };
+		B2DDDC25182997EF00CC59BF /* startup.png in Resources */ = {isa = PBXBuildFile; fileRef = B2DDDC1E182997EF00CC59BF /* startup.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +93,13 @@
 		B2CD5CFF1822488200340E43 /* MIIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIIManager.m; sourceTree = "<group>"; };
 		B2CD5D01182252EE00340E43 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B2CD5D03182252F700340E43 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		B2DDDC18182997EF00CC59BF /* accelerator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = accelerator.png; sourceTree = "<group>"; };
+		B2DDDC19182997EF00CC59BF /* community.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = community.png; sourceTree = "<group>"; };
+		B2DDDC1A182997EF00CC59BF /* coworking.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coworking.png; sourceTree = "<group>"; };
+		B2DDDC1B182997EF00CC59BF /* investor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = investor.png; sourceTree = "<group>"; };
+		B2DDDC1C182997EF00CC59BF /* rdcenter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rdcenter.png; sourceTree = "<group>"; };
+		B2DDDC1D182997EF00CC59BF /* service.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = service.png; sourceTree = "<group>"; };
+		B2DDDC1E182997EF00CC59BF /* startup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = startup.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +196,7 @@
 				B2CD5CFE1822488200340E43 /* MIIManager.h */,
 				B2CD5CFF1822488200340E43 /* MIIManager.m */,
 				B2CD5CD4182238B900340E43 /* Images.xcassets */,
+				B2DDDC17182997E300CC59BF /* Images */,
 				B223163418226B23009A5A2B /* ADClusterMapView */,
 				B2CD5CC3182238B900340E43 /* Supporting Files */,
 			);
@@ -215,6 +230,20 @@
 				B2CD5CE4182238B900340E43 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B2DDDC17182997E300CC59BF /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				B2DDDC18182997EF00CC59BF /* accelerator.png */,
+				B2DDDC19182997EF00CC59BF /* community.png */,
+				B2DDDC1A182997EF00CC59BF /* coworking.png */,
+				B2DDDC1B182997EF00CC59BF /* investor.png */,
+				B2DDDC1C182997EF00CC59BF /* rdcenter.png */,
+				B2DDDC1D182997EF00CC59BF /* service.png */,
+				B2DDDC1E182997EF00CC59BF /* startup.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -296,8 +325,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2CD5CD5182238B900340E43 /* Images.xcassets in Resources */,
+				B2DDDC25182997EF00CC59BF /* startup.png in Resources */,
+				B2DDDC24182997EF00CC59BF /* service.png in Resources */,
 				B2CD5CC7182238B900340E43 /* InfoPlist.strings in Resources */,
 				B2CD5CD0182238B900340E43 /* Main.storyboard in Resources */,
+				B2DDDC22182997EF00CC59BF /* investor.png in Resources */,
+				B2DDDC21182997EF00CC59BF /* coworking.png in Resources */,
+				B2DDDC20182997EF00CC59BF /* community.png in Resources */,
+				B2DDDC23182997EF00CC59BF /* rdcenter.png in Resources */,
+				B2DDDC1F182997EF00CC59BF /* accelerator.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

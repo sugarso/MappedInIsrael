@@ -14,6 +14,7 @@
 @interface MIIViewController () <MIIManagerDelegate> {
     MIIManager *_manager;
     NSArray *_companies;
+    BOOL showSearch;
 }
 @end
 
@@ -47,6 +48,42 @@
     //                                             name:@"kCLAuthorizationStatusAuthorized"
     //                                           object:nil];
     
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapRecognized:)];
+    singleTap.numberOfTapsRequired = 1;
+    singleTap.delaysTouchesEnded = YES;
+    [self.mapView addGestureRecognizer:singleTap];
+    
+    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTapRecognized:)];
+    doubleTap.numberOfTapsRequired = 2;
+    [self.mapView addGestureRecognizer:doubleTap];
+    
+    [singleTap requireGestureRecognizerToFail:doubleTap];
+    
+    [self.searchBar resignFirstResponder];
+    
+    showSearch = false; // Default    
+}
+
+- (void)singleTapRecognized:(UIGestureRecognizer *)gestureRecognizer {
+    NSLog(@"single tap");
+    [UIView animateWithDuration:0.5 animations:^{
+        if (showSearch) {
+            self.searchBar.frame = CGRectMake(self.searchBar.frame.origin.x,
+                                              -self.searchBar.frame.size.height,
+                                              self.searchBar.frame.size.width,
+                                              self.searchBar.frame.size.height);
+        } else {
+            self.searchBar.frame = CGRectMake(self.searchBar.frame.origin.x,
+                                              20,
+                                              self.searchBar.frame.size.width,
+                                              self.searchBar.frame.size.height);
+        }
+    }];
+    showSearch = !showSearch;
+}
+
+- (void)doubleTapRecognized:(UIGestureRecognizer *)gestureRecognizer {
+    NSLog(@"double tap");
 }
 
 - (void)startFetchingCompanies:(NSNotification *)notification
@@ -98,27 +135,28 @@
     return @"%d companies";
 }
 
-// TBD:
-//- (MKAnnotationView *)mapView:(ADClusterMapView *)mapView viewForClusterAnnotation:(id <MKAnnotation>)annotation
-//{
-//}
+- (MKAnnotationView *)mapView:(ADClusterMapView *)mapView viewForClusterAnnotation:(id <MKAnnotation>)annotation
+{
+    static NSString *reuseId = @"MapViewController";
+    MKAnnotationView *view = [self.mapView dequeueReusableAnnotationViewWithIdentifier:reuseId];
+    
+    return view;
+}
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
     static NSString *reuseId = @"MapViewController";
     MKAnnotationView *view = [self.mapView dequeueReusableAnnotationViewWithIdentifier:reuseId];
-    
+
     if (!view) {
         view = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseId];
         view.canShowCallout = YES;
         view.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-        view.leftCalloutAccessoryView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,30,30)];
     }
     
-    if ([view.leftCalloutAccessoryView isKindOfClass:[UIImageView class]]) {
-        UIImageView *imageView = (UIImageView *)(view.leftCalloutAccessoryView);
-        imageView.image = nil;
-    }
+    NSString *subtitle = ((MKPointAnnotation *)annotation).subtitle;
+    UIImage *annImage = [UIImage imageNamed:[NSString stringWithFormat:@"%@%@", subtitle, @".png"]];
+    view.image = annImage;
     
     return view;
 }
@@ -135,11 +173,6 @@
         UIViewController *mdvc = segue.destinationViewController;
         mdvc.title = aView.annotation.title;
     }
-}
-
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
-{
-    [self.view endEditing:YES];
 }
 
 @end
