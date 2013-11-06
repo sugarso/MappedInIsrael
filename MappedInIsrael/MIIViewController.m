@@ -20,12 +20,15 @@
 @interface MIIViewController () <MIIManagerDelegate> {
     MIIManager *_manager;
     NSArray *_companies;
+    NSArray *_allCompanies;
     enum displayedView _displayedView;
     UIView *infoView;
     UIView *grayView;
     CGFloat screenWidth;
     CGFloat screenHeight;
     CGFloat statusBarHeight;
+    UISearchBar *mySearchBar;
+    UISegmentedControl *segmentedControl;
 }
 @end
 
@@ -53,16 +56,17 @@
     infoView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.8f];
     
     UIView *segmentedControlView = [[UIView alloc] initWithFrame:CGRectMake(0,
-                                                                            0,
-                                                                            screenWidth,
-                                                                            SEGMENTED_CONTROL_HEIGHT+2*BORDERS_MARGIN)];
+                                                                    0,
+                                                                    screenWidth,
+                                                                    SEGMENTED_CONTROL_HEIGHT+2*BORDERS_MARGIN)];
     segmentedControlView.backgroundColor = [[UIColor whiteColor]  colorWithAlphaComponent:0.8f];
-    UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"All", @"Who's Hiring?"]];
+    segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"All", @"Who's Hiring?"]];
     segmentedControl.frame = CGRectMake(BORDERS_MARGIN,
                                         BORDERS_MARGIN,
                                         screenWidth-2*BORDERS_MARGIN,
                                         SEGMENTED_CONTROL_HEIGHT);
-    segmentedControl.selectedSegmentIndex = 1;
+    segmentedControl.selectedSegmentIndex = 0;
+    [segmentedControl addTarget:self action:@selector(updateMap:) forControlEvents:UIControlEventValueChanged];
     [segmentedControlView addSubview:segmentedControl];
     [infoView addSubview:segmentedControlView];
     
@@ -150,7 +154,7 @@
 	                                 animated:YES];
     
     // searchBar
-    [self setSearchBar:self];
+    [self addSearchBar:self];
     
     // On top of the Tab Bar
     [[[[UIApplication sharedApplication] delegate] window] addSubview:grayView];
@@ -160,6 +164,7 @@
 - (void)didReceiveCompanies:(NSArray *)companies
 {
     _companies = companies;
+    _allCompanies = companies;
     dispatch_async(dispatch_get_main_queue(), ^{
         [self reloadMap];
     });
@@ -172,7 +177,7 @@
 
 - (void)reloadMap
 {
-    NSMutableArray * annotations = [[NSMutableArray alloc] init];
+    NSMutableArray *annotations = [[NSMutableArray alloc] init];
     
     for (MIICompany *company in _companies) {
         // Coordinate
@@ -277,7 +282,7 @@
 
 - (IBAction)dismissInfo:(id)sender {
     self.navigationItem.rightBarButtonItem = nil;
-    [self setSearchBar:self];
+    [self addSearchBar:self];
     
     [UIView animateWithDuration:0.6 animations:^{
         infoView.frame = CGRectMake(infoView.frame.origin.x,
@@ -338,18 +343,43 @@
     [self.mapView setRegion:region animated:YES];
 }
 
-- (void)setSearchBar:(id)sender {
-    UISearchBar *searchBar = [UISearchBar new];
-    [searchBar sizeToFit];
-    UIView *searchBarView = [[UIView alloc] initWithFrame:searchBar.bounds];
-    searchBar.delegate = self;
-    searchBar.searchBarStyle = UISearchBarStyleMinimal;
-    searchBar.placeholder = @"Search jobs, companies...";
-    [searchBarView addSubview:searchBar];
-    self.navigationItem.titleView = searchBarView;
+- (void)addSearchBar:(id)sender {
+    mySearchBar = [UISearchBar new];
+    [mySearchBar sizeToFit];
+    mySearchBar.delegate = self;
+    mySearchBar.searchBarStyle = UISearchBarStyleMinimal;
+    mySearchBar.placeholder = @"Search jobs, companies...";
+    self.navigationItem.titleView = mySearchBar;
 }
 
-- (void)flip:(id)sender {
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    NSLog(@"Search: %@", searchText);
+    [self updateMap:self];
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [searchBar resignFirstResponder];
+}
+
+- (IBAction)updateMap:(id)sender {
+    NSMutableArray *companies = [[NSMutableArray alloc] init];
+    for (MIICompany *company in _allCompanies) {
+        if ((mySearchBar.text == nil) ||
+            ([mySearchBar.text isEqualToString:@""]) ||
+            ([company.companyName rangeOfString:mySearchBar.text].location != NSNotFound)) {
+            if ((company.hiringPageURL == nil) ||
+                (segmentedControl.selectedSegmentIndex == 0) ||
+                ((segmentedControl.selectedSegmentIndex == 1) && (company.hiringPageURL != nil))) {
+                [companies addObject:company];
+            }
+        }
+    }
+    _companies = companies;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self reloadMap];
+    });
 }
 
 @end
