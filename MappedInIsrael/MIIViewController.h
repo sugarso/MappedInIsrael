@@ -10,9 +10,16 @@
 #import <MapKit/MapKit.h>
 #import "ADClusterMapView.h"
 
-@interface MIIViewController : UIViewController <MKMapViewDelegate,UISearchDisplayDelegate,UISearchBarDelegate>
+enum displayedView
+{
+    kMap,
+    kSearch,
+    kInfo
+};
 
-@property (nonatomic, strong) IBOutlet UISearchBar *searchBar;
-@property (nonatomic, strong) IBOutlet ADClusterMapView *mapView;
+@interface MIIViewController : UIViewController <MKMapViewDelegate,UISearchDisplayDelegate,UISearchBarDelegate,UITabBarControllerDelegate,UITabBarDelegate>
+
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (weak, nonatomic) IBOutlet ADClusterMapView *mapView;
 
 @end
