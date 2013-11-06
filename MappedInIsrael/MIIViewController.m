@@ -12,14 +12,17 @@
 #import "MIIManager.h"
 #import "MIIAppDelegate.h"
 
-#define INFO_VIEW_HEIGHT 350
+#define INFO_VIEW_HEIGHT 300
+#define BORDERS_MARGIN 10
+#define SEARCH_BAR_HEIGHT 44
+#define SEGMENTED_CONTROL_HEIGHT 29
 
 @interface MIIViewController () <MIIManagerDelegate> {
     MIIManager *_manager;
     NSArray *_companies;
     enum displayedView _displayedView;
     UIView *infoView;
-    UIView *greyView;
+    UIView *grayView;
     CGFloat screenWidth;
     CGFloat screenHeight;
     CGFloat statusBarHeight;
@@ -28,20 +31,11 @@
 
 @implementation MIIViewController
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    // By default don't show Navigation Bar
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     self.mapView.delegate = self;
-    self.searchBar.delegate = self;
     self.tabBarController.delegate = self;
     
     // iPhone5 or iPhone4?
@@ -51,32 +45,74 @@
     screenHeight = screenSize.height;
     statusBarHeight = [[UIApplication sharedApplication] statusBarFrame].size.height;
     
-    // infoView & greyView
+    // infoView & grayView
     infoView = [[UIView alloc] initWithFrame:CGRectMake(0,
                                                         screenHeight,
                                                         screenWidth,
                                                         INFO_VIEW_HEIGHT)];
-    infoView.backgroundColor = [UIColor whiteColor];
+    infoView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.8f];
     
-    greyView = [[UIView alloc] initWithFrame:CGRectMake(0,
+    UIView *segmentedControlView = [[UIView alloc] initWithFrame:CGRectMake(0,
+                                                                            0,
+                                                                            screenWidth,
+                                                                            SEGMENTED_CONTROL_HEIGHT+2*BORDERS_MARGIN)];
+    segmentedControlView.backgroundColor = [[UIColor whiteColor]  colorWithAlphaComponent:0.8f];
+    UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"All", @"Who's Hiring?"]];
+    segmentedControl.frame = CGRectMake(BORDERS_MARGIN,
+                                        BORDERS_MARGIN,
+                                        screenWidth-2*BORDERS_MARGIN,
+                                        SEGMENTED_CONTROL_HEIGHT);
+    segmentedControl.selectedSegmentIndex = 1;
+    [segmentedControlView addSubview:segmentedControl];
+    [infoView addSubview:segmentedControlView];
+    
+    UIView *vc1 = [[UIView alloc] initWithFrame:CGRectMake(0,
+                                                          SEGMENTED_CONTROL_HEIGHT+2*BORDERS_MARGIN+1,
+                                                          screenWidth,
+                                                          SEGMENTED_CONTROL_HEIGHT+2*BORDERS_MARGIN)];
+    vc1.backgroundColor = [[UIColor whiteColor]  colorWithAlphaComponent:0.7f];
+    [infoView addSubview:vc1];
+    
+    UIView *vc2 = [[UIView alloc] initWithFrame:CGRectMake(0,
+                                                          2*SEGMENTED_CONTROL_HEIGHT+4*BORDERS_MARGIN+2,
+                                                          screenWidth,
+                                                          SEGMENTED_CONTROL_HEIGHT+2*BORDERS_MARGIN)];
+    vc2.backgroundColor = [[UIColor whiteColor]  colorWithAlphaComponent:0.7f];
+    [infoView addSubview:vc2];
+    
+    UIView *vc3 = [[UIView alloc] initWithFrame:CGRectMake(0,
+                                                           3*SEGMENTED_CONTROL_HEIGHT+6*BORDERS_MARGIN+3,
+                                                           screenWidth,
+                                                           SEGMENTED_CONTROL_HEIGHT+2*BORDERS_MARGIN)];
+    vc3.backgroundColor = [[UIColor whiteColor]  colorWithAlphaComponent:0.7f];
+    [infoView addSubview:vc3];
+    
+    UIView *vc4 = [[UIView alloc] initWithFrame:CGRectMake(0,
+                                                           4*SEGMENTED_CONTROL_HEIGHT+8*BORDERS_MARGIN+4,
+                                                           screenWidth,
+                                                           SEGMENTED_CONTROL_HEIGHT+2*BORDERS_MARGIN)];
+    vc4.backgroundColor = [[UIColor whiteColor]  colorWithAlphaComponent:0.7f];
+    [infoView addSubview:vc4];
+    
+    UIView *vc5 = [[UIView alloc] initWithFrame:CGRectMake(0,
+                                                           5*SEGMENTED_CONTROL_HEIGHT+10*BORDERS_MARGIN+5,
+                                                           screenWidth,
+                                                           SEGMENTED_CONTROL_HEIGHT+2*BORDERS_MARGIN)];
+    vc5.backgroundColor = [[UIColor whiteColor]  colorWithAlphaComponent:0.7f];
+    [infoView addSubview:vc5];
+    
+    grayView = [[UIView alloc] initWithFrame:CGRectMake(0,
                                                         self.navigationController.navigationBar.frame.size.height+statusBarHeight,
                                                         screenWidth,
                                                         screenHeight-(self.navigationController.navigationBar.frame.size.height+statusBarHeight))];
-    greyView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5f];
-    greyView.hidden = YES;
+    grayView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5f];
+    grayView.hidden = YES;
     
     _manager = [[MIIManager alloc] init];
     _manager.communicator = [[MIICommunicator alloc] init];
     _manager.communicator.delegate = _manager;
     _manager.delegate = self;
     [_manager getAllCompanies]; // Get all data from MII API
-    
-    // Show Done on the Navigation Bar
-    UIBarButtonItem *submit = [[UIBarButtonItem alloc]
-                               initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-                               target:self
-                               action:@selector(dismissInfo:)];
-    self.navigationItem.rightBarButtonItem = submit;
     
     // SignleTap on mapView
     UITapGestureRecognizer *singleTapMap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapRecognized:)];
@@ -90,20 +126,20 @@
     [self.mapView addGestureRecognizer:doubleTapMap];
     [singleTapMap requireGestureRecognizerToFail:doubleTapMap];
     
-    // SingleTap on greyView
-    UITapGestureRecognizer *singleTapGrey = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapRecognized:)];
-    singleTapGrey.numberOfTapsRequired = 1;
-    singleTapGrey.delaysTouchesEnded = YES;
-    [greyView addGestureRecognizer:singleTapGrey];
+    // SingleTap on grayView
+    UITapGestureRecognizer *singleTapGray = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapRecognized:)];
+    singleTapGray.numberOfTapsRequired = 1;
+    singleTapGray.delaysTouchesEnded = YES;
+    [grayView addGestureRecognizer:singleTapGray];
     
-    // DoubleTap on greyView
-    UITapGestureRecognizer *doubleTapGrey = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTapRecognized:)];
-    doubleTapGrey.numberOfTapsRequired = 2;
-    [greyView addGestureRecognizer:doubleTapGrey];
-    [singleTapGrey requireGestureRecognizerToFail:doubleTapGrey];
+    // DoubleTap on grayView
+    UITapGestureRecognizer *doubleTapGray = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTapRecognized:)];
+    doubleTapGray.numberOfTapsRequired = 2;
+    [grayView addGestureRecognizer:doubleTapGray];
+    [singleTapGray requireGestureRecognizerToFail:doubleTapGray];
     
     // Defaults
-    _displayedView = kMap;
+    _displayedView = kSearch;
     
     // Create Info Controller
     NSMutableArray *listOfViewControllers = [[NSMutableArray alloc] initWithArray:self.tabBarController.viewControllers];
@@ -113,8 +149,11 @@
 	[self.tabBarController setViewControllers:listOfViewControllers
 	                                 animated:YES];
     
+    // searchBar
+    [self setSearchBar:self];
+    
     // On top of the Tab Bar
-    [[[[UIApplication sharedApplication] delegate] window] addSubview:greyView];
+    [[[[UIApplication sharedApplication] delegate] window] addSubview:grayView];
     [[[[UIApplication sharedApplication] delegate] window] addSubview:infoView];
 }
 
@@ -209,8 +248,17 @@
     if (indexOfTab == 0) {
         [self showCurrentLocation];
     } else {
-        [self.navigationController setNavigationBarHidden:NO animated:YES];
-        greyView.hidden = NO;
+        grayView.hidden = NO;
+        
+        self.navigationItem.titleView = nil;
+        self.navigationItem.title = @"Info";
+        
+        // Show Done on the Navigation Bar
+        UIBarButtonItem *submit = [[UIBarButtonItem alloc]
+                                   initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                   target:self
+                                   action:@selector(dismissInfo:)];
+        self.navigationItem.rightBarButtonItem = submit;
         
         [UIView animateWithDuration:0.6 animations:^{
             infoView.frame = CGRectMake(infoView.frame.origin.x,
@@ -228,6 +276,9 @@
 }
 
 - (IBAction)dismissInfo:(id)sender {
+    self.navigationItem.rightBarButtonItem = nil;
+    [self setSearchBar:self];
+    
     [UIView animateWithDuration:0.6 animations:^{
         infoView.frame = CGRectMake(infoView.frame.origin.x,
                                     screenHeight,
@@ -236,8 +287,7 @@
     } completion:^(BOOL finished) {
         if (finished)
         {
-            greyView.hidden = YES;
-            [self.navigationController setNavigationBarHidden:YES animated:YES];
+            grayView.hidden = YES;
             _displayedView = kSearch;
         }
     }];
@@ -250,11 +300,9 @@
         [self dismissInfo:self];
     } else {
         if (_displayedView == kSearch) {
-            [UIView animateWithDuration:0.6 animations:^{
-                self.searchBar.frame = CGRectMake(self.searchBar.frame.origin.x,
-                                                  -self.searchBar.frame.size.height,
-                                                  self.searchBar.frame.size.width,
-                                                  self.searchBar.frame.size.height);
+            [UIApplication sharedApplication].statusBarHidden = YES;
+            [self.navigationController setNavigationBarHidden:YES animated:YES];
+            [UIView animateWithDuration:0.3 animations:^{
                 self.tabBarController.tabBar.frame = CGRectMake(self.tabBarController.tabBar.frame.origin.x,
                                                                 screenHeight,
                                                                 self.tabBarController.tabBar.frame.size.width,
@@ -263,11 +311,9 @@
             
             _displayedView = kMap;
         } else {
-            [UIView animateWithDuration:0.6 animations:^{
-                self.searchBar.frame = CGRectMake(self.searchBar.frame.origin.x,
-                                                  statusBarHeight,
-                                                  self.searchBar.frame.size.width,
-                                                  self.searchBar.frame.size.height);
+            [self.navigationController setNavigationBarHidden:NO animated:YES];
+            [UIApplication sharedApplication].statusBarHidden = NO;
+            [UIView animateWithDuration:0.3 animations:^{
                 self.tabBarController.tabBar.frame = CGRectMake(self.tabBarController.tabBar.frame.origin.x,
                                                                 screenHeight-self.tabBarController.tabBar.frame.size.height,
                                                                 self.tabBarController.tabBar.frame.size.width,
@@ -290,6 +336,20 @@
     region.span.latitudeDelta = 0.01;
     region.span.longitudeDelta = 0.01;
     [self.mapView setRegion:region animated:YES];
+}
+
+- (void)setSearchBar:(id)sender {
+    UISearchBar *searchBar = [UISearchBar new];
+    [searchBar sizeToFit];
+    UIView *searchBarView = [[UIView alloc] initWithFrame:searchBar.bounds];
+    searchBar.delegate = self;
+    searchBar.searchBarStyle = UISearchBarStyleMinimal;
+    searchBar.placeholder = @"Search jobs, companies...";
+    [searchBarView addSubview:searchBar];
+    self.navigationItem.titleView = searchBarView;
+}
+
+- (void)flip:(id)sender {
 }
 
 @end

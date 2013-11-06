@@ -19,7 +19,6 @@ enum displayedView
 
 @interface MIIViewController : UIViewController <MKMapViewDelegate,UISearchDisplayDelegate,UISearchBarDelegate,UITabBarControllerDelegate,UITabBarDelegate>
 
-@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet ADClusterMapView *mapView;
 
 @end
