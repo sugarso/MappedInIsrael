@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GAITrackedViewController.h"
 
-@interface MIICompanyViewController : UIViewController
+@interface MIICompanyViewController : GAITrackedViewController
 
 @end

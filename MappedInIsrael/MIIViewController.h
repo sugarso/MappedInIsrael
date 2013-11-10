@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import "ADClusterMapView.h"
+#import "GAITrackedViewController.h"
 
 enum displayedView
 {
@@ -17,8 +18,12 @@ enum displayedView
     kInfo
 };
 
-@interface MIIViewController : UIViewController <MKMapViewDelegate,UISearchDisplayDelegate,UISearchBarDelegate,UITabBarControllerDelegate,UITabBarDelegate>
+@interface MIIViewController : GAITrackedViewController <MKMapViewDelegate,UISearchDisplayDelegate,UISearchBarDelegate,UITabBarControllerDelegate,UITabBarDelegate>
 
 @property (weak, nonatomic) IBOutlet ADClusterMapView *mapView;
+@property (weak, nonatomic) IBOutlet UIView *categoriesBar;
+@property (strong, nonatomic) NSArray *companies;
+
+- (IBAction)showCurrentLocation;
 
 @end

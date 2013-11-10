@@ -11,6 +11,15 @@
 		B223163E18226B23009A5A2B /* ADClusterMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = B223163818226B23009A5A2B /* ADClusterMapView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B223163F18226B23009A5A2B /* ADMapCluster.m in Sources */ = {isa = PBXBuildFile; fileRef = B223163A18226B23009A5A2B /* ADMapCluster.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B223164018226B23009A5A2B /* ADMapPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = B223163C18226B23009A5A2B /* ADMapPointAnnotation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		B2A3878F182F9C6500989B4D /* map-25.png in Resources */ = {isa = PBXBuildFile; fileRef = B2A3878E182F9C6500989B4D /* map-25.png */; };
+		B2A38796182FAAE200989B4D /* FlipLeftSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A38795182FAAE200989B4D /* FlipLeftSegue.m */; };
+		B2A38799182FAE6500989B4D /* MIITableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A38798182FAE6500989B4D /* MIITableViewController.m */; };
+		B2A3879C182FAFEF00989B4D /* FlipRightSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A3879B182FAFEF00989B4D /* FlipRightSegue.m */; };
+		B2A3879E182FDCB900989B4D /* align_justify-25.png in Resources */ = {isa = PBXBuildFile; fileRef = B2A3879D182FDCB900989B4D /* align_justify-25.png */; };
+		B2A387A7182FED6900989B4D /* libGoogleAnalytics_debug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2A387A6182FED6900989B4D /* libGoogleAnalytics_debug.a */; };
+		B2A387A9182FED7D00989B4D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2A387A8182FED7D00989B4D /* CoreData.framework */; };
+		B2A387AB182FEDA000989B4D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2A387AA182FEDA000989B4D /* SystemConfiguration.framework */; };
+		B2A387AD182FEDAF00989B4D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B2A387AC182FEDAF00989B4D /* libz.dylib */; };
 		B2B6C19118240171007773D7 /* MIICompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2B6C19018240171007773D7 /* MIICompanyViewController.m */; };
 		B2CD5CBD182238B900340E43 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2CD5CBC182238B900340E43 /* Foundation.framework */; };
 		B2CD5CBF182238B900340E43 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2CD5CBE182238B900340E43 /* CoreGraphics.framework */; };
@@ -60,6 +69,24 @@
 		B223163A18226B23009A5A2B /* ADMapCluster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADMapCluster.m; sourceTree = "<group>"; };
 		B223163B18226B23009A5A2B /* ADMapPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADMapPointAnnotation.h; sourceTree = "<group>"; };
 		B223163C18226B23009A5A2B /* ADMapPointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADMapPointAnnotation.m; sourceTree = "<group>"; };
+		B2A3878E182F9C6500989B4D /* map-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-25.png"; sourceTree = "<group>"; };
+		B2A38794182FAAE200989B4D /* FlipLeftSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipLeftSegue.h; sourceTree = "<group>"; };
+		B2A38795182FAAE200989B4D /* FlipLeftSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipLeftSegue.m; sourceTree = "<group>"; };
+		B2A38797182FAE6500989B4D /* MIITableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIITableViewController.h; sourceTree = "<group>"; };
+		B2A38798182FAE6500989B4D /* MIITableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIITableViewController.m; sourceTree = "<group>"; };
+		B2A3879A182FAFEF00989B4D /* FlipRightSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipRightSegue.h; sourceTree = "<group>"; };
+		B2A3879B182FAFEF00989B4D /* FlipRightSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipRightSegue.m; sourceTree = "<group>"; };
+		B2A3879D182FDCB900989B4D /* align_justify-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "align_justify-25.png"; sourceTree = "<group>"; };
+		B2A387A0182FED6900989B4D /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
+		B2A387A1182FED6900989B4D /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIDictionaryBuilder.h; sourceTree = "<group>"; };
+		B2A387A2182FED6900989B4D /* GAIFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIFields.h; sourceTree = "<group>"; };
+		B2A387A3182FED6900989B4D /* GAILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAILogger.h; sourceTree = "<group>"; };
+		B2A387A4182FED6900989B4D /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
+		B2A387A5182FED6900989B4D /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
+		B2A387A6182FED6900989B4D /* libGoogleAnalytics_debug.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics_debug.a; sourceTree = "<group>"; };
+		B2A387A8182FED7D00989B4D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		B2A387AA182FEDA000989B4D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		B2A387AC182FEDAF00989B4D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		B2B6C18F18240171007773D7 /* MIICompanyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIICompanyViewController.h; sourceTree = "<group>"; };
 		B2B6C19018240171007773D7 /* MIICompanyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIICompanyViewController.m; sourceTree = "<group>"; };
 		B2CD5CB9182238B900340E43 /* MappedInIsrael.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MappedInIsrael.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,6 +134,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2A387A7182FED6900989B4D /* libGoogleAnalytics_debug.a in Frameworks */,
+				B2A387AD182FEDAF00989B4D /* libz.dylib in Frameworks */,
+				B2A387AB182FEDA000989B4D /* SystemConfiguration.framework in Frameworks */,
+				B2A387A9182FED7D00989B4D /* CoreData.framework in Frameworks */,
 				B2CD5D04182252F700340E43 /* MapKit.framework in Frameworks */,
 				B2CD5D02182252EE00340E43 /* CoreLocation.framework in Frameworks */,
 				B2CD5CBF182238B900340E43 /* CoreGraphics.framework in Frameworks */,
@@ -143,6 +174,20 @@
 			path = ADClusterMapView;
 			sourceTree = "<group>";
 		};
+		B2A3879F182FED6900989B4D /* GoogleAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				B2A387A0182FED6900989B4D /* GAI.h */,
+				B2A387A1182FED6900989B4D /* GAIDictionaryBuilder.h */,
+				B2A387A2182FED6900989B4D /* GAIFields.h */,
+				B2A387A3182FED6900989B4D /* GAILogger.h */,
+				B2A387A4182FED6900989B4D /* GAITrackedViewController.h */,
+				B2A387A5182FED6900989B4D /* GAITracker.h */,
+				B2A387A6182FED6900989B4D /* libGoogleAnalytics_debug.a */,
+			);
+			path = GoogleAnalytics;
+			sourceTree = "<group>";
+		};
 		B2CD5CB0182238B900340E43 = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +210,9 @@
 		B2CD5CBB182238B900340E43 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B2A387AC182FEDAF00989B4D /* libz.dylib */,
+				B2A387AA182FEDA000989B4D /* SystemConfiguration.framework */,
+				B2A387A8182FED7D00989B4D /* CoreData.framework */,
 				B2CD5D03182252F700340E43 /* MapKit.framework */,
 				B2CD5D01182252EE00340E43 /* CoreLocation.framework */,
 				B2CD5CBC182238B900340E43 /* Foundation.framework */,
@@ -181,8 +229,14 @@
 				B2CD5CCE182238B900340E43 /* Main.storyboard */,
 				B2CD5CCB182238B900340E43 /* MIIAppDelegate.h */,
 				B2CD5CCC182238B900340E43 /* MIIAppDelegate.m */,
+				B2A38794182FAAE200989B4D /* FlipLeftSegue.h */,
+				B2A38795182FAAE200989B4D /* FlipLeftSegue.m */,
+				B2A3879A182FAFEF00989B4D /* FlipRightSegue.h */,
+				B2A3879B182FAFEF00989B4D /* FlipRightSegue.m */,
 				B2CD5CD1182238B900340E43 /* MIIViewController.h */,
 				B2CD5CD2182238B900340E43 /* MIIViewController.m */,
+				B2A38797182FAE6500989B4D /* MIITableViewController.h */,
+				B2A38798182FAE6500989B4D /* MIITableViewController.m */,
 				B2B6C18F18240171007773D7 /* MIICompanyViewController.h */,
 				B2B6C19018240171007773D7 /* MIICompanyViewController.m */,
 				B2CD5CF1182239A400340E43 /* MIICompany.h */,
@@ -195,9 +249,10 @@
 				B2CD5CFD1822484300340E43 /* MIIManagerDelegate.h */,
 				B2CD5CFE1822488200340E43 /* MIIManager.h */,
 				B2CD5CFF1822488200340E43 /* MIIManager.m */,
+				B2A3879F182FED6900989B4D /* GoogleAnalytics */,
+				B223163418226B23009A5A2B /* ADClusterMapView */,
 				B2CD5CD4182238B900340E43 /* Images.xcassets */,
 				B2DDDC17182997E300CC59BF /* Images */,
-				B223163418226B23009A5A2B /* ADClusterMapView */,
 				B2CD5CC3182238B900340E43 /* Supporting Files */,
 			);
 			path = MappedInIsrael;
@@ -235,6 +290,8 @@
 		B2DDDC17182997E300CC59BF /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				B2A3878E182F9C6500989B4D /* map-25.png */,
+				B2A3879D182FDCB900989B4D /* align_justify-25.png */,
 				B2DDDC18182997EF00CC59BF /* accelerator.png */,
 				B2DDDC19182997EF00CC59BF /* community.png */,
 				B2DDDC1A182997EF00CC59BF /* coworking.png */,
@@ -327,9 +384,11 @@
 				B2CD5CD5182238B900340E43 /* Images.xcassets in Resources */,
 				B2DDDC25182997EF00CC59BF /* startup.png in Resources */,
 				B2DDDC24182997EF00CC59BF /* service.png in Resources */,
+				B2A3878F182F9C6500989B4D /* map-25.png in Resources */,
 				B2CD5CC7182238B900340E43 /* InfoPlist.strings in Resources */,
 				B2CD5CD0182238B900340E43 /* Main.storyboard in Resources */,
 				B2DDDC22182997EF00CC59BF /* investor.png in Resources */,
+				B2A3879E182FDCB900989B4D /* align_justify-25.png in Resources */,
 				B2DDDC21182997EF00CC59BF /* coworking.png in Resources */,
 				B2DDDC20182997EF00CC59BF /* community.png in Resources */,
 				B2DDDC23182997EF00CC59BF /* rdcenter.png in Resources */,
@@ -374,11 +433,14 @@
 				B223163D18226B23009A5A2B /* ADClusterAnnotation.m in Sources */,
 				B2CD5CFC1822452500340E43 /* MIICompanyBuilder.m in Sources */,
 				B223163F18226B23009A5A2B /* ADMapCluster.m in Sources */,
+				B2A3879C182FAFEF00989B4D /* FlipRightSegue.m in Sources */,
 				B223163E18226B23009A5A2B /* ADClusterMapView.m in Sources */,
 				B2CD5CF3182239A400340E43 /* MIICompany.m in Sources */,
 				B2CD5CF91822431600340E43 /* MIICommunicator.m in Sources */,
+				B2A38799182FAE6500989B4D /* MIITableViewController.m in Sources */,
 				B2CD5CC9182238B900340E43 /* main.m in Sources */,
 				B2B6C19118240171007773D7 /* MIICompanyViewController.m in Sources */,
+				B2A38796182FAAE200989B4D /* FlipLeftSegue.m in Sources */,
 				B2CD5CD3182238B900340E43 /* MIIViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -502,14 +564,19 @@
 		B2CD5CEC182238B900340E43 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MappedInIsrael/MappedInIsrael-Prefix.pch";
 				INFOPLIST_FILE = "MappedInIsrael/MappedInIsrael-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/genady/Dropbox/Development/Xcode/MappedInIsrael/MappedInIsrael/GoogleAnalytics,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "873BA2BC-48CE-4D21-8264-638237509AE4";
+				PROVISIONING_PROFILE = "8B74C0E6-0B8F-4C66-BFFC-7C660C979EF0";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -517,14 +584,19 @@
 		B2CD5CED182238B900340E43 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MappedInIsrael/MappedInIsrael-Prefix.pch";
 				INFOPLIST_FILE = "MappedInIsrael/MappedInIsrael-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/genady/Dropbox/Development/Xcode/MappedInIsrael/MappedInIsrael/GoogleAnalytics,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "F672E6DE-AAC4-4FF4-B510-336C19FAC474";
+				PROVISIONING_PROFILE = "7F97F858-EB95-42FE-8A5B-7EE4526C97BE";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

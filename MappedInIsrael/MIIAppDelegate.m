@@ -7,11 +7,25 @@
 //
 
 #import "MIIAppDelegate.h"
+#import "GAI.h"
 
 @implementation MIIAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // Optional: automatically send uncaught exceptions to Google Analytics.
+    [GAI sharedInstance].trackUncaughtExceptions = YES;
+    
+    // Optional: set Google Analytics dispatch interval to e.g. 20 seconds.
+    [GAI sharedInstance].dispatchInterval = 20;
+    
+    // Optional: set Logger to VERBOSE for debug information.
+    [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
+    
+    // Initialize tracker.
+    //id<GAITracker> tracker = [[GAI sharedInstance] trackerWithTrackingId:@"UA-45602986-1"];
+    [[GAI sharedInstance] trackerWithTrackingId:@"UA-45602986-1"];
+    
     // Override point for customization after application launch.
     return YES;
 }

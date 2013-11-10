@@ -23,6 +23,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.screenName = @"Company View";
 }
 
 @end

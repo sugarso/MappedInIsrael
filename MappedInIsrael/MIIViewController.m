@@ -19,7 +19,6 @@
 
 @interface MIIViewController () <MIIManagerDelegate> {
     MIIManager *_manager;
-    NSArray *_companies;
     NSArray *_allCompanies;
     enum displayedView _displayedView;
     UIView *infoView;
@@ -34,9 +33,19 @@
 
 @implementation MIIViewController
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self showCurrentLocation];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.screenName = @"Map View";
+    
+    self.navigationItem.hidesBackButton = YES;
     
     self.mapView.delegate = self;
     self.tabBarController.delegate = self;
@@ -163,7 +172,7 @@
 
 - (void)didReceiveCompanies:(NSArray *)companies
 {
-    _companies = companies;
+    self.companies = companies;
     _allCompanies = companies;
     dispatch_async(dispatch_get_main_queue(), ^{
         [self reloadMap];
@@ -179,7 +188,7 @@
 {
     NSMutableArray *annotations = [[NSMutableArray alloc] init];
     
-    for (MIICompany *company in _companies) {
+    for (MIICompany *company in self.companies) {
         // Coordinate
         CLLocationCoordinate2D coordinate;
         coordinate.latitude = [company.lat doubleValue];
@@ -216,6 +225,10 @@
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
+    if (annotation == mapView.userLocation) {
+        return nil;
+    }
+    
     static NSString *reuseId = @"MapViewController";
     MKAnnotationView *view = [self.mapView dequeueReusableAnnotationViewWithIdentifier:reuseId];
 
@@ -312,18 +325,27 @@
                                                                 screenHeight,
                                                                 self.tabBarController.tabBar.frame.size.width,
                                                                 self.tabBarController.tabBar.frame.size.height);
+                self.categoriesBar.frame = CGRectMake(self.categoriesBar.frame.origin.x,
+                                                     -self.categoriesBar.frame.size.height,
+                                                     self.categoriesBar.frame.size.width,
+                                                     self.categoriesBar.frame.size.height);
             }];
             
             _displayedView = kMap;
         } else {
-            [self.navigationController setNavigationBarHidden:NO animated:YES];
-            [UIApplication sharedApplication].statusBarHidden = NO;
             [UIView animateWithDuration:0.3 animations:^{
                 self.tabBarController.tabBar.frame = CGRectMake(self.tabBarController.tabBar.frame.origin.x,
                                                                 screenHeight-self.tabBarController.tabBar.frame.size.height,
                                                                 self.tabBarController.tabBar.frame.size.width,
                                                                 self.tabBarController.tabBar.frame.size.height);
+                self.categoriesBar.frame = CGRectMake(self.categoriesBar.frame.origin.x,
+                                                      statusBarHeight+self.navigationController.toolbar.frame.size.height,
+                                                      self.categoriesBar.frame.size.width,
+                                                      self.categoriesBar.frame.size.height);
             }];
+            
+            [self.navigationController setNavigationBarHidden:NO animated:YES];
+            [UIApplication sharedApplication].statusBarHidden = NO;
             
             _displayedView = kSearch;
         }
@@ -338,8 +360,8 @@
     MKCoordinateRegion region;
     region.center.latitude = self.mapView.userLocation.coordinate.latitude;
     region.center.longitude = self.mapView.userLocation.coordinate.longitude;
-    region.span.latitudeDelta = 0.01;
-    region.span.longitudeDelta = 0.01;
+    region.span.latitudeDelta = 0.03;
+    region.span.longitudeDelta = 0.03;
     [self.mapView setRegion:region animated:YES];
 }
 
@@ -349,7 +371,19 @@
     mySearchBar.delegate = self;
     mySearchBar.searchBarStyle = UISearchBarStyleMinimal;
     mySearchBar.placeholder = @"Search jobs, companies...";
+    
+    UIImage *image = [UIImage imageNamed:@"align_justify-25.png"];
+    UIButton *imageButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
+    [imageButton setImage:image forState:UIControlStateNormal];
+    [imageButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc] initWithCustomView:imageButton];
+    
+    self.navigationItem.rightBarButtonItem = buttonItem;
     self.navigationItem.titleView = mySearchBar;
+}
+
+- (void)buttonPressed:(id)sender {
+    [self performSegueWithIdentifier:@"showTable:" sender:self.view];
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
@@ -376,7 +410,7 @@
             }
         }
     }
-    _companies = companies;
+    self.companies = companies;
     dispatch_async(dispatch_get_main_queue(), ^{
         [self reloadMap];
     });
