@@ -24,7 +24,7 @@
     NSMutableArray *companies = [[NSMutableArray alloc] init];
     
     NSArray *payload = [parsedObject valueForKey:@"payload"];
-    NSLog(@"Count %lu", (unsigned long)payload.count);
+    NSLog(@"Companies Count: %lu", (unsigned long)payload.count);
     
     for (NSDictionary *companyDic in payload) {
         MIICompany *company = [[MIICompany alloc] init];

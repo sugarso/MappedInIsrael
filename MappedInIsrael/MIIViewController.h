@@ -18,10 +18,15 @@ enum displayedView
     kInfo
 };
 
-@interface MIIViewController : GAITrackedViewController <MKMapViewDelegate,UISearchDisplayDelegate,UISearchBarDelegate,UITabBarControllerDelegate,UITabBarDelegate>
+@interface MIIViewController : GAITrackedViewController <MKMapViewDelegate,UISearchDisplayDelegate,UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
 
+@property (weak, nonatomic) IBOutlet UIView *view;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIView *mapV;
 @property (weak, nonatomic) IBOutlet ADClusterMapView *mapView;
-@property (weak, nonatomic) IBOutlet UIView *categoriesBar;
+@property (weak, nonatomic) IBOutlet UIView *whosHiringView;
+@property (weak, nonatomic) IBOutlet UIView *mainView;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *whosHiring;
 @property (strong, nonatomic) NSArray *companies;
 
 - (IBAction)showCurrentLocation;
