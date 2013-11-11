@@ -18,11 +18,14 @@
 @property (weak, nonatomic) id<MIIDataDelegate> delegate;
 
 - (id)init;
-- (NSArray *)getCompanies;
 + (NSArray *)getAllCategories;
 + (NSArray *)getAllFormatedCategories;
+
+- (NSArray *)getCompanies;
 - (NSArray *)getCompaniesInCategory:(NSString *)category;
-- (NSInteger)getNumberOfCompaniesInCategory:(NSString *)category;
 - (MIICompany *)category:(NSString *)category companyAtIndex:(NSInteger)index;
 
+- (NSArray *)searchCompanies:(NSString *)string;
+- (NSArray *)category:(NSString *)category searchCompaniesByString:(NSString *)string;
+- (MIICompany *)category:(NSString *)category index:(NSInteger)index searchCompaniesByString:(NSString *)string;
 @end

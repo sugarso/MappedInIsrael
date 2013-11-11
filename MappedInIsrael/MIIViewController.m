@@ -68,12 +68,12 @@
     UITapGestureRecognizer *singleTapMap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapRecognized:)];
     singleTapMap.numberOfTapsRequired = 1;
     singleTapMap.delaysTouchesEnded = YES;
-    [self.mapView addGestureRecognizer:singleTapMap];
+    //[self.mapView addGestureRecognizer:singleTapMap];
     
     // DoubleTap on mapView
     UITapGestureRecognizer *doubleTapMap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTapRecognized:)];
     doubleTapMap.numberOfTapsRequired = 2;
-    [self.mapView addGestureRecognizer:doubleTapMap];
+    //[self.mapView addGestureRecognizer:doubleTapMap];
     [singleTapMap requireGestureRecognizerToFail:doubleTapMap];
     
     // Defaults
@@ -107,7 +107,7 @@
 {
     NSMutableArray *annotations = [[NSMutableArray alloc] init];
     
-    for (MIICompany *company in [_data getCompanies]) {
+    for (MIICompany *company in [_data searchCompanies:mySearchBar.text]) {
         // Coordinate
         CLLocationCoordinate2D coordinate;
         coordinate.latitude = [company.lat doubleValue];
@@ -167,15 +167,6 @@
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
     [self performSegueWithIdentifier:@"setCompany:" sender:view];
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:@"setCompany:"]) {
-        MKAnnotationView *aView = sender;
-        UIViewController *mdvc = segue.destinationViewController;
-        mdvc.title = aView.annotation.title;
-    }
 }
 
 
@@ -315,34 +306,36 @@
     
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"setCompany:"]) {
+        if ([sender isKindOfClass:[MKAnnotationView class]]) {
+            MKAnnotationView *aView = sender;
+            
+            UIViewController *mdvc = segue.destinationViewController;
+            mdvc.title = aView.annotation.title;
+        }
+        
+        if ([sender isKindOfClass:[NSIndexPath class]]) {
+            NSIndexPath *aView = sender;
+            NSString *category = [[MIIData getAllFormatedCategories] objectAtIndex:aView.section];
+            MIICompany *company = [_data category:category index:aView.row searchCompaniesByString:mySearchBar.text];
+            
+            UIViewController *mdvc = segue.destinationViewController;
+            mdvc.title = company.companyName;
+        }
+    }
+}
+
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
     NSLog(@"Search: %@", searchText);
-    [self updateMap:self];
+    [self dataIsReady];
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     [searchBar resignFirstResponder];
-}
-
-- (IBAction)updateMap:(id)sender {
-    NSMutableArray *companies = [[NSMutableArray alloc] init];
-    for (MIICompany *company in [_data getCompanies]) {
-        if ((mySearchBar.text == nil) ||
-            ([mySearchBar.text isEqualToString:@""]) ||
-            ([company.companyName rangeOfString:mySearchBar.text options:NSCaseInsensitiveSearch].length)) {
-            [companies addObject:company];
-        }
-    }
-    //self.companies = companies;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self reloadMap];
-    });
-}
-
-- (IBAction)bla:(id)sender {
-    int *x = NULL; *x = 42;
 }
 
 
@@ -355,13 +348,18 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return [[MIIData getAllFormatedCategories] objectAtIndex:section];
+    return [_data category:[[MIIData getAllFormatedCategories] objectAtIndex:section] searchCompaniesByString:mySearchBar.text].count ? [[MIIData getAllFormatedCategories] objectAtIndex:section] : nil; // TBD: don't count it again
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSString *category = (NSString *)[[MIIData getAllFormatedCategories] objectAtIndex:section];
-    return [_data getNumberOfCompaniesInCategory:category];
+    return [_data category:category searchCompaniesByString:mySearchBar.text].count; // TBD: don't count it again
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self performSegueWithIdentifier:@"setCompany:" sender:indexPath];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -370,7 +368,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     NSString *category = [[MIIData getAllFormatedCategories] objectAtIndex:indexPath.section];
-    MIICompany *company = [_data category:category companyAtIndex:indexPath.row];
+    MIICompany *company = [_data category:category index:indexPath.row searchCompaniesByString:mySearchBar.text]; // TBD: don't count it again
     
     cell.textLabel.text = company.companyName;
     cell.detailTextLabel.text = company.companySubCategory;

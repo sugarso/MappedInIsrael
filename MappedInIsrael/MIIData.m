@@ -38,7 +38,7 @@
 }
 
 - (void)didReceiveCompanies:(NSArray *)companies // TBD: Use CoreData to save it and load it in background for the next time.
-{
+{                                                //      Ship the app with data ready?
     _companies = companies;
     
     // Add companies to _companiesInCategory
@@ -83,15 +83,45 @@
     return [[_companiesInCategory objectAtIndex:categoryIndex] copy];
 }
 
-- (NSInteger)getNumberOfCompaniesInCategory:(NSString *)category
+- (MIICompany *)category:(NSString *)category companyAtIndex:(NSInteger)index
 {
     NSUInteger categoryIndex = [[MIIData getAllFormatedCategories] indexOfObject:category];
-    return [[_companiesInCategory objectAtIndex:categoryIndex] count];
+    return [[_companiesInCategory objectAtIndex:categoryIndex] objectAtIndex:index];
 }
 
-- (MIICompany *)category:(NSString *)category companyAtIndex:(NSInteger)index {
-    NSUInteger categoryIndex = [[MIIData getAllFormatedCategories] indexOfObject:category];
-    return [[_companiesInCategory objectAtIndex:categoryIndex] objectAtIndex:index];
+- (NSArray *)searchCompanies:(NSString *)string
+{
+    NSMutableArray *companies = [[NSMutableArray alloc] init];
+    for (MIICompany *company in [self getCompanies]) {
+        if ((string == nil) ||
+            ([string isEqualToString:@""]) ||
+            ([company.companyName rangeOfString:string options:NSCaseInsensitiveSearch].length)) {
+            [companies addObject:company];
+        }
+    }
+    
+    return [companies copy];
+}
+
+- (NSArray *)category:(NSString *)category searchCompaniesByString:(NSString *)string
+{
+    NSMutableArray *companies = [[NSMutableArray alloc] init];
+    // TBD: write the loop only once
+    for (MIICompany *company in [self getCompaniesInCategory:category]) {
+        if ((string == nil) ||
+            ([string isEqualToString:@""]) ||
+            ([company.companyName rangeOfString:string options:NSCaseInsensitiveSearch].length)) {
+            [companies addObject:company];
+        }
+    }
+    
+    return [companies copy];
+}
+
+- (MIICompany *)category:(NSString *)category index:(NSInteger)index searchCompaniesByString:(NSString *)string
+{
+    // TBD: don't run [self category:category searchCompaniesByString:string] again!
+    return [[self category:category searchCompaniesByString:string] objectAtIndex:index];
 }
 
 @end

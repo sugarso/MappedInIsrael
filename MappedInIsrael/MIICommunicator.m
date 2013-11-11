@@ -20,8 +20,9 @@
     NSURL *url = [[NSURL alloc] initWithString:urlAsString];
     NSLog(@"API URL: %@", urlAsString);
     
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [NSURLConnection sendAsynchronousRequest:[[NSURLRequest alloc] initWithURL:url] queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-        
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         if (error) {
             [self.delegate fetchingCompaniesFailedWithError:error];
         } else {
