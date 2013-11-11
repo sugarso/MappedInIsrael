@@ -27,7 +27,6 @@ enum displayedView
 @property (weak, nonatomic) IBOutlet UIView *whosHiringView;
 @property (weak, nonatomic) IBOutlet UIView *mainView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *whosHiring;
-@property (strong, nonatomic) NSArray *companies;
 
 - (IBAction)showCurrentLocation;
 

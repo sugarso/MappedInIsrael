@@ -15,22 +15,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Optional: automatically send uncaught exceptions to Google Analytics.
-    [GAI sharedInstance].trackUncaughtExceptions = YES;
-    
-    // Optional: set Google Analytics dispatch interval to e.g. 20 seconds.
+    //[GAI sharedInstance].trackUncaughtExceptions = YES;
     [GAI sharedInstance].dispatchInterval = 20;
-    
-    // Optional: set Logger to VERBOSE for debug information.
     //[[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
-    
-    // Initialize tracker.
     [[GAI sharedInstance] trackerWithTrackingId:@"UA-45602986-1"];
-    
-    // Crashlytics
-    [Crashlytics startWithAPIKey:@"8a47ccbf8db717681b6ae83cb615504de6fe5eb7"];
-    
-    // TestFlight
+    //[Crashlytics startWithAPIKey:@"8a47ccbf8db717681b6ae83cb615504de6fe5eb7"];
     [TestFlight takeOff:@"a6d3ce40-d3a2-4ab4-ba36-e99ce94a5284"];
     
     // Override point for customization after application launch.

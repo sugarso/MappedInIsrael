@@ -1,0 +1,28 @@
+//
+//  MIIData.h
+//  MappedInIsrael
+//
+//  Created by Genady Okrain on 11/11/13.
+//  Copyright (c) 2013 Genady Okrain. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "MIIDataDelegate.h"
+#import "MIICompany.h"
+#import "MIICommunicator.h"
+#import "MIIManager.h"
+
+
+@interface MIIData : NSObject
+
+@property (weak, nonatomic) id<MIIDataDelegate> delegate;
+
+- (id)init;
+- (NSArray *)getCompanies;
++ (NSArray *)getAllCategories;
++ (NSArray *)getAllFormatedCategories;
+- (NSArray *)getCompaniesInCategory:(NSString *)category;
+- (NSInteger)getNumberOfCompaniesInCategory:(NSString *)category;
+- (MIICompany *)category:(NSString *)category companyAtIndex:(NSInteger)index;
+
+@end

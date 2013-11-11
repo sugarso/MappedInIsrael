@@ -11,6 +11,7 @@
 		B223163E18226B23009A5A2B /* ADClusterMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = B223163818226B23009A5A2B /* ADClusterMapView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B223163F18226B23009A5A2B /* ADMapCluster.m in Sources */ = {isa = PBXBuildFile; fileRef = B223163A18226B23009A5A2B /* ADMapCluster.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B223164018226B23009A5A2B /* ADMapPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = B223163C18226B23009A5A2B /* ADMapPointAnnotation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		B22C811D1831651A006E192E /* MIIData.m in Sources */ = {isa = PBXBuildFile; fileRef = B22C811C1831651A006E192E /* MIIData.m */; };
 		B232AC691831421700114E52 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B232AC681831421700114E52 /* Crashlytics.framework */; };
 		B232AC6B18314AAC00114E52 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B232AC6A18314AAC00114E52 /* AdSupport.framework */; };
 		B232AC7118314AF700114E52 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B232AC6D18314AF700114E52 /* libTestFlight.a */; };
@@ -69,7 +70,10 @@
 		B223163A18226B23009A5A2B /* ADMapCluster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADMapCluster.m; sourceTree = "<group>"; };
 		B223163B18226B23009A5A2B /* ADMapPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADMapPointAnnotation.h; sourceTree = "<group>"; };
 		B223163C18226B23009A5A2B /* ADMapPointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADMapPointAnnotation.m; sourceTree = "<group>"; };
-		B232AC681831421700114E52 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		B22C811B1831651A006E192E /* MIIData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIIData.h; sourceTree = "<group>"; };
+		B22C811C1831651A006E192E /* MIIData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIIData.m; sourceTree = "<group>"; };
+		B22C811E18316891006E192E /* MIIDataDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MIIDataDelegate.h; sourceTree = "<group>"; };
+		B232AC681831421700114E52 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = MappedInIsrael/Crashlytics.framework; sourceTree = "<group>"; };
 		B232AC6A18314AAC00114E52 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		B232AC6D18314AF700114E52 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
 		B232AC6E18314AF700114E52 /* TestFlight+AsyncLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+AsyncLogging.h"; sourceTree = "<group>"; };
@@ -177,7 +181,7 @@
 			path = ADClusterMapView;
 			sourceTree = "<group>";
 		};
-		B232AC6C18314AF700114E52 /* TestFlightSDK */ = {
+		B232AC6C18314AF700114E52 /* TestFlight */ = {
 			isa = PBXGroup;
 			children = (
 				B232AC6D18314AF700114E52 /* libTestFlight.a */,
@@ -185,6 +189,7 @@
 				B232AC6F18314AF700114E52 /* TestFlight+ManualSessions.h */,
 				B232AC7018314AF700114E52 /* TestFlight.h */,
 			);
+			name = TestFlight;
 			path = TestFlightSDK;
 			sourceTree = "<group>";
 		};
@@ -201,6 +206,9 @@
 				B2CD5CFD1822484300340E43 /* MIIManagerDelegate.h */,
 				B2CD5CFE1822488200340E43 /* MIIManager.h */,
 				B2CD5CFF1822488200340E43 /* MIIManager.m */,
+				B22C811E18316891006E192E /* MIIDataDelegate.h */,
+				B22C811B1831651A006E192E /* MIIData.h */,
+				B22C811C1831651A006E192E /* MIIData.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -252,6 +260,7 @@
 		B2CD5CBB182238B900340E43 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B232AC681831421700114E52 /* Crashlytics.framework */,
 				B232AC6A18314AAC00114E52 /* AdSupport.framework */,
 				B2A387AC182FEDAF00989B4D /* libz.dylib */,
 				B2A387AA182FEDA000989B4D /* SystemConfiguration.framework */,
@@ -275,9 +284,8 @@
 				B296E6281830FB33005C09E9 /* Model */,
 				B296E6291830FB78005C09E9 /* Controllers */,
 				B2A3879F182FED6900989B4D /* GoogleAnalytics */,
-				B232AC6C18314AF700114E52 /* TestFlightSDK */,
+				B232AC6C18314AF700114E52 /* TestFlight */,
 				B223163418226B23009A5A2B /* ADClusterMapView */,
-				B232AC681831421700114E52 /* Crashlytics.framework */,
 				B2CD5CD4182238B900340E43 /* Images.xcassets */,
 				B2DDDC17182997E300CC59BF /* Images */,
 				B2CD5CC3182238B900340E43 /* Supporting Files */,
@@ -468,6 +476,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B22C811D1831651A006E192E /* MIIData.m in Sources */,
 				B2CD5D001822488200340E43 /* MIIManager.m in Sources */,
 				B2CD5CCD182238B900340E43 /* MIIAppDelegate.m in Sources */,
 				B223164018226B23009A5A2B /* ADMapPointAnnotation.m in Sources */,

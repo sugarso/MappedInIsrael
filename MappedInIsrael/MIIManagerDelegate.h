@@ -10,7 +10,7 @@
 
 @protocol MIIManagerDelegate <NSObject>
 
-- (void)didReceiveCompanies:(NSArray *)groups;
+- (void)didReceiveCompanies:(NSArray *)companies;
 - (void)fetchingCompaniesFailedWithError:(NSError *)error;
 
 @end

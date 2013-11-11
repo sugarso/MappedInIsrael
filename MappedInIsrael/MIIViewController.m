@@ -6,20 +6,18 @@
 //  Copyright (c) 2013 Genady Okrain. All rights reserved.
 //
 
-#import "MIIViewController.h"
-#import "MIICompany.h"
-#import "MIICommunicator.h"
-#import "MIIManager.h"
 #import "MIIAppDelegate.h"
+#import "MIICompany.h"
+#import "MIIData.h"
+#import "MIIViewController.h"
 
 #define INFO_VIEW_HEIGHT 300
 #define BORDERS_MARGIN 10
 #define SEARCH_BAR_HEIGHT 44
 #define SEGMENTED_CONTROL_HEIGHT 29
 
-@interface MIIViewController () <MIIManagerDelegate> {
-    MIIManager *_manager;
-    NSArray *_allCompanies;
+@interface MIIViewController () <MIIDataDelegate> {
+    MIIData *_data;
     enum displayedView _displayedView;
     CGFloat screenWidth;
     CGFloat screenHeight;
@@ -27,7 +25,6 @@
     UISearchBar *mySearchBar;
     BOOL firstTime;
     BOOL showMap;
-    NSArray *categories;
 }
 @end
 
@@ -48,9 +45,6 @@
 {
     [super viewDidLoad];
     
-        categories = @[@"Startups", @"Accelerators", @"Coworking", @"Investors", @"R&D Centers", @"Community", @"Services"];
-    
-    
     showMap = true;
     
     self.screenName = @"Map View";
@@ -69,12 +63,6 @@
     screenWidth = screenSize.width;
     screenHeight = screenSize.height;
     statusBarHeight = [[UIApplication sharedApplication] statusBarFrame].size.height;
-    
-    _manager = [[MIIManager alloc] init];
-    _manager.communicator = [[MIICommunicator alloc] init];
-    _manager.communicator.delegate = _manager;
-    _manager.delegate = self;
-    [_manager getAllCompanies]; // Get all data from MII API
     
     // SignleTap on mapView
     UITapGestureRecognizer *singleTapMap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapRecognized:)];
@@ -101,28 +89,25 @@
     
     // searchBar
     [self addSearchBar:self];
+    
+    _data = [[MIIData alloc] init];
+    _data.delegate = self;
 }
 
-- (void)didReceiveCompanies:(NSArray *)companies
+
+- (void)dataIsReady
 {
-    self.companies = companies;
-    _allCompanies = companies;
     dispatch_async(dispatch_get_main_queue(), ^{
         [self reloadMap];
         [self.tableView reloadData];
     });
 }
 
-- (void)fetchingCompaniesFailedWithError:(NSError *)error
-{
-    NSLog(@"Error %@; %@", error, [error localizedDescription]);
-}
-
 - (void)reloadMap
 {
     NSMutableArray *annotations = [[NSMutableArray alloc] init];
     
-    for (MIICompany *company in self.companies) {
+    for (MIICompany *company in [_data getCompanies]) {
         // Coordinate
         CLLocationCoordinate2D coordinate;
         coordinate.latitude = [company.lat doubleValue];
@@ -195,7 +180,6 @@
 
 
 - (void)singleTapRecognized:(UIGestureRecognizer *)gestureRecognizer {
-    NSLog(@"Single Tap");
     
     if (_displayedView == kInfo) {
     } else {
@@ -267,7 +251,6 @@
 }
 
 - (void)doubleTapRecognized:(UIGestureRecognizer *)gestureRecognizer {
-    NSLog(@"Double Tap");
 }
 
 - (IBAction)showCurrentLocation {
@@ -345,14 +328,14 @@
 
 - (IBAction)updateMap:(id)sender {
     NSMutableArray *companies = [[NSMutableArray alloc] init];
-    for (MIICompany *company in _allCompanies) {
+    for (MIICompany *company in [_data getCompanies]) {
         if ((mySearchBar.text == nil) ||
             ([mySearchBar.text isEqualToString:@""]) ||
             ([company.companyName rangeOfString:mySearchBar.text options:NSCaseInsensitiveSearch].length)) {
             [companies addObject:company];
         }
     }
-    self.companies = companies;
+    //self.companies = companies;
     dispatch_async(dispatch_get_main_queue(), ^{
         [self reloadMap];
     });
@@ -367,26 +350,18 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [categories count];
+    return [[MIIData getAllFormatedCategories] count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return [categories objectAtIndex:section];
+    return [[MIIData getAllFormatedCategories] objectAtIndex:section];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSArray *tmp = @[@"startup", @"accelerator", @"coworking", @"investor", @"rdcenter", @"community", @"service"];
-    NSString *category = (NSString *) [tmp objectAtIndex:section];
-    NSInteger num = 0;
-    for (MIICompany *company in self.companies) {
-        if ([company.companyCategory isEqualToString:category]){
-            num++;
-        }
-    }
-    
-    return num;
+    NSString *category = (NSString *)[[MIIData getAllFormatedCategories] objectAtIndex:section];
+    return [_data getNumberOfCompaniesInCategory:category];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -394,17 +369,11 @@
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    NSArray *tmp = @[@"startup", @"accelerator", @"coworking", @"investor", @"rdcenter", @"community", @"service"];
-    NSString *category = (NSString *) [tmp objectAtIndex:indexPath.section];
-    NSMutableArray *tmparr = [[NSMutableArray alloc] init];
-    for (MIICompany *company in self.companies) {
-        if ([company.companyCategory isEqualToString:category]){
-            [tmparr addObject:company];
-        }
-    }
+    NSString *category = [[MIIData getAllFormatedCategories] objectAtIndex:indexPath.section];
+    MIICompany *company = [_data category:category companyAtIndex:indexPath.row];
     
-    cell.textLabel.text = ((MIICompany *) [tmparr objectAtIndex:indexPath.row]).companyName;
-    cell.detailTextLabel.text = ((MIICompany *) [tmparr objectAtIndex:indexPath.row]).companySubCategory;
+    cell.textLabel.text = company.companyName;
+    cell.detailTextLabel.text = company.companySubCategory;
     
     return cell;
 }
