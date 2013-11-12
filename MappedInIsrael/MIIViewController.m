@@ -17,6 +17,7 @@
     UISearchBar *_searchBar;    
     BOOL _showingMap;
     NSArray const *_flipMapTableIcons;
+    KPTreeController *_treeController;
 }
 @end
 
@@ -39,6 +40,9 @@
 
     // Map
     self.map.delegate = self;
+    _treeController = [[KPTreeController alloc] initWithMapView:self.map];
+    _treeController.delegate = self;
+    _treeController.animationOptions = UIViewAnimationOptionCurveEaseOut;
     
     // SearchBar
     _searchBar = [UISearchBar new];
@@ -86,7 +90,7 @@
     }
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.map addAnnotations:annotations];
+        [_treeController setAnnotations:annotations];
     });
 }
 
@@ -210,6 +214,77 @@
     return view;
 }
 */
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
+{
+    MKPinAnnotationView *v = nil;
+    
+    if ([annotation isKindOfClass:[KPAnnotation class]]) {
+        KPAnnotation *a = (KPAnnotation *)annotation;
+        
+        if ([annotation isKindOfClass:[MKUserLocation class]]) {
+            return nil;
+        }
+        
+        if ([a isCluster]) {
+            v = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"Cluster"];
+            
+            if (!v) {
+                v = [[MKPinAnnotationView alloc] initWithAnnotation:a reuseIdentifier:@"Cluster"];
+            }
+            
+            NSString *title = ((MKPointAnnotation *)annotation).title;
+            NSString *numberOfCompanies = [[[title componentsSeparatedByString:@" "] subarrayWithRange:NSMakeRange(0, 1)] objectAtIndex:0];
+            
+            UILabel *l = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 32, 32)];
+            [l setTextAlignment:NSTextAlignmentCenter];
+            [l setFont:[UIFont fontWithName:@"American Typewriter" size:12]];
+            l.text = numberOfCompanies;
+            
+            MIIClusterView *clusterView;
+            if ([numberOfCompanies intValue] < 10) {
+                clusterView = [[MIIClusterView alloc] initWithFrame:CGRectMake(0, 0, 32, 32) color:[UIColor greenColor]];
+            } else if ([numberOfCompanies intValue] < 100) {
+                clusterView = [[MIIClusterView alloc] initWithFrame:CGRectMake(0, 0, 32, 32) color:[UIColor yellowColor]];
+            } else {
+                clusterView = [[MIIClusterView alloc] initWithFrame:CGRectMake(0, 0, 32, 32) color:[UIColor redColor]];
+            }
+            [clusterView addSubview:l];
+            
+            v.image = [MIIClusterView imageWithView:clusterView];
+        } else {
+            v = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"Company"];
+            
+            if (!v) {
+                v = [[MKPinAnnotationView alloc] initWithAnnotation:[a.annotations anyObject] reuseIdentifier:@"Company"];
+                v.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+            }
+            
+            //NSString *subtitle = ((MKPointAnnotation *)annotation).subtitle;
+            NSString *subtitle = @"startup";
+            UIImage *i = [UIImage imageNamed:[NSString stringWithFormat:@"%@%@", subtitle, @".png"]];
+            v.image = i;
+        }
+        v.canShowCallout = YES;
+    }
+    
+    return v;
+}
+
+- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
+{
+    [_treeController refresh:YES];
+}
+
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
+{
+    if ([view.annotation isKindOfClass:[KPAnnotation class]]) {
+        KPAnnotation *cluster = (KPAnnotation *)view.annotation;
+        if (cluster.annotations.count > 1) {
+            [self.map setRegion:MKCoordinateRegionMakeWithDistance(cluster.coordinate, cluster.radius*2.5f, cluster.radius*2.5f) animated:YES];
+        }
+    }
+}
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {

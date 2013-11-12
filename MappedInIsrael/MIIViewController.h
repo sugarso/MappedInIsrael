@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import "GAITrackedViewController.h"
+#import "KPTreeController.h"
+#import "KPAnnotation.h"
 
-@interface MIIViewController : GAITrackedViewController <MKMapViewDelegate,UISearchDisplayDelegate,UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface MIIViewController : GAITrackedViewController <MKMapViewDelegate,KPTreeControllerDelegate,UISearchDisplayDelegate,UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *view;
 
