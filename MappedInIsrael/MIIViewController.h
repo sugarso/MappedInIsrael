@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
-#import "ADClusterMapView.h"
 #import "GAITrackedViewController.h"
 
 @interface MIIViewController : GAITrackedViewController <MKMapViewDelegate,UISearchDisplayDelegate,UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
@@ -22,6 +21,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (weak, nonatomic) IBOutlet UIView *mapView;
-@property (weak, nonatomic) IBOutlet ADClusterMapView *map;
+@property (weak, nonatomic) IBOutlet MKMapView *map;
 
 @end

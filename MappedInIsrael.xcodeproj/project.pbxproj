@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B223163D18226B23009A5A2B /* ADClusterAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = B223163618226B23009A5A2B /* ADClusterAnnotation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		B223163E18226B23009A5A2B /* ADClusterMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = B223163818226B23009A5A2B /* ADClusterMapView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		B223163F18226B23009A5A2B /* ADMapCluster.m in Sources */ = {isa = PBXBuildFile; fileRef = B223163A18226B23009A5A2B /* ADMapCluster.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		B223164018226B23009A5A2B /* ADMapPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = B223163C18226B23009A5A2B /* ADMapPointAnnotation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B22C811D1831651A006E192E /* MIIData.m in Sources */ = {isa = PBXBuildFile; fileRef = B22C811C1831651A006E192E /* MIIData.m */; };
 		B232AC691831421700114E52 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B232AC681831421700114E52 /* Crashlytics.framework */; };
 		B232AC6B18314AAC00114E52 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B232AC6A18314AAC00114E52 /* AdSupport.framework */; };
@@ -50,6 +46,11 @@
 		B2DDDC24182997EF00CC59BF /* service.png in Resources */ = {isa = PBXBuildFile; fileRef = B2DDDC1D182997EF00CC59BF /* service.png */; };
 		B2DDDC25182997EF00CC59BF /* startup.png in Resources */ = {isa = PBXBuildFile; fileRef = B2DDDC1E182997EF00CC59BF /* startup.png */; };
 		B2DFDA8518324E000080BA78 /* MIIClusterView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DFDA8418324E000080BA78 /* MIIClusterView.m */; };
+		B2DFDAA1183281410080BA78 /* KPAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DFDA98183281410080BA78 /* KPAnnotation.m */; };
+		B2DFDAA2183281410080BA78 /* KPAnnotationTree.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DFDA9A183281410080BA78 /* KPAnnotationTree.m */; };
+		B2DFDAA3183281410080BA78 /* KPTreeController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DFDA9C183281410080BA78 /* KPTreeController.m */; };
+		B2DFDAA4183281410080BA78 /* KPTreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DFDA9E183281410080BA78 /* KPTreeNode.m */; };
+		B2DFDAA81832898D0080BA78 /* NSArray+KP.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DFDAA71832898D0080BA78 /* NSArray+KP.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,14 +64,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B223163518226B23009A5A2B /* ADClusterAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADClusterAnnotation.h; sourceTree = "<group>"; };
-		B223163618226B23009A5A2B /* ADClusterAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADClusterAnnotation.m; sourceTree = "<group>"; };
-		B223163718226B23009A5A2B /* ADClusterMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADClusterMapView.h; sourceTree = "<group>"; };
-		B223163818226B23009A5A2B /* ADClusterMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADClusterMapView.m; sourceTree = "<group>"; };
-		B223163918226B23009A5A2B /* ADMapCluster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADMapCluster.h; sourceTree = "<group>"; };
-		B223163A18226B23009A5A2B /* ADMapCluster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADMapCluster.m; sourceTree = "<group>"; };
-		B223163B18226B23009A5A2B /* ADMapPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADMapPointAnnotation.h; sourceTree = "<group>"; };
-		B223163C18226B23009A5A2B /* ADMapPointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADMapPointAnnotation.m; sourceTree = "<group>"; };
 		B22C811B1831651A006E192E /* MIIData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIIData.h; sourceTree = "<group>"; };
 		B22C811C1831651A006E192E /* MIIData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIIData.m; sourceTree = "<group>"; };
 		B22C811E18316891006E192E /* MIIDataDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MIIDataDelegate.h; sourceTree = "<group>"; };
@@ -134,6 +127,16 @@
 		B2DDDC1E182997EF00CC59BF /* startup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = startup.png; sourceTree = "<group>"; };
 		B2DFDA8318324E000080BA78 /* MIIClusterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIIClusterView.h; sourceTree = "<group>"; };
 		B2DFDA8418324E000080BA78 /* MIIClusterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIIClusterView.m; sourceTree = "<group>"; };
+		B2DFDA97183281410080BA78 /* KPAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPAnnotation.h; sourceTree = "<group>"; };
+		B2DFDA98183281410080BA78 /* KPAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPAnnotation.m; sourceTree = "<group>"; };
+		B2DFDA99183281410080BA78 /* KPAnnotationTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPAnnotationTree.h; sourceTree = "<group>"; };
+		B2DFDA9A183281410080BA78 /* KPAnnotationTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPAnnotationTree.m; sourceTree = "<group>"; };
+		B2DFDA9B183281410080BA78 /* KPTreeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPTreeController.h; sourceTree = "<group>"; };
+		B2DFDA9C183281410080BA78 /* KPTreeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPTreeController.m; sourceTree = "<group>"; };
+		B2DFDA9D183281410080BA78 /* KPTreeNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPTreeNode.h; sourceTree = "<group>"; };
+		B2DFDA9E183281410080BA78 /* KPTreeNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPTreeNode.m; sourceTree = "<group>"; };
+		B2DFDAA61832898D0080BA78 /* NSArray+KP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+KP.h"; sourceTree = "<group>"; };
+		B2DFDAA71832898D0080BA78 /* NSArray+KP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+KP.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,21 +172,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B223163418226B23009A5A2B /* ADClusterMapView */ = {
-			isa = PBXGroup;
-			children = (
-				B223163518226B23009A5A2B /* ADClusterAnnotation.h */,
-				B223163618226B23009A5A2B /* ADClusterAnnotation.m */,
-				B223163718226B23009A5A2B /* ADClusterMapView.h */,
-				B223163818226B23009A5A2B /* ADClusterMapView.m */,
-				B223163918226B23009A5A2B /* ADMapCluster.h */,
-				B223163A18226B23009A5A2B /* ADMapCluster.m */,
-				B223163B18226B23009A5A2B /* ADMapPointAnnotation.h */,
-				B223163C18226B23009A5A2B /* ADMapPointAnnotation.m */,
-			);
-			path = ADClusterMapView;
-			sourceTree = "<group>";
-		};
 		B232AC6C18314AF700114E52 /* TestFlight */ = {
 			isa = PBXGroup;
 			children = (
@@ -288,7 +276,7 @@
 				B296E6291830FB78005C09E9 /* Controllers */,
 				B2A3879F182FED6900989B4D /* GoogleAnalytics */,
 				B232AC6C18314AF700114E52 /* TestFlight */,
-				B223163418226B23009A5A2B /* ADClusterMapView */,
+				B2DFDA96183281410080BA78 /* kingpin */,
 				B2CD5CD4182238B900340E43 /* Images.xcassets */,
 				B2DDDC17182997E300CC59BF /* Images */,
 				B2CD5CC3182238B900340E43 /* Supporting Files */,
@@ -349,6 +337,23 @@
 				B2DFDA8418324E000080BA78 /* MIIClusterView.m */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		B2DFDA96183281410080BA78 /* kingpin */ = {
+			isa = PBXGroup;
+			children = (
+				B2DFDAA61832898D0080BA78 /* NSArray+KP.h */,
+				B2DFDAA71832898D0080BA78 /* NSArray+KP.m */,
+				B2DFDA97183281410080BA78 /* KPAnnotation.h */,
+				B2DFDA98183281410080BA78 /* KPAnnotation.m */,
+				B2DFDA99183281410080BA78 /* KPAnnotationTree.h */,
+				B2DFDA9A183281410080BA78 /* KPAnnotationTree.m */,
+				B2DFDA9B183281410080BA78 /* KPTreeController.h */,
+				B2DFDA9C183281410080BA78 /* KPTreeController.m */,
+				B2DFDA9D183281410080BA78 /* KPTreeNode.h */,
+				B2DFDA9E183281410080BA78 /* KPTreeNode.m */,
+			);
+			path = kingpin;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -489,16 +494,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2DFDAA3183281410080BA78 /* KPTreeController.m in Sources */,
 				B22C811D1831651A006E192E /* MIIData.m in Sources */,
 				B2DFDA8518324E000080BA78 /* MIIClusterView.m in Sources */,
 				B2CD5D001822488200340E43 /* MIIManager.m in Sources */,
+				B2DFDAA1183281410080BA78 /* KPAnnotation.m in Sources */,
 				B2CD5CCD182238B900340E43 /* MIIAppDelegate.m in Sources */,
-				B223164018226B23009A5A2B /* ADMapPointAnnotation.m in Sources */,
-				B223163D18226B23009A5A2B /* ADClusterAnnotation.m in Sources */,
+				B2DFDAA2183281410080BA78 /* KPAnnotationTree.m in Sources */,
 				B2CD5CFC1822452500340E43 /* MIICompanyBuilder.m in Sources */,
-				B223163F18226B23009A5A2B /* ADMapCluster.m in Sources */,
-				B223163E18226B23009A5A2B /* ADClusterMapView.m in Sources */,
 				B2CD5CF3182239A400340E43 /* MIICompany.m in Sources */,
+				B2DFDAA81832898D0080BA78 /* NSArray+KP.m in Sources */,
+				B2DFDAA4183281410080BA78 /* KPTreeNode.m in Sources */,
 				B2CD5CF91822431600340E43 /* MIICommunicator.m in Sources */,
 				B2CD5CC9182238B900340E43 /* main.m in Sources */,
 				B2B6C19118240171007773D7 /* MIICompanyViewController.m in Sources */,

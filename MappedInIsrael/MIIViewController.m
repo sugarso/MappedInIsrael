@@ -85,10 +85,8 @@
         [annotations addObject:point];
     }
     
-    // Clusters
     dispatch_async(dispatch_get_main_queue(), ^{
-        NSLog(@"Building KD-Tree…");
-        [self.map setAnnotations:annotations];
+        [self.map addAnnotations:annotations];
     });
 }
 
@@ -152,6 +150,7 @@
 
 #pragma mark - mapView
 
+/*
 - (NSString *)clusterTitleForMapView:(ADClusterMapView *)mapView
 {
     return @"%d companies";
@@ -210,6 +209,7 @@
     
     return view;
 }
+*/
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
