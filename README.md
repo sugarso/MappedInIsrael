@@ -1,4 +1,4 @@
-Mapped In Israel
+Startups | Mapped In Israel
 ================
 
 ## Screenshots:
