@@ -250,11 +250,6 @@
     return [_data getCompaniesInCategory:category].count;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [self performSegueWithIdentifier:@"setCompanyByCell:" sender:indexPath];
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
@@ -285,8 +280,8 @@
     
     // TableView
     if ([segue.identifier isEqualToString:@"setCompanyByCell:"]) {
-        if ([sender isKindOfClass:[NSIndexPath class]]) {
-            NSIndexPath *indexPath = sender;
+        if ([sender isKindOfClass:[UITableViewCell class]]) {
+            NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
             NSString *category = [[MIIData getAllFormatedCategories] objectAtIndex:indexPath.section];
             MIICompany *company = [_data category:category companyAtIndex:indexPath.row];
             title = company.companyName;
