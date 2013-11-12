@@ -154,67 +154,6 @@
 
 #pragma mark - mapView
 
-/*
-- (NSString *)clusterTitleForMapView:(ADClusterMapView *)mapView
-{
-    return @"%d companies";
-}
-
-- (MKAnnotationView *)mapView:(ADClusterMapView *)mapView viewForClusterAnnotation:(id <MKAnnotation>)annotation
-{
-    static NSString *reuseId = @"ClusterMapViewController";
-    MKAnnotationView *view = [self.map dequeueReusableAnnotationViewWithIdentifier:reuseId];
-    
-    if (!view) {
-        view = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseId];
-        view.canShowCallout = YES;
-    }
-    
-    NSString *title = ((MKPointAnnotation *)annotation).title;
-    NSString *numberOfCompanies = [[[title componentsSeparatedByString:@" "] subarrayWithRange:NSMakeRange(0, 1)] objectAtIndex:0];
-    
-    UILabel *annLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 32, 32)];
-    [annLabel setTextAlignment:NSTextAlignmentCenter];
-    annLabel.text = numberOfCompanies;
-    
-    MIIClusterView *clusterView;
-    if ([numberOfCompanies intValue] < 10) {
-        clusterView = [[MIIClusterView alloc] initWithFrame:CGRectMake(0, 0, 32, 32) color:[UIColor greenColor]];
-    } else if ([numberOfCompanies intValue] < 20) {
-        clusterView = [[MIIClusterView alloc] initWithFrame:CGRectMake(0, 0, 32, 32) color:[UIColor yellowColor]];
-    } else {
-        clusterView = [[MIIClusterView alloc] initWithFrame:CGRectMake(0, 0, 32, 32) color:[UIColor redColor]];
-    }
-    [clusterView addSubview:annLabel];
-
-    view.image = [MIIClusterView imageWithView:clusterView];
-
-    return view;
-}
-
-- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
-{
-    if (annotation == mapView.userLocation) {
-        return nil;
-    }
-    
-    static NSString *reuseId = @"MapViewController";
-    MKAnnotationView *view = [self.map dequeueReusableAnnotationViewWithIdentifier:reuseId];
-    
-    if (!view) {
-        view = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseId];
-        view.canShowCallout = YES;
-        view.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-    }
-    
-    NSString *subtitle = ((MKPointAnnotation *)annotation).subtitle;
-    UIImage *annImage = [UIImage imageNamed:[NSString stringWithFormat:@"%@%@", subtitle, @".png"]];
-    view.image = annImage;
-    
-    return view;
-}
-*/
-
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
     MKPinAnnotationView *v = nil;
@@ -233,8 +172,9 @@
                 v = [[MKPinAnnotationView alloc] initWithAnnotation:a reuseIdentifier:@"Cluster"];
             }
             
-            NSString *title = ((MKPointAnnotation *)annotation).title;
-            NSString *numberOfCompanies = [[[title componentsSeparatedByString:@" "] subarrayWithRange:NSMakeRange(0, 1)] objectAtIndex:0];
+            //NSString *title = ((MKPointAnnotation *)annotation).title;
+            //NSString *numberOfCompanies = [[[title componentsSeparatedByString:@" "] subarrayWithRange:NSMakeRange(0, 1)] objectAtIndex:0];
+            NSString *numberOfCompanies = [NSString stringWithFormat:@"%d", ((KPAnnotation *)annotation).annotations.count];
             
             UILabel *l = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 32, 32)];
             [l setTextAlignment:NSTextAlignmentCenter];
@@ -260,8 +200,7 @@
                 v.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
             }
             
-            //NSString *subtitle = ((MKPointAnnotation *)annotation).subtitle;
-            NSString *subtitle = @"startup";
+            NSString *subtitle = ((MKPointAnnotation *)annotation).subtitle;
             UIImage *i = [UIImage imageNamed:[NSString stringWithFormat:@"%@%@", subtitle, @".png"]];
             v.image = i;
         }
@@ -274,16 +213,6 @@
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
     [_treeController refresh:YES];
-}
-
-- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
-{
-    if ([view.annotation isKindOfClass:[KPAnnotation class]]) {
-        KPAnnotation *cluster = (KPAnnotation *)view.annotation;
-        if (cluster.annotations.count > 1) {
-            [self.map setRegion:MKCoordinateRegionMakeWithDistance(cluster.coordinate, cluster.radius*2.5f, cluster.radius*2.5f) animated:YES];
-        }
-    }
 }
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
@@ -366,6 +295,17 @@
     
     UIViewController *dst = segue.destinationViewController;
     dst.title = title;
+}
+
+#pragma mark - KPTreeControllerDelegate
+
+- (void)treeController:(KPTreeController *)tree configureAnnotationForDisplay:(KPAnnotation *)annotation
+{
+    if (annotation.annotations.count == 1) {
+        MKPointAnnotation *point = (MKPointAnnotation *)[annotation.annotations anyObject];
+        annotation.title = [NSString stringWithFormat:@"%@", point.title];
+        annotation.subtitle = [NSString stringWithFormat:@"%@", point.subtitle];
+    }
 }
 
 @end
