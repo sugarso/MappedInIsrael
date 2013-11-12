@@ -49,6 +49,7 @@
 		B2DDDC23182997EF00CC59BF /* rdcenter.png in Resources */ = {isa = PBXBuildFile; fileRef = B2DDDC1C182997EF00CC59BF /* rdcenter.png */; };
 		B2DDDC24182997EF00CC59BF /* service.png in Resources */ = {isa = PBXBuildFile; fileRef = B2DDDC1D182997EF00CC59BF /* service.png */; };
 		B2DDDC25182997EF00CC59BF /* startup.png in Resources */ = {isa = PBXBuildFile; fileRef = B2DDDC1E182997EF00CC59BF /* startup.png */; };
+		B2DFDA8518324E000080BA78 /* MIIClusterView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DFDA8418324E000080BA78 /* MIIClusterView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +132,8 @@
 		B2DDDC1C182997EF00CC59BF /* rdcenter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rdcenter.png; sourceTree = "<group>"; };
 		B2DDDC1D182997EF00CC59BF /* service.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = service.png; sourceTree = "<group>"; };
 		B2DDDC1E182997EF00CC59BF /* startup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = startup.png; sourceTree = "<group>"; };
+		B2DFDA8318324E000080BA78 /* MIIClusterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIIClusterView.h; sourceTree = "<group>"; };
+		B2DFDA8418324E000080BA78 /* MIIClusterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIIClusterView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -280,8 +283,8 @@
 			children = (
 				B2CD5CCB182238B900340E43 /* MIIAppDelegate.h */,
 				B2CD5CCC182238B900340E43 /* MIIAppDelegate.m */,
-				B2CD5CCE182238B900340E43 /* View.storyboard */,
 				B296E6281830FB33005C09E9 /* Model */,
+				B2DFDA8618324E090080BA78 /* View */,
 				B296E6291830FB78005C09E9 /* Controllers */,
 				B2A3879F182FED6900989B4D /* GoogleAnalytics */,
 				B232AC6C18314AF700114E52 /* TestFlight */,
@@ -336,6 +339,16 @@
 				B2DDDC1E182997EF00CC59BF /* startup.png */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		B2DFDA8618324E090080BA78 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B2CD5CCE182238B900340E43 /* View.storyboard */,
+				B2DFDA8318324E000080BA78 /* MIIClusterView.h */,
+				B2DFDA8418324E000080BA78 /* MIIClusterView.m */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -477,6 +490,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B22C811D1831651A006E192E /* MIIData.m in Sources */,
+				B2DFDA8518324E000080BA78 /* MIIClusterView.m in Sources */,
 				B2CD5D001822488200340E43 /* MIIManager.m in Sources */,
 				B2CD5CCD182238B900340E43 /* MIIAppDelegate.m in Sources */,
 				B223164018226B23009A5A2B /* ADMapPointAnnotation.m in Sources */,

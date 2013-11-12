@@ -10,6 +10,7 @@
 #import "MIICompany.h"
 #import "MIIData.h"
 #import "MIIViewController.h"
+#import "MIIClusterView.h"
 
 @interface MIIViewController () <MIIDataDelegate> {
     MIIData *_data;
@@ -158,9 +159,33 @@
 
 - (MKAnnotationView *)mapView:(ADClusterMapView *)mapView viewForClusterAnnotation:(id <MKAnnotation>)annotation
 {
-    static NSString *reuseId = @"MapViewController";
+    static NSString *reuseId = @"ClusterMapViewController";
     MKAnnotationView *view = [self.map dequeueReusableAnnotationViewWithIdentifier:reuseId];
     
+    if (!view) {
+        view = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseId];
+        view.canShowCallout = YES;
+    }
+    
+    NSString *title = ((MKPointAnnotation *)annotation).title;
+    NSString *numberOfCompanies = [[[title componentsSeparatedByString:@" "] subarrayWithRange:NSMakeRange(0, 1)] objectAtIndex:0];
+    
+    UILabel *annLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 32, 32)];
+    [annLabel setTextAlignment:NSTextAlignmentCenter];
+    annLabel.text = numberOfCompanies;
+    
+    MIIClusterView *clusterView;
+    if ([numberOfCompanies intValue] < 10) {
+        clusterView = [[MIIClusterView alloc] initWithFrame:CGRectMake(0, 0, 32, 32) color:[UIColor greenColor]];
+    } else if ([numberOfCompanies intValue] < 20) {
+        clusterView = [[MIIClusterView alloc] initWithFrame:CGRectMake(0, 0, 32, 32) color:[UIColor yellowColor]];
+    } else {
+        clusterView = [[MIIClusterView alloc] initWithFrame:CGRectMake(0, 0, 32, 32) color:[UIColor redColor]];
+    }
+    [clusterView addSubview:annLabel];
+
+    view.image = [MIIClusterView imageWithView:clusterView];
+
     return view;
 }
 
