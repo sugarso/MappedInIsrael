@@ -677,7 +677,7 @@
 					/Users/genady/Dropbox/Development/Xcode/MappedInIsrael/MappedInIsrael/TestFlightSDK,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7F97F858-EB95-42FE-8A5B-7EE4526C97BE";
+				PROVISIONING_PROFILE = "2C15FD37-6816-4CCB-B18F-CEFDF12B1810";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

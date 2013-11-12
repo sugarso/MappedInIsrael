@@ -23,12 +23,6 @@
 
 @implementation MIIViewController
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    [self showCurrentLocation:self];
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
