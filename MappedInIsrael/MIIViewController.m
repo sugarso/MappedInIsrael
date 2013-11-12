@@ -90,6 +90,7 @@
     }
     
     dispatch_async(dispatch_get_main_queue(), ^{
+        [self.map removeAnnotations:self.map.annotations];
         [_treeController setAnnotations:annotations];
     });
 }
@@ -172,8 +173,6 @@
                 v = [[MKPinAnnotationView alloc] initWithAnnotation:a reuseIdentifier:@"Cluster"];
             }
             
-            //NSString *title = ((MKPointAnnotation *)annotation).title;
-            //NSString *numberOfCompanies = [[[title componentsSeparatedByString:@" "] subarrayWithRange:NSMakeRange(0, 1)] objectAtIndex:0];
             NSString *numberOfCompanies = [NSString stringWithFormat:@"%d", ((KPAnnotation *)annotation).annotations.count];
             
             UILabel *l = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 32, 32)];
