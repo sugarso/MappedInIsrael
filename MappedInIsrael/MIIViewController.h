@@ -11,23 +11,17 @@
 #import "ADClusterMapView.h"
 #import "GAITrackedViewController.h"
 
-enum displayedView
-{
-    kMap,
-    kSearch,
-    kInfo
-};
-
 @interface MIIViewController : GAITrackedViewController <MKMapViewDelegate,UISearchDisplayDelegate,UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *view;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UIView *mapV;
-@property (weak, nonatomic) IBOutlet ADClusterMapView *mapView;
+
 @property (weak, nonatomic) IBOutlet UIView *whosHiringView;
-@property (weak, nonatomic) IBOutlet UIView *mainView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *whosHiring;
 
-- (IBAction)showCurrentLocation;
+@property (weak, nonatomic) IBOutlet UIView *mainView;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property (weak, nonatomic) IBOutlet UIView *mapView;
+@property (weak, nonatomic) IBOutlet ADClusterMapView *map;
 
 @end

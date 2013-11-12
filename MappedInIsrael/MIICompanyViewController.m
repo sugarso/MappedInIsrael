@@ -14,17 +14,10 @@
 
 @implementation MIICompanyViewController
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.screenName = @"Company View";
+    self.screenName = @"MIICompanyViewController";
 }
 
 @end

@@ -18,14 +18,9 @@
 @property (weak, nonatomic) id<MIIDataDelegate> delegate;
 
 - (id)init;
-+ (NSArray *)getAllCategories;
 + (NSArray *)getAllFormatedCategories;
-
-- (NSArray *)getCompanies;
+- (void)setSearch:(NSString *)search setWhosHiring:(BOOL)whosHiring;
 - (NSArray *)getCompaniesInCategory:(NSString *)category;
 - (MIICompany *)category:(NSString *)category companyAtIndex:(NSInteger)index;
 
-- (NSArray *)searchCompanies:(NSString *)string;
-- (NSArray *)category:(NSString *)category searchCompaniesByString:(NSString *)string;
-- (MIICompany *)category:(NSString *)category index:(NSInteger)index searchCompaniesByString:(NSString *)string;
 @end
