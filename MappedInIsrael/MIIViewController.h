@@ -8,21 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "MIIAppDelegate.h"
 #import "GAITrackedViewController.h"
 #import "KPTreeController.h"
 #import "KPAnnotation.h"
+#import "MIICompany.h"
+#import "MIIData.h"
+#import "MIITableViewController.h"
+#import "MIIClusterView.h"
 
-@interface MIIViewController : GAITrackedViewController <MKMapViewDelegate,KPTreeControllerDelegate,UISearchDisplayDelegate,UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface MIIViewController : GAITrackedViewController <MKMapViewDelegate,KPTreeControllerDelegate>
 
+@property (strong, nonatomic) MIIData *data;
 @property (weak, nonatomic) IBOutlet UIView *view;
-
-@property (weak, nonatomic) IBOutlet UIView *whosHiringView;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *whosHiring;
-
-@property (weak, nonatomic) IBOutlet UIView *mainView;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-
-@property (weak, nonatomic) IBOutlet UIView *mapView;
-@property (weak, nonatomic) IBOutlet MKMapView *map;
+@property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
 @end

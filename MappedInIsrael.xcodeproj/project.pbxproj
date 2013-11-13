@@ -11,6 +11,7 @@
 		B232AC691831421700114E52 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B232AC681831421700114E52 /* Crashlytics.framework */; };
 		B232AC6B18314AAC00114E52 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B232AC6A18314AAC00114E52 /* AdSupport.framework */; };
 		B232AC7118314AF700114E52 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B232AC6D18314AF700114E52 /* libTestFlight.a */; };
+		B274D0321832D88A00FEF3E6 /* MIITableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B274D0311832D88A00FEF3E6 /* MIITableViewController.m */; };
 		B2A3878F182F9C6500989B4D /* map-25.png in Resources */ = {isa = PBXBuildFile; fileRef = B2A3878E182F9C6500989B4D /* map-25.png */; };
 		B2A3879E182FDCB900989B4D /* align_justify-25.png in Resources */ = {isa = PBXBuildFile; fileRef = B2A3879D182FDCB900989B4D /* align_justify-25.png */; };
 		B2A387A7182FED6900989B4D /* libGoogleAnalytics_debug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2A387A6182FED6900989B4D /* libGoogleAnalytics_debug.a */; };
@@ -73,6 +74,8 @@
 		B232AC6E18314AF700114E52 /* TestFlight+AsyncLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+AsyncLogging.h"; sourceTree = "<group>"; };
 		B232AC6F18314AF700114E52 /* TestFlight+ManualSessions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestFlight+ManualSessions.h"; sourceTree = "<group>"; };
 		B232AC7018314AF700114E52 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
+		B274D0301832D88A00FEF3E6 /* MIITableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIITableViewController.h; sourceTree = "<group>"; };
+		B274D0311832D88A00FEF3E6 /* MIITableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIITableViewController.m; sourceTree = "<group>"; };
 		B2A3878E182F9C6500989B4D /* map-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-25.png"; sourceTree = "<group>"; };
 		B2A3879D182FDCB900989B4D /* align_justify-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "align_justify-25.png"; sourceTree = "<group>"; };
 		B2A387A0182FED6900989B4D /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
@@ -209,6 +212,8 @@
 			children = (
 				B2CD5CD1182238B900340E43 /* MIIViewController.h */,
 				B2CD5CD2182238B900340E43 /* MIIViewController.m */,
+				B274D0301832D88A00FEF3E6 /* MIITableViewController.h */,
+				B274D0311832D88A00FEF3E6 /* MIITableViewController.m */,
 				B2B6C18F18240171007773D7 /* MIICompanyViewController.h */,
 				B2B6C19018240171007773D7 /* MIICompanyViewController.m */,
 			);
@@ -503,6 +508,7 @@
 				B2DFDAA2183281410080BA78 /* KPAnnotationTree.m in Sources */,
 				B2CD5CFC1822452500340E43 /* MIICompanyBuilder.m in Sources */,
 				B2CD5CF3182239A400340E43 /* MIICompany.m in Sources */,
+				B274D0321832D88A00FEF3E6 /* MIITableViewController.m in Sources */,
 				B2DFDAA81832898D0080BA78 /* NSArray+KP.m in Sources */,
 				B2DFDAA4183281410080BA78 /* KPTreeNode.m in Sources */,
 				B2CD5CF91822431600340E43 /* MIICommunicator.m in Sources */,

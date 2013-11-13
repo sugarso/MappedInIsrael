@@ -6,17 +6,9 @@
 //  Copyright (c) 2013 Genady Okrain. All rights reserved.
 //
 
-#import "MIIAppDelegate.h"
-#import "MIICompany.h"
-#import "MIIData.h"
 #import "MIIViewController.h"
-#import "MIIClusterView.h"
 
 @interface MIIViewController () <MIIDataDelegate> {
-    MIIData *_data;
-    UISearchBar *_searchBar;    
-    BOOL _showingMap;
-    NSArray const *_flipMapTableIcons;
     KPTreeController *_treeController;
 }
 @end
@@ -26,45 +18,25 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // Defaults
-    _showingMap = YES;
     self.screenName = @"MIIViewController";
-    _flipMapTableIcons = @[@"map-25.png",@"align_justify-25.png"];
 
     // Map
-    self.map.delegate = self;
-    _treeController = [[KPTreeController alloc] initWithMapView:self.map];
+    self.mapView.delegate = self;
+    _treeController = [[KPTreeController alloc] initWithMapView:self.mapView];
     _treeController.delegate = self;
     _treeController.animationOptions = UIViewAnimationOptionCurveEaseOut;
     
-    // SearchBar
-    _searchBar = [UISearchBar new];
-    [_searchBar sizeToFit];
-    _searchBar.delegate = self;
-    _searchBar.searchBarStyle = UISearchBarStyleMinimal;
-    _searchBar.placeholder = @"Search jobs, companies...";
-    self.navigationItem.titleView = _searchBar;
-    UIImage *image = [UIImage imageNamed:[_flipMapTableIcons objectAtIndex:1]];
-    [self flipMapTableIcon:image];
+    // NavigationBar
+    UIBarButtonItem *search = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(showSearch:)];
+    self.navigationItem.rightBarButtonItem = search;
+    self.navigationItem.hidesBackButton = YES;
     
     // Data
     _data = [[MIIData alloc] init];
     _data.delegate = self;
-    
-    // updateFilter every UIControlEventValueChanged
-    [self.whosHiring addTarget:self action:@selector(updateFilter:) forControlEvents:UIControlEventValueChanged];
 }
 
 - (void)dataIsReady
-{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self reloadMap];
-        [self.tableView reloadData];
-    });
-}
-
-- (void)reloadMap
 {
     NSMutableArray *annotations = [[NSMutableArray alloc] init];
     
@@ -84,67 +56,21 @@
     }
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.map removeAnnotations:self.map.annotations];
         [_treeController setAnnotations:annotations];
     });
 }
 
 - (IBAction)showCurrentLocation:(id)sender {
     MKCoordinateRegion region;
-    region.center.latitude = self.map.userLocation.coordinate.latitude;
-    region.center.longitude = self.map.userLocation.coordinate.longitude;
+    region.center.latitude = self.mapView.userLocation.coordinate.latitude;
+    region.center.longitude = self.mapView.userLocation.coordinate.longitude;
     region.span.latitudeDelta = 0.03;
     region.span.longitudeDelta = 0.03;
-    [self.map setRegion:region animated:YES];
+    [self.mapView setRegion:region animated:YES];
 }
 
-- (void)flipMapTableIcon:(UIImage *)icon
-{
-    UIButton *imageButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
-    [imageButton setImage:icon forState:UIControlStateNormal];
-    [imageButton addTarget:self action:@selector(flipMapTable:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc] initWithCustomView:imageButton];
-    self.navigationItem.rightBarButtonItem = buttonItem;
-}
-
-- (void)updateFilter:(id)sender
-{
-    NSLog(@"Search: %@, SegmentIndex: %d", _searchBar.text, self.whosHiring.selectedSegmentIndex);
-    if (self.whosHiring.selectedSegmentIndex == 0) {
-        [_data setSearch:_searchBar.text setWhosHiring:NO];
-    } else {
-        [_data setSearch:_searchBar.text setWhosHiring:YES];
-    }
-    [self dataIsReady];
-}
-
-- (void)flipMapTable:(id)sender {
-    UIImage *image;
-    UIView *src;
-    UIView *dst;
-    UIViewAnimationOptions animation;
-    
-    if (_showingMap) {
-        src = self.mapView;
-        dst = self.tableView;
-        animation = UIViewAnimationOptionShowHideTransitionViews|UIViewAnimationOptionTransitionFlipFromLeft;
-        image = [UIImage imageNamed:[_flipMapTableIcons objectAtIndex:0]];
-        _showingMap = NO;
-    } else {
-        src = self.tableView;
-        dst = self.mapView;
-        animation = UIViewAnimationOptionShowHideTransitionViews|UIViewAnimationOptionTransitionFlipFromRight;
-        image = [UIImage imageNamed:[_flipMapTableIcons objectAtIndex:1]];
-        _showingMap = YES;
-    }
-    
-    [UIView transitionFromView:src
-                        toView:dst
-                      duration:0.7
-                       options:animation
-                    completion:^(BOOL finished) {
-                        [self flipMapTableIcon:image];
-                    }];
+- (void)showSearch:(id)sender {
+    [self performSegueWithIdentifier:@"showSearch:" sender:sender];
 }
 
 #pragma mark - mapView
@@ -210,51 +136,7 @@
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
-    [self performSegueWithIdentifier:@"setCompanyByPin:" sender:view];
-}
-
-#pragma mark - searchBar
-
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
-{
-    [self updateFilter:searchBar];
-}
-
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
-{
-    [searchBar resignFirstResponder];
-}
-
-#pragma mark - tableView
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return [[MIIData getAllFormatedCategories] count];
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    return [_data getCompaniesInCategory:[[MIIData getAllFormatedCategories] objectAtIndex:section]].count ? [[MIIData getAllFormatedCategories] objectAtIndex:section] : nil;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    NSString *category = (NSString *)[[MIIData getAllFormatedCategories] objectAtIndex:section];
-    return [_data getCompaniesInCategory:category].count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    NSString *category = [[MIIData getAllFormatedCategories] objectAtIndex:indexPath.section];
-    MIICompany *company = [_data category:category companyAtIndex:indexPath.row];
-    
-    cell.textLabel.text = company.companyName;
-    cell.detailTextLabel.text = company.companySubCategory;
-    
-    return cell;
+    [self performSegueWithIdentifier:@"showCompany:" sender:view];
 }
 
 #pragma mark - Segue
@@ -263,24 +145,20 @@
 {
     NSString *title;
     
-    // MapView
-    if ([segue.identifier isEqualToString:@"setCompanyByPin:"]) {
+    if ([segue.identifier isEqualToString:@"showCompany:"]) {
         if ([sender isKindOfClass:[MKAnnotationView class]]) {
             MKAnnotationView *view = sender;
             title = view.annotation.title;
         }
     }
     
-    // TableView
-    if ([segue.identifier isEqualToString:@"setCompanyByCell:"]) {
-        if ([sender isKindOfClass:[UITableViewCell class]]) {
-            NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-            NSString *category = [[MIIData getAllFormatedCategories] objectAtIndex:indexPath.section];
-            MIICompany *company = [_data category:category companyAtIndex:indexPath.row];
-            title = company.companyName;
+    if ([segue.identifier isEqualToString:@"showSearch:"]) {
+        if ([sender isKindOfClass:[UIBarButtonItem class]]) {
+            MIITableViewController *controller = (MIITableViewController *)segue.destinationViewController;
+            controller.data = self.data;
         }
     }
-    
+
     UIViewController *dst = segue.destinationViewController;
     dst.title = title;
 }

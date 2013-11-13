@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--View Controller - Mapped In Israel-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="MIIViewController" sceneMemberID="viewController">
@@ -16,117 +16,104 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="STa-zO-sJm">
-                                <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p5p-LC-dgA">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uNF-ie-6xu">
+                                <rect key="frame" x="270" y="518" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="mgs-co-tBv">
-                                        <rect key="frame" x="20" y="8" width="280" height="29"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <segments>
-                                            <segment title="All"/>
-                                            <segment title="Who's Hiring?"/>
-                                        </segments>
-                                    </segmentedControl>
-                                </subviews>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L8m-xi-sCI">
-                                <rect key="frame" x="0.0" y="108" width="320" height="460"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="g80-SQ-kMO">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <prototypes>
-                                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="YQF-ms-I17">
-                                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YQF-ms-I17" id="IyG-GM-LZt">
-                                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </tableViewCellContentView>
-                                                <connections>
-                                                    <segue destination="9uK-M2-kGv" kind="push" identifier="setCompanyByCell:" id="RQh-Gs-qEB"/>
-                                                </connections>
-                                            </tableViewCell>
-                                        </prototypes>
-                                        <connections>
-                                            <outlet property="dataSource" destination="vXZ-lx-hvc" id="jRq-pI-yUi"/>
-                                            <outlet property="delegate" destination="vXZ-lx-hvc" id="JSx-tg-SSh"/>
-                                        </connections>
-                                    </tableView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AjF-X4-41x" userLabel="Map View">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <subviews>
-                                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p5p-LC-dgA">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            </mapView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uNF-ie-6xu">
-                                                <rect key="frame" x="270" y="410" width="30" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="L">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="showCurrentLocation:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="eAP-vo-JOt"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="uNF-ie-6xu" secondAttribute="bottom" constant="20" symbolic="YES" id="ONx-h6-Gcu"/>
-                                            <constraint firstAttribute="trailing" secondItem="uNF-ie-6xu" secondAttribute="trailing" constant="20" symbolic="YES" id="cob-e9-uE7"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="AjF-X4-41x" firstAttribute="centerY" secondItem="L8m-xi-sCI" secondAttribute="centerY" id="19G-Ks-I6Q"/>
-                                    <constraint firstAttribute="bottom" secondItem="AjF-X4-41x" secondAttribute="bottom" id="4Ur-0f-Wby"/>
-                                    <constraint firstItem="AjF-X4-41x" firstAttribute="bottom" secondItem="g80-SQ-kMO" secondAttribute="bottom" id="BHs-gX-Tq5"/>
-                                    <constraint firstAttribute="bottom" secondItem="AjF-X4-41x" secondAttribute="bottom" id="Cas-JN-gzz"/>
-                                    <constraint firstItem="AjF-X4-41x" firstAttribute="centerX" secondItem="L8m-xi-sCI" secondAttribute="centerX" id="NiN-o1-bxd"/>
-                                    <constraint firstItem="AjF-X4-41x" firstAttribute="centerY" secondItem="g80-SQ-kMO" secondAttribute="centerY" id="UId-GU-XqA"/>
-                                    <constraint firstAttribute="bottom" secondItem="AjF-X4-41x" secondAttribute="bottom" id="aid-Ir-eAM"/>
-                                    <constraint firstAttribute="trailing" secondItem="AjF-X4-41x" secondAttribute="trailing" id="bBd-UW-vxN"/>
-                                    <constraint firstItem="AjF-X4-41x" firstAttribute="centerX" secondItem="g80-SQ-kMO" secondAttribute="centerX" id="ebT-j3-YVt"/>
-                                    <constraint firstAttribute="trailing" secondItem="AjF-X4-41x" secondAttribute="trailing" id="gJe-s6-ixl"/>
-                                    <constraint firstItem="AjF-X4-41x" firstAttribute="trailing" secondItem="g80-SQ-kMO" secondAttribute="trailing" id="hE7-7A-bYz"/>
-                                    <constraint firstAttribute="trailing" secondItem="AjF-X4-41x" secondAttribute="trailing" id="lir-CT-M3f"/>
-                                </constraints>
-                            </view>
+                                <state key="normal" title="L">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showCurrentLocation:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="eAP-vo-JOt"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="L8m-xi-sCI" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" constant="108" id="0ER-4J-Ibb"/>
-                            <constraint firstItem="L8m-xi-sCI" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="5Ic-Ip-64S"/>
-                            <constraint firstAttribute="trailing" secondItem="L8m-xi-sCI" secondAttribute="trailing" id="6d3-vp-leA"/>
-                            <constraint firstItem="STa-zO-sJm" firstAttribute="top" secondItem="nZd-8b-bBY" secondAttribute="bottom" id="FSG-Wy-UR4"/>
-                            <constraint firstItem="STa-zO-sJm" firstAttribute="leading" secondItem="L8m-xi-sCI" secondAttribute="leading" id="hhi-aK-kNY"/>
-                            <constraint firstItem="L8m-xi-sCI" firstAttribute="top" secondItem="STa-zO-sJm" secondAttribute="bottom" id="jJF-tS-Rvh"/>
-                            <constraint firstItem="STa-zO-sJm" firstAttribute="trailing" secondItem="L8m-xi-sCI" secondAttribute="trailing" id="xHO-tP-BfV"/>
-                            <constraint firstAttribute="bottom" secondItem="L8m-xi-sCI" secondAttribute="bottom" id="zBm-kZ-2Vw"/>
-                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Qal-dn-CbH"/>
+                    <navigationItem key="navigationItem" title="Mapped In Israel" id="Qal-dn-CbH"/>
                     <connections>
-                        <outlet property="mainView" destination="L8m-xi-sCI" id="bLG-hL-2JG"/>
-                        <outlet property="map" destination="p5p-LC-dgA" id="mLo-gT-EPz"/>
-                        <outlet property="mapView" destination="AjF-X4-41x" id="xSO-xd-ZmF"/>
-                        <outlet property="tableView" destination="g80-SQ-kMO" id="NPb-Ho-IWy"/>
+                        <outlet property="mapView" destination="p5p-LC-dgA" id="pQC-J0-Ndn"/>
                         <outlet property="view" destination="kh9-bI-dsS" id="BOW-AF-oEa"/>
-                        <outlet property="whosHiring" destination="mgs-co-tBv" id="FV4-Oj-cYr"/>
-                        <outlet property="whosHiringView" destination="STa-zO-sJm" id="6zg-Ge-6a6"/>
-                        <segue destination="9uK-M2-kGv" kind="push" identifier="setCompanyByPin:" id="BdU-l6-vnE"/>
+                        <segue destination="9uK-M2-kGv" kind="push" identifier="showCompany:" id="BdU-l6-vnE"/>
+                        <segue destination="KnT-ws-pnS" kind="push" identifier="showSearch:" id="tbr-nO-a25"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1175" y="73"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="mMM-oO-mkn">
+            <objects>
+                <tableViewController id="KnT-ws-pnS" customClass="MIITableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="8H4-xb-oD8">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="16j-XD-WhV">
+                            <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="eQe-7o-6gi">
+                                    <rect key="frame" x="20" y="8" width="280" height="29"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <segments>
+                                        <segment title="All"/>
+                                        <segment title="Who's Hiring?"/>
+                                    </segments>
+                                </segmentedControl>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        </view>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="pQx-F9-TCT">
+                                <rect key="frame" x="0.0" y="130" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pQx-F9-TCT" id="lqb-TD-dFf">
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="9uK-M2-kGv" kind="push" identifier="showCompany:" id="UjO-9D-sep"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="KnT-ws-pnS" id="eiZ-N5-06U"/>
+                            <outlet property="delegate" destination="KnT-ws-pnS" id="qKP-8D-uDv"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="tij-zJ-av4"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="IPZ-BN-o5D" id="760-qi-dJS"/>
+                        <outlet property="tableView" destination="8H4-xb-oD8" id="sfU-12-FGE"/>
+                        <outlet property="whosHiring" destination="eQe-7o-6gi" id="HLE-HK-l1b"/>
+                        <segue destination="vXZ-lx-hvc" kind="push" identifier="showMap:" id="yVs-ez-nOk"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="r7y-WW-jzN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="tzh-g6-Y6N">
+                    <connections>
+                        <outlet property="delegate" destination="KnT-ws-pnS" id="ZUY-mp-eQC"/>
+                        <outlet property="searchContentsController" destination="KnT-ws-pnS" id="Ush-05-H2m"/>
+                        <outlet property="searchResultsDataSource" destination="KnT-ws-pnS" id="0P8-nF-nMz"/>
+                        <outlet property="searchResultsDelegate" destination="KnT-ws-pnS" id="jbd-Vh-Fn9"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="IPZ-BN-o5D">
+                    <connections>
+                        <outlet property="delegate" destination="KnT-ws-pnS" id="uOM-jf-UXX"/>
+                        <outlet property="searchContentsController" destination="KnT-ws-pnS" id="ktw-O1-M9b"/>
+                        <outlet property="searchResultsDataSource" destination="KnT-ws-pnS" id="cnh-ip-52c"/>
+                        <outlet property="searchResultsDelegate" destination="KnT-ws-pnS" id="6Hf-rP-KSG"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="1162" y="-800"/>
         </scene>
         <!--Company View Controller-->
         <scene sceneID="Wm8-2E-5cB">
@@ -145,7 +132,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6sL-bF-kqe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1696" y="73"/>
+            <point key="canvasLocation" x="1956" y="-365"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jox-aw-Kjj">
@@ -161,7 +148,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S6Z-xI-WeP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="731" y="73"/>
+            <point key="canvasLocation" x="515" y="73"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -170,6 +157,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="RQh-Gs-qEB"/>
+        <segue reference="AEm-no-wlE"/>
+        <segue reference="UjO-9D-sep"/>
     </inferredMetricsTieBreakers>
 </document>
