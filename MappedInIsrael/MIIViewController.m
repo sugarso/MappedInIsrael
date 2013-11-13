@@ -10,6 +10,7 @@
 
 @interface MIIViewController () <MIIDataDelegate> {
     KPTreeController *_treeController;
+    BOOL _fullScreen;
 }
 @end
 
@@ -25,6 +26,20 @@
     _treeController = [[KPTreeController alloc] initWithMapView:self.mapView];
     _treeController.delegate = self;
     _treeController.animationOptions = UIViewAnimationOptionCurveEaseOut;
+    _fullScreen = NO;
+    // SignleTap on mapView
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapRecognized:)];
+    singleTap.numberOfTapsRequired = 1;
+    singleTap.delaysTouchesEnded = YES;
+    singleTap.delegate = self;
+    [self.mapView addGestureRecognizer:singleTap];
+    
+    // DoubleTap on mapView
+    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTapRecognized:)];
+    doubleTap.numberOfTapsRequired = 2;
+    doubleTap.delegate = self;
+    [self.mapView addGestureRecognizer:doubleTap];
+    [singleTap requireGestureRecognizerToFail:doubleTap];
     
     // NavigationBar
     UIBarButtonItem *search = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(showSearch:)];
@@ -87,6 +102,31 @@
             }
         });
     });
+}
+
+- (void)singleTapRecognized:(UIGestureRecognizer *)gestureRecognizer
+{
+    UIView *v = [self.mapView hitTest:[gestureRecognizer locationInView:self.mapView] withEvent:nil];
+    if (![v isKindOfClass:[MKAnnotationView class]]) {
+        if (_fullScreen == NO) {
+            [UIApplication sharedApplication].statusBarHidden = YES;
+            [self.navigationController setNavigationBarHidden:YES animated:YES];
+            _fullScreen = YES;
+        } else {
+            [self.navigationController setNavigationBarHidden:NO animated:YES];
+            [UIApplication sharedApplication].statusBarHidden = NO;
+            _fullScreen = NO;
+        }
+    }
+}
+
+- (void)doubleTapRecognized:(UIGestureRecognizer *)gestureRecognizer
+{
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return YES;
 }
 
 - (IBAction)showCurrentLocation:(id)sender {

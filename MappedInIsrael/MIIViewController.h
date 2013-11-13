@@ -19,7 +19,7 @@
 #import "MIICompanyViewController.h"
 #import "MIIPointAnnotation.h"
 
-@interface MIIViewController : GAITrackedViewController <MKMapViewDelegate,KPTreeControllerDelegate>
+@interface MIIViewController : GAITrackedViewController <MKMapViewDelegate,UIGestureRecognizerDelegate,KPTreeControllerDelegate>
 
 @property (strong, nonatomic) MIIData *data;
 @property (weak, nonatomic) MIICompany *company;
