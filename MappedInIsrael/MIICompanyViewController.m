@@ -20,6 +20,8 @@
     self.screenName = @"MIICompanyViewController";
     
     // NavigationBar
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    [UIApplication sharedApplication].statusBarHidden = NO;
     self.navigationItem.title = self.company.companyName;
 }
 

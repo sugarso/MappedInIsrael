@@ -40,6 +40,7 @@
                         <outlet property="view" destination="kh9-bI-dsS" id="BOW-AF-oEa"/>
                         <segue destination="9uK-M2-kGv" kind="push" identifier="showCompany:" id="BdU-l6-vnE"/>
                         <segue destination="KnT-ws-pnS" kind="push" identifier="showSearch:" customClass="PushSegue" id="tbr-nO-a25"/>
+                        <segue destination="KnT-ws-pnS" kind="push" identifier="showCompanies:" id="6Jb-CO-WCh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -155,7 +156,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="6Jb-CO-WCh"/>
         <segue reference="yVs-ez-nOk"/>
-        <segue reference="5FR-lc-gcA"/>
+        <segue reference="BdU-l6-vnE"/>
     </inferredMetricsTieBreakers>
 </document>

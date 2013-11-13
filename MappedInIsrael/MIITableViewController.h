@@ -16,6 +16,7 @@
 @interface MIITableViewController : GAITrackedViewController <UISearchDisplayDelegate,UISearchBarDelegate>
 
 @property (strong, nonatomic) MIIData *data;
+@property (strong, nonatomic) NSArray *clusterAnnotation;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *whosHiring;
 

@@ -70,7 +70,7 @@
 {
     NSMutableArray *annotations = [[NSMutableArray alloc] init];
     
-    for (MIICompany *company in [self.data getCompaniesInCategory:@"All"]) {
+    for (MIICompany *company in [self.data getAllCompanies]) {
         // Coordinate
         CLLocationCoordinate2D coordinate;
         coordinate.latitude = [company.lat doubleValue];
@@ -93,9 +93,17 @@
                 for (id<MKAnnotation> annotation in self.mapView.annotations) {
                     if ([annotation isKindOfClass:[KPAnnotation class]]) { // TBD: make sure zoomed in and see the company pin
                         KPAnnotation *ann = (KPAnnotation *)annotation;
-                        if ([[ann.annotations anyObject] isKindOfClass:[MIIPointAnnotation class]]) {
+                        if ([ann isCluster]) {
+                            for (MIIPointAnnotation *a in ann.annotations) {
+                                if ([a.company.companyName isEqual:self.company.companyName]) {
+                                    [self.mapView selectAnnotation:annotation animated:YES];
+                                    self.company = nil;
+                                    return;
+                                }
+                            }
+                        } else {
                             MIIPointAnnotation *a = (MIIPointAnnotation *)[ann.annotations anyObject];
-                            if ([a.company.companyName isEqual:self.company.companyName]) { // TBD: compare all company
+                            if ([a.company.companyName isEqual:self.company.companyName]) {
                                 [self.mapView selectAnnotation:annotation animated:YES];
                                 self.company = nil;
                                 return;
@@ -103,6 +111,7 @@
                         }
                     }
                 }
+                self.company = nil;
             }
         });
     });
@@ -166,7 +175,7 @@
                 v = [[MKPinAnnotationView alloc] initWithAnnotation:a reuseIdentifier:@"Cluster"];
             }
             
-            NSString *numberOfCompanies = [NSString stringWithFormat:@"%d", ((KPAnnotation *)annotation).annotations.count];
+            NSString *numberOfCompanies = [NSString stringWithFormat:@"%d", a.annotations.count];
             
             UILabel *l = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 32, 32)];
             [l setTextAlignment:NSTextAlignmentCenter];
@@ -176,10 +185,27 @@
             MIIClusterView *clusterView;
             if ([numberOfCompanies intValue] < 10) {
                 clusterView = [[MIIClusterView alloc] initWithFrame:CGRectMake(0, 0, 32, 32) color:[UIColor greenColor]];
+                UIButton *btn = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+                v.rightCalloutAccessoryView = btn;
+                v.canShowCallout = YES;
+                a.title = [NSString stringWithFormat:@"%d companies", [numberOfCompanies intValue]];
+                BOOL first = YES;
+                for (MIIPointAnnotation *annotation in a.annotations) {
+                    if (first) {
+                        first = NO;
+                        a.subtitle = annotation.company.companyName;
+                    } else {
+                        a.subtitle = [NSString stringWithFormat:@"%@, %@", a.subtitle, annotation.company.companyName];
+                    }
+                }
             } else if ([numberOfCompanies intValue] < 100) {
                 clusterView = [[MIIClusterView alloc] initWithFrame:CGRectMake(0, 0, 32, 32) color:[UIColor yellowColor]];
+                v.rightCalloutAccessoryView = nil;
+                v.canShowCallout = NO;
             } else {
                 clusterView = [[MIIClusterView alloc] initWithFrame:CGRectMake(0, 0, 32, 32) color:[UIColor redColor]];
+                v.rightCalloutAccessoryView = nil;
+                v.canShowCallout = NO;
             }
             [clusterView addSubview:l];
             
@@ -189,11 +215,12 @@
             
             if (!v) {
                 v = [[MKPinAnnotationView alloc] initWithAnnotation:[a.annotations anyObject] reuseIdentifier:@"Company"];
-                UIButton *btn = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-                v.rightCalloutAccessoryView = btn;
-                v.canShowCallout = YES;
             }
             
+            UIButton *btn = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+            v.rightCalloutAccessoryView = btn;
+            v.canShowCallout = YES;
+
             NSString *subtitle = ((MKPointAnnotation *)annotation).subtitle;
             UIImage *i = [UIImage imageNamed:[NSString stringWithFormat:@"%@%@", subtitle, @".png"]];
             v.image = i;
@@ -213,7 +240,13 @@
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
-    [self performSegueWithIdentifier:@"showCompany:" sender:view];
+    KPAnnotation *annotation = (KPAnnotation *)view.annotation;
+    
+    if ([annotation isCluster]) {
+        [self performSegueWithIdentifier:@"showCompanies:" sender:view];
+    } else {
+        [self performSegueWithIdentifier:@"showCompany:" sender:view];
+    }
 }
 
 #pragma mark - Segue
@@ -236,6 +269,16 @@
         if ([sender isKindOfClass:[UIBarButtonItem class]]) {
             MIITableViewController *controller = (MIITableViewController *)segue.destinationViewController;
             controller.data = self.data;
+        }
+    }
+    
+    if ([segue.identifier isEqualToString:@"showCompanies:"]) {
+        if ([sender isKindOfClass:[MKAnnotationView class]]) {
+            MKAnnotationView *annotationView = (MKAnnotationView *)sender;
+            KPAnnotation *annotation = (KPAnnotation *)annotationView.annotation;
+            MIITableViewController *controller = (MIITableViewController *)segue.destinationViewController;
+            controller.data = self.data;
+            controller.clusterAnnotation = [annotation.annotations allObjects];
         }
     }
 }

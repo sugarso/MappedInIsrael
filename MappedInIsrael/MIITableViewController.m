@@ -21,9 +21,8 @@
     self.screenName = @"MIITableViewController";
     
     // NavigationBar
-    UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(showMap:)];
-    self.navigationItem.rightBarButtonItem = done;
-    self.navigationItem.hidesBackButton = YES;
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    [UIApplication sharedApplication].statusBarHidden = NO;
     
     // SearchBar
     _searchBar = [UISearchBar new];
@@ -31,7 +30,14 @@
     _searchBar.delegate = self;
     _searchBar.searchBarStyle = UISearchBarStyleMinimal;
     _searchBar.placeholder = @"Search jobs, companies...";
-    self.navigationItem.titleView = _searchBar;
+    if (self.clusterAnnotation) {
+        self.navigationItem.title = [NSString stringWithFormat:@"%d companies", [self.clusterAnnotation count]];
+    } else {
+        UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(showMap:)];
+        self.navigationItem.rightBarButtonItem = done;
+        self.navigationItem.hidesBackButton = YES;
+        self.navigationItem.titleView = _searchBar;
+    }
     
     // updateFilter every UIControlEventValueChanged
     [self.whosHiring addTarget:self action:@selector(updateFilter:) forControlEvents:UIControlEventValueChanged];
@@ -69,18 +75,30 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [[MIIData getAllFormatedCategories] count];
+    if (self.clusterAnnotation) {
+        return 1;
+    } else {
+        return [[MIIData getAllFormatedCategories] count];
+    }
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return [self.data getCompaniesInCategory:[[MIIData getAllFormatedCategories] objectAtIndex:section]].count ? [[MIIData getAllFormatedCategories] objectAtIndex:section] : nil;
+    if (self.clusterAnnotation) {
+        return @"";
+    } else {
+        return [self.data getCompaniesInCategory:[[MIIData getAllFormatedCategories] objectAtIndex:section]].count ? [[MIIData getAllFormatedCategories] objectAtIndex:section] : nil;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSString *category = (NSString *)[[MIIData getAllFormatedCategories] objectAtIndex:section];
-    return [self.data getCompaniesInCategory:category].count;
+    if (self.clusterAnnotation) {
+        return [self.clusterAnnotation count];
+    } else {
+        NSString *category = (NSString *)[[MIIData getAllFormatedCategories] objectAtIndex:section];
+        return [self.data getCompaniesInCategory:category].count;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -88,8 +106,13 @@
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    NSString *category = [[MIIData getAllFormatedCategories] objectAtIndex:indexPath.section];
-    MIICompany *company = [self.data category:category companyAtIndex:indexPath.row];
+    MIICompany *company;
+    if (self.clusterAnnotation) {
+        company = ((MIIPointAnnotation *)[self.clusterAnnotation objectAtIndex:indexPath.row]).company;
+    } else {
+        NSString *category = [[MIIData getAllFormatedCategories] objectAtIndex:indexPath.section];
+        company = [self.data category:category companyAtIndex:indexPath.row];
+    }
     
     cell.textLabel.text = company.companyName;
     cell.detailTextLabel.text = company.companySubCategory;
@@ -114,8 +137,13 @@
     if ([segue.identifier isEqualToString:@"showCompany:"]) {
         if ([sender isKindOfClass:[NSIndexPath class]]) {
             NSIndexPath *indexPath = (NSIndexPath *)sender;
-            NSString *category = [[MIIData getAllFormatedCategories] objectAtIndex:indexPath.section];
-            MIICompany *company = [self.data category:category companyAtIndex:indexPath.row];
+            MIICompany *company;
+            if (self.clusterAnnotation) {
+                company = ((MIIPointAnnotation *)[self.clusterAnnotation objectAtIndex:indexPath.row]).company;
+            } else {
+                NSString *category = [[MIIData getAllFormatedCategories] objectAtIndex:indexPath.section];
+                company = [self.data category:category companyAtIndex:indexPath.row];
+            }
             MIICompanyViewController *controller = (MIICompanyViewController *)segue.destinationViewController;
             controller.company = company;
         }
@@ -127,8 +155,13 @@
         controller.data = self.data;
         if ([sender isKindOfClass:[NSIndexPath class]]) { // With Zoom
             NSIndexPath *indexPath = (NSIndexPath *)sender;
-            NSString *category = [[MIIData getAllFormatedCategories] objectAtIndex:indexPath.section];
-            MIICompany *company = [self.data category:category companyAtIndex:indexPath.row];
+            MIICompany *company;
+            if (self.clusterAnnotation) {
+                company = ((MIIPointAnnotation *)[self.clusterAnnotation objectAtIndex:indexPath.row]).company;
+            } else {
+                NSString *category = [[MIIData getAllFormatedCategories] objectAtIndex:indexPath.section];
+                company = [self.data category:category companyAtIndex:indexPath.row];
+            }
             controller.company = company;
         }
     }

@@ -20,6 +20,7 @@
 - (id)init;
 + (NSArray *)getAllFormatedCategories;
 - (void)setSearch:(NSString *)search setWhosHiring:(BOOL)whosHiring;
+- (NSArray *)getAllCompanies;
 - (NSArray *)getCompaniesInCategory:(NSString *)category;
 - (MIICompany *)category:(NSString *)category companyAtIndex:(NSInteger)index;
 

@@ -52,6 +52,10 @@
     return @[@"Startups", @"Accelerators", @"Coworking", @"Investors", @"R&D Centers", @"Community", @"Services"];
 }
 
+- (NSArray *)getAllCompanies {
+    return _companies;
+}
+
 - (void)setSearch:(NSString *)search setWhosHiring:(BOOL)whosHiring
 {
     NSMutableArray *companies = [[NSMutableArray alloc] init];
@@ -92,17 +96,8 @@
 
 - (NSArray *)getCompaniesInCategory:(NSString *)category
 {
-    if ([category isEqualToString:@"All"]) {
-        // Get all companies
-        NSArray *companies = [[NSMutableArray alloc] init];
-        for (int i = 0; i < [MIIData getAllFormatedCategories].count; i++) {
-            companies = [companies arrayByAddingObjectsFromArray:[_companiesInCategory objectAtIndex:i]];
-        }
-        return companies;
-    } else {
-        NSUInteger categoryIndex = [[MIIData getAllFormatedCategories] indexOfObject:category];
-        return [[_companiesInCategory objectAtIndex:categoryIndex] copy];
-    }
+    NSUInteger categoryIndex = [[MIIData getAllFormatedCategories] indexOfObject:category];
+    return [[_companiesInCategory objectAtIndex:categoryIndex] copy];
 }
 
 - (MIICompany *)category:(NSString *)category companyAtIndex:(NSInteger)index
