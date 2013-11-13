@@ -16,6 +16,8 @@
 #import "MIIData.h"
 #import "MIITableViewController.h"
 #import "MIIClusterView.h"
+#import "MIICompanyViewController.h"
+#import "MIIPointAnnotation.h"
 
 @interface MIIViewController : GAITrackedViewController <MKMapViewDelegate,KPTreeControllerDelegate>
 

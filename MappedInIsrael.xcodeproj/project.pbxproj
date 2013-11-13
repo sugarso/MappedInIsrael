@@ -12,6 +12,7 @@
 		B232AC6B18314AAC00114E52 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B232AC6A18314AAC00114E52 /* AdSupport.framework */; };
 		B232AC7118314AF700114E52 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B232AC6D18314AF700114E52 /* libTestFlight.a */; };
 		B274D0321832D88A00FEF3E6 /* MIITableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B274D0311832D88A00FEF3E6 /* MIITableViewController.m */; };
+		B274D0481833789700FEF3E6 /* MIIPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = B274D0471833789700FEF3E6 /* MIIPointAnnotation.m */; };
 		B2A3878F182F9C6500989B4D /* map-25.png in Resources */ = {isa = PBXBuildFile; fileRef = B2A3878E182F9C6500989B4D /* map-25.png */; };
 		B2A3879E182FDCB900989B4D /* align_justify-25.png in Resources */ = {isa = PBXBuildFile; fileRef = B2A3879D182FDCB900989B4D /* align_justify-25.png */; };
 		B2A387A7182FED6900989B4D /* libGoogleAnalytics_debug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2A387A6182FED6900989B4D /* libGoogleAnalytics_debug.a */; };
@@ -76,6 +77,8 @@
 		B232AC7018314AF700114E52 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		B274D0301832D88A00FEF3E6 /* MIITableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIITableViewController.h; sourceTree = "<group>"; };
 		B274D0311832D88A00FEF3E6 /* MIITableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIITableViewController.m; sourceTree = "<group>"; };
+		B274D0461833789600FEF3E6 /* MIIPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIIPointAnnotation.h; sourceTree = "<group>"; };
+		B274D0471833789700FEF3E6 /* MIIPointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIIPointAnnotation.m; sourceTree = "<group>"; };
 		B2A3878E182F9C6500989B4D /* map-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-25.png"; sourceTree = "<group>"; };
 		B2A3879D182FDCB900989B4D /* align_justify-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "align_justify-25.png"; sourceTree = "<group>"; };
 		B2A387A0182FED6900989B4D /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
@@ -340,6 +343,8 @@
 				B2CD5CCE182238B900340E43 /* View.storyboard */,
 				B2DFDA8318324E000080BA78 /* MIIClusterView.h */,
 				B2DFDA8418324E000080BA78 /* MIIClusterView.m */,
+				B274D0461833789600FEF3E6 /* MIIPointAnnotation.h */,
+				B274D0471833789700FEF3E6 /* MIIPointAnnotation.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -477,7 +482,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Crashlytics.framework/run 8a47ccbf8db717681b6ae83cb615504de6fe5eb7";
+			shellScript = "./MappedInIsrael/Crashlytics.framework/run 8a47ccbf8db717681b6ae83cb615504de6fe5eb7";
 		};
 		B28AECB61823B32C0089D35C /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -509,6 +514,7 @@
 				B2CD5CFC1822452500340E43 /* MIICompanyBuilder.m in Sources */,
 				B2CD5CF3182239A400340E43 /* MIICompany.m in Sources */,
 				B274D0321832D88A00FEF3E6 /* MIITableViewController.m in Sources */,
+				B274D0481833789700FEF3E6 /* MIIPointAnnotation.m in Sources */,
 				B2DFDAA81832898D0080BA78 /* NSArray+KP.m in Sources */,
 				B2DFDAA4183281410080BA78 /* KPTreeNode.m in Sources */,
 				B2CD5CF91822431600340E43 /* MIICommunicator.m in Sources */,

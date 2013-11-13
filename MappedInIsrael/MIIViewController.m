@@ -47,10 +47,11 @@
         coordinate.longitude = [company.lon doubleValue];
         
         // Annotation
-        MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
+        MIIPointAnnotation *point = [[MIIPointAnnotation alloc] init];
         point.coordinate = coordinate;
         point.title = company.companyName;
         point.subtitle = company.companyCategory;
+        point.company = company;
         
         [annotations addObject:point];
     }
@@ -111,6 +112,7 @@
             [clusterView addSubview:l];
             
             v.image = [MIIClusterView imageWithView:clusterView];
+            a.title = @"";
         } else {
             v = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"Company"];
             
@@ -122,6 +124,9 @@
             NSString *subtitle = ((MKPointAnnotation *)annotation).subtitle;
             UIImage *i = [UIImage imageNamed:[NSString stringWithFormat:@"%@%@", subtitle, @".png"]];
             v.image = i;
+            
+            a.title = [NSString stringWithFormat:@"%@", ((MKPointAnnotation *)annotation).title];
+            a.subtitle = [NSString stringWithFormat:@"%@", ((MKPointAnnotation *)annotation).subtitle];
         }
         v.canShowCallout = YES;
     }
@@ -147,8 +152,13 @@
     
     if ([segue.identifier isEqualToString:@"showCompany:"]) {
         if ([sender isKindOfClass:[MKAnnotationView class]]) {
-            MKAnnotationView *view = sender;
-            title = view.annotation.title;
+            MKAnnotationView *annotationView = (MKAnnotationView *)sender;
+            KPAnnotation *annotation = (KPAnnotation *)annotationView.annotation;
+            if ([[annotation.annotations anyObject] isKindOfClass:[MIIPointAnnotation class]]) {
+                MIIPointAnnotation *a = (MIIPointAnnotation *)[annotation.annotations anyObject];
+                MIICompanyViewController *controller = (MIICompanyViewController *)segue.destinationViewController;
+                controller.company = a.company;
+            }
         }
     }
     

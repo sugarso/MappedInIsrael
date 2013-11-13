@@ -19,8 +19,8 @@
     //[GAI sharedInstance].dispatchInterval = 20;
     //[[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
     [[GAI sharedInstance] trackerWithTrackingId:@"UA-45602986-1"];
-    [Crashlytics startWithAPIKey:@"8a47ccbf8db717681b6ae83cb615504de6fe5eb7"];
     [TestFlight takeOff:@"a6d3ce40-d3a2-4ab4-ba36-e99ce94a5284"];
+    [Crashlytics startWithAPIKey:@"8a47ccbf8db717681b6ae83cb615504de6fe5eb7"];
     
     // Override point for customization after application launch.
     return YES;

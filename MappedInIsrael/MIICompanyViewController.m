@@ -18,6 +18,9 @@
 {
     [super viewDidLoad];
     self.screenName = @"MIICompanyViewController";
+    
+    // NavigationBar
+    self.navigationItem.title = self.company.companyName;
 }
 
 @end

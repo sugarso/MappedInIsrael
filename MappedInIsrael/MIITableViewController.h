@@ -10,6 +10,7 @@
 #import "GAITrackedViewController.h"
 #import "MIICompany.h"
 #import "MIIData.h"
+#import "MIICompanyViewController.h"
 
 @interface MIITableViewController : GAITrackedViewController <UISearchDisplayDelegate,UISearchBarDelegate>
 

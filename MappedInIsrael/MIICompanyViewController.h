@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "GAITrackedViewController.h"
+#import "MIICompany.h"
 
 @interface MIICompanyViewController : GAITrackedViewController
+
+@property (strong, nonatomic) MIICompany *company;
 
 @end
