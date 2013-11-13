@@ -50,7 +50,7 @@
     // Data
     self.data = [[MIIData alloc] init];
     self.data.delegate = self;
-    
+
     _locationManager = [[CLLocationManager alloc] init];
     _locationManager.delegate = self;
     _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -292,23 +292,76 @@
 
 #pragma mark - CLLocationManagerDelegate
 
+// TBD: orgnize GPS code
+
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
     NSLog(@"didFailWithError: %@", error);
+    // TBD: update lat/lon!
+    CLLocationDegrees lat = 32.11303727704297;
+    CLLocationDegrees lon = 34.7941900883194;
+    MKCoordinateRegion region;
+    region.center.latitude = lat;
+    region.center.longitude = lon;
+    region.span.latitudeDelta = 1;
+    region.span.longitudeDelta = 1;
+    [self.mapView setRegion:region animated:YES];
+    self.showCurrentLocation.hidden = YES;
+    [_locationManager stopUpdatingLocation];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
-    NSLog(@"didUpdateToLocation: %@", newLocation);
-    
     if (!oldLocation) {
-        MKCoordinateRegion region;
-        region.center.latitude = newLocation.coordinate.latitude;
-        region.center.longitude = newLocation.coordinate.longitude;
-        region.span.latitudeDelta = 0.03;
-        region.span.longitudeDelta = 0.03;
-        [self.mapView setRegion:region animated:YES];
-        [_locationManager stopUpdatingLocation];
+        CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+        [geocoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *placemarks, NSError *error) {
+            if (error) {
+                NSLog(@"Geocode failed with error: %@", error);
+                // TBD: update lat/lon!
+                CLLocationDegrees lat = 32.11303727704297;
+                CLLocationDegrees lon = 34.7941900883194;
+                MKCoordinateRegion region;
+                region.center.latitude = lat;
+                region.center.longitude = lon;
+                region.span.latitudeDelta = 1;
+                region.span.longitudeDelta = 1;
+                [self.mapView setRegion:region animated:YES];
+                self.showCurrentLocation.hidden = YES;
+                [_locationManager stopUpdatingLocation];
+                return;
+            }
+            
+            if (placemarks && placemarks.count > 0) {
+                CLPlacemark *topResult = [placemarks objectAtIndex:0];
+                NSString *country = [NSString stringWithFormat:@"%@", [topResult country]];
+                NSLog(@"Country: %@", country);
+                
+                if ([country isEqualToString:@"Israel"]) { // TBD: check other lng
+                    MKCoordinateRegion region;
+                    region.center.latitude = newLocation.coordinate.latitude;
+                    region.center.longitude = newLocation.coordinate.longitude;
+                    region.span.latitudeDelta = 0.03;
+                    region.span.longitudeDelta = 0.03;
+                    [self.mapView setRegion:region animated:YES];
+                    self.showCurrentLocation.hidden = NO;
+                    [_locationManager stopUpdatingLocation];
+                    return;
+                }
+            }
+            
+            // others?
+            // TBD: update lat/lon!
+            CLLocationDegrees lat = 32.11303727704297;
+            CLLocationDegrees lon = 34.7941900883194;
+            MKCoordinateRegion region;
+            region.center.latitude = lat;
+            region.center.longitude = lon;
+            region.span.latitudeDelta = 1;
+            region.span.longitudeDelta = 1;
+            [self.mapView setRegion:region animated:YES];
+            self.showCurrentLocation.hidden = YES;
+            [_locationManager stopUpdatingLocation];
+        }];
     }
 }
 

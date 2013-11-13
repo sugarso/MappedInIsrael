@@ -25,6 +25,7 @@
 @property (weak, nonatomic) MIICompany *company;
 @property (weak, nonatomic) IBOutlet UIView *view;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property (weak, nonatomic) IBOutlet UIButton *showCurrentLocation;
 
 - (void)dataIsReady;
 
