@@ -11,6 +11,7 @@
 @interface MIIViewController () <MIIDataDelegate> {
     KPTreeController *_treeController;
     BOOL _fullScreen;
+    CLLocationManager *_locationManager;
 }
 @end
 
@@ -47,12 +48,12 @@
     self.navigationItem.hidesBackButton = YES;
     
     // Data
-    if (self.dontRefreshData == NO) {
-        self.data = [[MIIData alloc] init];
-    } else {
-        [self dataIsReady];
-    }
+    self.data = [[MIIData alloc] init];
     self.data.delegate = self;
+    
+    _locationManager = [[CLLocationManager alloc] init];
+    _locationManager.delegate = self;
+    _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     
     if (self.company) {
         MKCoordinateRegion region;
@@ -62,7 +63,7 @@
         region.span.longitudeDelta = 0.005;
         [self.mapView setRegion:region animated:YES];
     } else {
-        //[self showCurrentLocation:self]; TBD: only when location is ready
+        [self showCurrentLocation:self];
     }
 }
 
@@ -143,12 +144,7 @@
 }
 
 - (IBAction)showCurrentLocation:(id)sender {
-    MKCoordinateRegion region;
-    region.center.latitude = self.mapView.userLocation.coordinate.latitude;
-    region.center.longitude = self.mapView.userLocation.coordinate.longitude;
-    region.span.latitudeDelta = 0.03;
-    region.span.longitudeDelta = 0.03;
-    [self.mapView setRegion:region animated:YES];
+    [_locationManager startUpdatingLocation];
 }
 
 - (void)showSearch:(id)sender {
@@ -291,6 +287,28 @@
         MKPointAnnotation *point = (MKPointAnnotation *)[annotation.annotations anyObject];
         annotation.title = [NSString stringWithFormat:@"%@", point.title];
         annotation.subtitle = [NSString stringWithFormat:@"%@", point.subtitle];
+    }
+}
+
+#pragma mark - CLLocationManagerDelegate
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    NSLog(@"didFailWithError: %@", error);
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    NSLog(@"didUpdateToLocation: %@", newLocation);
+    
+    if (!oldLocation) {
+        MKCoordinateRegion region;
+        region.center.latitude = newLocation.coordinate.latitude;
+        region.center.longitude = newLocation.coordinate.longitude;
+        region.span.latitudeDelta = 0.03;
+        region.span.longitudeDelta = 0.03;
+        [self.mapView setRegion:region animated:YES];
+        [_locationManager stopUpdatingLocation];
     }
 }
 

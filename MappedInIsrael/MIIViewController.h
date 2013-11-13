@@ -19,9 +19,8 @@
 #import "MIICompanyViewController.h"
 #import "MIIPointAnnotation.h"
 
-@interface MIIViewController : GAITrackedViewController <MKMapViewDelegate,UIGestureRecognizerDelegate,KPTreeControllerDelegate>
+@interface MIIViewController : GAITrackedViewController <MKMapViewDelegate,UIGestureRecognizerDelegate,CLLocationManagerDelegate,KPTreeControllerDelegate>
 
-@property (nonatomic) BOOL dontRefreshData;
 @property (strong, nonatomic) MIIData *data;
 @property (weak, nonatomic) MIICompany *company;
 @property (weak, nonatomic) IBOutlet UIView *view;

@@ -33,9 +33,10 @@
     if (self.clusterAnnotation) {
         self.navigationItem.title = [NSString stringWithFormat:@"%d companies", [self.clusterAnnotation count]];
     } else {
-        UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(showMap:)];
-        self.navigationItem.rightBarButtonItem = done;
-        self.navigationItem.hidesBackButton = YES;
+        // TBD: Done button howto???
+        //UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(showMap:)];
+        //self.navigationItem.rightBarButtonItem = done;
+        //self.navigationItem.hidesBackButton = YES;
         self.navigationItem.titleView = _searchBar;
     }
     
@@ -151,8 +152,6 @@
     
     if ([segue.identifier isEqualToString:@"showMap:"]) {
         MIIViewController *controller = (MIIViewController *)segue.destinationViewController;
-        controller.dontRefreshData = YES;
-        controller.data = self.data;
         if ([sender isKindOfClass:[NSIndexPath class]]) { // With Zoom
             NSIndexPath *indexPath = (NSIndexPath *)sender;
             MIICompany *company;
