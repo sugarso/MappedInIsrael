@@ -47,7 +47,11 @@
     self.navigationItem.hidesBackButton = YES;
     
     // Data
-    self.data = [[MIIData alloc] init];
+    if (self.dontRefreshData == NO) {
+        self.data = [[MIIData alloc] init];
+    } else {
+        [self dataIsReady];
+    }
     self.data.delegate = self;
     
     if (self.company) {

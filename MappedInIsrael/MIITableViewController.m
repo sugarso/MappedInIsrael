@@ -122,11 +122,13 @@
     }
     
     if ([segue.identifier isEqualToString:@"showMap:"]) {
+        MIIViewController *controller = (MIIViewController *)segue.destinationViewController;
+        controller.dontRefreshData = YES;
+        controller.data = self.data;
         if ([sender isKindOfClass:[NSIndexPath class]]) { // With Zoom
             NSIndexPath *indexPath = (NSIndexPath *)sender;
             NSString *category = [[MIIData getAllFormatedCategories] objectAtIndex:indexPath.section];
             MIICompany *company = [self.data category:category companyAtIndex:indexPath.row];
-            MIIViewController *controller = (MIIViewController *)segue.destinationViewController;
             controller.company = company;
         }
     }
