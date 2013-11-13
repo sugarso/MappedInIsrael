@@ -55,7 +55,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="16j-XD-WhV">
-                            <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="eQe-7o-6gi">
@@ -70,16 +70,13 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         </view>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="pQx-F9-TCT">
-                                <rect key="frame" x="0.0" y="130" width="320" height="44"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="detailDisclosureButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="pQx-F9-TCT">
+                                <rect key="frame" x="0.0" y="66" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pQx-F9-TCT" id="lqb-TD-dFf">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="253" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="9uK-M2-kGv" kind="push" identifier="showCompany:" id="UjO-9D-sep"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -93,6 +90,7 @@
                         <outlet property="tableView" destination="8H4-xb-oD8" id="sfU-12-FGE"/>
                         <outlet property="whosHiring" destination="eQe-7o-6gi" id="HLE-HK-l1b"/>
                         <segue destination="vXZ-lx-hvc" kind="push" identifier="showMap:" customClass="PushSegue" id="yVs-ez-nOk"/>
+                        <segue destination="9uK-M2-kGv" kind="push" identifier="showCompany:" id="5FR-lc-gcA"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r7y-WW-jzN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -158,6 +156,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="yVs-ez-nOk"/>
-        <segue reference="BdU-l6-vnE"/>
+        <segue reference="5FR-lc-gcA"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -41,9 +41,9 @@
 {
     NSLog(@"Search: %@, SegmentIndex: %d", _searchBar.text, self.whosHiring.selectedSegmentIndex);
     if (self.whosHiring.selectedSegmentIndex == 0) {
-        [_data setSearch:_searchBar.text setWhosHiring:NO];
+        [self.data setSearch:_searchBar.text setWhosHiring:NO];
     } else {
-        [_data setSearch:_searchBar.text setWhosHiring:YES];
+        [self.data setSearch:_searchBar.text setWhosHiring:YES];
     }
     [self.tableView reloadData];
 }
@@ -97,24 +97,39 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self performSegueWithIdentifier:@"showMap:" sender:indexPath];
+}
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    [self performSegueWithIdentifier:@"showCompany:" sender:indexPath];
+}
+
 #pragma mark - Segue
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    NSString *title;
-    
-    // TableView
     if ([segue.identifier isEqualToString:@"showCompany:"]) {
-        if ([sender isKindOfClass:[UITableViewCell class]]) {
-            NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        if ([sender isKindOfClass:[NSIndexPath class]]) {
+            NSIndexPath *indexPath = (NSIndexPath *)sender;
             NSString *category = [[MIIData getAllFormatedCategories] objectAtIndex:indexPath.section];
-            MIICompany *company = [_data category:category companyAtIndex:indexPath.row];
-            title = company.companyName;
+            MIICompany *company = [self.data category:category companyAtIndex:indexPath.row];
+            MIICompanyViewController *controller = (MIICompanyViewController *)segue.destinationViewController;
+            controller.company = company;
         }
     }
     
-    UIViewController *dst = segue.destinationViewController;
-    dst.title = title;
+    if ([segue.identifier isEqualToString:@"showMap:"]) {
+        if ([sender isKindOfClass:[NSIndexPath class]]) { // With Zoom
+            NSIndexPath *indexPath = (NSIndexPath *)sender;
+            NSString *category = [[MIIData getAllFormatedCategories] objectAtIndex:indexPath.section];
+            MIICompany *company = [self.data category:category companyAtIndex:indexPath.row];
+            MIIViewController *controller = (MIIViewController *)segue.destinationViewController;
+            controller.company = company;
+        }
+    }
 }
 
 @end

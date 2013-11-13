@@ -32,15 +32,26 @@
     self.navigationItem.hidesBackButton = YES;
     
     // Data
-    _data = [[MIIData alloc] init];
-    _data.delegate = self;
+    self.data = [[MIIData alloc] init];
+    self.data.delegate = self;
+    
+    if (self.company) {
+        MKCoordinateRegion region;
+        region.center.latitude = [self.company.lat doubleValue];
+        region.center.longitude = [self.company.lon doubleValue];
+        region.span.latitudeDelta = 0.005;
+        region.span.longitudeDelta = 0.005;
+        [self.mapView setRegion:region animated:YES];
+    } else {
+        //[self showCurrentLocation:self]; TBD: only when location is ready
+    }
 }
 
 - (void)dataIsReady
 {
     NSMutableArray *annotations = [[NSMutableArray alloc] init];
     
-    for (MIICompany *company in [_data getCompaniesInCategory:@"All"]) {
+    for (MIICompany *company in [self.data getCompaniesInCategory:@"All"]) {
         // Coordinate
         CLLocationCoordinate2D coordinate;
         coordinate.latitude = [company.lat doubleValue];
@@ -58,6 +69,23 @@
     
     dispatch_async(dispatch_get_main_queue(), ^{
         [_treeController setAnnotations:annotations];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (self.company) {
+                for (id<MKAnnotation> annotation in self.mapView.annotations) {
+                    if ([annotation isKindOfClass:[KPAnnotation class]]) { // TBD: make sure zoomed in and see the company pin
+                        KPAnnotation *ann = (KPAnnotation *)annotation;
+                        if ([[ann.annotations anyObject] isKindOfClass:[MIIPointAnnotation class]]) {
+                            MIIPointAnnotation *a = (MIIPointAnnotation *)[ann.annotations anyObject];
+                            if ([a.company.companyName isEqual:self.company.companyName]) { // TBD: compare all company
+                                [self.mapView selectAnnotation:annotation animated:YES];
+                                self.company = nil;
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
+        });
     });
 }
 
@@ -112,13 +140,14 @@
             [clusterView addSubview:l];
             
             v.image = [MIIClusterView imageWithView:clusterView];
-            a.title = @"";
         } else {
             v = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"Company"];
             
             if (!v) {
                 v = [[MKPinAnnotationView alloc] initWithAnnotation:[a.annotations anyObject] reuseIdentifier:@"Company"];
-                v.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+                UIButton *btn = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+                v.rightCalloutAccessoryView = btn;
+                v.canShowCallout = YES;
             }
             
             NSString *subtitle = ((MKPointAnnotation *)annotation).subtitle;
@@ -128,7 +157,6 @@
             a.title = [NSString stringWithFormat:@"%@", ((MKPointAnnotation *)annotation).title];
             a.subtitle = [NSString stringWithFormat:@"%@", ((MKPointAnnotation *)annotation).subtitle];
         }
-        v.canShowCallout = YES;
     }
     
     return v;
@@ -148,8 +176,6 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    NSString *title;
-    
     if ([segue.identifier isEqualToString:@"showCompany:"]) {
         if ([sender isKindOfClass:[MKAnnotationView class]]) {
             MKAnnotationView *annotationView = (MKAnnotationView *)sender;
@@ -168,9 +194,6 @@
             controller.data = self.data;
         }
     }
-
-    UIViewController *dst = segue.destinationViewController;
-    dst.title = title;
 }
 
 #pragma mark - KPTreeControllerDelegate
