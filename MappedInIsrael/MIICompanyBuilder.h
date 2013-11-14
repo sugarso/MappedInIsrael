@@ -7,9 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MIICompany.h"
 
 @interface MIICompanyBuilder : NSObject
 
 + (NSArray *)companiesFromJSON:(NSData *)objectNotation error:(NSError **)error;
++ (MIICompany *)companyFromJSON:(NSData *)objectNotation error:(NSError **)error;
 
 @end

@@ -23,6 +23,8 @@
     [self.navigationController setNavigationBarHidden:NO animated:NO];
     [UIApplication sharedApplication].statusBarHidden = NO;
     self.navigationItem.title = self.company.companyName;
+    
+    self.cityLabel.text = self.company.addressCity;
 }
 
 @end

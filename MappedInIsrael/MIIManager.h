@@ -20,5 +20,6 @@
 @property (weak, nonatomic) id<MIIManagerDelegate> delegate;
 
 - (void)getAllCompanies;
+- (void)getCompany:(NSString *)id;
 
 @end

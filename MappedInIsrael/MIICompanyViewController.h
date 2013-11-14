@@ -14,4 +14,6 @@
 
 @property (strong, nonatomic) MIICompany *company;
 
+@property (weak, nonatomic) IBOutlet UILabel *cityLabel;
+
 @end

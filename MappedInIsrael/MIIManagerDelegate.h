@@ -7,10 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MIICompany.h"
 
 @protocol MIIManagerDelegate <NSObject>
 
 - (void)didReceiveCompanies:(NSArray *)companies;
 - (void)fetchingCompaniesFailedWithError:(NSError *)error;
+- (void)didReceiveCompany:(MIICompany *)company;
+- (void)fetchingCompanyFailedWithError:(NSError *)error;
 
 @end

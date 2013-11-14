@@ -23,5 +23,6 @@
 - (NSArray *)getAllCompanies;
 - (NSArray *)getCompaniesInCategory:(NSString *)category;
 - (MIICompany *)category:(NSString *)category companyAtIndex:(NSInteger)index;
+- (void)getCompany:(NSString *)id;
 
 @end

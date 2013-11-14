@@ -8,7 +8,8 @@
 
 #import "MIITableViewController.h"
 
-@interface MIITableViewController () {
+@interface MIITableViewController () <MIIDataDelegate>
+{
     UISearchBar *_searchBar;
 }
 @end
@@ -19,6 +20,7 @@
 {
     [super viewDidLoad];    
     self.screenName = @"MIITableViewController";
+    self.data.delegate = self;
     
     // NavigationBar
     [self.navigationController setNavigationBarHidden:NO animated:NO];
@@ -58,6 +60,11 @@
 - (void)showMap:(id)sender
 {
     [self performSegueWithIdentifier:@"showMap:" sender:sender];
+}
+
+- (void)companyIsReady:(MIICompany *)company
+{
+    [self performSegueWithIdentifier:@"showCompany:" sender:company];
 }
 
 #pragma mark - searchBar
@@ -128,7 +135,15 @@
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
-    [self performSegueWithIdentifier:@"showCompany:" sender:indexPath];
+    MIICompany *company;
+    if (self.clusterAnnotation) {
+        company = ((MIIPointAnnotation *)[self.clusterAnnotation objectAtIndex:indexPath.row]).company;
+    } else {
+        NSString *category = [[MIIData getAllFormatedCategories] objectAtIndex:indexPath.section];
+        company = [self.data category:category companyAtIndex:indexPath.row];
+    }
+    
+    [self.data getCompany:company.id];
 }
 
 #pragma mark - Segue
@@ -136,15 +151,8 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"showCompany:"]) {
-        if ([sender isKindOfClass:[NSIndexPath class]]) {
-            NSIndexPath *indexPath = (NSIndexPath *)sender;
-            MIICompany *company;
-            if (self.clusterAnnotation) {
-                company = ((MIIPointAnnotation *)[self.clusterAnnotation objectAtIndex:indexPath.row]).company;
-            } else {
-                NSString *category = [[MIIData getAllFormatedCategories] objectAtIndex:indexPath.section];
-                company = [self.data category:category companyAtIndex:indexPath.row];
-            }
+        if ([sender isKindOfClass:[MIICompany class]]) {
+            MIICompany *company = (MIICompany *)sender;
             MIICompanyViewController *controller = (MIICompanyViewController *)segue.destinationViewController;
             controller.company = company;
         }

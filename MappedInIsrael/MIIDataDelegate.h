@@ -7,9 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MIICompany.h"
 
 @protocol MIIDataDelegate <NSObject>
 
+@optional
 - (void)dataIsReady;
+
+@required
+- (void)companyIsReady:(MIICompany *)company;
 
 @end

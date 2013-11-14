@@ -70,6 +70,11 @@
     }
 }
 
+- (void)companyIsReady:(MIICompany *)company
+{
+    [self performSegueWithIdentifier:@"showCompany:" sender:company];
+}
+
 - (void)dataIsReady
 {
     NSMutableArray *annotations = [[NSMutableArray alloc] init];
@@ -94,13 +99,22 @@
         [_treeController setAnnotations:annotations];
         dispatch_async(dispatch_get_main_queue(), ^{
             if (self.company) {
+                CLLocationDistance distance = 0;
+                CLLocationCoordinate2D coordinate;
+                coordinate.longitude = [self.company.lon floatValue];
+                coordinate.latitude = [self.company.lat floatValue];
+                MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinate, distance, distance);
+                [self.mapView setRegion:region animated:NO];
+                
                 for (id<MKAnnotation> annotation in self.mapView.annotations) {
                     if ([annotation isKindOfClass:[KPAnnotation class]]) { // TBD: make sure zoomed in and see the company pin
                         KPAnnotation *ann = (KPAnnotation *)annotation;
                         if ([ann isCluster]) {
                             for (MIIPointAnnotation *a in ann.annotations) {
-                                if ([a.company.companyName isEqual:self.company.companyName]) {
-                                    [self.mapView selectAnnotation:annotation animated:YES];
+                                if ([a.company.companyName isEqual:self.company.companyName]) { // TBD: check by name is not so good
+                                    [self performSelector:@selector(ZoomToAnnotation:)
+                                               withObject:annotation
+                                               afterDelay:0.5];
                                     self.company = nil;
                                     return;
                                 }
@@ -108,7 +122,9 @@
                         } else {
                             MIIPointAnnotation *a = (MIIPointAnnotation *)[ann.annotations anyObject];
                             if ([a.company.companyName isEqual:self.company.companyName]) {
-                                [self.mapView selectAnnotation:annotation animated:YES];
+                                [self performSelector:@selector(ZoomToAnnotation:)
+                                           withObject:annotation
+                                           afterDelay:0.5];
                                 self.company = nil;
                                 return;
                             }
@@ -119,6 +135,12 @@
             }
         });
     });
+}
+
+- (void)ZoomToAnnotation:(id <MKAnnotation>)annotation
+{
+    [self.mapView selectAnnotation:annotation
+                             animated:YES];
 }
 
 - (void)singleTapRecognized:(UIGestureRecognizer *)gestureRecognizer
@@ -194,15 +216,17 @@
             if ([numberOfCompanies intValue] < 10) {
                 clusterView = [[MIIClusterView alloc] initWithFrame:CGRectMake(0, 0, 30, 30) color:[UIColor greenColor]];
                 l = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+                [l setFont:[UIFont fontWithName:@"Hellvetika" size:10]];
             } else if ([numberOfCompanies intValue] < 100) {
-                clusterView = [[MIIClusterView alloc] initWithFrame:CGRectMake(0, 0, 36, 36) color:[UIColor yellowColor]];
-                l = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 36, 36)];
+                clusterView = [[MIIClusterView alloc] initWithFrame:CGRectMake(0, 0, 40, 40) color:[UIColor yellowColor]];
+                l = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+                [l setFont:[UIFont fontWithName:@"Hellvetika" size:12]];
             } else {
-                clusterView = [[MIIClusterView alloc] initWithFrame:CGRectMake(0, 0, 42, 42) color:[UIColor redColor]];
-                l = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 42, 42)];
+                clusterView = [[MIIClusterView alloc] initWithFrame:CGRectMake(0, 0, 50, 50) color:[UIColor redColor]];
+                l = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+                [l setFont:[UIFont fontWithName:@"Hellvetika" size:14]];
             }
             [l setTextAlignment:NSTextAlignmentCenter];
-            [l setFont:[UIFont fontWithName:@"American Typewriter" size:12]];
             l.text = numberOfCompanies;
             UIButton *btn = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
             v.rightCalloutAccessoryView = btn;
@@ -255,7 +279,9 @@
     if ([annotation isCluster]) {
         [self performSegueWithIdentifier:@"showCompanies:" sender:view];
     } else {
-        [self performSegueWithIdentifier:@"showCompany:" sender:view];
+        KPAnnotation *annotation = (KPAnnotation *)view.annotation;
+        MIIPointAnnotation *a = (MIIPointAnnotation *)[annotation.annotations anyObject];
+        [self.data getCompany:a.company.id];
     }
 }
 
@@ -264,14 +290,10 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"showCompany:"]) {
-        if ([sender isKindOfClass:[MKAnnotationView class]]) {
-            MKAnnotationView *annotationView = (MKAnnotationView *)sender;
-            KPAnnotation *annotation = (KPAnnotation *)annotationView.annotation;
-            if ([[annotation.annotations anyObject] isKindOfClass:[MIIPointAnnotation class]]) {
-                MIIPointAnnotation *a = (MIIPointAnnotation *)[annotation.annotations anyObject];
-                MIICompanyViewController *controller = (MIICompanyViewController *)segue.destinationViewController;
-                controller.company = a.company;
-            }
+        if ([sender isKindOfClass:[MIICompany class]]) {
+            MIICompany *company = (MIICompany *)sender;
+            MIICompanyViewController *controller = (MIICompanyViewController *)segue.destinationViewController;
+            controller.company = company;
         }
     }
     

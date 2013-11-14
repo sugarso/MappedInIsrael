@@ -17,6 +17,11 @@
     [self.communicator getAllCompanies];
 }
 
+- (void)getCompany:(NSString *)id;
+{
+    [self.communicator getCompany:id];
+}
+
 #pragma mark - MIICommunicatorDelegate
 
 - (void)receivedCompaniesJSON:(NSData *)objectNotation
@@ -34,6 +39,23 @@
 - (void)fetchingCompaniesFailedWithError:(NSError *)error
 {
     [self.delegate fetchingCompaniesFailedWithError:error];
+}
+
+- (void)receivedCompanyJSON:(NSData *)objectNotation
+{
+    NSError *error = nil;
+    MIICompany *company = [MIICompanyBuilder companyFromJSON:objectNotation error:&error];
+    
+    if (error != nil) {
+        [self.delegate fetchingCompanyFailedWithError:error];
+    } else {
+        [self.delegate didReceiveCompany:company];
+    }
+}
+
+- (void)fetchingCompanyFailedWithError:(NSError *)error
+{
+    [self.delegate fetchingCompanyFailedWithError:error];
 }
 
 @end

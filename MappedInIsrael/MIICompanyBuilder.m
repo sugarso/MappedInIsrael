@@ -41,4 +41,29 @@
     return companies;
 }
 
++ (MIICompany *)companyFromJSON:(NSData *)objectNotation error:(NSError **)error;
+{
+    NSError *localError = nil;
+    NSDictionary *parsedObject = [NSJSONSerialization JSONObjectWithData:objectNotation options:0 error:&localError];
+    
+    if (localError != nil) {
+        *error = localError;
+        return nil;
+    }
+
+    NSArray *payload = [parsedObject valueForKey:@"payload"];
+    NSDictionary *organization = [payload valueForKey:@"organization"];
+    NSLog(@"Organization Count: %lu", (unsigned long)organization.count);
+    
+    MIICompany *company = [[MIICompany alloc] init];
+        
+    for (NSString *key in organization) {
+        if ([company respondsToSelector:NSSelectorFromString(key)]) {
+            [company setValue:[organization valueForKey:key] forKey:key];
+        }
+    }
+    
+    return company;
+}
+
 @end

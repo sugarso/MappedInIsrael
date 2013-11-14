@@ -16,5 +16,6 @@
 @property (weak, nonatomic) id<MIICommunicatorDelegate> delegate;
 
 - (void)getAllCompanies;
+- (void)getCompany:(NSString *)id;
 
 @end

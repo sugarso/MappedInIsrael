@@ -106,4 +106,19 @@
     return [[_companiesInCategory objectAtIndex:categoryIndex] objectAtIndex:index];
 }
 
+- (void)didReceiveCompany:(MIICompany *)company;
+{
+    [self.delegate companyIsReady:company];
+}
+
+- (void)fetchingCompanyFailedWithError:(NSError *)error
+{
+    NSLog(@"Error %@; %@", error, [error localizedDescription]);
+}
+
+- (void)getCompany:(NSString *)id
+{
+    [_manager getCompany:id];
+}
+
 @end
