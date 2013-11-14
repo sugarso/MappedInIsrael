@@ -64,7 +64,9 @@
 
 - (void)companyIsReady:(MIICompany *)company
 {
-    [self performSegueWithIdentifier:@"showCompany:" sender:company];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self performSegueWithIdentifier:@"showCompany:" sender:company];
+    });
 }
 
 #pragma mark - searchBar

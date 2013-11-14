@@ -20,13 +20,13 @@
 		B2A387AB182FEDA000989B4D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2A387AA182FEDA000989B4D /* SystemConfiguration.framework */; };
 		B2A387AD182FEDAF00989B4D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B2A387AC182FEDAF00989B4D /* libz.dylib */; };
 		B2B6C19118240171007773D7 /* MIICompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2B6C19018240171007773D7 /* MIICompanyViewController.m */; };
+		B2C50F3D183552E400DAFE28 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B2C50F3C183552E400DAFE28 /* Settings.bundle */; };
 		B2CD5CBD182238B900340E43 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2CD5CBC182238B900340E43 /* Foundation.framework */; };
 		B2CD5CBF182238B900340E43 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2CD5CBE182238B900340E43 /* CoreGraphics.framework */; };
 		B2CD5CC1182238B900340E43 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2CD5CC0182238B900340E43 /* UIKit.framework */; };
 		B2CD5CC7182238B900340E43 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B2CD5CC5182238B900340E43 /* InfoPlist.strings */; };
 		B2CD5CC9182238B900340E43 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CD5CC8182238B900340E43 /* main.m */; };
 		B2CD5CCD182238B900340E43 /* MIIAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CD5CCC182238B900340E43 /* MIIAppDelegate.m */; };
-		B2CD5CD0182238B900340E43 /* View.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2CD5CCE182238B900340E43 /* View.storyboard */; };
 		B2CD5CD3182238B900340E43 /* MIIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CD5CD2182238B900340E43 /* MIIViewController.m */; };
 		B2CD5CD5182238B900340E43 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2CD5CD4182238B900340E43 /* Images.xcassets */; };
 		B2CD5CDC182238B900340E43 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2CD5CDB182238B900340E43 /* XCTest.framework */; };
@@ -53,6 +53,7 @@
 		B2DFDAA3183281410080BA78 /* KPTreeController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DFDA9C183281410080BA78 /* KPTreeController.m */; };
 		B2DFDAA4183281410080BA78 /* KPTreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DFDA9E183281410080BA78 /* KPTreeNode.m */; };
 		B2DFDAA81832898D0080BA78 /* NSArray+KP.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DFDAA71832898D0080BA78 /* NSArray+KP.m */; };
+		B2F3A2E018355C7A00AE608E /* View.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2CD5CCE182238B900340E43 /* View.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +94,7 @@
 		B2A387AC182FEDAF00989B4D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		B2B6C18F18240171007773D7 /* MIICompanyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIICompanyViewController.h; sourceTree = "<group>"; };
 		B2B6C19018240171007773D7 /* MIICompanyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIICompanyViewController.m; sourceTree = "<group>"; };
+		B2C50F3C183552E400DAFE28 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		B2CD5CB9182238B900340E43 /* MappedInIsrael.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MappedInIsrael.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2CD5CBC182238B900340E43 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B2CD5CBE182238B900340E43 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -295,6 +297,7 @@
 		B2CD5CC3182238B900340E43 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B2C50F3C183552E400DAFE28 /* Settings.bundle */,
 				B2CD5CC4182238B900340E43 /* MappedInIsrael-Info.plist */,
 				B2CD5CC5182238B900340E43 /* InfoPlist.strings */,
 				B2CD5CC8182238B900340E43 /* main.m */,
@@ -375,7 +378,7 @@
 			buildPhases = (
 				B2CD5CB5182238B900340E43 /* Sources */,
 				B2CD5CB6182238B900340E43 /* Frameworks */,
-				B28AECB61823B32C0089D35C /* ShellScript */,
+				B28AECB61823B32C0089D35C /* Run Script */,
 				B2CD5CB7182238B900340E43 /* Resources */,
 				B232AC67183141AD00114E52 /* ShellScript */,
 			);
@@ -447,14 +450,15 @@
 			files = (
 				B2CD5CD5182238B900340E43 /* Images.xcassets in Resources */,
 				B2DDDC25182997EF00CC59BF /* startup.png in Resources */,
+				B2C50F3D183552E400DAFE28 /* Settings.bundle in Resources */,
 				B2DDDC24182997EF00CC59BF /* service.png in Resources */,
 				B2A3878F182F9C6500989B4D /* map-25.png in Resources */,
 				B2CD5CC7182238B900340E43 /* InfoPlist.strings in Resources */,
-				B2CD5CD0182238B900340E43 /* View.storyboard in Resources */,
 				B2DDDC22182997EF00CC59BF /* investor.png in Resources */,
 				B2A3879E182FDCB900989B4D /* align_justify-25.png in Resources */,
 				B2DDDC21182997EF00CC59BF /* coworking.png in Resources */,
 				B2DDDC20182997EF00CC59BF /* community.png in Resources */,
+				B2F3A2E018355C7A00AE608E /* View.storyboard in Resources */,
 				B2DDDC23182997EF00CC59BF /* rdcenter.png in Resources */,
 				B2DDDC1F182997EF00CC59BF /* accelerator.png in Resources */,
 			);
@@ -484,18 +488,19 @@
 			shellPath = /bin/sh;
 			shellScript = "./MappedInIsrael/Crashlytics.framework/run 8a47ccbf8db717681b6ae83cb615504de6fe5eb7";
 		};
-		B28AECB61823B32C0089D35C /* ShellScript */ = {
+		B28AECB61823B32C0089D35C /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Run Script";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"";
+			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"\nproductVersion=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"$INFOPLIST_FILE\")\n/usr/libexec/PlistBuddy -c \"Set PreferenceSpecifiers:2:DefaultValue $buildNumber\" MappedInIsrael/Settings.bundle/Root.plist\n/usr/libexec/PlistBuddy -c \"Set PreferenceSpecifiers:1:DefaultValue $productVersion\" MappedInIsrael/Settings.bundle/Root.plist";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -662,7 +667,7 @@
 					/Users/genady/Dropbox/Development/Xcode/MappedInIsrael/MappedInIsrael/TestFlightSDK,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8B74C0E6-0B8F-4C66-BFFC-7C660C979EF0";
+				PROVISIONING_PROFILE = "B0618000-783E-4529-BE82-24F634B85F51";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -689,7 +694,7 @@
 					/Users/genady/Dropbox/Development/Xcode/MappedInIsrael/MappedInIsrael/TestFlightSDK,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "CD22EB14-9295-4E52-8D9F-53A86021093B";
+				PROVISIONING_PROFILE = "162C16FD-A9AC-4811-8958-4789CEEA9403";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

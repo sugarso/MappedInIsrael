@@ -24,7 +24,10 @@
     [UIApplication sharedApplication].statusBarHidden = NO;
     self.navigationItem.title = self.company.companyName;
     
+    self.streetLabel.text = self.company.addressStreet;
     self.cityLabel.text = self.company.addressCity;
+    self.contactLabel.text = self.company.contactEmail;
+    self.homePageLabel.text = self.company.websiteURL;
 }
 
 @end
