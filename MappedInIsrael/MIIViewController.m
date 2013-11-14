@@ -12,6 +12,7 @@
     KPTreeController *_treeController;
     BOOL _fullScreen;
     CLLocationManager *_locationManager;
+    CLLocation *_myHome;
 }
 @end
 
@@ -21,6 +22,8 @@
 {
     [super viewDidLoad];
     self.screenName = @"MIIViewController";
+    
+    _myHome = [[CLLocation alloc] initWithLatitude:32.11303727704297 longitude:34.7941900883194];
 
     // Map
     self.mapView.delegate = self;
@@ -143,8 +146,21 @@
     return YES;
 }
 
-- (IBAction)showCurrentLocation:(id)sender {
+- (IBAction)showCurrentLocation:(id)sender
+{
     [_locationManager startUpdatingLocation];
+}
+
+- (void)showTelAviv:(id)sender
+{
+    MKCoordinateRegion region;
+    region.center.latitude = _myHome.coordinate.latitude;
+    region.center.longitude = _myHome.coordinate.longitude;
+    region.span.latitudeDelta = 1;
+    region.span.longitudeDelta = 1;
+    [self.mapView setRegion:region animated:YES];
+    self.showCurrentLocation.hidden = YES;
+    [_locationManager stopUpdatingLocation];
 }
 
 - (void)showSearch:(id)sender {
@@ -173,35 +189,33 @@
             
             NSString *numberOfCompanies = [NSString stringWithFormat:@"%d", a.annotations.count];
             
-            UILabel *l = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 32, 32)];
+            UILabel *l;
+            MIIClusterView *clusterView;
+            if ([numberOfCompanies intValue] < 10) {
+                clusterView = [[MIIClusterView alloc] initWithFrame:CGRectMake(0, 0, 30, 30) color:[UIColor greenColor]];
+                l = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+            } else if ([numberOfCompanies intValue] < 100) {
+                clusterView = [[MIIClusterView alloc] initWithFrame:CGRectMake(0, 0, 36, 36) color:[UIColor yellowColor]];
+                l = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 36, 36)];
+            } else {
+                clusterView = [[MIIClusterView alloc] initWithFrame:CGRectMake(0, 0, 42, 42) color:[UIColor redColor]];
+                l = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 42, 42)];
+            }
             [l setTextAlignment:NSTextAlignmentCenter];
             [l setFont:[UIFont fontWithName:@"American Typewriter" size:12]];
             l.text = numberOfCompanies;
-            
-            MIIClusterView *clusterView;
-            if ([numberOfCompanies intValue] < 10) {
-                clusterView = [[MIIClusterView alloc] initWithFrame:CGRectMake(0, 0, 32, 32) color:[UIColor greenColor]];
-                UIButton *btn = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-                v.rightCalloutAccessoryView = btn;
-                v.canShowCallout = YES;
-                a.title = [NSString stringWithFormat:@"%d companies", [numberOfCompanies intValue]];
-                BOOL first = YES;
-                for (MIIPointAnnotation *annotation in a.annotations) {
-                    if (first) {
-                        first = NO;
-                        a.subtitle = annotation.company.companyName;
-                    } else {
-                        a.subtitle = [NSString stringWithFormat:@"%@, %@", a.subtitle, annotation.company.companyName];
-                    }
+            UIButton *btn = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+            v.rightCalloutAccessoryView = btn;
+            v.canShowCallout = YES;
+            a.title = [NSString stringWithFormat:@"%d companies", [numberOfCompanies intValue]];
+            BOOL first = YES;
+            for (MIIPointAnnotation *annotation in a.annotations) {
+                if (first) {
+                    first = NO;
+                    a.subtitle = annotation.company.companyName;
+                } else {
+                    a.subtitle = [NSString stringWithFormat:@"%@, %@", a.subtitle, annotation.company.companyName];
                 }
-            } else if ([numberOfCompanies intValue] < 100) {
-                clusterView = [[MIIClusterView alloc] initWithFrame:CGRectMake(0, 0, 32, 32) color:[UIColor yellowColor]];
-                v.rightCalloutAccessoryView = nil;
-                v.canShowCallout = NO;
-            } else {
-                clusterView = [[MIIClusterView alloc] initWithFrame:CGRectMake(0, 0, 32, 32) color:[UIColor redColor]];
-                v.rightCalloutAccessoryView = nil;
-                v.canShowCallout = NO;
             }
             [clusterView addSubview:l];
             
@@ -292,76 +306,27 @@
 
 #pragma mark - CLLocationManagerDelegate
 
-// TBD: orgnize GPS code
-
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
-    NSLog(@"didFailWithError: %@", error);
-    // TBD: update lat/lon!
-    CLLocationDegrees lat = 32.11303727704297;
-    CLLocationDegrees lon = 34.7941900883194;
-    MKCoordinateRegion region;
-    region.center.latitude = lat;
-    region.center.longitude = lon;
-    region.span.latitudeDelta = 1;
-    region.span.longitudeDelta = 1;
-    [self.mapView setRegion:region animated:YES];
-    self.showCurrentLocation.hidden = YES;
-    [_locationManager stopUpdatingLocation];
+    NSLog(@"didFailWithError error: %@", error);
+    [self showTelAviv:self];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
-    if (!oldLocation) {
-        CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-        [geocoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *placemarks, NSError *error) {
-            if (error) {
-                NSLog(@"Geocode failed with error: %@", error);
-                // TBD: update lat/lon!
-                CLLocationDegrees lat = 32.11303727704297;
-                CLLocationDegrees lon = 34.7941900883194;
-                MKCoordinateRegion region;
-                region.center.latitude = lat;
-                region.center.longitude = lon;
-                region.span.latitudeDelta = 1;
-                region.span.longitudeDelta = 1;
-                [self.mapView setRegion:region animated:YES];
-                self.showCurrentLocation.hidden = YES;
-                [_locationManager stopUpdatingLocation];
-                return;
-            }
-            
-            if (placemarks && placemarks.count > 0) {
-                CLPlacemark *topResult = [placemarks objectAtIndex:0];
-                NSString *country = [NSString stringWithFormat:@"%@", [topResult country]];
-                NSLog(@"Country: %@", country);
-                
-                if ([country isEqualToString:@"Israel"]) { // TBD: check other lng
-                    MKCoordinateRegion region;
-                    region.center.latitude = newLocation.coordinate.latitude;
-                    region.center.longitude = newLocation.coordinate.longitude;
-                    region.span.latitudeDelta = 0.03;
-                    region.span.longitudeDelta = 0.03;
-                    [self.mapView setRegion:region animated:YES];
-                    self.showCurrentLocation.hidden = NO;
-                    [_locationManager stopUpdatingLocation];
-                    return;
-                }
-            }
-            
-            // others?
-            // TBD: update lat/lon!
-            CLLocationDegrees lat = 32.11303727704297;
-            CLLocationDegrees lon = 34.7941900883194;
-            MKCoordinateRegion region;
-            region.center.latitude = lat;
-            region.center.longitude = lon;
-            region.span.latitudeDelta = 1;
-            region.span.longitudeDelta = 1;
-            [self.mapView setRegion:region animated:YES];
-            self.showCurrentLocation.hidden = YES;
-            [_locationManager stopUpdatingLocation];
-        }];
+    CLLocationDistance distance = [newLocation distanceFromLocation:_myHome];
+    NSLog(@"Distance: %f",distance);
+    if (distance > 200000) {
+        [self showTelAviv:self];
+    } else {
+        MKCoordinateRegion region;
+        region.center.latitude = newLocation.coordinate.latitude;
+        region.center.longitude = newLocation.coordinate.longitude;
+        region.span.latitudeDelta = 0.03;
+        region.span.longitudeDelta = 0.03;
+        [self.mapView setRegion:region animated:YES];
+        self.showCurrentLocation.hidden = NO;
+        [_locationManager stopUpdatingLocation];
     }
 }
 
