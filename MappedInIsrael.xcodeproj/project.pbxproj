@@ -419,6 +419,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Genady Okrain";
 				TargetAttributes = {
+					B2CD5CB8182238B900340E43 = {
+						DevelopmentTeam = SZHLQT8428;
+					};
 					B2CD5CD9182238B900340E43 = {
 						TestTargetID = B2CD5CB8182238B900340E43;
 					};
@@ -678,7 +681,7 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/genady/Dropbox/Development/Xcode/MappedInIsrael/MappedInIsrael,

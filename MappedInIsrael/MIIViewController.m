@@ -31,6 +31,7 @@
     _treeController.delegate = self;
     _treeController.animationOptions = UIViewAnimationOptionCurveEaseOut;
     _fullScreen = NO;
+    
     // SignleTap on mapView
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapRecognized:)];
     singleTap.numberOfTapsRequired = 1;
@@ -53,7 +54,8 @@
     // Data
     self.data = [[MIIData alloc] init];
     self.data.delegate = self;
-
+    
+    // Location
     _locationManager = [[CLLocationManager alloc] init];
     _locationManager.delegate = self;
     _locationManager.desiredAccuracy = kCLLocationAccuracyBest;

@@ -22,12 +22,15 @@
     // NavigationBar
     [self.navigationController setNavigationBarHidden:NO animated:NO];
     [UIApplication sharedApplication].statusBarHidden = NO;
-    self.navigationItem.title = self.company.companyName;
     
+    // Company
+    //self.navigationItem.title = self.company.companyCategory;
     self.streetLabel.text = self.company.addressStreet;
     self.cityLabel.text = self.company.addressCity;
     self.contactLabel.text = self.company.contactEmail;
     self.homePageLabel.text = self.company.websiteURL;
+    self.nameLabel.text = self.company.companyName;
+    self.descriptionTextView.text = self.company.description;
 }
 
 @end
