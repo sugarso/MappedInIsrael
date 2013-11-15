@@ -43,7 +43,7 @@
     }
     
     // updateFilter every UIControlEventValueChanged
-    [self.whosHiring addTarget:self action:@selector(updateFilter:) forControlEvents:UIControlEventValueChanged];
+    [self.whosHiring addTarget:self action:@selector(updateFilter:) forControlEvents:UIControlEventValueChanged]; // TBD: fix for cluster view
 }
 
 - (void)updateFilter:(id)sender

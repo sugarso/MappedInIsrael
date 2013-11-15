@@ -35,7 +35,7 @@
     // SignleTap on mapView
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapRecognized:)];
     singleTap.numberOfTapsRequired = 1;
-    singleTap.delaysTouchesEnded = YES;
+    singleTap.delaysTouchesEnded = NO;
     singleTap.delegate = self;
     [self.mapView addGestureRecognizer:singleTap];
     
