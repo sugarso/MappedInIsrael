@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
 #import <MapKit/MapKit.h>
 #import "GAITrackedViewController.h"
 #import "MIICompany.h"
 #import "MIIPointAnnotation.h"
 #import "MIIJobViewController.h"
 
-@interface MIICompanyViewController : GAITrackedViewController <MKMapViewDelegate,UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface MIICompanyViewController : GAITrackedViewController <MKMapViewDelegate,UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate,MFMailComposeViewControllerDelegate>
 
 @property (strong, nonatomic) MIICompany *company;
 
@@ -31,7 +32,7 @@
 
 @property (weak, nonatomic) IBOutlet UIView *iconsSuperView;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
-@property (weak, nonatomic) IBOutlet UILabel *homePageLabel;
-@property (weak, nonatomic) IBOutlet UILabel *contactLabel;
+@property (weak, nonatomic) IBOutlet UIButton *homePageButton;
+@property (weak, nonatomic) IBOutlet UIButton *contactButton;
 
 @end

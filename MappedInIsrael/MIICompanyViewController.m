@@ -30,12 +30,12 @@
                               self.company.addressHouse,
                               self.company.addressCity];
     self.hiringLabel.text = [NSString stringWithFormat:@"%@ is currently hiring:", self.company.companyName];
-    self.contactLabel.text = self.company.contactEmail;
-    self.homePageLabel.text = self.company.websiteURL;
     self.nameLabel.text = self.company.companyName;
     self.descriptionTextView.text = self.company.description;
     self.descriptionTextView.font = [UIFont fontWithName:@"Helvetica" size:17];
     self.descriptionTextView.textColor = [UIColor grayColor];
+    [self.contactButton setTitle:self.company.contactEmail forState:UIControlStateNormal];
+    [self.homePageButton setTitle:self.company.websiteURL forState:UIControlStateNormal];
     
     // Map Annotation
     self.mapView.delegate = self;
@@ -111,6 +111,50 @@
                                              self.tableSuperView.frame.size.height+
                                              self.nameSuperView.frame.size.height+
                                              self.iconsSuperView.frame.size.height);
+}
+
+- (IBAction)openWebsite:(id)sender
+{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: self.company.websiteURL]];
+}
+
+- (IBAction)openMail:(id)sender
+{
+    NSString *emailTitle = @"";
+    NSString *messageBody = @"";
+    NSArray *toRecipents = [NSArray arrayWithObject:self.company.contactEmail];
+    
+    MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
+    mc.mailComposeDelegate = self;
+    [mc setSubject:emailTitle];
+    [mc setMessageBody:messageBody isHTML:NO];
+    [mc setToRecipients:toRecipents];
+    
+    [self presentViewController:mc animated:YES completion:NULL];
+}
+
+- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+            NSLog(@"Mail cancelled");
+            break;
+        case MFMailComposeResultSaved:
+            NSLog(@"Mail saved");
+            break;
+        case MFMailComposeResultSent:
+            NSLog(@"Mail sent");
+            break;
+        case MFMailComposeResultFailed:
+            NSLog(@"Mail sent failure: %@", [error localizedDescription]);
+            break;
+        default:
+            break;
+    }
+    
+    // Close the Mail Interface
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation

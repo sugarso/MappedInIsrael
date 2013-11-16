@@ -190,18 +190,6 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Website" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JPe-ig-ZmX">
-                                                        <rect key="frame" x="38" y="51" width="282" height="36"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wrv-t0-lAc">
-                                                        <rect key="frame" x="38" y="87" width="282" height="36"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="company-email.png" id="rez-8n-8UI">
                                                         <rect key="frame" x="13" y="100" width="14" height="10"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -214,6 +202,26 @@
                                                         <rect key="frame" x="13" y="62" width="13" height="14"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     </imageView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Gjj-mO-WVk">
+                                                        <rect key="frame" x="38" y="51" width="282" height="36"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <state key="normal" title="Website">
+                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="openWebsite:" destination="9uK-M2-kGv" eventType="touchUpInside" id="nJV-vl-238"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="AGq-DJ-qyY">
+                                                        <rect key="frame" x="38" y="87" width="282" height="36"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <state key="normal" title="Mail">
+                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="openMail:" destination="9uK-M2-kGv" eventType="touchUpInside" id="K6A-Ez-GYt"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                             </view>
@@ -231,10 +239,10 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addressLabel" destination="VDy-KH-3Br" id="07J-YF-4A9"/>
-                        <outlet property="contactLabel" destination="wrv-t0-lAc" id="iha-aH-BmU"/>
+                        <outlet property="contactButton" destination="AGq-DJ-qyY" id="IxI-Wr-db7"/>
                         <outlet property="descriptionTextView" destination="vbF-z9-erA" id="45w-rh-g4Z"/>
                         <outlet property="hiringLabel" destination="lDd-g3-BZX" id="MEz-Dj-b0d"/>
-                        <outlet property="homePageLabel" destination="JPe-ig-ZmX" id="Dyq-G9-dCk"/>
+                        <outlet property="homePageButton" destination="Gjj-mO-WVk" id="eJh-iD-zgx"/>
                         <outlet property="iconsSuperView" destination="5UH-f3-bv7" id="jAP-05-jmq"/>
                         <outlet property="mapView" destination="0WP-n1-bgR" id="mBW-r1-dxn"/>
                         <outlet property="nameLabel" destination="53x-Wk-Zpi" id="hKG-0c-lmQ"/>
