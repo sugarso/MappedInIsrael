@@ -20,7 +20,10 @@
     self.screenName = @"MIIJobViewController";
     
     self.title = [self.job objectForKey:@"title"];
-    self.jobTextView.text = [self.job objectForKey:@"description"];
+    
+    NSString *description = [NSString stringWithFormat:@"%@",[self.job objectForKey:@"description"]];
+    self.jobTextView.text = description;
+    self.jobTextView.font = [UIFont fontWithName:@"Helvetica" size:17];
 }
 
 - (IBAction)lookForJob:(id)sender

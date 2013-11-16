@@ -37,6 +37,7 @@
     _treeController = [[KPTreeController alloc] initWithMapView:self.mapView];
     _treeController.delegate = self;
     _treeController.animationOptions = UIViewAnimationOptionCurveEaseOut;
+    _treeController.gridSize = CGSizeMake(30.f, 30.f);
     _fullScreen = NO;
     
     // SignleTap on mapView
