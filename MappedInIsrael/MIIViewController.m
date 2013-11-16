@@ -49,7 +49,7 @@
     
     // NavigationBar
     UIBarButtonItem *search = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(showSearch:)];
-    self.navigationItem.leftBarButtonItem = search;
+    self.navigationItem.rightBarButtonItem = search;
     self.navigationItem.hidesBackButton = YES;
     
     // Data

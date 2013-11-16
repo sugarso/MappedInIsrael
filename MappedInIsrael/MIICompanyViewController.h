@@ -26,6 +26,8 @@
 @property (weak, nonatomic) IBOutlet UIView *nameSuperView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
+
+@property (weak, nonatomic) IBOutlet UIView *iconsSuperView;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *homePageLabel;
 @property (weak, nonatomic) IBOutlet UILabel *contactLabel;

@@ -11,6 +11,7 @@
 @interface MIITableViewController () <MIIDataDelegate>
 {
     UISearchBar *_searchBar;
+    NSArray *_clusterAnnotationFiltered;
 }
 @end
 
@@ -38,25 +39,40 @@
     if (self.clusterAnnotation) {
         self.navigationItem.title = [NSString stringWithFormat:@"%d companies", [self.clusterAnnotation count]];
     } else {
-        // TBD: Done button howto???
-        //UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(showMap:)];
-        //self.navigationItem.rightBarButtonItem = done;
-        //self.navigationItem.hidesBackButton = YES;
+        UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(back:)];
+        self.navigationItem.rightBarButtonItem = done;
+        self.navigationItem.hidesBackButton = YES;
         self.navigationItem.titleView = _searchBar;
     }
     
     // updateFilter every UIControlEventValueChanged
-    [self.whosHiring addTarget:self action:@selector(updateFilter:) forControlEvents:UIControlEventValueChanged]; // TBD: fix for cluster view
+    [self.whosHiring addTarget:self action:@selector(updateFilter:) forControlEvents:UIControlEventValueChanged];
+    _clusterAnnotationFiltered = self.clusterAnnotation;
+}
+
+- (void)back:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)updateFilter:(id)sender
 {
     NSLog(@"Search: %@, SegmentIndex: %d", _searchBar.text, self.whosHiring.selectedSegmentIndex);
+
     if (self.whosHiring.selectedSegmentIndex == 0) {
-        [self.data setSearch:_searchBar.text setWhosHiring:NO];
+        if (self.clusterAnnotation) {
+            _clusterAnnotationFiltered = self.clusterAnnotation;
+        } else {
+            [self.data setSearch:_searchBar.text setWhosHiring:NO];
+        }
     } else {
-        [self.data setSearch:_searchBar.text setWhosHiring:YES];
+        if (self.clusterAnnotation) {
+            _clusterAnnotationFiltered = [MIIData whosHiring:self.clusterAnnotation];
+        } else {
+            [self.data setSearch:_searchBar.text setWhosHiring:YES];
+        }
     }
+    
     [self.tableView reloadData];
 }
 
@@ -88,7 +104,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if (self.clusterAnnotation) {
+    if (_clusterAnnotationFiltered) {
         return 1;
     } else {
         return [[MIIData getAllFormatedCategories] count];
@@ -97,7 +113,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if (self.clusterAnnotation) {
+    if (_clusterAnnotationFiltered) {
         return @"";
     } else {
         return [self.data getCompaniesInCategory:[[MIIData getAllFormatedCategories] objectAtIndex:section]].count ? [[MIIData getAllFormatedCategories] objectAtIndex:section] : nil;
@@ -106,8 +122,8 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (self.clusterAnnotation) {
-        return [self.clusterAnnotation count];
+    if (_clusterAnnotationFiltered) {
+        return [_clusterAnnotationFiltered count];
     } else {
         NSString *category = (NSString *)[[MIIData getAllFormatedCategories] objectAtIndex:section];
         return [self.data getCompaniesInCategory:category].count;
@@ -120,8 +136,8 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     MIICompany *company;
-    if (self.clusterAnnotation) {
-        company = ((MIIPointAnnotation *)[self.clusterAnnotation objectAtIndex:indexPath.row]).company;
+    if (_clusterAnnotationFiltered) {
+        company = ((MIIPointAnnotation *)[_clusterAnnotationFiltered objectAtIndex:indexPath.row]).company;
     } else {
         NSString *category = [[MIIData getAllFormatedCategories] objectAtIndex:indexPath.section];
         company = [self.data category:category companyAtIndex:indexPath.row];
@@ -141,8 +157,8 @@
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
     MIICompany *company;
-    if (self.clusterAnnotation) {
-        company = ((MIIPointAnnotation *)[self.clusterAnnotation objectAtIndex:indexPath.row]).company;
+    if (_clusterAnnotationFiltered) {
+        company = ((MIIPointAnnotation *)[_clusterAnnotationFiltered objectAtIndex:indexPath.row]).company;
     } else {
         NSString *category = [[MIIData getAllFormatedCategories] objectAtIndex:indexPath.section];
         company = [self.data category:category companyAtIndex:indexPath.row];
@@ -168,8 +184,8 @@
         if ([sender isKindOfClass:[NSIndexPath class]]) { // With Zoom
             NSIndexPath *indexPath = (NSIndexPath *)sender;
             MIICompany *company;
-            if (self.clusterAnnotation) {
-                company = ((MIIPointAnnotation *)[self.clusterAnnotation objectAtIndex:indexPath.row]).company;
+            if (_clusterAnnotationFiltered) {
+                company = ((MIIPointAnnotation *)[_clusterAnnotationFiltered objectAtIndex:indexPath.row]).company;
             } else {
                 NSString *category = [[MIIData getAllFormatedCategories] objectAtIndex:indexPath.section];
                 company = [self.data category:category companyAtIndex:indexPath.row];

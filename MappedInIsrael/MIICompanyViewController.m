@@ -68,28 +68,50 @@
                                                self.tableSuperView.frame.size.width,
                                                0);
     } else {
+        self.tableSuperView.frame = CGRectMake(self.tableSuperView.frame.origin.x,
+                                               self.tableSuperView.frame.origin.y,
+                                               self.tableSuperView.frame.size.width,
+                                               self.tableView.frame.origin.y+
+                                               self.tableView.rowHeight*[self.company.jobs count]);
+        
         self.tableView.frame = CGRectMake(self.tableView.frame.origin.x,
                                           self.tableView.frame.origin.y,
                                           self.tableView.frame.size.width,
                                           self.tableView.rowHeight*[self.company.jobs count]);
-        
-        self.tableSuperView.frame = CGRectMake(self.tableSuperView.frame.origin.x,
-                                               self.tableSuperView.frame.origin.y,
-                                               self.tableSuperView.frame.size.width,
-                                               self.tableView.frame.origin.y+self.tableView.frame.size.height);
     }
+    
+    // Resize descriptionTextView
+    CGRect rect = [self.descriptionTextView.attributedText boundingRectWithSize:(CGSize){self.descriptionTextView.frame.size.width, CGFLOAT_MAX}
+                                                                        options:NSStringDrawingUsesLineFragmentOrigin
+                                                                        context:nil];
     
     // Move nameSuperView
     self.nameSuperView.frame = CGRectMake(self.nameSuperView.frame.origin.x,
-                                          self.mapView.frame.size.height+self.tableSuperView.frame.size.height,
+                                          self.mapView.frame.size.height+
+                                          self.tableSuperView.frame.size.height,
                                           self.nameSuperView.frame.size.width,
-                                          self.nameSuperView.frame.size.height);
+                                          self.descriptionTextView.frame.origin.y+
+                                          rect.size.height+10); // TBD: change 10 to real calc
+    
+    self.descriptionTextView.frame = CGRectMake(self.descriptionTextView.frame.origin.x,
+                                                self.descriptionTextView.frame.origin.y,
+                                                self.descriptionTextView.frame.size.width,
+                                                rect.size.height+10); // TBD: change 10 to real calc
+    
+    // Move iconsSuperView
+    self.iconsSuperView.frame = CGRectMake(self.iconsSuperView.frame.origin.x,
+                                           self.mapView.frame.size.height+
+                                           self.tableSuperView.frame.size.height+
+                                           self.nameSuperView.frame.size.height,
+                                           self.iconsSuperView.frame.size.width,
+                                           self.iconsSuperView.frame.size.height);
     
     // Resize scrollView
     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width,
                                              self.mapView.frame.size.height+
                                              self.tableSuperView.frame.size.height+
-                                             self.nameSuperView.frame.size.height);
+                                             self.nameSuperView.frame.size.height+
+                                             self.iconsSuperView.frame.size.height);
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation

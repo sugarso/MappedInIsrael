@@ -11,6 +11,7 @@
 #import "MIICompany.h"
 #import "MIICommunicator.h"
 #import "MIIManager.h"
+#import "MIIPointAnnotation.h"
 
 
 @interface MIIData : NSObject
@@ -24,5 +25,6 @@
 - (NSArray *)getCompaniesInCategory:(NSString *)category;
 - (MIICompany *)category:(NSString *)category companyAtIndex:(NSInteger)index;
 - (void)getCompany:(NSString *)id;
++ (NSArray *)whosHiring:(NSArray *)companies;
 
 @end

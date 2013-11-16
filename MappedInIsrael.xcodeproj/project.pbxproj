@@ -244,6 +244,8 @@
 		B296E6281830FB33005C09E9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B274D0461833789600FEF3E6 /* MIIPointAnnotation.h */,
+				B274D0471833789700FEF3E6 /* MIIPointAnnotation.m */,
 				B2CD5CF1182239A400340E43 /* MIICompany.h */,
 				B2CD5CF2182239A400340E43 /* MIICompany.m */,
 				B2CD5CF41822427600340E43 /* MIICommunicatorDelegate.h */,
@@ -330,6 +332,8 @@
 			children = (
 				B2CD5CCB182238B900340E43 /* MIIAppDelegate.h */,
 				B2CD5CCC182238B900340E43 /* MIIAppDelegate.m */,
+				B2BA4ECD1836A35E0027CDDE /* UIColor+MBCategory.h */,
+				B2BA4ECE1836A35E0027CDDE /* UIColor+MBCategory.m */,
 				B296E6281830FB33005C09E9 /* Model */,
 				B2DFDA8618324E090080BA78 /* View */,
 				B296E6291830FB78005C09E9 /* Controllers */,
@@ -418,10 +422,6 @@
 				B2CD5CCE182238B900340E43 /* View.storyboard */,
 				B2DFDA8318324E000080BA78 /* MIIClusterView.h */,
 				B2DFDA8418324E000080BA78 /* MIIClusterView.m */,
-				B274D0461833789600FEF3E6 /* MIIPointAnnotation.h */,
-				B274D0471833789700FEF3E6 /* MIIPointAnnotation.m */,
-				B2BA4ECD1836A35E0027CDDE /* UIColor+MBCategory.h */,
-				B2BA4ECE1836A35E0027CDDE /* UIColor+MBCategory.m */,
 			);
 			name = View;
 			sourceTree = "<group>";

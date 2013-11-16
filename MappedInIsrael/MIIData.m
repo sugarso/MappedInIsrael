@@ -121,4 +121,21 @@
     [_manager getCompany:id];
 }
 
++ (NSArray *)whosHiring:(NSArray *)companies
+{
+    NSMutableArray *hiringCompaniesAnnotation = [[NSMutableArray alloc] init];
+    
+    // Add companies
+    for (MIIPointAnnotation *companyAnnotation in companies) {
+        MIICompany *company = companyAnnotation.company;
+        // Check whosHiring BOOL
+        if ((![company.hiringPageURL isKindOfClass:[NSNull class]]) &&
+            (![company.hiringPageURL isEqualToString:@""])) {
+                    [hiringCompaniesAnnotation addObject:companyAnnotation];
+            }
+    }
+    
+    return [hiringCompaniesAnnotation copy];
+}
+
 @end
