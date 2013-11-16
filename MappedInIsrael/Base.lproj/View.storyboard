@@ -34,7 +34,7 @@
                         <outlet property="showCurrentLocation" destination="uNF-ie-6xu" id="tYu-Me-2fP"/>
                         <outlet property="view" destination="kh9-bI-dsS" id="BOW-AF-oEa"/>
                         <segue destination="9uK-M2-kGv" kind="push" identifier="showCompany:" id="BdU-l6-vnE"/>
-                        <segue destination="KnT-ws-pnS" kind="push" identifier="showSearch:" customClass="CurlDownSegue" id="tbr-nO-a25"/>
+                        <segue destination="KnT-ws-pnS" kind="push" identifier="showSearch:" customClass="NavModal" id="tbr-nO-a25"/>
                         <segue destination="KnT-ws-pnS" kind="push" identifier="showCompanies:" id="6Jb-CO-WCh"/>
                     </connections>
                 </viewController>
