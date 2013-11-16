@@ -8,26 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
-#import "MIIAppDelegate.h"
 #import "GAITrackedViewController.h"
 #import "KPTreeController.h"
-#import "KPAnnotation.h"
 #import "MIICompany.h"
 #import "MIIData.h"
-#import "MIITableViewController.h"
-#import "MIIClusterView.h"
-#import "MIICompanyViewController.h"
-#import "MIIPointAnnotation.h"
-#import "UIColor+MBCategory.h"
 
-@interface MIIViewController : GAITrackedViewController <MKMapViewDelegate,UIGestureRecognizerDelegate,CLLocationManagerDelegate,KPTreeControllerDelegate>
+@interface MIIViewController : GAITrackedViewController <MKMapViewDelegate,UIGestureRecognizerDelegate,CLLocationManagerDelegate,KPTreeControllerDelegate,MIIDataDelegate>
 
 @property (strong, nonatomic) MIIData *data;
 @property (weak, nonatomic) MIICompany *company;
 @property (weak, nonatomic) IBOutlet UIView *view;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UIButton *showCurrentLocation;
-
-- (void)dataIsReady;
 
 @end

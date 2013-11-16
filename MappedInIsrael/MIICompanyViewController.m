@@ -7,16 +7,17 @@
 //
 
 #import "MIICompanyViewController.h"
-
-@interface MIICompanyViewController ()
-
-@end
+#import "UIColor+MBCategory.h"
+#import "MIIPointAnnotation.h"
+#import "MIIJobViewController.h"
 
 @implementation MIICompanyViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // GAITrackedViewController
     self.screenName = @"MIICompanyViewController";
     
     // NavigationBar
@@ -90,12 +91,12 @@
                                           self.tableSuperView.frame.size.height,
                                           self.nameSuperView.frame.size.width,
                                           self.descriptionTextView.frame.origin.y+
-                                          rect.size.height+10); // TBD: change 10 to real calc
+                                          rect.size.height);
     
     self.descriptionTextView.frame = CGRectMake(self.descriptionTextView.frame.origin.x,
                                                 self.descriptionTextView.frame.origin.y,
                                                 self.descriptionTextView.frame.size.width,
-                                                rect.size.height+10); // TBD: change 10 to real calc
+                                                rect.size.height);
     
     // Move iconsSuperView
     self.iconsSuperView.frame = CGRectMake(self.iconsSuperView.frame.origin.x,
@@ -133,29 +134,18 @@
     [self presentViewController:mc animated:YES completion:NULL];
 }
 
-- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    switch (result)
-    {
-        case MFMailComposeResultCancelled:
-            NSLog(@"Mail cancelled");
-            break;
-        case MFMailComposeResultSaved:
-            NSLog(@"Mail saved");
-            break;
-        case MFMailComposeResultSent:
-            NSLog(@"Mail sent");
-            break;
-        case MFMailComposeResultFailed:
-            NSLog(@"Mail sent failure: %@", [error localizedDescription]);
-            break;
-        default:
-            break;
+    if ([segue.identifier isEqualToString:@"showJob:"]) {
+        if ([sender isKindOfClass:[NSDictionary class]]) {
+            MIIJobViewController *controller = (MIIJobViewController *)segue.destinationViewController;
+            NSDictionary *job = (NSDictionary *)sender;
+            controller.job = [[NSDictionary alloc] initWithDictionary:job];
+        }
     }
-    
-    // Close the Mail Interface
-    [self dismissViewControllerAnimated:YES completion:NULL];
 }
+
+#pragma mark - Table view data source
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
@@ -203,17 +193,30 @@
     [self performSegueWithIdentifier:@"showJob:" sender:[self.company.jobs objectAtIndex:indexPath.row]];
 }
 
-#pragma mark - Segue
+#pragma mark - MFMailComposeViewControllerDelegate
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
 {
-    if ([segue.identifier isEqualToString:@"showJob:"]) {
-        if ([sender isKindOfClass:[NSDictionary class]]) {
-            MIIJobViewController *controller = (MIIJobViewController *)segue.destinationViewController;
-            NSDictionary *job = (NSDictionary *)sender;
-            controller.job = [[NSDictionary alloc] initWithDictionary:job];
-        }
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+            NSLog(@"Mail cancelled");
+            break;
+        case MFMailComposeResultSaved:
+            NSLog(@"Mail saved");
+            break;
+        case MFMailComposeResultSent:
+            NSLog(@"Mail sent");
+            break;
+        case MFMailComposeResultFailed:
+            NSLog(@"Mail sent failure: %@", [error localizedDescription]);
+            break;
+        default:
+            break;
     }
+    
+    // Close the Mail Interface
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 @end

@@ -8,21 +8,17 @@
 
 #import "MIIJobViewController.h"
 
-@interface MIIJobViewController ()
-
-@end
-
 @implementation MIIJobViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // GAITrackedViewController
     self.screenName = @"MIIJobViewController";
     
     self.title = [self.job objectForKey:@"title"];
-    
-    NSString *description = [NSString stringWithFormat:@"%@",[self.job objectForKey:@"description"]];
-    self.jobTextView.text = description;
+    self.jobTextView.text = [NSString stringWithFormat:@"%@",[self.job objectForKey:@"description"]];
     self.jobTextView.font = [UIFont fontWithName:@"Helvetica" size:17];
 }
 

@@ -7,8 +7,13 @@
 //
 
 #import "MIIViewController.h"
+#import "UIColor+MBCategory.h"
+#import "KPAnnotation.h"
+#import "MIIClusterView.h"
+#import "MIITableViewController.h"
+#import "MIICompanyViewController.h"
 
-@interface MIIViewController () <MIIDataDelegate> {
+@interface MIIViewController () {
     KPTreeController *_treeController;
     BOOL _fullScreen;
     CLLocationManager *_locationManager;
@@ -21,24 +26,36 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    // Make sure to be the delegate every viewWillAppear
     self.data.delegate = self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // GAITrackedViewController
     self.screenName = @"MIIViewController";
+    
+    // Data
+    self.data = [[MIIData alloc] init];
+    
+    // Make StatusBar blue
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
+    // Default Location
     _myHome = [[CLLocation alloc] initWithLatitude:32.11303727704297 longitude:34.7941900883194];
-
+    
+    // Default Mode
+    _fullScreen = NO;
+    
     // Map
     self.mapView.delegate = self;
     _treeController = [[KPTreeController alloc] initWithMapView:self.mapView];
     _treeController.delegate = self;
     _treeController.animationOptions = UIViewAnimationOptionCurveEaseOut;
     _treeController.gridSize = CGSizeMake(30.f, 30.f);
-    _fullScreen = NO;
     
     // SignleTap on mapView
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapRecognized:)];
@@ -55,18 +72,15 @@
     [singleTap requireGestureRecognizerToFail:doubleTap];
     
     // NavigationBar
-    UIBarButtonItem *search = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(showSearch:)];
-    self.navigationItem.rightBarButtonItem = search;
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(showSearch:)];
     self.navigationItem.hidesBackButton = YES;
-    
-    // Data
-    self.data = [[MIIData alloc] init];
     
     // Location
     _locationManager = [[CLLocationManager alloc] init];
     _locationManager.delegate = self;
     _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     
+    // Zoom to company or default view
     if (self.company) {
         MKCoordinateRegion region;
         region.center.latitude = [self.company.lat doubleValue];
@@ -74,84 +88,10 @@
         region.span.latitudeDelta = 0.005;
         region.span.longitudeDelta = 0.005;
         [self.mapView setRegion:region animated:YES];
+        self.showCurrentLocation.hidden = NO;
     } else {
         [self showCurrentLocation:self];
     }
-}
-
-- (void)companyIsReady:(MIICompany *)company
-{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self performSegueWithIdentifier:@"showCompany:" sender:company];
-    });
-}
-
-- (void)dataIsReady
-{
-    NSMutableArray *annotations = [[NSMutableArray alloc] init];
-    
-    for (MIICompany *company in [self.data getAllCompanies]) {
-        // Coordinate
-        CLLocationCoordinate2D coordinate;
-        coordinate.latitude = [company.lat doubleValue];
-        coordinate.longitude = [company.lon doubleValue];
-        
-        // Annotation
-        MIIPointAnnotation *point = [[MIIPointAnnotation alloc] init];
-        point.coordinate = coordinate;
-        point.title = company.companyName;
-        point.subtitle = company.companyCategory;
-        point.company = company;
-        
-        [annotations addObject:point];
-    }
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [_treeController setAnnotations:annotations];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (self.company) {
-                CLLocationDistance distance = 0;
-                CLLocationCoordinate2D coordinate;
-                coordinate.longitude = [self.company.lon floatValue];
-                coordinate.latitude = [self.company.lat floatValue];
-                MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinate, distance, distance);
-                [self.mapView setRegion:region animated:NO];
-                
-                for (id<MKAnnotation> annotation in self.mapView.annotations) {
-                    if ([annotation isKindOfClass:[KPAnnotation class]]) { // TBD: make sure zoomed in and see the company pin
-                        KPAnnotation *ann = (KPAnnotation *)annotation;
-                        if ([ann isCluster]) {
-                            for (MIIPointAnnotation *a in ann.annotations) {
-                                if ([a.company.companyName isEqual:self.company.companyName]) { // TBD: check by name is not so good
-                                    [self performSelector:@selector(ZoomToAnnotation:)
-                                               withObject:annotation
-                                               afterDelay:0.5];
-                                    self.company = nil;
-                                    return;
-                                }
-                            }
-                        } else {
-                            MIIPointAnnotation *a = (MIIPointAnnotation *)[ann.annotations anyObject];
-                            if ([a.company.companyName isEqual:self.company.companyName]) {
-                                [self performSelector:@selector(ZoomToAnnotation:)
-                                           withObject:annotation
-                                           afterDelay:0.5];
-                                self.company = nil;
-                                return;
-                            }
-                        }
-                    }
-                }
-                self.company = nil;
-            }
-        });
-    });
-}
-
-- (void)ZoomToAnnotation:(id <MKAnnotation>)annotation
-{
-    [self.mapView selectAnnotation:annotation
-                             animated:YES];
 }
 
 - (void)singleTapRecognized:(UIGestureRecognizer *)gestureRecognizer
@@ -172,11 +112,7 @@
 
 - (void)doubleTapRecognized:(UIGestureRecognizer *)gestureRecognizer
 {
-}
-
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
-{
-    return YES;
+    // nil
 }
 
 - (IBAction)showCurrentLocation:(id)sender
@@ -206,7 +142,35 @@
     [self performSegueWithIdentifier:@"showSearch:" sender:sender];
 }
 
-#pragma mark - mapView
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"showCompany:"]) {
+        if ([sender isKindOfClass:[MIICompany class]]) {
+            MIICompany *company = (MIICompany *)sender;
+            MIICompanyViewController *controller = (MIICompanyViewController *)segue.destinationViewController;
+            controller.company = company;
+        }
+    }
+    
+    if ([segue.identifier isEqualToString:@"showSearch:"]) {
+        if ([sender isKindOfClass:[UIBarButtonItem class]]) {
+            MIITableViewController *controller = (MIITableViewController *)segue.destinationViewController;
+            controller.data = self.data;
+        }
+    }
+    
+    if ([segue.identifier isEqualToString:@"showCompanies:"]) {
+        if ([sender isKindOfClass:[MKAnnotationView class]]) {
+            MKAnnotationView *annotationView = (MKAnnotationView *)sender;
+            KPAnnotation *annotation = (KPAnnotation *)annotationView.annotation;
+            MIITableViewController *controller = (MIITableViewController *)segue.destinationViewController;
+            controller.data = self.data;
+            controller.clusterAnnotation = [annotation.annotations allObjects];
+        }
+    }
+}
+
+#pragma mark - MKMapViewDelegate
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
@@ -280,7 +244,6 @@
         }
     }
     
-    v.centerOffset = CGPointMake(-64.0, -81.0);
     return v;
 }
 
@@ -299,36 +262,6 @@
         KPAnnotation *annotation = (KPAnnotation *)view.annotation;
         MIIPointAnnotation *a = (MIIPointAnnotation *)[annotation.annotations anyObject];
         [self.data getCompany:a.company.id];
-    }
-}
-
-#pragma mark - Segue
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:@"showCompany:"]) {
-        if ([sender isKindOfClass:[MIICompany class]]) {
-            MIICompany *company = (MIICompany *)sender;
-            MIICompanyViewController *controller = (MIICompanyViewController *)segue.destinationViewController;
-            controller.company = company;
-        }
-    }
-    
-    if ([segue.identifier isEqualToString:@"showSearch:"]) {
-        if ([sender isKindOfClass:[UIBarButtonItem class]]) {
-            MIITableViewController *controller = (MIITableViewController *)segue.destinationViewController;
-            controller.data = self.data;
-        }
-    }
-    
-    if ([segue.identifier isEqualToString:@"showCompanies:"]) {
-        if ([sender isKindOfClass:[MKAnnotationView class]]) {
-            MKAnnotationView *annotationView = (MKAnnotationView *)sender;
-            KPAnnotation *annotation = (KPAnnotation *)annotationView.annotation;
-            MIITableViewController *controller = (MIITableViewController *)segue.destinationViewController;
-            controller.data = self.data;
-            controller.clusterAnnotation = [annotation.annotations allObjects];
-        }
     }
 }
 
@@ -367,6 +300,80 @@
         self.showCurrentLocation.hidden = NO;
         [_locationManager stopUpdatingLocation];
     }
+}
+
+#pragma mark - MIIDataDelegate
+
+- (void)companyIsReady:(MIICompany *)company
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self performSegueWithIdentifier:@"showCompany:" sender:company];
+    });
+}
+
+- (void)dataIsReady
+{
+    NSMutableArray *annotations = [[NSMutableArray alloc] init];
+    
+    for (MIICompany *company in [self.data getAllCompanies]) {
+        // Coordinate
+        CLLocationCoordinate2D coordinate;
+        coordinate.latitude = [company.lat doubleValue];
+        coordinate.longitude = [company.lon doubleValue];
+        
+        // Annotation
+        MIIPointAnnotation *point = [[MIIPointAnnotation alloc] init];
+        point.coordinate = coordinate;
+        point.title = company.companyName;
+        point.subtitle = company.companyCategory;
+        point.company = company;
+        
+        [annotations addObject:point];
+    }
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [_treeController setAnnotations:annotations];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (self.company) {
+                CLLocationDistance distance = 0;
+                CLLocationCoordinate2D coordinate;
+                coordinate.longitude = [self.company.lon floatValue];
+                coordinate.latitude = [self.company.lat floatValue];
+                MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinate, distance, distance);
+                [self.mapView setRegion:region animated:NO];
+                
+                for (id<MKAnnotation> annotation in self.mapView.annotations) {
+                    if ([annotation isKindOfClass:[KPAnnotation class]]) {
+                        KPAnnotation *ann = (KPAnnotation *)annotation;
+                        if ([ann isCluster]) {
+                            for (MIIPointAnnotation *a in ann.annotations) {
+                                if ([a.company.companyName isEqual:self.company.companyName]) {
+                                    [self.mapView selectAnnotation:annotation animated:NO];
+                                    self.company = nil;
+                                    return;
+                                }
+                            }
+                        } else {
+                            MIIPointAnnotation *a = (MIIPointAnnotation *)[ann.annotations anyObject];
+                            if ([a.company.companyName isEqual:self.company.companyName]) {
+                                [self.mapView selectAnnotation:annotation animated:NO];
+                                self.company = nil;
+                                return;
+                            }
+                        }
+                    }
+                }
+                self.company = nil;
+            }
+        });
+    });
+}
+
+#pragma mark - UIGestureRecognizerDelegate
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return YES;
 }
 
 @end

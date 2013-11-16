@@ -11,8 +11,6 @@
 #import <MapKit/MapKit.h>
 #import "GAITrackedViewController.h"
 #import "MIICompany.h"
-#import "MIIPointAnnotation.h"
-#import "MIIJobViewController.h"
 
 @interface MIICompanyViewController : GAITrackedViewController <MKMapViewDelegate,UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate,MFMailComposeViewControllerDelegate>
 

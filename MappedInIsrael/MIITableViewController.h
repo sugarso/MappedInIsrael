@@ -8,12 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "GAITrackedViewController.h"
-#import "MIICompany.h"
 #import "MIIData.h"
-#import "MIICompanyViewController.h"
-#import "MIIViewController.h"
 
-@interface MIITableViewController : GAITrackedViewController <UISearchDisplayDelegate,UISearchBarDelegate>
+@interface MIITableViewController : GAITrackedViewController <UISearchDisplayDelegate,UISearchBarDelegate,MIIDataDelegate>
 
 @property (strong, nonatomic) MIIData *data;
 @property (strong, nonatomic) NSArray *clusterAnnotation;

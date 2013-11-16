@@ -11,10 +11,7 @@
 
 @protocol MIIDataDelegate <NSObject>
 
-@optional
 - (void)dataIsReady;
-
-@required
 - (void)companyIsReady:(MIICompany *)company;
 
 @end
