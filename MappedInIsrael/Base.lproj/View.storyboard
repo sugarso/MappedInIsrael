@@ -34,7 +34,7 @@
                         <outlet property="showCurrentLocation" destination="uNF-ie-6xu" id="tYu-Me-2fP"/>
                         <outlet property="view" destination="kh9-bI-dsS" id="BOW-AF-oEa"/>
                         <segue destination="9uK-M2-kGv" kind="push" identifier="showCompany:" id="BdU-l6-vnE"/>
-                        <segue destination="KnT-ws-pnS" kind="custom" identifier="showSearch:" customClass="CurlDownSegue" id="tbr-nO-a25"/>
+                        <segue destination="KnT-ws-pnS" kind="push" identifier="showSearch:" customClass="CurlDownSegue" id="tbr-nO-a25"/>
                         <segue destination="KnT-ws-pnS" kind="push" identifier="showCompanies:" id="6Jb-CO-WCh"/>
                     </connections>
                 </viewController>
@@ -137,16 +137,16 @@
                                                         <color key="textColor" red="0.30196078431372547" green="0.30196078431372547" blue="0.30196078431372547" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="43" sectionHeaderHeight="22" sectionFooterHeight="22" id="6cW-dd-SbQ">
+                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="6cW-dd-SbQ">
                                                         <rect key="frame" x="0.0" y="30" width="320" height="70"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <prototypes>
                                                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" id="KSw-G2-jQb">
-                                                                <rect key="frame" x="0.0" y="22" width="320" height="43"/>
+                                                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KSw-G2-jQb" id="ajz-H9-HAS">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="287" height="42"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                 </tableViewCellContentView>
                                                             </tableViewCell>
@@ -233,6 +233,7 @@
                         <outlet property="addressLabel" destination="VDy-KH-3Br" id="07J-YF-4A9"/>
                         <outlet property="contactLabel" destination="wrv-t0-lAc" id="iha-aH-BmU"/>
                         <outlet property="descriptionTextView" destination="vbF-z9-erA" id="45w-rh-g4Z"/>
+                        <outlet property="hiringLabel" destination="lDd-g3-BZX" id="MEz-Dj-b0d"/>
                         <outlet property="homePageLabel" destination="JPe-ig-ZmX" id="Dyq-G9-dCk"/>
                         <outlet property="iconsSuperView" destination="5UH-f3-bv7" id="jAP-05-jmq"/>
                         <outlet property="mapView" destination="0WP-n1-bgR" id="mBW-r1-dxn"/>
@@ -241,11 +242,50 @@
                         <outlet property="scrollView" destination="bLz-b3-lo6" id="EtJ-Xm-5iF"/>
                         <outlet property="tableSuperView" destination="5gj-w2-2dW" id="fyF-pU-Wmd"/>
                         <outlet property="tableView" destination="6cW-dd-SbQ" id="Xv1-7v-hbW"/>
+                        <segue destination="DX9-4P-J5R" kind="push" identifier="showJob:" id="gcZ-Zv-C5y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6sL-bF-kqe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1956" y="-365"/>
+        </scene>
+        <!--Job View Controller-->
+        <scene sceneID="rhy-7s-KrA">
+            <objects>
+                <viewController id="DX9-4P-J5R" customClass="MIIJobViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BI4-Pg-8LM">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" text="Job" id="cyB-Hd-eRC">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="283"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="dHs-LL-LRy">
+                                <rect key="frame" x="20" y="458" width="280" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Apply on company website">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="lookForJob:" destination="DX9-4P-J5R" eventType="touchUpInside" id="hMp-w0-mU0"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <navigationItem key="navigationItem" id="PqW-ki-ND6"/>
+                    <connections>
+                        <outlet property="jobTextView" destination="cyB-Hd-eRC" id="Bbh-ep-Cni"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gcd-Nx-KX7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2570" y="-365"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jox-aw-Kjj">
@@ -263,7 +303,7 @@
                         </textAttributes>
                     </navigationBar>
                     <connections>
-                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="XbN-jK-75M"/>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="PWG-Ov-Zns"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S6Z-xI-WeP" userLabel="First Responder" sceneMemberID="firstResponder"/>

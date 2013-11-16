@@ -19,8 +19,6 @@
     [super viewDidLoad];
     self.screenName = @"MIICompanyViewController";
     
-        [self.scrollView setScrollEnabled:YES];
-
     // NavigationBar
     [self.navigationController setNavigationBarHidden:NO animated:NO];
     [UIApplication sharedApplication].statusBarHidden = NO;
@@ -31,6 +29,7 @@
                               self.company.addressStreet,
                               self.company.addressHouse,
                               self.company.addressCity];
+    self.hiringLabel.text = [NSString stringWithFormat:@"%@ is currently hiring:", self.company.companyName];
     self.contactLabel.text = self.company.contactEmail;
     self.homePageLabel.text = self.company.websiteURL;
     self.nameLabel.text = self.company.companyName;
@@ -153,6 +152,24 @@
     cell.textLabel.text = [job objectForKey:@"title"];
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self performSegueWithIdentifier:@"showJob:" sender:[self.company.jobs objectAtIndex:indexPath.row]];
+}
+
+#pragma mark - Segue
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"showJob:"]) {
+        if ([sender isKindOfClass:[NSDictionary class]]) {
+            MIIJobViewController *controller = (MIIJobViewController *)segue.destinationViewController;
+            NSDictionary *job = (NSDictionary *)sender;
+            controller.job = [[NSDictionary alloc] initWithDictionary:job];
+        }
+    }
 }
 
 @end

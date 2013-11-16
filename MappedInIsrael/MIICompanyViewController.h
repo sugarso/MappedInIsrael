@@ -11,6 +11,7 @@
 #import "GAITrackedViewController.h"
 #import "MIICompany.h"
 #import "MIIPointAnnotation.h"
+#import "MIIJobViewController.h"
 
 @interface MIICompanyViewController : GAITrackedViewController <MKMapViewDelegate,UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate>
 
@@ -22,6 +23,7 @@
 
 @property (weak, nonatomic) IBOutlet UIView *tableSuperView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UILabel *hiringLabel;
 
 @property (weak, nonatomic) IBOutlet UIView *nameSuperView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;

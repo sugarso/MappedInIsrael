@@ -52,23 +52,7 @@
 
 - (void)back:(id)sender
 {
-    /*[UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-    [UIView setAnimationDuration:0.75];
     [self.navigationController popViewControllerAnimated:NO];
-    [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.navigationController.view cache:NO];
-    [UIView commitAnimations];*/
-    
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-    [UIView setAnimationDuration:0.75];
-    [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.navigationController.view cache:NO];
-    [UIView commitAnimations];
-    
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDelay:0.375];
-    [self.navigationController popViewControllerAnimated:NO];
-    [UIView commitAnimations];
 }
 
 - (void)updateFilter:(id)sender
