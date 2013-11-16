@@ -184,12 +184,6 @@
                                                 <rect key="frame" x="0.0" y="381" width="320" height="123"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <subviews>
-                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VDy-KH-3Br">
-                                                        <rect key="frame" x="38" y="15" width="282" height="36"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="company-email.png" id="rez-8n-8UI">
                                                         <rect key="frame" x="13" y="100" width="14" height="10"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -222,6 +216,16 @@
                                                             <action selector="openMail:" destination="9uK-M2-kGv" eventType="touchUpInside" id="K6A-Ez-GYt"/>
                                                         </connections>
                                                     </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="KJu-Sz-rpP">
+                                                        <rect key="frame" x="38" y="15" width="282" height="36"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <state key="normal" title="Address">
+                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="openMap:" destination="9uK-M2-kGv" eventType="touchUpInside" id="gO7-tX-02M"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                             </view>
@@ -238,7 +242,7 @@
                         <barButtonItem key="backBarButtonItem" title="Map" id="QuT-6k-MsG"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="addressLabel" destination="VDy-KH-3Br" id="07J-YF-4A9"/>
+                        <outlet property="addressButton" destination="KJu-Sz-rpP" id="f5L-i8-xs9"/>
                         <outlet property="contactButton" destination="AGq-DJ-qyY" id="IxI-Wr-db7"/>
                         <outlet property="descriptionTextView" destination="vbF-z9-erA" id="45w-rh-g4Z"/>
                         <outlet property="hiringLabel" destination="lDd-g3-BZX" id="MEz-Dj-b0d"/>

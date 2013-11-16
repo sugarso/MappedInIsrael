@@ -26,10 +26,6 @@
     
     // Company
     self.navigationItem.title = self.company.companyName;
-    self.addressLabel.text = [NSString stringWithFormat:@"%@ %@, %@, Israel",
-                              self.company.addressStreet,
-                              self.company.addressHouse,
-                              self.company.addressCity];
     self.hiringLabel.text = [NSString stringWithFormat:@"%@ is currently hiring:", self.company.companyName];
     self.nameLabel.text = self.company.companyName;
     self.descriptionTextView.text = self.company.description;
@@ -37,6 +33,10 @@
     self.descriptionTextView.textColor = [UIColor grayColor];
     [self.contactButton setTitle:self.company.contactEmail forState:UIControlStateNormal];
     [self.homePageButton setTitle:self.company.websiteURL forState:UIControlStateNormal];
+    [self.addressButton setTitle:[NSString stringWithFormat:@"%@ %@, %@, Israel",
+                                  self.company.addressStreet,
+                                  self.company.addressHouse,
+                                  self.company.addressCity] forState:UIControlStateNormal];
     
     // Map Annotation
     self.mapView.delegate = self;
@@ -81,9 +81,7 @@
     }
     
     // Resize descriptionTextView
-    CGRect rect = [self.descriptionTextView.attributedText boundingRectWithSize:(CGSize){self.descriptionTextView.frame.size.width, CGFLOAT_MAX}
-                                                                        options:NSStringDrawingUsesLineFragmentOrigin
-                                                                        context:nil];
+    CGRect rect = [self.descriptionTextView.attributedText boundingRectWithSize:CGSizeMake(self.descriptionTextView.frame.size.width, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil];
     
     // Move nameSuperView
     self.nameSuperView.frame = CGRectMake(self.nameSuperView.frame.origin.x,
@@ -91,12 +89,12 @@
                                           self.tableSuperView.frame.size.height,
                                           self.nameSuperView.frame.size.width,
                                           self.descriptionTextView.frame.origin.y+
-                                          rect.size.height);
+                                          rect.size.height+10);
     
     self.descriptionTextView.frame = CGRectMake(self.descriptionTextView.frame.origin.x,
                                                 self.descriptionTextView.frame.origin.y,
                                                 self.descriptionTextView.frame.size.width,
-                                                rect.size.height);
+                                                rect.size.height+10);
     
     // Move iconsSuperView
     self.iconsSuperView.frame = CGRectMake(self.iconsSuperView.frame.origin.x,
@@ -133,6 +131,18 @@
     
     [self presentViewController:mc animated:YES completion:NULL];
 }
+
+- (IBAction)openMap:(id)sender
+{
+    CLLocationCoordinate2D coordinate;
+    coordinate.latitude = [self.company.lat doubleValue];
+    coordinate.longitude = [self.company.lon doubleValue];
+    MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:coordinate addressDictionary:nil];
+    MKMapItem *item = [[MKMapItem alloc] initWithPlacemark:placemark];
+    item.name = self.company.companyName;
+    [item openInMapsWithLaunchOptions:nil];
+}
+
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {

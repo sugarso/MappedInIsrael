@@ -1198,39 +1198,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIICompanyViewController.m"
-            timestampString = "406328080.143249"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "153"
-            endingLineNumber = "153"
-            landmarkName = "-mapView:viewForAnnotation:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MappedInIsrael/MIICompanyViewController.m"
-            timestampString = "406328080.143249"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162"
-            landmarkName = "-mapView:viewForAnnotation:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MappedInIsrael/MIICompanyViewController.m"
-            timestampString = "406328080.143249"
+            timestampString = "406329290.204269"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "163"
@@ -1246,11 +1214,43 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIICompanyViewController.m"
-            timestampString = "406328080.143249"
+            timestampString = "406329290.204269"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "164"
-            endingLineNumber = "164"
+            startingLineNumber = "172"
+            endingLineNumber = "172"
+            landmarkName = "-mapView:viewForAnnotation:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MappedInIsrael/MIICompanyViewController.m"
+            timestampString = "406329290.204269"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "173"
+            endingLineNumber = "173"
+            landmarkName = "-mapView:viewForAnnotation:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MappedInIsrael/MIICompanyViewController.m"
+            timestampString = "406329290.204269"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
             landmarkName = "-mapView:viewForAnnotation:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1518,11 +1518,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIICompanyViewController.m"
-            timestampString = "406328080.143249"
+            timestampString = "406329290.204269"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "193"
-            endingLineNumber = "193"
+            startingLineNumber = "203"
+            endingLineNumber = "203"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1582,11 +1582,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIICompanyViewController.m"
-            timestampString = "406326922.793409"
+            timestampString = "406329290.204269"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
             landmarkName = "-openWebsite:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1598,12 +1598,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIICompanyViewController.m"
-            timestampString = "406326922.793409"
+            timestampString = "406329290.204269"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
             landmarkName = "-openMail:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MappedInIsrael/MIICompanyViewController.m"
+            timestampString = "406329290.204269"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -29,7 +29,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
 
 @property (weak, nonatomic) IBOutlet UIView *iconsSuperView;
-@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
+@property (weak, nonatomic) IBOutlet UIButton *addressButton;
 @property (weak, nonatomic) IBOutlet UIButton *homePageButton;
 @property (weak, nonatomic) IBOutlet UIButton *contactButton;
 
