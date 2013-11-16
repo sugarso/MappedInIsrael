@@ -18,6 +18,12 @@
 
 @implementation MIIViewController
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.data.delegate = self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -54,7 +60,6 @@
     
     // Data
     self.data = [[MIIData alloc] init];
-    self.data.delegate = self;
     
     // Location
     _locationManager = [[CLLocationManager alloc] init];
