@@ -28,5 +28,6 @@
 @property (strong, nonatomic) NSString *addressStreet;
 @property (strong, nonatomic) NSString *addressHouse;
 @property (strong, nonatomic) NSString *addressExtra;
+@property (strong, nonatomic) NSArray *jobs;
 
 @end

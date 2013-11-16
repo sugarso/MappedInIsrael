@@ -19,18 +19,118 @@
     [super viewDidLoad];
     self.screenName = @"MIICompanyViewController";
     
+        [self.scrollView setScrollEnabled:YES];
+
     // NavigationBar
     [self.navigationController setNavigationBarHidden:NO animated:NO];
     [UIApplication sharedApplication].statusBarHidden = NO;
     
     // Company
-    //self.navigationItem.title = self.company.companyCategory;
-    self.streetLabel.text = self.company.addressStreet;
-    self.cityLabel.text = self.company.addressCity;
+    self.navigationItem.title = self.company.companyName;
+    self.addressLabel.text = [NSString stringWithFormat:@"%@ %@, %@, Israel",
+                              self.company.addressStreet,
+                              self.company.addressHouse,
+                              self.company.addressCity];
     self.contactLabel.text = self.company.contactEmail;
     self.homePageLabel.text = self.company.websiteURL;
     self.nameLabel.text = self.company.companyName;
     self.descriptionTextView.text = self.company.description;
+    self.descriptionTextView.font = [UIFont fontWithName:@"Helvetica" size:17];
+    self.descriptionTextView.textColor = [UIColor grayColor];
+    
+    // Map Annotation
+    self.mapView.delegate = self;
+    CLLocationCoordinate2D coordinate;
+    coordinate.latitude = [self.company.lat doubleValue];
+    coordinate.longitude = [self.company.lon doubleValue];
+    MIIPointAnnotation *point = [[MIIPointAnnotation alloc] init];
+    point.coordinate = coordinate;
+    point.title = self.company.companyName;
+    NSDictionary *companyCategory = (NSDictionary *)self.company.companyCategory;
+    point.subtitle = [companyCategory objectForKey:@"categoryName"];
+    point.company = self.company;
+    [self.mapView addAnnotation:point];
+    MKCoordinateRegion region;
+    region.center.latitude = coordinate.latitude;
+    region.center.longitude = coordinate.longitude;
+    region.span.latitudeDelta = 0.03;
+    region.span.longitudeDelta = 0.03;
+    [self.mapView setRegion:region animated:YES];
+    
+    // Table
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    
+    // Move tableSuperView&tableView
+    if (![self.company.jobs count]) {
+        self.tableSuperView.frame = CGRectMake(self.tableSuperView.frame.origin.x,
+                                               self.tableSuperView.frame.origin.y,
+                                               self.tableSuperView.frame.size.width,
+                                               0);
+    } else {
+        self.tableView.frame = CGRectMake(self.tableView.frame.origin.x,
+                                          self.tableView.frame.origin.y,
+                                          self.tableView.frame.size.width,
+                                          self.tableView.rowHeight*[self.company.jobs count]);
+        
+        self.tableSuperView.frame = CGRectMake(self.tableSuperView.frame.origin.x,
+                                               self.tableSuperView.frame.origin.y,
+                                               self.tableSuperView.frame.size.width,
+                                               self.tableView.frame.origin.y+self.tableView.frame.size.height);
+    }
+    
+    // Move nameSuperView
+    self.nameSuperView.frame = CGRectMake(self.nameSuperView.frame.origin.x,
+                                          self.mapView.frame.size.height+self.tableSuperView.frame.size.height,
+                                          self.nameSuperView.frame.size.width,
+                                          self.nameSuperView.frame.size.height);
+    
+    // Resize scrollView
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width,
+                                             self.mapView.frame.size.height+
+                                             self.tableSuperView.frame.size.height+
+                                             self.nameSuperView.frame.size.height);
+}
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
+{
+    MKPinAnnotationView *v = nil;
+    
+    if ([annotation isKindOfClass:[MIIPointAnnotation class]]) {
+        v = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"Company"];
+            
+        if (!v) {
+            v = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"Company"];
+        }
+        
+        v.canShowCallout = NO;
+        NSString *subtitle = ((MIIPointAnnotation *)annotation).subtitle;
+        UIImage *i = [UIImage imageNamed:[NSString stringWithFormat:@"%@%@", subtitle, @".png"]];
+        v.image = i;
+    }
+
+    return v;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [self.company.jobs count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    
+    NSDictionary *job = [self.company.jobs objectAtIndex:indexPath.row];
+    cell.textLabel.text = [job objectForKey:@"title"];
+    
+    return cell;
 }
 
 @end

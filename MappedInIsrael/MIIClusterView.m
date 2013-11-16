@@ -29,8 +29,8 @@
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetFillColorWithColor(context, _color.CGColor);
-    CGContextSetShadowWithColor(context, CGSizeMake(-1,1), 1, [UIColor grayColor].CGColor);
-    CGContextFillEllipseInRect(context, CGRectMake(1, 1, self.frame.size.width-2, self.frame.size.height-2));
+    //CGContextSetShadowWithColor(context, CGSizeMake(-1,1), 1, [UIColor grayColor].CGColor);
+    CGContextFillEllipseInRect(context, CGRectMake(0, 0, self.frame.size.width, self.frame.size.height));
 }
 
 + (UIImage *)imageWithView:(UIView *)view

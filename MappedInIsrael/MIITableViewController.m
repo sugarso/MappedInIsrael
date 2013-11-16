@@ -31,7 +31,10 @@
     [_searchBar sizeToFit];
     _searchBar.delegate = self;
     _searchBar.searchBarStyle = UISearchBarStyleMinimal;
-    _searchBar.placeholder = @"Search jobs, companies...";
+    _searchBar.placeholder = @"Search companies...";
+    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:[UIColor whiteColor]];
+    [[UILabel appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:[UIColor colorWithHexString:@"#61a9ff" alpah:1.0]];
+        
     if (self.clusterAnnotation) {
         self.navigationItem.title = [NSString stringWithFormat:@"%d companies", [self.clusterAnnotation count]];
     } else {

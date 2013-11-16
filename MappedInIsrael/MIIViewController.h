@@ -18,6 +18,7 @@
 #import "MIIClusterView.h"
 #import "MIICompanyViewController.h"
 #import "MIIPointAnnotation.h"
+#import "UIColor+MBCategory.h"
 
 @interface MIIViewController : GAITrackedViewController <MKMapViewDelegate,UIGestureRecognizerDelegate,CLLocationManagerDelegate,KPTreeControllerDelegate>
 

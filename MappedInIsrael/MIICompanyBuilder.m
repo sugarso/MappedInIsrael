@@ -63,6 +63,8 @@
         }
     }
     
+    [company setValue:[payload valueForKey:@"jobs"] forKey:@"jobs"];
+    
     return company;
 }
 

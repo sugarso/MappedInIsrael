@@ -22,6 +22,7 @@
 {
     [super viewDidLoad];
     self.screenName = @"MIIViewController";
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     _myHome = [[CLLocation alloc] initWithLatitude:32.11303727704297 longitude:34.7941900883194];
 
@@ -48,7 +49,7 @@
     
     // NavigationBar
     UIBarButtonItem *search = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(showSearch:)];
-    self.navigationItem.rightBarButtonItem = search;
+    self.navigationItem.leftBarButtonItem = search;
     self.navigationItem.hidesBackButton = YES;
     
     // Data
@@ -189,6 +190,11 @@
     [_locationManager stopUpdatingLocation];
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
 - (void)showSearch:(id)sender {
     [self performSegueWithIdentifier:@"showSearch:" sender:sender];
 }
@@ -218,18 +224,17 @@
             UILabel *l;
             MIIClusterView *clusterView;
             if ([numberOfCompanies intValue] < 10) {
-                clusterView = [[MIIClusterView alloc] initWithFrame:CGRectMake(0, 0, 30, 30) color:[UIColor greenColor]];
-                l = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
-                [l setFont:[UIFont fontWithName:@"Hellvetika" size:10]];
+                clusterView = [[MIIClusterView alloc] initWithFrame:CGRectMake(0, 0, 40, 40) color:[UIColor colorWithHexString:@"#64b1e4" alpah:0.9]];
+                l.font = [UIFont fontWithName:@"Helvetica" size:14];
             } else if ([numberOfCompanies intValue] < 100) {
-                clusterView = [[MIIClusterView alloc] initWithFrame:CGRectMake(0, 0, 40, 40) color:[UIColor yellowColor]];
-                l = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
-                [l setFont:[UIFont fontWithName:@"Hellvetika" size:12]];
+                clusterView = [[MIIClusterView alloc] initWithFrame:CGRectMake(0, 0, 50, 50) color:[UIColor colorWithHexString:@"#3498db" alpah:0.9]];
+                l.font = [UIFont fontWithName:@"Helvetica" size:16];
             } else {
-                clusterView = [[MIIClusterView alloc] initWithFrame:CGRectMake(0, 0, 50, 50) color:[UIColor redColor]];
-                l = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
-                [l setFont:[UIFont fontWithName:@"Hellvetika" size:14]];
+                clusterView = [[MIIClusterView alloc] initWithFrame:CGRectMake(0, 0, 60, 60) color:[UIColor colorWithHexString:@"#0072bc" alpah:0.9]];
+                l.font = [UIFont fontWithName:@"Helvetica" size:18];
             }
+            l = [[UILabel alloc] initWithFrame:clusterView.frame];
+            l.textColor = [UIColor whiteColor];
             [l setTextAlignment:NSTextAlignmentCenter];
             l.text = numberOfCompanies;
             UIButton *btn = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
@@ -268,6 +273,7 @@
         }
     }
     
+    v.centerOffset = CGPointMake(-64.0, -81.0);
     return v;
 }
 
