@@ -39,9 +39,6 @@
     if (self.clusterAnnotation) {
         self.navigationItem.title = [NSString stringWithFormat:@"%d companies", [self.clusterAnnotation count]];
     } else {
-        UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(back:)];
-        self.navigationItem.rightBarButtonItem = done;
-        self.navigationItem.hidesBackButton = YES;
         self.navigationItem.titleView = _searchBar;
     }
     

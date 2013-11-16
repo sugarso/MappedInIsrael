@@ -200,7 +200,8 @@
     return UIStatusBarStyleLightContent;
 }
 
-- (void)showSearch:(id)sender {
+- (void)showSearch:(id)sender
+{
     [self performSegueWithIdentifier:@"showSearch:" sender:sender];
 }
 
