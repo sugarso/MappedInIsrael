@@ -51,6 +51,7 @@
 		B2BA4EF5183791810027CDDE /* company-location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B2BA4EEF183791810027CDDE /* company-location@2x.png */; };
 		B2BA4EF6183791810027CDDE /* company-website.png in Resources */ = {isa = PBXBuildFile; fileRef = B2BA4EF0183791810027CDDE /* company-website.png */; };
 		B2BA4EF7183791810027CDDE /* company-website@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B2BA4EF1183791810027CDDE /* company-website@2x.png */; };
+		B2BA4EFA1837C46F0027CDDE /* CurlDownSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BA4EF91837C46F0027CDDE /* CurlDownSegue.m */; };
 		B2C50F3D183552E400DAFE28 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B2C50F3C183552E400DAFE28 /* Settings.bundle */; };
 		B2CD5CBD182238B900340E43 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2CD5CBC182238B900340E43 /* Foundation.framework */; };
 		B2CD5CBF182238B900340E43 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2CD5CBE182238B900340E43 /* CoreGraphics.framework */; };
@@ -150,6 +151,8 @@
 		B2BA4EEF183791810027CDDE /* company-location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "company-location@2x.png"; path = "Images/company-location@2x.png"; sourceTree = "<group>"; };
 		B2BA4EF0183791810027CDDE /* company-website.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "company-website.png"; path = "Images/company-website.png"; sourceTree = "<group>"; };
 		B2BA4EF1183791810027CDDE /* company-website@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "company-website@2x.png"; path = "Images/company-website@2x.png"; sourceTree = "<group>"; };
+		B2BA4EF81837C46F0027CDDE /* CurlDownSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CurlDownSegue.h; path = ../CurlDownSegue.h; sourceTree = "<group>"; };
+		B2BA4EF91837C46F0027CDDE /* CurlDownSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CurlDownSegue.m; path = ../CurlDownSegue.m; sourceTree = "<group>"; };
 		B2C50F3C183552E400DAFE28 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		B2CD5CB9182238B900340E43 /* MappedInIsrael.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MappedInIsrael.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2CD5CBC182238B900340E43 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -334,6 +337,8 @@
 				B2CD5CCC182238B900340E43 /* MIIAppDelegate.m */,
 				B2BA4ECD1836A35E0027CDDE /* UIColor+MBCategory.h */,
 				B2BA4ECE1836A35E0027CDDE /* UIColor+MBCategory.m */,
+				B2BA4EF81837C46F0027CDDE /* CurlDownSegue.h */,
+				B2BA4EF91837C46F0027CDDE /* CurlDownSegue.m */,
 				B296E6281830FB33005C09E9 /* Model */,
 				B2DFDA8618324E090080BA78 /* View */,
 				B296E6291830FB78005C09E9 /* Controllers */,
@@ -612,6 +617,7 @@
 				B2DFDAA3183281410080BA78 /* KPTreeController.m in Sources */,
 				B22C811D1831651A006E192E /* MIIData.m in Sources */,
 				B2DFDA8518324E000080BA78 /* MIIClusterView.m in Sources */,
+				B2BA4EFA1837C46F0027CDDE /* CurlDownSegue.m in Sources */,
 				B2CD5D001822488200340E43 /* MIIManager.m in Sources */,
 				B2BA4ECF1836A35E0027CDDE /* UIColor+MBCategory.m in Sources */,
 				B2DFDAA1183281410080BA78 /* KPAnnotation.m in Sources */,
