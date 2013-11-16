@@ -240,7 +240,7 @@
             v.image = i;
             
             a.title = [NSString stringWithFormat:@"%@", ((MKPointAnnotation *)annotation).title];
-            a.subtitle = [NSString stringWithFormat:@"%@", ((MKPointAnnotation *)annotation).subtitle];
+            a.subtitle = @""; //[NSString stringWithFormat:@"%@", ((MKPointAnnotation *)annotation).subtitle];
         }
     }
     
