@@ -27,6 +27,13 @@
     
     // Make sure to be the delegate every viewWillAppear
     self.data.delegate = self;
+    
+    // Make sure pins on screen
+    [self updateFilter:self];
+    
+    // NavigationBar
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    [UIApplication sharedApplication].statusBarHidden = NO;
 }
 
 - (void)viewDidLoad
@@ -35,10 +42,6 @@
     
     // GAITrackedViewController
     self.screenName = @"MIITableViewController";
-    
-    // NavigationBar
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
-    [UIApplication sharedApplication].statusBarHidden = NO;
     
     // Search or cluster view
     if (self.clusterAnnotation) {
@@ -63,7 +66,6 @@
     
     // updateFilter every UIControlEventValueChanged
     [self.whosHiring addTarget:self action:@selector(updateFilter:) forControlEvents:UIControlEventValueChanged];
-    [self updateFilter:self];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -82,6 +84,7 @@
             NSIndexPath *indexPath = (NSIndexPath *)sender;
             MIICompany *company = [[_searchData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
             controller.company = company;
+            controller.data = self.data;
         }
     }
 }
@@ -93,7 +96,7 @@
 
 - (void)updateFilter:(id)sender
 {
-    NSLog(@"SegmentIndex: %d", self.whosHiring.selectedSegmentIndex);
+    //NSLog(@"SegmentIndex: %d", self.whosHiring.selectedSegmentIndex);
 
     if (self.whosHiring.selectedSegmentIndex == 0) {
         if (self.clusterAnnotation) {
@@ -178,6 +181,10 @@
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    
     MIICompany *company = [[_searchData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     cell.textLabel.text = company.companyName;
     cell.detailTextLabel.text = company.companySubCategory;
@@ -200,7 +207,7 @@
 
 - (void)dataIsReady
 {
-    [self.tableView reloadData];
+    [self updateFilter:self];
 }
 
 - (void)companyIsReady:(MIICompany *)company

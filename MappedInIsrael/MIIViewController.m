@@ -29,6 +29,52 @@
     
     // Make sure to be the delegate every viewWillAppear
     self.data.delegate = self;
+    
+    // Make sure pins on screen
+    [self initMap:self];
+    
+    if (self.company) {
+        MKCoordinateRegion region;
+        MKCoordinateSpan span;
+        CLLocationCoordinate2D coordinate;
+        coordinate.longitude = [self.company.lon floatValue];
+        coordinate.latitude = [self.company.lat floatValue];
+        span.latitudeDelta = 0.0;
+        span.longitudeDelta = 0.0;
+        CLLocationCoordinate2D zoomLocation = coordinate;
+        region.center = zoomLocation;
+        region.span = span;
+        region = [self.mapView regionThatFits:region];
+        [self.mapView setRegion:region animated:NO];
+        
+        for (id<MKAnnotation> annotation in [self.mapView annotationsInMapRect:self.mapView.visibleMapRect]) {
+            if ([annotation isKindOfClass:[KPAnnotation class]]) {
+                KPAnnotation *ann = (KPAnnotation *)annotation;
+                if ([ann isCluster]) {
+                    for (MIIPointAnnotation *a in ann.annotations) {
+                        if ([a.company.companyName isEqual:self.company.companyName]) {
+                            [self.mapView selectAnnotation:ann animated:NO];
+                            self.company = nil;
+                            return;
+                        }
+                    }
+                } else {
+                    MIIPointAnnotation *a = (MIIPointAnnotation *)[ann.annotations anyObject];
+                    if ([a.company.companyName isEqual:self.company.companyName]) {
+                        [self.mapView selectAnnotation:annotation animated:NO];
+                        self.company = nil;
+                        return;
+                    }
+                }
+            }
+        }
+    }
+    
+    // Make StatusBar blue
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    // NavigationBar
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(showSearch:)];
 }
 
 - (void)viewDidLoad
@@ -39,10 +85,9 @@
     self.screenName = @"MIIViewController";
     
     // Data
-    self.data = [[MIIData alloc] init];
-    
-    // Make StatusBar blue
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    if (!self.data) {
+        self.data = [[MIIData alloc] init];
+    }
     
     // Default Location
     _myHome = [[CLLocation alloc] initWithLatitude:32.11303727704297 longitude:34.7941900883194];
@@ -55,41 +100,29 @@
     _treeController = [[KPTreeController alloc] initWithMapView:self.mapView];
     _treeController.delegate = self;
     _treeController.animationOptions = UIViewAnimationOptionCurveEaseOut;
-    _treeController.gridSize = CGSizeMake(30.f, 30.f);
+    //_treeController.gridSize = CGSizeMake(30.f, 30.f);
     
     // SignleTap on mapView
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapRecognized:)];
     singleTap.numberOfTapsRequired = 1;
     singleTap.delaysTouchesEnded = NO;
     singleTap.delegate = self;
-    [self.mapView addGestureRecognizer:singleTap];
+    //[self.mapView addGestureRecognizer:singleTap];
     
     // DoubleTap on mapView
     UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTapRecognized:)];
     doubleTap.numberOfTapsRequired = 2;
     doubleTap.delegate = self;
-    [self.mapView addGestureRecognizer:doubleTap];
+    //[self.mapView addGestureRecognizer:doubleTap];
     [singleTap requireGestureRecognizerToFail:doubleTap];
-    
-    // NavigationBar
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(showSearch:)];
-    self.navigationItem.hidesBackButton = YES;
     
     // Location
     _locationManager = [[CLLocationManager alloc] init];
     _locationManager.delegate = self;
     _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     
-    // Zoom to company or default view
-    if (self.company) {
-        MKCoordinateRegion region;
-        region.center.latitude = [self.company.lat doubleValue];
-        region.center.longitude = [self.company.lon doubleValue];
-        region.span.latitudeDelta = 0.005;
-        region.span.longitudeDelta = 0.005;
-        [self.mapView setRegion:region animated:YES];
-        self.showCurrentLocation.hidden = NO;
-    } else {
+    // Show location onces
+    if (!self.company) {
         [self showCurrentLocation:self];
     }
 }
@@ -128,7 +161,6 @@
     region.span.latitudeDelta = 1;
     region.span.longitudeDelta = 1;
     [self.mapView setRegion:region animated:YES];
-    self.showCurrentLocation.hidden = YES;
     [_locationManager stopUpdatingLocation];
 }
 
@@ -169,6 +201,29 @@
             controller.clusterAnnotation = [annotation.annotations allObjects];
         }
     }
+}
+
+- (void)initMap:(id)sender
+{
+    NSMutableArray *annotations = [[NSMutableArray alloc] init];
+    
+    for (MIICompany *company in [self.data getAllCompanies]) {
+        // Coordinate
+        CLLocationCoordinate2D coordinate;
+        coordinate.latitude = [company.lat doubleValue];
+        coordinate.longitude = [company.lon doubleValue];
+        
+        // Annotation
+        MIIPointAnnotation *point = [[MIIPointAnnotation alloc] init];
+        point.coordinate = coordinate;
+        point.title = company.companyName;
+        point.subtitle = company.companyCategory;
+        point.company = company;
+        
+        [annotations addObject:point];
+    }
+    
+    [_treeController setAnnotations:annotations];
 }
 
 #pragma mark - MKMapViewDelegate
@@ -312,55 +367,7 @@
 
 - (void)dataIsReady
 {
-    NSMutableArray *annotations = [[NSMutableArray alloc] init];
-    
-    for (MIICompany *company in [self.data getAllCompanies]) {
-        // Coordinate
-        CLLocationCoordinate2D coordinate;
-        coordinate.latitude = [company.lat doubleValue];
-        coordinate.longitude = [company.lon doubleValue];
-        
-        // Annotation
-        MIIPointAnnotation *point = [[MIIPointAnnotation alloc] init];
-        point.coordinate = coordinate;
-        point.title = company.companyName;
-        point.subtitle = company.companyCategory;
-        point.company = company;
-        
-        [annotations addObject:point];
-    }
-        [_treeController setAnnotations:annotations];
-        if (self.company) {
-            CLLocationDistance distance = 0;
-            CLLocationCoordinate2D coordinate;
-            coordinate.longitude = [self.company.lon floatValue];
-            coordinate.latitude = [self.company.lat floatValue];
-            MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinate, distance, distance);
-            [self.mapView setRegion:region animated:NO];
-                
-            for (id<MKAnnotation> annotation in self.mapView.annotations) {
-                if ([annotation isKindOfClass:[KPAnnotation class]]) {
-                    KPAnnotation *ann = (KPAnnotation *)annotation;
-                    if ([ann isCluster]) {
-                        for (MIIPointAnnotation *a in ann.annotations) {
-                            if ([a.company.companyName isEqual:self.company.companyName]) {
-                                [self.mapView selectAnnotation:annotation animated:NO];
-                                self.company = nil;
-                                return;
-                            }
-                        }
-                    } else {
-                        MIIPointAnnotation *a = (MIIPointAnnotation *)[ann.annotations anyObject];
-                        if ([a.company.companyName isEqual:self.company.companyName]) {
-                            [self.mapView selectAnnotation:annotation animated:NO];
-                            self.company = nil;
-                            return;
-                        }
-                    }
-                }
-            }
-            self.company = nil;
-        }
+    [self initMap:self];
 }
 
 #pragma mark - UIGestureRecognizerDelegate

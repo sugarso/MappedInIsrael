@@ -13,16 +13,21 @@
 
 @implementation MIICompanyViewController
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+    // NavigationBar
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    [UIApplication sharedApplication].statusBarHidden = NO;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     // GAITrackedViewController
     self.screenName = @"MIICompanyViewController";
-    
-    // NavigationBar
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
-    [UIApplication sharedApplication].statusBarHidden = NO;
     
     // Company
     self.navigationItem.title = self.company.companyName;
@@ -191,6 +196,10 @@
 {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
     
     NSDictionary *job = [self.company.jobs objectAtIndex:indexPath.row];
     cell.textLabel.text = [job objectForKey:@"title"];

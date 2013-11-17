@@ -62,7 +62,7 @@
                                         <segment title="Hiring"/>
                                     </segments>
                                 </segmentedControl>
-                                <searchBar hidden="YES" contentMode="redraw" placeholder="Search Organizations" id="OTn-yT-Q4d">
+                                <searchBar hidden="YES" contentMode="redraw" placeholder="Search" id="OTn-yT-Q4d">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <textInputTraits key="textInputTraits"/>
@@ -125,11 +125,11 @@
             <objects>
                 <viewController id="9uK-M2-kGv" customClass="MIICompanyViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qIq-X2-sZQ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="bLz-b3-lo6">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" id="hRW-Eg-x0h">
@@ -180,7 +180,7 @@
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="textColor" red="0.5725490196078431" green="0.5725490196078431" blue="0.5725490196078431" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     </textView>
                                                 </subviews>
@@ -342,8 +342,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="yVs-ez-nOk"/>
-        <segue reference="tbr-nO-a25"/>
         <segue reference="5FR-lc-gcA"/>
+        <segue reference="tbr-nO-a25"/>
+        <segue reference="PWG-Ov-Zns"/>
     </inferredMetricsTieBreakers>
 </document>
