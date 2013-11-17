@@ -14,8 +14,8 @@
 
 @interface MIITableViewController ()
 {
-    UISearchBar *_searchBar;
-    BOOL _whosHiringBool;
+    NSArray *_tableData;
+    NSArray *_searchData;
 }
 @end
 
@@ -40,26 +40,30 @@
     [self.navigationController setNavigationBarHidden:NO animated:NO];
     [UIApplication sharedApplication].statusBarHidden = NO;
     
-    // SearchBar
-    _searchBar = [UISearchBar new];
-    [_searchBar sizeToFit];
-    _searchBar.delegate = self;
-    _searchBar.searchBarStyle = UISearchBarStyleMinimal;
-    _searchBar.placeholder = @"Search Organizations";
-    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:[UIColor whiteColor]];
-    [[UILabel appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:[UIColor colorWithHexString:@"#61a9ff" alpah:1.0]];
-    
     // Search or cluster view
     if (self.clusterAnnotation) {
         self.navigationItem.title = [NSString stringWithFormat:@"%d companies", [self.clusterAnnotation count]];
         [self.data setClusterAnnotation:self.clusterAnnotation];
     } else {
-        self.navigationItem.titleView = _searchBar;
+        self.searchDisplayController.displaysSearchBarInNavigationBar = YES;
+        
+        // UIReturnKeyDone
+        for (UIView *subView in [self.searchBar subviews]) {
+            if ([subView conformsToProtocol:@protocol(UITextInputTraits)]) {
+                [(UITextField *)subView setReturnKeyType: UIReturnKeyDone];
+            } else {
+                for (UIView *subSubView in [subView subviews]) {
+                    if ([subSubView conformsToProtocol:@protocol(UITextInputTraits)]) {
+                        [(UITextField *)subSubView setReturnKeyType: UIReturnKeyDone];
+                    }
+                }      
+            }
+        }
     }
     
     // updateFilter every UIControlEventValueChanged
-    _whosHiringBool = NO;
     [self.whosHiring addTarget:self action:@selector(updateFilter:) forControlEvents:UIControlEventValueChanged];
+    [self updateFilter:self];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -76,13 +80,7 @@
         MIIViewController *controller = (MIIViewController *)segue.destinationViewController;
         if ([sender isKindOfClass:[NSIndexPath class]]) { // With Zoom
             NSIndexPath *indexPath = (NSIndexPath *)sender;
-            NSString *category = [[MIIData getAllFormatedCategories] objectAtIndex:indexPath.section];
-            MIICompany *company;
-            if (self.clusterAnnotation) {
-                company = [[self.data getClusterAnnotationInCategory:category whosHiring:_whosHiringBool] objectAtIndex:indexPath.row];
-            } else {
-                company = [[self.data getCompaniesInCategory:category] objectAtIndex:indexPath.row];
-            }
+            MIICompany *company = [[_searchData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
             controller.company = company;
         }
     }
@@ -95,20 +93,22 @@
 
 - (void)updateFilter:(id)sender
 {
-    NSLog(@"Search: %@, SegmentIndex: %d", _searchBar.text, self.whosHiring.selectedSegmentIndex);
+    NSLog(@"SegmentIndex: %d", self.whosHiring.selectedSegmentIndex);
 
     if (self.whosHiring.selectedSegmentIndex == 0) {
-        if (!self.clusterAnnotation) {
-            [self.data setSearch:_searchBar.text setWhosHiring:NO];
+        if (self.clusterAnnotation) {
+            _tableData = [self.data getClusterAnnotationWhosHiring:NO];
+        } else {
+            _tableData = [self.data getCompaniesWhosHiring:NO];
         }
-        _whosHiringBool = NO;
     } else {
-        if (!self.clusterAnnotation) {
-            [self.data setSearch:_searchBar.text setWhosHiring:YES];
+        if (self.clusterAnnotation) {
+            _tableData = [self.data getClusterAnnotationWhosHiring:YES];
+        } else {
+            _tableData = [self.data getCompaniesWhosHiring:YES];
         }
-        _whosHiringBool = YES;
     }
-    
+    _searchData = [_tableData copy];
     [self.tableView reloadData];
 }
 
@@ -117,16 +117,43 @@
     [self performSegueWithIdentifier:@"showMap:" sender:sender];
 }
 
+- (void)updateSearch:(NSString *)searchText
+{
+    NSMutableArray *companies = [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i < [MIIData getAllFormatedCategories].count; i++) {
+        [companies insertObject:[[NSMutableArray alloc] init] atIndex:i];
+        
+        for (MIICompany *company in [_tableData objectAtIndex:i]) {
+            if ((searchText == nil) ||
+                ([searchText isEqualToString:@""]) ||
+                ([company.companyName rangeOfString:searchText options:NSCaseInsensitiveSearch].length)) {
+                [[companies objectAtIndex:i] addObject:company];
+            }
+        }
+    }
+    
+    _searchData = [companies copy];
+    [self.tableView reloadData];
+}
+
 #pragma mark - UISearchBarDelegate/UISearchDisplayDelegate
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
+{
+    [searchBar setShowsCancelButton:YES animated:YES];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    searchBar.text=@"";
+    [self updateSearch:@""];
+    [searchBar setShowsCancelButton:NO animated:YES];
+}
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-    [self updateFilter:searchBar];
-}
- 
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
-{
-    [searchBar resignFirstResponder];
+    [self updateSearch:searchText];
 }
 
 #pragma mark - Table view data source
@@ -138,37 +165,20 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if (self.clusterAnnotation) {
-        return [self.data getClusterAnnotationInCategory:[[MIIData getAllFormatedCategories] objectAtIndex:section] whosHiring:_whosHiringBool].count ? [[MIIData getAllFormatedCategories] objectAtIndex:section] : nil;
-    } else {
-        return [self.data getCompaniesInCategory:[[MIIData getAllFormatedCategories] objectAtIndex:section]].count ? [[MIIData getAllFormatedCategories] objectAtIndex:section] : nil;
-    }
+    return ((NSArray *)[_searchData objectAtIndex:section]).count ? [[MIIData getAllFormatedCategories] objectAtIndex:section] : nil;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSString *category = (NSString *)[[MIIData getAllFormatedCategories] objectAtIndex:section];
-    
-    if (self.clusterAnnotation) {
-        return [self.data getClusterAnnotationInCategory:category whosHiring:_whosHiringBool].count;
-    } else {
-        return [self.data getCompaniesInCategory:category].count;
-    }
+    return ((NSArray *)[_searchData objectAtIndex:section]).count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    NSString *category = [[MIIData getAllFormatedCategories] objectAtIndex:indexPath.section];
-    MIICompany *company;
-    if (self.clusterAnnotation) {
-        company = [[self.data getClusterAnnotationInCategory:category whosHiring:_whosHiringBool] objectAtIndex:indexPath.row];
-    } else {
-        company = [[self.data getCompaniesInCategory:category] objectAtIndex:indexPath.row];
-    }
-    
+    MIICompany *company = [[_searchData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     cell.textLabel.text = company.companyName;
     cell.detailTextLabel.text = company.companySubCategory;
     
@@ -182,14 +192,7 @@
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *category = [[MIIData getAllFormatedCategories] objectAtIndex:indexPath.section];
-    MIICompany *company;
-    if (self.clusterAnnotation) {
-        company = [[self.data getClusterAnnotationInCategory:category whosHiring:_whosHiringBool] objectAtIndex:indexPath.row];
-    } else {
-        company = [[self.data getCompaniesInCategory:category] objectAtIndex:indexPath.row];
-    }
-    
+    MIICompany *company = [[_searchData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     [self.data getCompany:company.id];
 }
 

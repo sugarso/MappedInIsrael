@@ -20,11 +20,10 @@
 
 - (id)init;
 + (NSArray *)getAllFormatedCategories;
-- (void)setSearch:(NSString *)search setWhosHiring:(BOOL)whosHiring;
 - (NSArray *)getAllCompanies;
-- (NSArray *)getCompaniesInCategory:(NSString *)category;
+- (NSArray *)getCompaniesWhosHiring:(BOOL)whosHiring;
 - (void)getCompany:(NSString *)id;
 - (void)setClusterAnnotation:(NSArray *)clusterAnnotation;
-- (NSArray *)getClusterAnnotationInCategory:(NSString *)category whosHiring:(BOOL)whosHiring;
+- (NSArray *)getClusterAnnotationWhosHiring:(BOOL)whosHiring;
 
 @end
