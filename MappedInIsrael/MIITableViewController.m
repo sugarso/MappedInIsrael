@@ -34,7 +34,8 @@
     // NavigationBar
     [self.navigationController setNavigationBarHidden:NO animated:NO];
     [UIApplication sharedApplication].statusBarHidden = NO;
-    self.navigationItem.hidesBackButton = NO;
+    //self.navigationItem.hidesBackButton = YES;
+    self.navigationItem.leftBarButtonItem.title = @"Back";
 }
 
 - (void)viewDidLoad

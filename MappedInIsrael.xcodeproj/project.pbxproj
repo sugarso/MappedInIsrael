@@ -699,7 +699,6 @@
 				B2DFDAA1183281410080BA78 /* KPAnnotation.m in Sources */,
 				B2CD5CCD182238B900340E43 /* MIIAppDelegate.m in Sources */,
 				B2DFDAA2183281410080BA78 /* KPAnnotationTree.m in Sources */,
-				B2288D1B1838B08B00165F3F /* Reachability.m in Sources */,
 				B2B978991838ADA700DE2CF2 /* ASIDataCompressor.m in Sources */,
 				B2CD5CFC1822452500340E43 /* MIICompanyBuilder.m in Sources */,
 				B2CD5CF3182239A400340E43 /* MIICompany.m in Sources */,
@@ -717,6 +716,7 @@
 				B2B9789A1838ADA700DE2CF2 /* ASIDataDecompressor.m in Sources */,
 				B2B6C19118240171007773D7 /* MIICompanyViewController.m in Sources */,
 				B2CD5CD3182238B900340E43 /* MIIViewController.m in Sources */,
+				B2288D1B1838B08B00165F3F /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
