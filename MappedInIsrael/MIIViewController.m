@@ -343,7 +343,7 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
     CLLocationDistance distance = [newLocation distanceFromLocation:_myHome];
-    NSLog(@"Distance: %f",distance);
+    //NSLog(@"Distance: %f",distance);
     if (distance > 200000) {
         [self showTelAviv:self];
     } else {

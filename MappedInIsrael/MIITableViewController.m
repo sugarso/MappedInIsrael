@@ -16,6 +16,7 @@
 {
     NSArray *_tableData;
     NSArray *_searchData;
+    BOOL _waitingForCompany;
 }
 @end
 
@@ -201,8 +202,11 @@
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
-    MIICompany *company = [[_searchData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-    [self.data getCompany:company.id];
+    if (!_waitingForCompany) {
+        MIICompany *company = [[_searchData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        [self.data getCompany:company.id];
+        _waitingForCompany = YES;
+    }
 }
 
 #pragma mark - MIIDataDelegate
@@ -214,7 +218,10 @@
 
 - (void)companyIsReady:(MIICompany *)company
 {
-    [self performSegueWithIdentifier:@"showCompany:" sender:company];
+    if (_waitingForCompany) {
+        [self performSegueWithIdentifier:@"showCompany:" sender:company];
+        _waitingForCompany = NO;
+    }
 }
 
 @end

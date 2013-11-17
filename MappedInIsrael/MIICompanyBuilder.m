@@ -58,7 +58,7 @@
 
     NSArray *payload = [parsedObject valueForKey:@"payload"];
     NSDictionary *organization = [payload valueForKey:@"organization"];
-    NSLog(@"Organization Count: %lu", (unsigned long)organization.count);
+    //NSLog(@"Organization Count: %lu", (unsigned long)organization.count);
     
     MIICompany *company = [[MIICompany alloc] init];
     
