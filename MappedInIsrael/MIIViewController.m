@@ -100,7 +100,7 @@
     _treeController = [[KPTreeController alloc] initWithMapView:self.mapView];
     _treeController.delegate = self;
     _treeController.animationOptions = UIViewAnimationOptionCurveEaseOut;
-    //_treeController.gridSize = CGSizeMake(30.f, 30.f);
+    _treeController.gridSize = CGSizeMake(30.f, 30.f);
     
     // SignleTap on mapView
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapRecognized:)];
@@ -222,7 +222,7 @@
         
         [annotations addObject:point];
     }
-    
+
     [_treeController setAnnotations:annotations];
 }
 
@@ -367,7 +367,9 @@
 
 - (void)dataIsReady
 {
-    [self initMap:self];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self initMap:self];
+    });
 }
 
 #pragma mark - UIGestureRecognizerDelegate

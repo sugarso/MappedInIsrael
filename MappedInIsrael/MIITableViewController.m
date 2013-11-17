@@ -29,14 +29,10 @@
     // Make sure to be the delegate every viewWillAppear
     self.data.delegate = self;
     
-    // Make sure pins on screen
-    [self updateFilter:self];
-    
     // NavigationBar
     [self.navigationController setNavigationBarHidden:NO animated:NO];
     [UIApplication sharedApplication].statusBarHidden = NO;
     //self.navigationItem.hidesBackButton = YES;
-    self.navigationItem.leftBarButtonItem.title = @"Back";
 }
 
 - (void)viewDidLoad
@@ -69,6 +65,9 @@
     
     // updateFilter every UIControlEventValueChanged
     [self.whosHiring addTarget:self action:@selector(updateFilter:) forControlEvents:UIControlEventValueChanged];
+    
+    // Make sure pins on screen
+    [self updateFilter:self];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
