@@ -10,6 +10,7 @@
 #import "UIColor+MBCategory.h"
 #import "MIIPointAnnotation.h"
 #import "MIIJobViewController.h"
+#import "MIIData.h"
 
 @implementation MIICompanyViewController
 
@@ -30,7 +31,8 @@
     self.screenName = @"MIICompanyViewController";
     
     // Company
-    self.navigationItem.title = self.company.companyName;
+    NSDictionary *category = (NSDictionary *)self.company.companyCategory;
+    self.navigationItem.title = [[MIIData getAllFormatedCategories] objectAtIndex:[[MIIData getAllCategories] indexOfObject:[category valueForKey:@"categoryName"]]];
     self.hiringLabel.text = [NSString stringWithFormat:@"%@ is currently hiring:", self.company.companyName];
     self.nameLabel.text = self.company.companyName;
     self.descriptionTextView.text = self.company.description;

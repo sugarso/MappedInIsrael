@@ -46,7 +46,7 @@
     
     // Search or cluster view
     if (self.clusterAnnotation) {
-        self.navigationItem.title = [NSString stringWithFormat:@"%d companies", [self.clusterAnnotation count]];
+        self.navigationItem.title = [NSString stringWithFormat:@"%d Organizations", [self.clusterAnnotation count]];
         [self.data setClusterAnnotation:self.clusterAnnotation];
     } else {
         self.searchDisplayController.displaysSearchBarInNavigationBar = YES;

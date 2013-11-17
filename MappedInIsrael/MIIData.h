@@ -19,6 +19,7 @@
 @property (weak, nonatomic) id<MIIDataDelegate> delegate;
 
 - (id)init;
++ (NSArray *)getAllCategories;
 + (NSArray *)getAllFormatedCategories;
 - (NSArray *)getAllCompanies;
 - (NSArray *)getCompaniesWhosHiring:(BOOL)whosHiring;

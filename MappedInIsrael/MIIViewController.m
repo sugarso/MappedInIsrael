@@ -267,7 +267,7 @@
             UIButton *btn = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
             v.rightCalloutAccessoryView = btn;
             v.canShowCallout = YES;
-            a.title = [NSString stringWithFormat:@"%d companies", [numberOfCompanies intValue]];
+            a.title = [NSString stringWithFormat:@"%d Organizations", [numberOfCompanies intValue]];
             BOOL first = YES;
             for (MIIPointAnnotation *annotation in a.annotations) {
                 if (first) {
