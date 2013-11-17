@@ -306,9 +306,7 @@
 
 - (void)companyIsReady:(MIICompany *)company
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self performSegueWithIdentifier:@"showCompany:" sender:company];
-    });
+    [self performSegueWithIdentifier:@"showCompany:" sender:company];
 }
 
 - (void)dataIsReady
@@ -330,43 +328,38 @@
         
         [annotations addObject:point];
     }
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
         [_treeController setAnnotations:annotations];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (self.company) {
-                CLLocationDistance distance = 0;
-                CLLocationCoordinate2D coordinate;
-                coordinate.longitude = [self.company.lon floatValue];
-                coordinate.latitude = [self.company.lat floatValue];
-                MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinate, distance, distance);
-                [self.mapView setRegion:region animated:NO];
+        if (self.company) {
+            CLLocationDistance distance = 0;
+            CLLocationCoordinate2D coordinate;
+            coordinate.longitude = [self.company.lon floatValue];
+            coordinate.latitude = [self.company.lat floatValue];
+            MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coordinate, distance, distance);
+            [self.mapView setRegion:region animated:NO];
                 
-                for (id<MKAnnotation> annotation in self.mapView.annotations) {
-                    if ([annotation isKindOfClass:[KPAnnotation class]]) {
-                        KPAnnotation *ann = (KPAnnotation *)annotation;
-                        if ([ann isCluster]) {
-                            for (MIIPointAnnotation *a in ann.annotations) {
-                                if ([a.company.companyName isEqual:self.company.companyName]) {
-                                    [self.mapView selectAnnotation:annotation animated:NO];
-                                    self.company = nil;
-                                    return;
-                                }
-                            }
-                        } else {
-                            MIIPointAnnotation *a = (MIIPointAnnotation *)[ann.annotations anyObject];
+            for (id<MKAnnotation> annotation in self.mapView.annotations) {
+                if ([annotation isKindOfClass:[KPAnnotation class]]) {
+                    KPAnnotation *ann = (KPAnnotation *)annotation;
+                    if ([ann isCluster]) {
+                        for (MIIPointAnnotation *a in ann.annotations) {
                             if ([a.company.companyName isEqual:self.company.companyName]) {
                                 [self.mapView selectAnnotation:annotation animated:NO];
                                 self.company = nil;
                                 return;
                             }
                         }
+                    } else {
+                        MIIPointAnnotation *a = (MIIPointAnnotation *)[ann.annotations anyObject];
+                        if ([a.company.companyName isEqual:self.company.companyName]) {
+                            [self.mapView selectAnnotation:annotation animated:NO];
+                            self.company = nil;
+                            return;
+                        }
                     }
                 }
-                self.company = nil;
             }
-        });
-    });
+            self.company = nil;
+        }
 }
 
 #pragma mark - UIGestureRecognizerDelegate

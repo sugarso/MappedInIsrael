@@ -201,19 +201,12 @@
 
 - (void)dataIsReady
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.data getAllCompanies];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-        });
-    });
+    [self.tableView reloadData];
 }
 
 - (void)companyIsReady:(MIICompany *)company
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self performSegueWithIdentifier:@"showCompany:" sender:company];
-    });
+    [self performSegueWithIdentifier:@"showCompany:" sender:company];
 }
 
 @end
