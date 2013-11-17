@@ -15,7 +15,7 @@
 @interface MIITableViewController ()
 {
     UISearchBar *_searchBar;
-    NSArray *_clusterAnnotationFiltered;
+    BOOL _whosHiringBool;
 }
 @end
 
@@ -52,13 +52,14 @@
     // Search or cluster view
     if (self.clusterAnnotation) {
         self.navigationItem.title = [NSString stringWithFormat:@"%d companies", [self.clusterAnnotation count]];
+        [self.data setClusterAnnotation:self.clusterAnnotation];
     } else {
         self.navigationItem.titleView = _searchBar;
     }
     
     // updateFilter every UIControlEventValueChanged
+    _whosHiringBool = NO;
     [self.whosHiring addTarget:self action:@selector(updateFilter:) forControlEvents:UIControlEventValueChanged];
-    _clusterAnnotationFiltered = self.clusterAnnotation;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -75,12 +76,12 @@
         MIIViewController *controller = (MIIViewController *)segue.destinationViewController;
         if ([sender isKindOfClass:[NSIndexPath class]]) { // With Zoom
             NSIndexPath *indexPath = (NSIndexPath *)sender;
+            NSString *category = [[MIIData getAllFormatedCategories] objectAtIndex:indexPath.section];
             MIICompany *company;
-            if (_clusterAnnotationFiltered) {
-                company = ((MIIPointAnnotation *)[_clusterAnnotationFiltered objectAtIndex:indexPath.row]).company;
+            if (self.clusterAnnotation) {
+                company = [[self.data getClusterAnnotationInCategory:category whosHiring:_whosHiringBool] objectAtIndex:indexPath.row];
             } else {
-                NSString *category = [[MIIData getAllFormatedCategories] objectAtIndex:indexPath.section];
-                company = [self.data category:category companyAtIndex:indexPath.row];
+                company = [[self.data getCompaniesInCategory:category] objectAtIndex:indexPath.row];
             }
             controller.company = company;
         }
@@ -97,17 +98,15 @@
     NSLog(@"Search: %@, SegmentIndex: %d", _searchBar.text, self.whosHiring.selectedSegmentIndex);
 
     if (self.whosHiring.selectedSegmentIndex == 0) {
-        if (self.clusterAnnotation) {
-            _clusterAnnotationFiltered = self.clusterAnnotation;
-        } else {
+        if (!self.clusterAnnotation) {
             [self.data setSearch:_searchBar.text setWhosHiring:NO];
         }
+        _whosHiringBool = NO;
     } else {
-        if (self.clusterAnnotation) {
-            _clusterAnnotationFiltered = [MIIData whosHiring:self.clusterAnnotation];
-        } else {
+        if (!self.clusterAnnotation) {
             [self.data setSearch:_searchBar.text setWhosHiring:YES];
         }
+        _whosHiringBool = YES;
     }
     
     [self.tableView reloadData];
@@ -134,17 +133,13 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if (_clusterAnnotationFiltered) {
-        return 1;
-    } else {
-        return [[MIIData getAllFormatedCategories] count];
-    }
+    return [[MIIData getAllFormatedCategories] count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if (_clusterAnnotationFiltered) {
-        return @"";
+    if (self.clusterAnnotation) {
+        return [self.data getClusterAnnotationInCategory:[[MIIData getAllFormatedCategories] objectAtIndex:section] whosHiring:_whosHiringBool].count ? [[MIIData getAllFormatedCategories] objectAtIndex:section] : nil;
     } else {
         return [self.data getCompaniesInCategory:[[MIIData getAllFormatedCategories] objectAtIndex:section]].count ? [[MIIData getAllFormatedCategories] objectAtIndex:section] : nil;
     }
@@ -152,10 +147,11 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (_clusterAnnotationFiltered) {
-        return [_clusterAnnotationFiltered count];
+    NSString *category = (NSString *)[[MIIData getAllFormatedCategories] objectAtIndex:section];
+    
+    if (self.clusterAnnotation) {
+        return [self.data getClusterAnnotationInCategory:category whosHiring:_whosHiringBool].count;
     } else {
-        NSString *category = (NSString *)[[MIIData getAllFormatedCategories] objectAtIndex:section];
         return [self.data getCompaniesInCategory:category].count;
     }
 }
@@ -165,12 +161,12 @@
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
+    NSString *category = [[MIIData getAllFormatedCategories] objectAtIndex:indexPath.section];
     MIICompany *company;
-    if (_clusterAnnotationFiltered) {
-        company = ((MIIPointAnnotation *)[_clusterAnnotationFiltered objectAtIndex:indexPath.row]).company;
+    if (self.clusterAnnotation) {
+        company = [[self.data getClusterAnnotationInCategory:category whosHiring:_whosHiringBool] objectAtIndex:indexPath.row];
     } else {
-        NSString *category = [[MIIData getAllFormatedCategories] objectAtIndex:indexPath.section];
-        company = [self.data category:category companyAtIndex:indexPath.row];
+        company = [[self.data getCompaniesInCategory:category] objectAtIndex:indexPath.row];
     }
     
     cell.textLabel.text = company.companyName;
@@ -186,12 +182,12 @@
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
+    NSString *category = [[MIIData getAllFormatedCategories] objectAtIndex:indexPath.section];
     MIICompany *company;
-    if (_clusterAnnotationFiltered) {
-        company = ((MIIPointAnnotation *)[_clusterAnnotationFiltered objectAtIndex:indexPath.row]).company;
+    if (self.clusterAnnotation) {
+        company = [[self.data getClusterAnnotationInCategory:category whosHiring:_whosHiringBool] objectAtIndex:indexPath.row];
     } else {
-        NSString *category = [[MIIData getAllFormatedCategories] objectAtIndex:indexPath.section];
-        company = [self.data category:category companyAtIndex:indexPath.row];
+        company = [[self.data getCompaniesInCategory:category] objectAtIndex:indexPath.row];
     }
     
     [self.data getCompany:company.id];

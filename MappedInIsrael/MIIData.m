@@ -12,6 +12,7 @@
     MIIManager *_manager;
     NSArray *_companies;
     NSArray *_companiesInCategory;
+    NSArray *_clusterAnnotationInCategory;
 }
 @end
 
@@ -121,21 +122,57 @@
     [_manager getCompany:id];
 }
 
-+ (NSArray *)whosHiring:(NSArray *)companies
+- (void)setClusterAnnotation:(NSArray *)clusterAnnotation
 {
-    NSMutableArray *hiringCompaniesAnnotation = [[NSMutableArray alloc] init];
+    NSMutableArray *companies = [[NSMutableArray alloc] init];
     
-    // Add companies
-    for (MIIPointAnnotation *companyAnnotation in companies) {
-        MIICompany *company = companyAnnotation.company;
-        // Check whosHiring BOOL
-        if ((![company.hiringPageURL isKindOfClass:[NSNull class]]) &&
-            (![company.hiringPageURL isEqualToString:@""])) {
-                    [hiringCompaniesAnnotation addObject:companyAnnotation];
-            }
+    // Init companies
+    for (int i = 0; i < [MIIData getAllFormatedCategories].count; i++) {
+        NSMutableArray *companiesArray = [[NSMutableArray alloc] init];
+        [companies insertObject:companiesArray atIndex:i];
     }
     
-    return [hiringCompaniesAnnotation copy];
+    // Add companies
+    for (MIIPointAnnotation *companyAnnotation in clusterAnnotation) {
+        MIICompany *company = companyAnnotation.company;
+        NSString *companyCategory = company.companyCategory;
+        NSUInteger categoryIndex = [[MIIData getAllCategories] indexOfObject:companyCategory];
+        [[companies objectAtIndex:categoryIndex] addObject:company];
+
+    }
+    
+    // Order companies
+    for(int i = 0; i < [MIIData getAllFormatedCategories].count; i++) {
+        NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"companyName" ascending:YES];
+        [[companies objectAtIndex:i] sortUsingDescriptors:[NSArray arrayWithObject:sort]];
+    }
+    
+    // Copy
+    _clusterAnnotationInCategory = [companies copy];
+}
+
+- (NSArray *)getClusterAnnotationInCategory:(NSString *)category whosHiring:(BOOL)whosHiring
+{
+    NSUInteger categoryIndex = [[MIIData getAllFormatedCategories] indexOfObject:category];
+    NSArray *clusterAnnotationInCategory = [[_clusterAnnotationInCategory objectAtIndex:categoryIndex] copy];
+    
+    if (whosHiring) {
+        NSMutableArray *hiringCompaniesAnnotation = [[NSMutableArray alloc] init];
+        
+        // Add companies
+        for (MIICompany *company in clusterAnnotationInCategory) {
+            // Check whosHiring BOOL
+            if ((![company.hiringPageURL isKindOfClass:[NSNull class]]) &&
+                (![company.hiringPageURL isEqualToString:@""])) {
+                [hiringCompaniesAnnotation addObject:company];
+            }
+        }
+        
+        return [hiringCompaniesAnnotation copy];
+        
+    } else {
+        return clusterAnnotationInCategory;
+    }
 }
 
 @end

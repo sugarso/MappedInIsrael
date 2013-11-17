@@ -156,6 +156,7 @@
         if ([sender isKindOfClass:[UIBarButtonItem class]]) {
             MIITableViewController *controller = (MIITableViewController *)segue.destinationViewController;
             controller.data = self.data;
+            controller.clusterAnnotation = nil;
         }
     }
     

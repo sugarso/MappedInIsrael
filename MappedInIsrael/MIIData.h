@@ -23,8 +23,8 @@
 - (void)setSearch:(NSString *)search setWhosHiring:(BOOL)whosHiring;
 - (NSArray *)getAllCompanies;
 - (NSArray *)getCompaniesInCategory:(NSString *)category;
-- (MIICompany *)category:(NSString *)category companyAtIndex:(NSInteger)index;
 - (void)getCompany:(NSString *)id;
-+ (NSArray *)whosHiring:(NSArray *)companies;
+- (void)setClusterAnnotation:(NSArray *)clusterAnnotation;
+- (NSArray *)getClusterAnnotationInCategory:(NSString *)category whosHiring:(BOOL)whosHiring;
 
 @end
