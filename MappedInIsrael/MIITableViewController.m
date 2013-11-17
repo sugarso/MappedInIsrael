@@ -87,6 +87,7 @@
             MIICompany *company = [[_searchData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
             controller.company = company;
             controller.data = self.data;
+            controller.title = company.companyName;
         }
     }
 }
