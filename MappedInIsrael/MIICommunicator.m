@@ -8,6 +8,7 @@
 
 #import "MIICommunicator.h"
 #import "MIICommunicatorDelegate.h"
+#import "ASIHTTPRequest.h"
 
 #define PAGESIZE 10000
 #define PAGE 0
@@ -20,15 +21,18 @@
     NSURL *url = [[NSURL alloc] initWithString:urlAsString];
     NSLog(@"getAllCompanies URL: %@", urlAsString);
     
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    [NSURLConnection sendAsynchronousRequest:[[NSURLRequest alloc] initWithURL:url] queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+    __weak ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+    [request setCompletionBlock:^{
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-        if (error) {
-            [self.delegate fetchingCompaniesFailedWithError:error];
-        } else {
-            [self.delegate receivedCompaniesJSON:data];
-        }
+        [self.delegate receivedCompaniesJSON:[request responseData]];
     }];
+    [request setFailedBlock:^{
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        [self.delegate fetchingCompaniesFailedWithError:[request error]];
+    }];
+    
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    [request startAsynchronous];
 }
 
 - (void)getCompany:(NSString *)id
@@ -37,15 +41,18 @@
     NSURL *url = [[NSURL alloc] initWithString:urlAsString];
     NSLog(@"getCompany URL: %@", urlAsString);
     
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    [NSURLConnection sendAsynchronousRequest:[[NSURLRequest alloc] initWithURL:url] queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+    __weak ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+    [request setCompletionBlock:^{
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-        if (error) {
-            [self.delegate fetchingCompanyFailedWithError:error];
-        } else {
-            [self.delegate receivedCompanyJSON:data];
-        }
+        [self.delegate receivedCompanyJSON:[request responseData]];
     }];
+    [request setFailedBlock:^{
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        [self.delegate fetchingCompanyFailedWithError:[request error]];
+    }];
+    
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    [request startAsynchronous];
 }
 
 @end

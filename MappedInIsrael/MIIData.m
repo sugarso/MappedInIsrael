@@ -30,8 +30,8 @@
     return self;
 }
 
-- (void)didReceiveCompanies:(NSArray *)companies // TBD: Use CoreData to save it and load it in background for the next time.
-{                                                //      Ship the app with data ready?
+- (void)didReceiveCompanies:(NSArray *)companies
+{
     _companies = companies;
     [self setSearch:nil setWhosHiring:false];
     [self.delegate dataIsReady];
