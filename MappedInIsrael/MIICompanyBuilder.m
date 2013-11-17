@@ -8,6 +8,7 @@
 
 #import "MIICompanyBuilder.h"
 #import "MIICompany.h"
+#import "NSString+HTML.h"
 
 @implementation MIICompanyBuilder
 
@@ -31,7 +32,11 @@
 
         for (NSString *key in companyDic) {
             if ([company respondsToSelector:NSSelectorFromString(key)]) {
-                [company setValue:[companyDic valueForKey:key] forKey:key];
+                if ([[companyDic valueForKey:key] isKindOfClass:[NSString class]]) {
+                    [company setValue:[[companyDic valueForKey:key] stringByDecodingXMLEntities] forKey:key];
+                } else {
+                    [company setValue:[companyDic valueForKey:key] forKey:key];
+                }
             }
         }
 
@@ -56,14 +61,28 @@
     NSLog(@"Organization Count: %lu", (unsigned long)organization.count);
     
     MIICompany *company = [[MIICompany alloc] init];
-        
+    
     for (NSString *key in organization) {
         if ([company respondsToSelector:NSSelectorFromString(key)]) {
-            [company setValue:[organization valueForKey:key] forKey:key];
+            if ([[organization valueForKey:key] isKindOfClass:[NSString class]]) {
+                [company setValue:[[organization valueForKey:key] stringByDecodingXMLEntities] forKey:key];
+            } else {
+                [company setValue:[organization valueForKey:key] forKey:key];
+            }
         }
     }
     
-    [company setValue:[payload valueForKey:@"jobs"] forKey:@"jobs"];
+    // TBD: write it better
+    NSMutableArray *jobs = [[NSMutableArray alloc] init];
+    for (NSDictionary *job in [payload valueForKey:@"jobs"]) {
+        NSString *title = [[job valueForKey:@"title"] stringByDecodingXMLEntities];
+        NSString *description = [[job valueForKey:@"description"] stringByDecodingXMLEntities];
+        NSMutableDictionary *jobFixed = [[NSMutableDictionary alloc] init];
+        [jobFixed setValue:title forKey:@"title"];
+        [jobFixed setValue:description forKey:@"description"];
+        [jobs addObject:jobFixed];
+    }
+    company.jobs = [jobs copy];
     
     return company;
 }

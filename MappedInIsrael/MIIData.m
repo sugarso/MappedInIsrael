@@ -80,12 +80,12 @@
 
 + (NSArray *)getAllCategories
 {
-    return @[@"startup", @"accelerator", @"coworking", @"investor", @"rdcenter", @"community", @"service"];
+    return @[@"community", @"coworking", @"accelerator", @"investor", @"service", @"startup", @"rdcenter"];
 }
 
 + (NSArray *)getAllFormatedCategories
 {
-    return @[@"Startups", @"Accelerators", @"Coworking", @"Investors", @"R&D Centers", @"Community", @"Services"];
+    return @[@"Community", @"Co-Working Space", @"Accelerator", @"Investor", @"Service", @"Startup", @"Enterprise"];
 }
 
 - (NSArray *)getAllCompanies {

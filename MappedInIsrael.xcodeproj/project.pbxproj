@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B200F1EA1839112F00C7E957 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = B200F1E91839112F00C7E957 /* NSString+HTML.m */; };
 		B2288D1B1838B08B00165F3F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = B2288D1A1838B08B00165F3F /* Reachability.m */; };
 		B22C811D1831651A006E192E /* MIIData.m in Sources */ = {isa = PBXBuildFile; fileRef = B22C811C1831651A006E192E /* MIIData.m */; };
 		B232AC691831421700114E52 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B232AC681831421700114E52 /* Crashlytics.framework */; };
@@ -103,6 +104,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B200F1E81839112F00C7E957 /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HTML.h"; sourceTree = "<group>"; };
+		B200F1E91839112F00C7E957 /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
 		B2288D191838B08B00165F3F /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		B2288D1A1838B08B00165F3F /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		B22C811B1831651A006E192E /* MIIData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIIData.h; sourceTree = "<group>"; };
@@ -407,6 +410,8 @@
 				B2CD5CCC182238B900340E43 /* MIIAppDelegate.m */,
 				B2BA4ECD1836A35E0027CDDE /* UIColor+MBCategory.h */,
 				B2BA4ECE1836A35E0027CDDE /* UIColor+MBCategory.m */,
+				B200F1E81839112F00C7E957 /* NSString+HTML.h */,
+				B200F1E91839112F00C7E957 /* NSString+HTML.m */,
 				B296E6281830FB33005C09E9 /* Model */,
 				B2DFDA8618324E090080BA78 /* View */,
 				B296E6291830FB78005C09E9 /* Controllers */,
@@ -684,6 +689,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2DFDAA3183281410080BA78 /* KPTreeController.m in Sources */,
+				B200F1EA1839112F00C7E957 /* NSString+HTML.m in Sources */,
 				B22C811D1831651A006E192E /* MIIData.m in Sources */,
 				B2B9789F1838ADA700DE2CF2 /* ASINetworkQueue.m in Sources */,
 				B2DFDA8518324E000080BA78 /* MIIClusterView.m in Sources */,
