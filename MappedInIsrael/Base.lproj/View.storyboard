@@ -18,7 +18,7 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </mapView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="uNF-ie-6xu">
-                                <rect key="frame" x="266" y="512.99999965940196" width="34" height="35"/>
+                                <rect key="frame" x="266" y="512.99999930637341" width="34" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES" heightSizable="YES"/>
                                 <state key="normal" image="location.png"/>
                                 <connections>
@@ -50,29 +50,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="16j-XD-WhV">
+                        <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" placeholder="Search" id="OTn-yT-Q4d">
                             <rect key="frame" x="0.0" y="64" width="320" height="44"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="eQe-7o-6gi">
-                                    <rect key="frame" x="6" y="8" width="308" height="29"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <segments>
-                                        <segment title="All"/>
-                                        <segment title="Hiring"/>
-                                    </segments>
-                                </segmentedControl>
-                                <searchBar hidden="YES" contentMode="redraw" placeholder="                                                  " id="OTn-yT-Q4d">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                    <connections>
-                                        <outlet property="delegate" destination="KnT-ws-pnS" id="vjE-RD-Npa"/>
-                                    </connections>
-                                </searchBar>
-                            </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        </view>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="KnT-ws-pnS" id="vjE-RD-Npa"/>
+                            </connections>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="detailButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="diG-sW-liw" style="IBUITableViewCellStyleDefault" id="pQx-F9-TCT">
                                 <rect key="frame" x="0.0" y="130" width="320" height="44"/>
@@ -97,9 +82,18 @@
                             <outlet property="delegate" destination="KnT-ws-pnS" id="qKP-8D-uDv"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="tij-zJ-av4"/>
+                    <navigationItem key="navigationItem" id="tij-zJ-av4">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="eQe-7o-6gi">
+                            <rect key="frame" x="10" y="8" width="300" height="29"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="All"/>
+                                <segment title="Hiring"/>
+                            </segments>
+                        </segmentedControl>
+                    </navigationItem>
                     <connections>
-                        <outlet property="searchBar" destination="OTn-yT-Q4d" id="SH4-Ha-7pN"/>
                         <outlet property="searchDisplayController" destination="Vpo-mW-gNE" id="2ah-JS-JkX"/>
                         <outlet property="tableView" destination="8H4-xb-oD8" id="sfU-12-FGE"/>
                         <outlet property="whosHiring" destination="eQe-7o-6gi" id="HLE-HK-l1b"/>
@@ -199,7 +193,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </mapView>
                                             <view contentMode="scaleToFill" id="5UH-f3-bv7">
-                                                <rect key="frame" x="0.0" y="380.99999986082872" width="320" height="123"/>
+                                                <rect key="frame" x="0.0" y="380.99999795297663" width="320" height="123"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="company-email.png" id="rez-8n-8UI">
@@ -322,7 +316,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="20"/>
                         </textAttributes>
                     </navigationBar>
                     <connections>
@@ -346,7 +340,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="YcO-ec-Sjt"/>
         <segue reference="tfS-Fm-x5z"/>
-        <segue reference="FyL-YY-EVk"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -39,23 +39,7 @@
     
     // Search or cluster view
     if (self.clusterAnnotation) {
-        self.navigationItem.title = [NSString stringWithFormat:@"%d Organizations", [self.clusterAnnotation count]];
         [self.data setClusterAnnotation:self.clusterAnnotation];
-    } else {
-        self.searchDisplayController.displaysSearchBarInNavigationBar = YES;
-        
-        // UIReturnKeyDone
-        for (UIView *subView in [self.searchBar subviews]) {
-            if ([subView conformsToProtocol:@protocol(UITextInputTraits)]) {
-                [(UITextField *)subView setReturnKeyType: UIReturnKeyDone];
-            } else {
-                for (UIView *subSubView in [subView subviews]) {
-                    if ([subSubView conformsToProtocol:@protocol(UITextInputTraits)]) {
-                        [(UITextField *)subSubView setReturnKeyType: UIReturnKeyDone];
-                    }
-                }      
-            }
-        }
     }
     
     // updateFilter every UIControlEventValueChanged
@@ -65,21 +49,10 @@
     [self updateFilter:self];
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:@"showCompany:"]) {
-        if ([sender isKindOfClass:[MIICompany class]]) {
-            MIICompany *company = (MIICompany *)sender;
-            MIICompanyViewController *controller = (MIICompanyViewController *)segue.destinationViewController;
-            controller.company = company;
-        }
-    }
-}
-
 - (void)updateFilter:(id)sender
 {
     //NSLog(@"SegmentIndex: %d", self.whosHiring.selectedSegmentIndex);
-
+    
     if (self.whosHiring.selectedSegmentIndex == 0) {
         if (self.clusterAnnotation) {
             _tableData = [self.data getClusterAnnotationWhosHiring:NO];
@@ -97,43 +70,39 @@
     [self.tableView reloadData];
 }
 
-- (void)updateSearch:(NSString *)searchText
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    NSMutableArray *companies = [[NSMutableArray alloc] init];
-    
-    for (int i = 0; i < [MIIData getAllFormatedCategories].count; i++) {
-        [companies insertObject:[[NSMutableArray alloc] init] atIndex:i];
-        
-        for (MIICompany *company in [_tableData objectAtIndex:i]) {
-            if ((searchText == nil) ||
-                ([searchText isEqualToString:@""]) ||
-                ([company.companyName rangeOfString:searchText options:NSCaseInsensitiveSearch].length)) {
-                [[companies objectAtIndex:i] addObject:company];
-            }
+    if ([segue.identifier isEqualToString:@"showCompany:"]) {
+        if ([sender isKindOfClass:[MIICompany class]]) {
+            MIICompany *company = (MIICompany *)sender;
+            MIICompanyViewController *controller = (MIICompanyViewController *)segue.destinationViewController;
+            controller.company = company;
         }
     }
-    
-    _searchData = [companies copy];
-    [self.tableView reloadData];
 }
 
-#pragma mark - UISearchBarDelegate/UISearchDisplayDelegate
-
-- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
+- (void)updateSearch:(NSString *)searchText
 {
-    [searchBar setShowsCancelButton:YES animated:YES];
+    if ((searchText == nil) || ([searchText isEqualToString:@""])) {
+        _searchData = [_tableData copy];
+    } else {
+        NSMutableArray *companies = [[NSMutableArray alloc] init];
+        for (int i = 0; i < [MIIData getAllFormatedCategories].count; i++) {
+            [companies insertObject:[[NSMutableArray alloc] init] atIndex:i];
+            for (MIICompany *company in [_tableData objectAtIndex:i]) {
+                if ([company.companyName rangeOfString:searchText options:NSCaseInsensitiveSearch].length) {
+                    [[companies objectAtIndex:i] addObject:company];
+                }
+            }
+        }
+        _searchData = [companies copy];
+    }
 }
 
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
-    searchBar.text=@"";
-    [self updateSearch:@""];
-    [searchBar setShowsCancelButton:NO animated:YES];
-}
-
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
-{
-    [self updateSearch:searchText];
+    [self updateSearch:searchString];
+    return YES;
 }
 
 #pragma mark - Table view data source
@@ -145,12 +114,20 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return ((NSArray *)[_searchData objectAtIndex:section]).count ? [[MIIData getAllFormatedCategories] objectAtIndex:section] : nil;
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        return ((NSArray *)[_searchData objectAtIndex:section]).count ? [[MIIData getAllFormatedCategories] objectAtIndex:section] : nil;
+    } else {
+        return ((NSArray *)[_tableData objectAtIndex:section]).count ? [[MIIData getAllFormatedCategories] objectAtIndex:section] : nil;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return ((NSArray *)[_searchData objectAtIndex:section]).count;
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        return ((NSArray *)[_searchData objectAtIndex:section]).count;
+    } else {
+        return ((NSArray *)[_tableData objectAtIndex:section]).count;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -162,7 +139,13 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    MIICompany *company = [[_searchData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    MIICompany *company;
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        company = [[_searchData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    } else {
+        company = [[_tableData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    }
+    
     cell.textLabel.text = company.companyName;
     cell.detailTextLabel.text = company.companySubCategory;
     
@@ -172,7 +155,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MIIViewController *mapView = [self.navigationController.viewControllers objectAtIndex:0];
-    MIICompany *company = [[_searchData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    MIICompany *company;
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        company = [[_searchData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    } else {
+        company = [[_tableData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    }
     mapView.company = company;
     mapView.data = self.data;
     [self.navigationController popViewControllerAnimated:YES];
@@ -181,7 +169,13 @@
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
     if (!_waitingForCompany) {
-        MIICompany *company = [[_searchData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        MIICompany *company;
+        if (tableView == self.searchDisplayController.searchResultsTableView) {
+            company = [[_searchData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        } else {
+            company = [[_tableData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        }
+        
         [self.data getCompany:company.id];
         _waitingForCompany = YES;
     }
