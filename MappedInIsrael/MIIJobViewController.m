@@ -10,15 +10,6 @@
 
 @implementation MIIJobViewController
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    // NavigationBar
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
-    [UIApplication sharedApplication].statusBarHidden = NO;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];

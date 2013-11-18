@@ -18,9 +18,10 @@
 {
     [super viewWillAppear:animated];
 
-    // NavigationBar
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
-    [UIApplication sharedApplication].statusBarHidden = NO;
+    NSIndexPath * selection = [self.tableView indexPathForSelectedRow];
+    if (selection) {
+        [self.tableView deselectRowAtIndexPath:selection animated:YES];
+    }
 }
 
 - (void)viewDidLoad

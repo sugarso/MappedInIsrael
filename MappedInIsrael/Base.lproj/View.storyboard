@@ -18,7 +18,7 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </mapView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="uNF-ie-6xu">
-                                <rect key="frame" x="266" y="513" width="34" height="35"/>
+                                <rect key="frame" x="266" y="512.99999965940196" width="34" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES" heightSizable="YES"/>
                                 <state key="normal" image="location.png"/>
                                 <connections>
@@ -33,9 +33,9 @@
                         <outlet property="mapView" destination="p5p-LC-dgA" id="pQC-J0-Ndn"/>
                         <outlet property="showCurrentLocation" destination="uNF-ie-6xu" id="tYu-Me-2fP"/>
                         <outlet property="view" destination="kh9-bI-dsS" id="BOW-AF-oEa"/>
-                        <segue destination="9uK-M2-kGv" kind="push" identifier="showCompany:" id="BdU-l6-vnE"/>
-                        <segue destination="KnT-ws-pnS" kind="push" identifier="showSearch:" customClass="NavModal" id="tbr-nO-a25"/>
-                        <segue destination="KnT-ws-pnS" kind="push" identifier="showCompanies:" id="6Jb-CO-WCh"/>
+                        <segue destination="KnT-ws-pnS" kind="push" identifier="showSearch:" id="60T-c0-0cC"/>
+                        <segue destination="9uK-M2-kGv" kind="push" identifier="showCompany:" id="FyL-YY-EVk"/>
+                        <segue destination="KnT-ws-pnS" kind="push" identifier="showCompanies:" id="tfS-Fm-x5z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -51,7 +51,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="16j-XD-WhV">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <rect key="frame" x="0.0" y="64" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="eQe-7o-6gi">
@@ -75,7 +75,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="detailButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="diG-sW-liw" style="IBUITableViewCellStyleDefault" id="pQx-F9-TCT">
-                                <rect key="frame" x="0.0" y="66" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="130" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pQx-F9-TCT" id="lqb-TD-dFf">
                                     <rect key="frame" x="0.0" y="0.0" width="273" height="43"/>
@@ -103,8 +103,7 @@
                         <outlet property="searchDisplayController" destination="Vpo-mW-gNE" id="2ah-JS-JkX"/>
                         <outlet property="tableView" destination="8H4-xb-oD8" id="sfU-12-FGE"/>
                         <outlet property="whosHiring" destination="eQe-7o-6gi" id="HLE-HK-l1b"/>
-                        <segue destination="vXZ-lx-hvc" kind="push" identifier="showMap:" customClass="PushSegue" id="yVs-ez-nOk"/>
-                        <segue destination="9uK-M2-kGv" kind="push" identifier="showCompany:" id="5FR-lc-gcA"/>
+                        <segue destination="9uK-M2-kGv" kind="push" identifier="showCompany:" id="YcO-ec-Sjt"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r7y-WW-jzN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -200,7 +199,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </mapView>
                                             <view contentMode="scaleToFill" id="5UH-f3-bv7">
-                                                <rect key="frame" x="0.0" y="380.99999803531682" width="320" height="123"/>
+                                                <rect key="frame" x="0.0" y="380.99999986082872" width="320" height="123"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="company-email.png" id="rez-8n-8UI">
@@ -347,8 +346,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="5FR-lc-gcA"/>
-        <segue reference="tbr-nO-a25"/>
-        <segue reference="yVs-ez-nOk"/>
+        <segue reference="tfS-Fm-x5z"/>
+        <segue reference="YcO-ec-Sjt"/>
     </inferredMetricsTieBreakers>
 </document>

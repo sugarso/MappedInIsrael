@@ -27,6 +27,9 @@
 {
     [super viewWillAppear:animated];
     
+    // NavigationBar
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(showSearch:)];
+    
     // Make sure to be the delegate every viewWillAppear
     self.data.delegate = self;
     
@@ -34,6 +37,7 @@
     [self initMap:self];
     
     if (self.company) {
+        self.showCurrentLocation.hidden = NO;
         MKCoordinateRegion region;
         MKCoordinateSpan span;
         CLLocationCoordinate2D coordinate;
@@ -54,27 +58,17 @@
                     for (MIIPointAnnotation *a in ann.annotations) {
                         if ([a.company.companyName isEqual:self.company.companyName]) {
                             [self.mapView selectAnnotation:ann animated:NO];
-                            self.company = nil;
-                            return;
                         }
                     }
                 } else {
                     MIIPointAnnotation *a = (MIIPointAnnotation *)[ann.annotations anyObject];
                     if ([a.company.companyName isEqual:self.company.companyName]) {
                         [self.mapView selectAnnotation:annotation animated:NO];
-                        self.company = nil;
-                        return;
                     }
                 }
             }
         }
     }
-    
-    // Make StatusBar blue
-    //[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    
-    // NavigationBar
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(showSearch:)];
 }
 
 - (void)viewDidLoad
@@ -268,15 +262,24 @@
             v.rightCalloutAccessoryView = btn;
             v.canShowCallout = YES;
             a.title = [NSString stringWithFormat:@"%d Organizations", [numberOfCompanies intValue]];
-            BOOL first = YES;
-            for (MIIPointAnnotation *annotation in a.annotations) {
-                if (first) {
-                    first = NO;
-                    a.subtitle = annotation.company.companyName;
-                } else {
-                    a.subtitle = [NSString stringWithFormat:@"%@, %@", a.subtitle, annotation.company.companyName];
-                }
-            }
+            //v.canShowCallout = NO;
+            //if (self.company) {
+            //    for (MIIPointAnnotation *annotation in a.annotations) {
+            //        if ([annotation.company.companyName isEqual:self.company.companyName]) {
+            //            v.canShowCallout = YES;
+            //        }
+            //    }
+            //}
+            //a.title = [NSString stringWithFormat:@"%d Organizations", [numberOfCompanies intValue]];
+            //BOOL first = YES;
+            //for (MIIPointAnnotation *annotation in a.annotations) {
+            //    if (first) {
+            //        first = NO;
+            //        a.subtitle = annotation.company.companyName;
+            //    } else {
+            //        a.subtitle = [NSString stringWithFormat:@"%@, %@", a.subtitle, annotation.company.companyName];
+            //    }
+            //}
             [clusterView addSubview:l];
             
             v.image = [MIIClusterView imageWithView:clusterView];
@@ -308,16 +311,31 @@
     [_treeController refresh:YES];
 }
 
+/*
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
+{
+    if ([view.annotation isKindOfClass:[KPAnnotation class]]) {
+        KPAnnotation *annotation = (KPAnnotation *)view.annotation;
+        if ([annotation isCluster]) {
+            [self performSegueWithIdentifier:@"showCompanies:" sender:view];
+        }
+    }
+}
+*/
+
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
-    KPAnnotation *annotation = (KPAnnotation *)view.annotation;
-    
-    if ([annotation isCluster]) {
-        [self performSegueWithIdentifier:@"showCompanies:" sender:view];
-    } else {
+    if ([view.annotation isKindOfClass:[KPAnnotation class]]) {
         KPAnnotation *annotation = (KPAnnotation *)view.annotation;
-        MIIPointAnnotation *a = (MIIPointAnnotation *)[annotation.annotations anyObject];
-        [self.data getCompany:a.company.id];
+        if ([annotation isCluster]) {
+            if ([view.annotation isKindOfClass:[KPAnnotation class]]) {
+                [self performSegueWithIdentifier:@"showCompanies:" sender:view];
+            }
+        } else {
+            KPAnnotation *annotation = (KPAnnotation *)view.annotation;
+            MIIPointAnnotation *a = (MIIPointAnnotation *)[annotation.annotations anyObject];
+            [self.data getCompany:a.company.id];
+        }
     }
 }
 

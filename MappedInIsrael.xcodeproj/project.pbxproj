@@ -858,7 +858,7 @@
 					/Users/genady/Dropbox/Development/Xcode/MappedInIsrael/MappedInIsrael/TestFlightSDK,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "A68724FF-03FD-493B-AA95-88059EEA4363";
+				PROVISIONING_PROFILE = "20E08C70-E752-4589-8C5D-E01907309FD2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -885,7 +885,7 @@
 					/Users/genady/Dropbox/Development/Xcode/MappedInIsrael/MappedInIsrael/TestFlightSDK,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "00BAD627-0928-41AE-BA3B-40BF6F38EE71";
+				PROVISIONING_PROFILE = "96BDA36E-E265-4D12-A899-A5E1CC5814DE";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

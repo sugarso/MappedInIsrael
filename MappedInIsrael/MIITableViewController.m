@@ -28,11 +28,6 @@
     
     // Make sure to be the delegate every viewWillAppear
     self.data.delegate = self;
-    
-    // NavigationBar
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
-    [UIApplication sharedApplication].statusBarHidden = NO;
-    //self.navigationItem.hidesBackButton = YES;
 }
 
 - (void)viewDidLoad
@@ -79,22 +74,6 @@
             controller.company = company;
         }
     }
-    
-    if ([segue.identifier isEqualToString:@"showMap:"]) {
-        MIIViewController *controller = (MIIViewController *)segue.destinationViewController;
-        if ([sender isKindOfClass:[NSIndexPath class]]) { // With Zoom
-            NSIndexPath *indexPath = (NSIndexPath *)sender;
-            MIICompany *company = [[_searchData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-            controller.company = company;
-            controller.data = self.data;
-            controller.title = company.companyName;
-        }
-    }
-}
-
-- (void)back:(id)sender
-{
-    [self.navigationController popViewControllerAnimated:NO];
 }
 
 - (void)updateFilter:(id)sender
@@ -116,11 +95,6 @@
     }
     _searchData = [_tableData copy];
     [self.tableView reloadData];
-}
-
-- (void)showMap:(id)sender
-{
-    [self performSegueWithIdentifier:@"showMap:" sender:sender];
 }
 
 - (void)updateSearch:(NSString *)searchText
@@ -197,7 +171,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self performSegueWithIdentifier:@"showMap:" sender:indexPath];
+    MIIViewController *mapView = [self.navigationController.viewControllers objectAtIndex:0];
+    MIICompany *company = [[_searchData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    mapView.company = company;
+    mapView.data = self.data;
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
