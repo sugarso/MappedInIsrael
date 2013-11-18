@@ -30,7 +30,7 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetFillColorWithColor(context, _color.CGColor);
     //CGContextSetShadowWithColor(context, CGSizeMake(-1,1), 1, [UIColor grayColor].CGColor);
-    CGContextFillEllipseInRect(context, CGRectMake(0, 0, self.frame.size.width, self.frame.size.height));
+    CGContextFillEllipseInRect(context, CGRectMake(0, 1, self.frame.size.width-15, self.frame.size.height-1));
 }
 
 + (UIImage *)imageWithView:(UIView *)view

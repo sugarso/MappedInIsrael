@@ -223,12 +223,13 @@
 {
     MKPinAnnotationView *v = nil;
     
+    if ([annotation isKindOfClass:[MKUserLocation class]]) {
+        v.canShowCallout = NO;
+        return v;
+    }
+    
     if ([annotation isKindOfClass:[KPAnnotation class]]) {
         KPAnnotation *a = (KPAnnotation *)annotation;
-        
-        if ([annotation isKindOfClass:[MKUserLocation class]]) {
-            return nil;
-        }
         
         if ([a isCluster]) {
             v = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"Cluster"];
@@ -242,16 +243,18 @@
             UILabel *l;
             MIIClusterView *clusterView;
             if ([numberOfCompanies intValue] < 10) {
-                clusterView = [[MIIClusterView alloc] initWithFrame:CGRectMake(0, 0, 40, 40) color:[UIColor colorWithHexString:@"#64b1e4" alpah:0.9]];
+                clusterView = [[MIIClusterView alloc] initWithFrame:CGRectMake(0, 0, 55, 41) color:[UIColor colorWithHexString:@"#64b1e4" alpah:0.9]];
                 l.font = [UIFont fontWithName:@"Helvetica" size:14];
+                l = [[UILabel alloc] initWithFrame:CGRectMake(0, 1, 40, 40)];
             } else if ([numberOfCompanies intValue] < 100) {
-                clusterView = [[MIIClusterView alloc] initWithFrame:CGRectMake(0, 0, 50, 50) color:[UIColor colorWithHexString:@"#3498db" alpah:0.9]];
+                clusterView = [[MIIClusterView alloc] initWithFrame:CGRectMake(0, 0, 65, 51) color:[UIColor colorWithHexString:@"#3498db" alpah:0.9]];
                 l.font = [UIFont fontWithName:@"Helvetica" size:16];
+                l = [[UILabel alloc] initWithFrame:CGRectMake(0, 1, 50, 50)];
             } else {
-                clusterView = [[MIIClusterView alloc] initWithFrame:CGRectMake(0, 0, 60, 60) color:[UIColor colorWithHexString:@"#0072bc" alpah:0.9]];
+                clusterView = [[MIIClusterView alloc] initWithFrame:CGRectMake(0, 0, 75, 61) color:[UIColor colorWithHexString:@"#0072bc" alpah:0.9]];
+                l = [[UILabel alloc] initWithFrame:CGRectMake(0, 1, 60, 60)];
                 l.font = [UIFont fontWithName:@"Helvetica" size:18];
             }
-            l = [[UILabel alloc] initWithFrame:clusterView.frame];
             l.textColor = [UIColor whiteColor];
             [l setTextAlignment:NSTextAlignmentCenter];
             l.text = numberOfCompanies;
@@ -301,6 +304,12 @@
     }
     
     return v;
+}
+
+- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
+{
+    MKAnnotationView* annotationView = [mapView viewForAnnotation:userLocation];
+    annotationView.canShowCallout = NO;
 }
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated

@@ -46,6 +46,8 @@
                                   self.company.addressHouse,
                                   self.company.addressCity] forState:UIControlStateNormal];
     
+    [self.addressButton.titleLabel setLineBreakMode:NSLineBreakByWordWrapping];
+    
     // Map Annotation
     self.mapView.delegate = self;
     CLLocationCoordinate2D coordinate;
