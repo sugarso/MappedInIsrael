@@ -34,7 +34,7 @@
     self.data.delegate = self;
     
     if (self.company) {
-        self.showCurrentLocation.hidden = NO;
+        //self.showCurrentLocation.hidden = NO;
         MKCoordinateRegion region;
         MKCoordinateSpan span;
         CLLocationCoordinate2D coordinate;
