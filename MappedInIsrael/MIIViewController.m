@@ -33,9 +33,6 @@
     // Make sure to be the delegate every viewWillAppear
     self.data.delegate = self;
     
-    // Make sure pins on screen
-    [self initMap:self];
-    
     if (self.company) {
         self.showCurrentLocation.hidden = NO;
         MKCoordinateRegion region;
@@ -385,9 +382,7 @@
 
 - (void)dataIsReady
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self initMap:self];
-    });
+    [self initMap:self];
 }
 
 #pragma mark - UIGestureRecognizerDelegate

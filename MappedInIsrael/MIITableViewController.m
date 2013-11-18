@@ -192,6 +192,8 @@
 - (void)dataIsReady
 {
     [self updateFilter:self];
+    MIIViewController *mapView = [self.navigationController.viewControllers objectAtIndex:0];
+    [mapView initMap:self];
 }
 
 - (void)companyIsReady:(MIICompany *)company
