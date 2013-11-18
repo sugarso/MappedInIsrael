@@ -18,7 +18,7 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </mapView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="uNF-ie-6xu">
-                                <rect key="frame" x="266" y="512.99999930637341" width="34" height="35"/>
+                                <rect key="frame" x="266" y="512.99999894046061" width="34" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES" heightSizable="YES"/>
                                 <state key="normal" image="location.png"/>
                                 <connections>
@@ -50,7 +50,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" placeholder="Search" id="OTn-yT-Q4d">
+                        <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" placeholder="Search Organizations" id="OTn-yT-Q4d">
                             <rect key="frame" x="0.0" y="64" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
@@ -193,7 +193,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </mapView>
                                             <view contentMode="scaleToFill" id="5UH-f3-bv7">
-                                                <rect key="frame" x="0.0" y="380.99999795297663" width="320" height="123"/>
+                                                <rect key="frame" x="0.0" y="380.99999976786927" width="320" height="123"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="company-email.png" id="rez-8n-8UI">

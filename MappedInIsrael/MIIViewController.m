@@ -172,6 +172,7 @@
             MIICompany *company = (MIICompany *)sender;
             MIICompanyViewController *controller = (MIICompanyViewController *)segue.destinationViewController;
             controller.company = company;
+            self.company = nil;
         }
     }
     
@@ -180,6 +181,7 @@
             MIITableViewController *controller = (MIITableViewController *)segue.destinationViewController;
             controller.data = self.data;
             controller.clusterAnnotation = nil;
+            self.company = nil;
         }
     }
     
@@ -190,6 +192,7 @@
             MIITableViewController *controller = (MIITableViewController *)segue.destinationViewController;
             controller.data = self.data;
             controller.clusterAnnotation = [annotation.annotations allObjects];
+            self.company = nil;
         }
     }
 }
