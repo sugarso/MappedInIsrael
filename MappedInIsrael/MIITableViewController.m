@@ -66,6 +66,11 @@
             _tableData = [self.data getCompaniesWhosHiring:YES];
         }
     }
+    int count = 0;
+    for (int i = 0; i < [MIIData getAllFormatedCategories].count; i++) {
+        count += [_tableData[i] count];
+    }
+    self.searchDisplayController.searchBar.placeholder = [NSString stringWithFormat:@"Search %d Organizations", count];
     _searchData = [_tableData copy];
     [self.tableView reloadData];
 }

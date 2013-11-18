@@ -18,7 +18,7 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </mapView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="uNF-ie-6xu">
-                                <rect key="frame" x="266" y="512.99999894046061" width="34" height="35"/>
+                                <rect key="frame" x="266" y="512.99999856119325" width="34" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES" heightSizable="YES"/>
                                 <state key="normal" image="location.png"/>
                                 <connections>
@@ -193,11 +193,11 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </mapView>
                                             <view contentMode="scaleToFill" id="5UH-f3-bv7">
-                                                <rect key="frame" x="0.0" y="380.99999976786927" width="320" height="123"/>
+                                                <rect key="frame" x="0.0" y="381" width="320" height="122.99999784802834"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="company-email.png" id="rez-8n-8UI">
-                                                        <rect key="frame" x="13" y="102" width="14" height="10"/>
+                                                        <rect key="frame" x="12" y="101" width="14" height="10"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     </imageView>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="company-location.png" id="g9w-XL-32f">
@@ -205,7 +205,7 @@
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     </imageView>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="company-website.png" id="aUq-hJ-2WW">
-                                                        <rect key="frame" x="13" y="62" width="13" height="14"/>
+                                                        <rect key="frame" x="14" y="61" width="13" height="14"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Gjj-mO-WVk">
