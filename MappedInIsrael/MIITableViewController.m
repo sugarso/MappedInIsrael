@@ -42,6 +42,19 @@
         [self.data setClusterAnnotation:self.clusterAnnotation];
     }
     
+    // UIReturnKeyDone
+    for (UIView *subView in [self.searchDisplayController.searchBar subviews]) {
+        if ([subView conformsToProtocol:@protocol(UITextInputTraits)]) {
+            [(UITextField *)subView setReturnKeyType: UIReturnKeyDone];
+        } else {
+            for (UIView *subSubView in [subView subviews]) {
+                if ([subSubView conformsToProtocol:@protocol(UITextInputTraits)]) {
+                    [(UITextField *)subSubView setReturnKeyType: UIReturnKeyDone];
+                }
+            }
+        }
+    }
+    
     // updateFilter every UIControlEventValueChanged
     [self.whosHiring addTarget:self action:@selector(updateFilter:) forControlEvents:UIControlEventValueChanged];
     

@@ -1234,11 +1234,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIITableViewController.m"
-            timestampString = "406503395.252042"
+            timestampString = "406539411.175582"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
             landmarkName = "-numberOfSectionsInTableView:"
             landmarkType = "5">
             <Locations>
@@ -1280,11 +1280,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIITableViewController.m"
-            timestampString = "406503395.252042"
+            timestampString = "406539411.175582"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1296,11 +1296,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIITableViewController.m"
-            timestampString = "406503395.252042"
+            timestampString = "406539411.175582"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "140"
-            endingLineNumber = "140"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1312,11 +1312,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIITableViewController.m"
-            timestampString = "406503395.252042"
+            timestampString = "406539411.175582"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "201"
-            endingLineNumber = "201"
+            startingLineNumber = "214"
+            endingLineNumber = "214"
             landmarkName = "-companyIsReady:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1328,11 +1328,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIITableViewController.m"
-            timestampString = "406503395.252042"
+            timestampString = "406539411.175582"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
             landmarkName = "-prepareForSegue:sender:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1344,11 +1344,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIITableViewController.m"
-            timestampString = "406503011.943834"
+            timestampString = "406539411.175582"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
@@ -1756,11 +1756,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIITableViewController.m"
-            timestampString = "406503011.943834"
+            timestampString = "406539411.175582"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
@@ -1804,11 +1804,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIITableViewController.m"
-            timestampString = "406503395.252042"
+            timestampString = "406539411.175582"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "171"
-            endingLineNumber = "171"
+            startingLineNumber = "184"
+            endingLineNumber = "184"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1836,11 +1836,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIITableViewController.m"
-            timestampString = "406503395.252042"
+            timestampString = "406539411.175582"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "172"
-            endingLineNumber = "172"
+            startingLineNumber = "185"
+            endingLineNumber = "185"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1852,11 +1852,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIITableViewController.m"
-            timestampString = "406503395.252042"
+            timestampString = "406539411.175582"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "169"
-            endingLineNumber = "169"
+            startingLineNumber = "182"
+            endingLineNumber = "182"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1964,11 +1964,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIITableViewController.m"
-            timestampString = "406503395.252042"
+            timestampString = "406539411.175582"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
             landmarkName = "-searchDisplayController:shouldReloadTableForSearchString:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1980,11 +1980,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIITableViewController.m"
-            timestampString = "406503395.252042"
+            timestampString = "406539411.175582"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
             landmarkName = "-updateFilter:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1996,11 +1996,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIITableViewController.m"
-            timestampString = "406503395.252042"
+            timestampString = "406539411.175582"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
             landmarkName = "-updateSearch:"
             landmarkType = "5">
          </BreakpointContent>
