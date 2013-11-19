@@ -100,12 +100,12 @@
                                           self.tableSuperView.frame.size.height,
                                           self.nameSuperView.frame.size.width,
                                           self.descriptionTextView.frame.origin.y+
-                                          rect.size.height+10);
+                                          rect.size.height+30);
     
     self.descriptionTextView.frame = CGRectMake(self.descriptionTextView.frame.origin.x,
                                                 self.descriptionTextView.frame.origin.y,
                                                 self.descriptionTextView.frame.size.width,
-                                                rect.size.height+10);
+                                                rect.size.height+30);
     
     // Move iconsSuperView
     self.iconsSuperView.frame = CGRectMake(self.iconsSuperView.frame.origin.x,

@@ -674,7 +674,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./MappedInIsrael/Crashlytics.framework/run 8a47ccbf8db717681b6ae83cb615504de6fe5eb7";
+			shellScript = "./Crashlytics.framework/run 8a47ccbf8db717681b6ae83cb615504de6fe5eb7";
 		};
 		B28AECB61823B32C0089D35C /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -868,7 +868,7 @@
 					/Users/genady/Dropbox/Development/Xcode/MappedInIsrael/MappedInIsrael/TestFlightSDK,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "AB0E6D11-8300-4E68-8BAF-1CF8D5D74A19";
+				PROVISIONING_PROFILE = "1C11425A-984D-4FFE-A93E-84A8B257B640";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -895,7 +895,7 @@
 					/Users/genady/Dropbox/Development/Xcode/MappedInIsrael/MappedInIsrael/TestFlightSDK,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "96BDA36E-E265-4D12-A899-A5E1CC5814DE";
+				PROVISIONING_PROFILE = "79135F30-9763-4EAE-BB12-715A517C8A75";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
