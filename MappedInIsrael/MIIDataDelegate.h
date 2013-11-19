@@ -13,5 +13,6 @@
 
 - (void)dataIsReady;
 - (void)companyIsReady:(MIICompany *)company;
+- (void)serverError;
 
 @end

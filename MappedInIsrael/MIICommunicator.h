@@ -17,5 +17,6 @@
 
 - (void)getAllCompanies;
 - (void)getCompany:(NSString *)id;
++ (NSData *)getStaticData;
 
 @end

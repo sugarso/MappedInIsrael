@@ -186,14 +186,14 @@
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
+    MIICompany *company;
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        company = [[_searchData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    } else {
+        company = [[_tableData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    }
+    
     if (!_waitingForCompany) {
-        MIICompany *company;
-        if (tableView == self.searchDisplayController.searchResultsTableView) {
-            company = [[_searchData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-        } else {
-            company = [[_tableData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-        }
-        
         [self.data getCompany:company.id];
         _waitingForCompany = YES;
     }
@@ -212,6 +212,19 @@
 {
     if (_waitingForCompany) {
         [self performSegueWithIdentifier:@"showCompany:" sender:company];
+        _waitingForCompany = NO;
+    }
+}
+
+- (void)serverError
+{
+    if (_waitingForCompany) {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil
+                                                       message:@"Organization details are currently unavailable."
+                                                      delegate:self
+                                             cancelButtonTitle:nil
+                                             otherButtonTitles:@"OK",nil];
+        [alert show];
         _waitingForCompany = NO;
     }
 }

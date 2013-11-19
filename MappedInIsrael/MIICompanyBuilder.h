@@ -11,7 +11,7 @@
 
 @interface MIICompanyBuilder : NSObject
 
-+ (NSArray *)companiesFromJSON:(NSData *)objectNotation error:(NSError **)error;
++ (NSArray *)companiesFromJSON:(NSData *)objectNotation;
 + (MIICompany *)companyFromJSON:(NSData *)objectNotation error:(NSError **)error;
 
 @end

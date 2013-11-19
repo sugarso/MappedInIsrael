@@ -18,6 +18,7 @@
     BOOL _fullScreen;
     CLLocationManager *_locationManager;
     CLLocation *_myHome;
+    BOOL _waitingForCompany;
 }
 @end
 
@@ -34,7 +35,6 @@
     self.data.delegate = self;
     
     if (self.company) {
-        //self.showCurrentLocation.hidden = NO;
         MKCoordinateRegion region;
         MKCoordinateSpan span;
         CLLocationCoordinate2D coordinate;
@@ -343,7 +343,11 @@
         } else {
             KPAnnotation *annotation = (KPAnnotation *)view.annotation;
             MIIPointAnnotation *a = (MIIPointAnnotation *)[annotation.annotations anyObject];
-            [self.data getCompany:a.company.id];
+            
+            if (!_waitingForCompany) {
+                [self.data getCompany:a.company.id];
+                _waitingForCompany = YES;
+            }
         }
     }
 }
@@ -389,12 +393,28 @@
 
 - (void)companyIsReady:(MIICompany *)company
 {
-    [self performSegueWithIdentifier:@"showCompany:" sender:company];
+    if (_waitingForCompany) {
+        [self performSegueWithIdentifier:@"showCompany:" sender:company];
+        _waitingForCompany = NO;
+    }
 }
 
 - (void)dataIsReady
 {
     [self initMap:self];
+}
+
+- (void)serverError
+{
+    if (_waitingForCompany) {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil
+                                                       message:@"Organization details are currently unavailable."
+                                                      delegate:self
+                                             cancelButtonTitle:nil
+                                             otherButtonTitles:@"OK",nil];
+        [alert show];
+        _waitingForCompany = NO;
+    }
 }
 
 #pragma mark - UIGestureRecognizerDelegate

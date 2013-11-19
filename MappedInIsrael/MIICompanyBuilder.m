@@ -10,17 +10,17 @@
 #import "MIICompany.h"
 #import "MIIJob.h"
 #import "NSString+HTML.h"
+#import "MIICommunicator.h"
 
 @implementation MIICompanyBuilder
 
-+ (NSArray *)companiesFromJSON:(NSData *)objectNotation error:(NSError **)error
++ (NSArray *)companiesFromJSON:(NSData *)objectNotation
 {
     NSError *localError = nil;
     NSDictionary *parsedObject = [NSJSONSerialization JSONObjectWithData:objectNotation options:0 error:&localError];
     
     if (localError != nil) {
-        *error = localError;
-        return nil;
+        parsedObject = [NSJSONSerialization JSONObjectWithData:[MIICommunicator getStaticData] options:0 error:&localError];
     }
     
     NSMutableArray *companies = [[NSMutableArray alloc] init];

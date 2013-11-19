@@ -11,7 +11,6 @@
 @protocol MIICommunicatorDelegate <NSObject>
 
 - (void)receivedCompaniesJSON:(NSData *)objectNotation;
-- (void)fetchingCompaniesFailedWithError:(NSError *)error;
 - (void)receivedCompanyJSON:(NSData *)objectNotation;
 - (void)fetchingCompanyFailedWithError:(NSError *)error;
 

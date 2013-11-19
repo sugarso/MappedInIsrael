@@ -80,6 +80,7 @@
 - (void)fetchingCompaniesFailedWithError:(NSError *)error
 {
     NSLog(@"Error %@; %@", error, [error localizedDescription]);
+    [self.delegate serverError];
 }
 
 + (NSArray *)getAllCategories
@@ -113,6 +114,7 @@
 - (void)fetchingCompanyFailedWithError:(NSError *)error
 {
     NSLog(@"Error %@; %@", error, [error localizedDescription]);
+    [self.delegate serverError];
 }
 
 - (void)getCompany:(NSString *)id

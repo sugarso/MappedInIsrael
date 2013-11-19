@@ -26,19 +26,8 @@
 
 - (void)receivedCompaniesJSON:(NSData *)objectNotation
 {
-    NSError *error = nil;
-    NSArray *companies = [MIICompanyBuilder companiesFromJSON:objectNotation error:&error];
-    
-    if (error != nil) {
-        [self.delegate fetchingCompaniesFailedWithError:error];
-    } else {
-        [self.delegate didReceiveCompanies:companies];
-    }
-}
-
-- (void)fetchingCompaniesFailedWithError:(NSError *)error
-{
-    [self.delegate fetchingCompaniesFailedWithError:error];
+    NSArray *companies = [MIICompanyBuilder companiesFromJSON:objectNotation];
+    [self.delegate didReceiveCompanies:companies];
 }
 
 - (void)receivedCompanyJSON:(NSData *)objectNotation

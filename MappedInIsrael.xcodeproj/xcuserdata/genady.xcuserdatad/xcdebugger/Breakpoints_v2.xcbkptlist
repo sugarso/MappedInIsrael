@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIICompanyBuilder.m"
-            timestampString = "406511317.860983"
+            timestampString = "406548753.6357"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "44"
             endingLineNumber = "44"
-            landmarkName = "+companiesFromJSON:error:"
+            landmarkName = "+companiesFromJSON:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -26,12 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIICompanyBuilder.m"
-            timestampString = "406511317.860983"
+            timestampString = "406548753.6357"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "47"
             endingLineNumber = "47"
-            landmarkName = "+companiesFromJSON:error:"
+            landmarkName = "+companiesFromJSON:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIIManager.m"
-            timestampString = "406128963.988641"
+            timestampString = "406548753.6357"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
             landmarkName = "-receivedCompaniesJSON:"
             landmarkType = "5">
          </BreakpointContent>
@@ -138,22 +138,6 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIIManager.m"
-            timestampString = "406128963.988641"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
-            landmarkName = "-receivedCompaniesJSON:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MappedInIsrael/MIIManager.m"
             timestampString = "405893665.676144"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
@@ -170,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIICommunicator.m"
-            timestampString = "405893687.975901"
+            timestampString = "406548486.949651"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
             landmarkName = "-getAllCompanies"
             landmarkType = "5">
          </BreakpointContent>
@@ -186,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIICommunicator.m"
-            timestampString = "405896835.223358"
+            timestampString = "406548486.949651"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
             landmarkName = "-getAllCompanies"
             landmarkType = "5">
          </BreakpointContent>
@@ -202,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIICommunicator.m"
-            timestampString = "405896835.223358"
+            timestampString = "406548486.949651"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
             landmarkName = "-getAllCompanies"
             landmarkType = "5">
          </BreakpointContent>
@@ -218,28 +202,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIICommunicator.m"
-            timestampString = "405896835.223358"
+            timestampString = "406548486.949651"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
             landmarkName = "-getAllCompanies"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MappedInIsrael/MIIManager.m"
-            timestampString = "406128963.988641"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "-fetchingCompaniesFailedWithError:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -250,28 +218,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIICommunicator.m"
-            timestampString = "405893760.632475"
+            timestampString = "406548486.949651"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "18"
-            endingLineNumber = "18"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
             landmarkName = "-getAllCompanies"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MappedInIsrael/MIIManager.m"
-            timestampString = "406128963.988641"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "-receivedCompaniesJSON:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -282,11 +234,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIIData.m"
-            timestampString = "406511571.084306"
+            timestampString = "406546126.904574"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
             landmarkName = "+getAllFormatedCategories"
             landmarkType = "5">
          </BreakpointContent>
@@ -472,11 +424,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIIViewController.m"
-            timestampString = "406500544.435122"
+            timestampString = "406549577.091832"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "408"
-            endingLineNumber = "408">
+            startingLineNumber = "428"
+            endingLineNumber = "428">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -706,11 +658,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIIViewController.m"
-            timestampString = "406500544.435122"
+            timestampString = "406549577.091832"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "346"
-            endingLineNumber = "346"
+            startingLineNumber = "350"
+            endingLineNumber = "350"
             landmarkName = "-mapView:annotationView:calloutAccessoryControlTapped:"
             landmarkType = "5">
          </BreakpointContent>
@@ -770,11 +722,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIIViewController.m"
-            timestampString = "406500544.435122"
+            timestampString = "406549577.091832"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "372"
-            endingLineNumber = "372"
+            startingLineNumber = "376"
+            endingLineNumber = "376"
             landmarkName = "-locationManager:didUpdateToLocation:fromLocation:"
             landmarkType = "5">
          </BreakpointContent>
@@ -802,7 +754,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIICompanyBuilder.m"
-            timestampString = "406511317.860983"
+            timestampString = "406548753.6357"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "61"
@@ -818,7 +770,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIICompanyBuilder.m"
-            timestampString = "406511678.175182"
+            timestampString = "406548753.6357"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "91"
@@ -834,11 +786,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIIData.m"
-            timestampString = "406511571.084306"
+            timestampString = "406546126.904574"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
             landmarkName = "-didReceiveCompany:"
             landmarkType = "5">
          </BreakpointContent>
@@ -850,11 +802,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIIData.m"
-            timestampString = "406511571.084306"
+            timestampString = "406546126.904574"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "120"
-            endingLineNumber = "120"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
             landmarkName = "@implementation MIIData"
             landmarkType = "3">
          </BreakpointContent>
@@ -866,7 +818,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIICompanyBuilder.m"
-            timestampString = "406394256.4867"
+            timestampString = "406548753.6357"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "73"
@@ -1170,11 +1122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIICommunicator.m"
-            timestampString = "406368686.825485"
+            timestampString = "406548486.949651"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
             landmarkName = "@implementation MIICommunicator"
             landmarkType = "3">
          </BreakpointContent>
@@ -1186,11 +1138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIICommunicator.m"
-            timestampString = "406368689.178765"
+            timestampString = "406548486.949651"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
             landmarkName = "@implementation MIICommunicator"
             landmarkType = "3">
          </BreakpointContent>
@@ -1202,11 +1154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIIViewController.m"
-            timestampString = "406500544.435122"
+            timestampString = "406549577.091832"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "392"
-            endingLineNumber = "392"
+            startingLineNumber = "397"
+            endingLineNumber = "397"
             landmarkName = "-companyIsReady:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1376,11 +1328,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIIData.m"
-            timestampString = "406511571.084306"
+            timestampString = "406546126.904574"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "161"
-            endingLineNumber = "161"
+            startingLineNumber = "163"
+            endingLineNumber = "163"
             landmarkName = "-setClusterAnnotation:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1392,11 +1344,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIIViewController.m"
-            timestampString = "406500544.435122"
+            timestampString = "406549577.091832"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "397"
-            endingLineNumber = "397"
+            startingLineNumber = "404"
+            endingLineNumber = "404"
             landmarkName = "-dataIsReady"
             landmarkType = "5">
          </BreakpointContent>
@@ -1708,12 +1660,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIICompanyBuilder.m"
-            timestampString = "406511317.860983"
+            timestampString = "406548753.6357"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "36"
             endingLineNumber = "36"
-            landmarkName = "+companiesFromJSON:error:"
+            landmarkName = "+companiesFromJSON:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1724,12 +1676,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIICompanyBuilder.m"
-            timestampString = "406511317.860983"
+            timestampString = "406548753.6357"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "39"
             endingLineNumber = "39"
-            landmarkName = "+companiesFromJSON:error:"
+            landmarkName = "+companiesFromJSON:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1772,11 +1724,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIIViewController.m"
-            timestampString = "406472949.973555"
+            timestampString = "406549577.091832"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
             landmarkName = "-viewWillAppear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1804,11 +1756,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIIViewController.m"
-            timestampString = "406472949.973555"
+            timestampString = "406549577.091832"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
             landmarkName = "-viewWillAppear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2012,7 +1964,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIICompanyBuilder.m"
-            timestampString = "406511595.080479"
+            timestampString = "406548753.6357"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "75"
@@ -2028,7 +1980,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIICompanyBuilder.m"
-            timestampString = "406511678.175182"
+            timestampString = "406548753.6357"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "89"
@@ -2044,7 +1996,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIICompanyBuilder.m"
-            timestampString = "406511616.041477"
+            timestampString = "406548753.6357"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "78"
@@ -2090,7 +2042,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIICompanyBuilder.m"
-            timestampString = "406511625.917397"
+            timestampString = "406548753.6357"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "81"
@@ -2106,7 +2058,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIICompanyBuilder.m"
-            timestampString = "406511627.369142"
+            timestampString = "406548753.6357"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "84"
@@ -2122,7 +2074,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIICompanyBuilder.m"
-            timestampString = "406511630.575094"
+            timestampString = "406548753.6357"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "83"
@@ -2154,7 +2106,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MappedInIsrael/MIICompanyBuilder.m"
-            timestampString = "406511981.374755"
+            timestampString = "406548753.6357"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "87"
@@ -2224,6 +2176,102 @@
             startingLineNumber = "57"
             endingLineNumber = "57"
             landmarkName = "-viewDidLoad"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MappedInIsrael/MIIData.m"
+            timestampString = "406546126.904574"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
+            landmarkName = "-fetchingCompanyFailedWithError:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MappedInIsrael/MIIData.m"
+            timestampString = "406546126.904574"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "-fetchingCompaniesFailedWithError:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MappedInIsrael/MIICompanyBuilder.m"
+            timestampString = "406548753.6357"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "+companiesFromJSON:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MappedInIsrael/MIICompanyBuilder.m"
+            timestampString = "406548753.6357"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "@implementation MIICompanyBuilder"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MappedInIsrael/MIICompanyBuilder.m"
+            timestampString = "406548753.6357"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "+companiesFromJSON:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MappedInIsrael/MIICompanyBuilder.m"
+            timestampString = "406548753.6357"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "+companiesFromJSON:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

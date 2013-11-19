@@ -15,6 +15,25 @@
 
 @implementation MIICommunicator
 
++ (NSData *)getStaticData
+{
+    NSData *data;
+    NSString *docPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *srcPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"companies.data"];
+    NSString *dstPath = [docPath stringByAppendingPathComponent:@"companies.data"];
+    if (!([[NSFileManager defaultManager] fileExistsAtPath:dstPath])) {
+        [[NSFileManager defaultManager] copyItemAtPath:srcPath
+                                                toPath:dstPath
+                                                 error:nil];
+    }
+    if (([[NSFileManager defaultManager] fileExistsAtPath:dstPath])) {
+        NSLog(@"getStaticData");
+        data = [[NSFileManager defaultManager] contentsAtPath:dstPath];
+    }
+    
+    return data;
+}
+
 - (void)getAllCompanies
 {
     NSString *urlAsString = [NSString stringWithFormat:@"http://www.mappedinisrael.com/api/site/companies?page=%d&pageSize=%d", PAGE, PAGESIZE];
@@ -28,7 +47,7 @@
     }];
     [request setFailedBlock:^{
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-        [self.delegate fetchingCompaniesFailedWithError:[request error]];
+        [self.delegate receivedCompaniesJSON:[MIICommunicator getStaticData]];
     }];
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;

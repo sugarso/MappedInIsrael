@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B200F1EA1839112F00C7E957 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = B200F1E91839112F00C7E957 /* NSString+HTML.m */; };
 		B2094056183AD98700A6BA92 /* MIIJob.m in Sources */ = {isa = PBXBuildFile; fileRef = B2094055183AD98700A6BA92 /* MIIJob.m */; };
+		B223499C183B6677002962E9 /* companies.data in Resources */ = {isa = PBXBuildFile; fileRef = B223499B183B6677002962E9 /* companies.data */; };
 		B2288D1B1838B08B00165F3F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = B2288D1A1838B08B00165F3F /* Reachability.m */; };
 		B22C811D1831651A006E192E /* MIIData.m in Sources */ = {isa = PBXBuildFile; fileRef = B22C811C1831651A006E192E /* MIIData.m */; };
 		B232AC691831421700114E52 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B232AC681831421700114E52 /* Crashlytics.framework */; };
@@ -109,6 +110,7 @@
 		B200F1E91839112F00C7E957 /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
 		B2094054183AD98700A6BA92 /* MIIJob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIIJob.h; sourceTree = "<group>"; };
 		B2094055183AD98700A6BA92 /* MIIJob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIIJob.m; sourceTree = "<group>"; };
+		B223499B183B6677002962E9 /* companies.data */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = companies.data; sourceTree = "<group>"; };
 		B2288D191838B08B00165F3F /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		B2288D1A1838B08B00165F3F /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		B22C811B1831651A006E192E /* MIIData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIIData.h; sourceTree = "<group>"; };
@@ -439,6 +441,7 @@
 				B2CD5CC5182238B900340E43 /* InfoPlist.strings */,
 				B2CD5CC8182238B900340E43 /* main.m */,
 				B2CD5CCA182238B900340E43 /* MappedInIsrael-Prefix.pch */,
+				B223499B183B6677002962E9 /* companies.data */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -620,6 +623,7 @@
 				B2BA4EC01836A2E60027CDDE /* accelerator.png in Resources */,
 				B2BA4EC51836A2E60027CDDE /* investor.png in Resources */,
 				B2BA4EC81836A2E60027CDDE /* rdcenter@2x.png in Resources */,
+				B223499C183B6677002962E9 /* companies.data in Resources */,
 				B2BA4EEA1836D5750027CDDE /* location.png in Resources */,
 				B2BA4EC71836A2E60027CDDE /* rdcenter.png in Resources */,
 				B2BA4EE31836C4980027CDDE /* AppIcon76x76@2x.png in Resources */,
@@ -864,7 +868,7 @@
 					/Users/genady/Dropbox/Development/Xcode/MappedInIsrael/MappedInIsrael/TestFlightSDK,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "20E08C70-E752-4589-8C5D-E01907309FD2";
+				PROVISIONING_PROFILE = "AB0E6D11-8300-4E68-8BAF-1CF8D5D74A19";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
