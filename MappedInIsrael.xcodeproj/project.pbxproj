@@ -92,6 +92,8 @@
 		B2DFDAA3183281410080BA78 /* KPTreeController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DFDA9C183281410080BA78 /* KPTreeController.m */; };
 		B2DFDAA4183281410080BA78 /* KPTreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DFDA9E183281410080BA78 /* KPTreeNode.m */; };
 		B2DFDAA81832898D0080BA78 /* NSArray+KP.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DFDAA71832898D0080BA78 /* NSArray+KP.m */; };
+		B2EEFE8B183C0BCD009399E7 /* mapped4.png in Resources */ = {isa = PBXBuildFile; fileRef = B2EEFE89183C0BCD009399E7 /* mapped4.png */; };
+		B2EEFE8C183C0BCD009399E7 /* mapped5.png in Resources */ = {isa = PBXBuildFile; fileRef = B2EEFE8A183C0BCD009399E7 /* mapped5.png */; };
 		B2F3A2E018355C7A00AE608E /* View.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2CD5CCE182238B900340E43 /* View.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -240,6 +242,8 @@
 		B2DFDA9E183281410080BA78 /* KPTreeNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPTreeNode.m; sourceTree = "<group>"; };
 		B2DFDAA61832898D0080BA78 /* NSArray+KP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+KP.h"; sourceTree = "<group>"; };
 		B2DFDAA71832898D0080BA78 /* NSArray+KP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+KP.m"; sourceTree = "<group>"; };
+		B2EEFE89183C0BCD009399E7 /* mapped4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mapped4.png; path = Images/mapped4.png; sourceTree = "<group>"; };
+		B2EEFE8A183C0BCD009399E7 /* mapped5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mapped5.png; path = Images/mapped5.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -467,6 +471,8 @@
 		B2DDDC17182997E300CC59BF /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				B2EEFE89183C0BCD009399E7 /* mapped4.png */,
+				B2EEFE8A183C0BCD009399E7 /* mapped5.png */,
 				B2BA4EEC183791810027CDDE /* company-email.png */,
 				B2BA4EED183791810027CDDE /* company-email@2x.png */,
 				B2BA4EEE183791810027CDDE /* company-location.png */,
@@ -613,6 +619,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2BA4EF6183791810027CDDE /* company-website.png in Resources */,
+				B2EEFE8B183C0BCD009399E7 /* mapped4.png in Resources */,
 				B2BA4ECA1836A2E60027CDDE /* service@2x.png in Resources */,
 				B2BA4ECB1836A2E60027CDDE /* startup.png in Resources */,
 				B2BA4EC91836A2E60027CDDE /* service.png in Resources */,
@@ -629,6 +636,7 @@
 				B2BA4EE31836C4980027CDDE /* AppIcon76x76@2x.png in Resources */,
 				B2CD5CC7182238B900340E43 /* InfoPlist.strings in Resources */,
 				B2BA4EC11836A2E60027CDDE /* accelerator@2x.png in Resources */,
+				B2EEFE8C183C0BCD009399E7 /* mapped5.png in Resources */,
 				B2BA4EE01836C4980027CDDE /* AppIcon60x60.png in Resources */,
 				B2BA4EDF1836C4980027CDDE /* AppIcon40x40@2x.png in Resources */,
 				B2BA4EF7183791810027CDDE /* company-website@2x.png in Resources */,
@@ -895,7 +903,7 @@
 					/Users/genady/Dropbox/Development/Xcode/MappedInIsrael/MappedInIsrael/TestFlightSDK,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "79135F30-9763-4EAE-BB12-715A517C8A75";
+				PROVISIONING_PROFILE = "15EBB614-325D-4421-860E-4A0B0BF366DA";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
