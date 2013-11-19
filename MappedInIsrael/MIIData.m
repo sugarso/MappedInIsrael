@@ -53,7 +53,11 @@
         [[companiesTemp objectAtIndex:categoryIndex] addObject:company];
         
         // Check whos hiring
-        if ((![company.hiringPageURL isKindOfClass:[NSNull class]]) &&
+        if ((company.hiring != nil) &&
+            (![company.hiring isKindOfClass:[NSNull class]]) &&
+            (![company.hiring isEqualToString:@""])) {
+            [[companiesHiringTemp objectAtIndex:categoryIndex] addObject:company];
+        } else if ((![company.hiringPageURL isKindOfClass:[NSNull class]]) &&
             (![company.hiringPageURL isEqualToString:@""])) {
             [[companiesHiringTemp objectAtIndex:categoryIndex] addObject:company];
         }
@@ -135,7 +139,11 @@
         [[companies objectAtIndex:categoryIndex] addObject:company];
         
         // Check whos hiring
-        if ((![company.hiringPageURL isKindOfClass:[NSNull class]]) &&
+        if ((company.hiring != nil) &&
+            (![company.hiring isKindOfClass:[NSNull class]]) &&
+            (![company.hiring isEqualToString:@""])) {
+            [[companiesHiring objectAtIndex:categoryIndex] addObject:company];
+        } else if ((![company.hiringPageURL isKindOfClass:[NSNull class]]) &&
             (![company.hiringPageURL isEqualToString:@""])) {
             [[companiesHiring objectAtIndex:categoryIndex] addObject:company];
         }

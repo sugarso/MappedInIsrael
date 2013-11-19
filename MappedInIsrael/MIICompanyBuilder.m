@@ -8,6 +8,7 @@
 
 #import "MIICompanyBuilder.h"
 #import "MIICompany.h"
+#import "MIIJob.h"
 #import "NSString+HTML.h"
 
 @implementation MIICompanyBuilder
@@ -58,10 +59,9 @@
 
     NSArray *payload = [parsedObject valueForKey:@"payload"];
     NSDictionary *organization = [payload valueForKey:@"organization"];
-    //NSLog(@"Organization Count: %lu", (unsigned long)organization.count);
+    NSArray *jobs = [payload valueForKey:@"jobs"];
     
     MIICompany *company = [[MIICompany alloc] init];
-    
     for (NSString *key in organization) {
         if ([company respondsToSelector:NSSelectorFromString(key)]) {
             if ([[organization valueForKey:key] isKindOfClass:[NSString class]]) {
@@ -72,17 +72,21 @@
         }
     }
     
-    // TBD: write it better
-    NSMutableArray *jobs = [[NSMutableArray alloc] init];
-    for (NSDictionary *job in [payload valueForKey:@"jobs"]) {
-        NSString *title = [[job valueForKey:@"title"] stringByDecodingXMLEntities];
-        NSString *description = [[job valueForKey:@"description"] stringByDecodingXMLEntities];
-        NSMutableDictionary *jobFixed = [[NSMutableDictionary alloc] init];
-        [jobFixed setValue:title forKey:@"title"];
-        [jobFixed setValue:description forKey:@"description"];
-        [jobs addObject:jobFixed];
+    NSMutableArray *jobsL = [[NSMutableArray alloc] init];
+    for (NSDictionary *job in jobs) {
+        MIIJob *jobL = [[MIIJob alloc] init];
+        for (NSString *key in job) {
+            if ([jobL respondsToSelector:NSSelectorFromString(key)]) {
+                if ([[job valueForKey:key] isKindOfClass:[NSString class]]) {
+                    [jobL setValue:[[job valueForKey:key] stringByDecodingXMLEntities] forKey:key];
+                } else {
+                    [jobL setValue:[job valueForKey:key] forKey:key];
+                }
+            }
+        }
+        [jobsL addObject:jobL];
     }
-    company.jobs = [jobs copy];
+    company.jobs = [jobsL copy];
     
     return company;
 }

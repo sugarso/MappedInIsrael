@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "GAITrackedViewController.h"
+#import "MIIJob.h"
 
 @interface MIIJobViewController : GAITrackedViewController
 
-@property (strong, nonatomic) NSDictionary *job;
+@property (strong, nonatomic) MIIJob *job;
 @property (weak, nonatomic) IBOutlet UITextView *jobTextView;
+@property (weak, nonatomic) IBOutlet UIButton *showWeb;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @end

@@ -18,7 +18,7 @@
 @property (strong, nonatomic) NSString *lon;
 @property (strong, nonatomic) NSString *lat;
 @property (strong, nonatomic) NSString *hiringPageURL;
-@property (strong, nonatomic) NSString *hiring; // TBD: support it
+@property (strong, nonatomic) NSString *hiring;
 
 // Data
 @property (strong, nonatomic) NSString *description;

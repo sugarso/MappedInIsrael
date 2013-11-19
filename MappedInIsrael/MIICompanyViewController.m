@@ -11,6 +11,7 @@
 #import "MIIPointAnnotation.h"
 #import "MIIJobViewController.h"
 #import "MIIData.h"
+#import "MIIJob.h"
 
 @implementation MIICompanyViewController
 
@@ -157,10 +158,9 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"showJob:"]) {
-        if ([sender isKindOfClass:[NSDictionary class]]) {
+        if ([sender isKindOfClass:[MIIJob class]]) {
             MIIJobViewController *controller = (MIIJobViewController *)segue.destinationViewController;
-            NSDictionary *job = (NSDictionary *)sender;
-            controller.job = [[NSDictionary alloc] initWithDictionary:job];
+            controller.job = (MIIJob *)sender;
         }
     }
 }
@@ -206,8 +206,8 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    NSDictionary *job = [self.company.jobs objectAtIndex:indexPath.row];
-    cell.textLabel.text = [job objectForKey:@"title"];
+    MIIJob *job = [self.company.jobs objectAtIndex:indexPath.row];
+    cell.textLabel.text = job.title;
     
     return cell;
 }
