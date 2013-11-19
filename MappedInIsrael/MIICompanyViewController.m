@@ -161,6 +161,7 @@
         if ([sender isKindOfClass:[MIIJob class]]) {
             MIIJobViewController *controller = (MIIJobViewController *)segue.destinationViewController;
             controller.job = (MIIJob *)sender;
+            controller.hiringPageURL = self.company.hiringPageURL;
         }
     }
 }

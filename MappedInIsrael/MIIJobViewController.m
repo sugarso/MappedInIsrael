@@ -8,6 +8,11 @@
 
 #import "MIIJobViewController.h"
 
+@interface MIIJobViewController () {
+    NSString *_url;
+}
+@end
+
 @implementation MIIJobViewController
 
 - (void)viewDidLoad
@@ -38,10 +43,9 @@
                                     self.showWeb.frame.size.height);
     
     if ([self.job.jobLink isKindOfClass:[NSString class]]) {
-        NSURL *candidateURL = [NSURL URLWithString:self.job.jobLink];
-        if (!(candidateURL && candidateURL.scheme && candidateURL.host)) {
-            self.showWeb.hidden = YES;
-        }
+        _url = self.job.jobLink;
+    } else if ([self.hiringPageURL isKindOfClass:[NSString class]]) {
+        _url = self.hiringPageURL;
     } else {
         self.showWeb.hidden = YES;
     }
@@ -58,7 +62,7 @@
 
 - (IBAction)lookForJob:(id)sender
 {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: self.job.jobLink]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: _url]];
 }
 
 @end

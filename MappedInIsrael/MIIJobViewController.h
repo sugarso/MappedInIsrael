@@ -16,5 +16,6 @@
 @property (weak, nonatomic) IBOutlet UITextView *jobTextView;
 @property (weak, nonatomic) IBOutlet UIButton *showWeb;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (strong, nonatomic) NSString *hiringPageURL;
 
 @end
