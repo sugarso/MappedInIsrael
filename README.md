@@ -15,6 +15,3 @@ For feedback, hiring us for a project or comments hello@iodie.com (We won't bite
 
 ##Screenshots:
 ![alt screenshots](/MappedInIsrael/Images/startups5/photo_0.png)
-![alt screenshots](/MappedInIsrael/Images/startups5/photo_1.png)
-![alt screenshots](/MappedInIsrael/Images/startups5/photo_2.png)
-![alt screenshots](/MappedInIsrael/Images/startups5/photo_3.png)
