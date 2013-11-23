@@ -10,7 +10,8 @@
 
 @implementation NSString (HTML)
 
-- (NSString *)stringByDecodingXMLEntities {
+- (NSString *)stringByDecodingXMLEntities
+{
     NSUInteger myLength = [self length];
     NSUInteger ampIndex = [self rangeOfString:@"&" options:NSLiteralSearch].location;
     

@@ -21,6 +21,8 @@
     
     if (localError != nil) {
         parsedObject = [NSJSONSerialization JSONObjectWithData:[MIICommunicator getStaticData] options:0 error:&localError];
+    } else {
+        [MIICommunicator setStaticData:objectNotation]; // TBD: test it
     }
     
     NSMutableArray *companies = [[NSMutableArray alloc] init];

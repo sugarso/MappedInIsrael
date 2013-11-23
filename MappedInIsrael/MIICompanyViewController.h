@@ -15,22 +15,16 @@
 @interface MIICompanyViewController : GAITrackedViewController <MKMapViewDelegate,UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate,MFMailComposeViewControllerDelegate>
 
 @property (strong, nonatomic) MIICompany *company;
-
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
-
-@property (weak, nonatomic) IBOutlet UIView *tableSuperView;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *hiringLabel;
-
-@property (weak, nonatomic) IBOutlet UIView *nameSuperView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
-
-@property (weak, nonatomic) IBOutlet UIView *iconsSuperView;
 @property (weak, nonatomic) IBOutlet UIButton *addressButton;
 @property (weak, nonatomic) IBOutlet UIButton *homePageButton;
 @property (weak, nonatomic) IBOutlet UIButton *contactButton;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *textViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *labelHeightConstraint;
 
 @end

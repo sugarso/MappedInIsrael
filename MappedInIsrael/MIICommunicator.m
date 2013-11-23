@@ -15,23 +15,33 @@
 
 @implementation MIICommunicator
 
-+ (NSData *)getStaticData
++ (NSString *)fileName
 {
-    NSData *data;
+    return @"companies.data";
+}
+
++ (NSString *)getDstPath
+{
     NSString *docPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *srcPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"companies.data"];
-    NSString *dstPath = [docPath stringByAppendingPathComponent:@"companies.data"];
-    if (!([[NSFileManager defaultManager] fileExistsAtPath:dstPath])) {
-        [[NSFileManager defaultManager] copyItemAtPath:srcPath
-                                                toPath:dstPath
+    return [docPath stringByAppendingPathComponent:[MIICommunicator fileName]];
+}
+
++ (NSData *)getStaticData // TBD: Google Analytics
+{
+    if (!([[NSFileManager defaultManager] fileExistsAtPath:[MIICommunicator getDstPath]])) {
+        [[NSFileManager defaultManager] copyItemAtPath:[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:[MIICommunicator fileName]]
+                                                toPath:[MIICommunicator getDstPath]
                                                  error:nil];
     }
-    if (([[NSFileManager defaultManager] fileExistsAtPath:dstPath])) {
-        NSLog(@"getStaticData");
-        data = [[NSFileManager defaultManager] contentsAtPath:dstPath];
-    }
     
-    return data;
+    NSLog(@"getStaticData");
+    return [[NSFileManager defaultManager] contentsAtPath:[MIICommunicator getDstPath]];
+}
+
++ (void)setStaticData:(NSData *)data
+{
+    NSLog(@"setStaticData");
+    [data writeToFile:[MIICommunicator getDstPath] atomically:YES];
 }
 
 - (void)getAllCompanies

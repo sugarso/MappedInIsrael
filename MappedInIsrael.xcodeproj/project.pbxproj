@@ -17,7 +17,6 @@
 		B232AC7118314AF700114E52 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B232AC6D18314AF700114E52 /* libTestFlight.a */; };
 		B274D0321832D88A00FEF3E6 /* MIITableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B274D0311832D88A00FEF3E6 /* MIITableViewController.m */; };
 		B274D0481833789700FEF3E6 /* MIIPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = B274D0471833789700FEF3E6 /* MIIPointAnnotation.m */; };
-		B2A387A7182FED6900989B4D /* libGoogleAnalytics_debug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2A387A6182FED6900989B4D /* libGoogleAnalytics_debug.a */; };
 		B2A387A9182FED7D00989B4D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2A387A8182FED7D00989B4D /* CoreData.framework */; };
 		B2A387AB182FEDA000989B4D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2A387AA182FEDA000989B4D /* SystemConfiguration.framework */; };
 		B2A387AD182FEDAF00989B4D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B2A387AC182FEDAF00989B4D /* libz.dylib */; };
@@ -67,6 +66,8 @@
 		B2BA4EF7183791810027CDDE /* company-website@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B2BA4EF1183791810027CDDE /* company-website@2x.png */; };
 		B2BA4EFD1837E2B40027CDDE /* MIIJobViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2BA4EFC1837E2B40027CDDE /* MIIJobViewController.m */; };
 		B2C50F3D183552E400DAFE28 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B2C50F3C183552E400DAFE28 /* Settings.bundle */; };
+		B2CC88C91840BD3D00C03503 /* libGoogleAnalytics_debug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2A387A6182FED6900989B4D /* libGoogleAnalytics_debug.a */; };
+		B2CC88CC18411BFF00C03503 /* UITextView+FitText.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CC88CB18411BFF00C03503 /* UITextView+FitText.m */; };
 		B2CD5CBD182238B900340E43 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2CD5CBC182238B900340E43 /* Foundation.framework */; };
 		B2CD5CBF182238B900340E43 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2CD5CBE182238B900340E43 /* CoreGraphics.framework */; };
 		B2CD5CC1182238B900340E43 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2CD5CC0182238B900340E43 /* UIKit.framework */; };
@@ -199,6 +200,8 @@
 		B2BA4EFB1837E2B40027CDDE /* MIIJobViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIIJobViewController.h; sourceTree = "<group>"; };
 		B2BA4EFC1837E2B40027CDDE /* MIIJobViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIIJobViewController.m; sourceTree = "<group>"; };
 		B2C50F3C183552E400DAFE28 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		B2CC88CA18411BFF00C03503 /* UITextView+FitText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+FitText.h"; sourceTree = "<group>"; };
+		B2CC88CB18411BFF00C03503 /* UITextView+FitText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+FitText.m"; sourceTree = "<group>"; };
 		B2CD5CB9182238B900340E43 /* MappedInIsrael.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MappedInIsrael.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2CD5CBC182238B900340E43 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B2CD5CBE182238B900340E43 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -254,11 +257,11 @@
 				B2B978C01838AE2D00DE2CF2 /* MobileCoreServices.framework in Frameworks */,
 				B2B978BE1838AE2100DE2CF2 /* CFNetwork.framework in Frameworks */,
 				B232AC6B18314AAC00114E52 /* AdSupport.framework in Frameworks */,
-				B2A387A7182FED6900989B4D /* libGoogleAnalytics_debug.a in Frameworks */,
 				B2A387AD182FEDAF00989B4D /* libz.dylib in Frameworks */,
 				B232AC7118314AF700114E52 /* libTestFlight.a in Frameworks */,
 				B2A387AB182FEDA000989B4D /* SystemConfiguration.framework in Frameworks */,
 				B2A387A9182FED7D00989B4D /* CoreData.framework in Frameworks */,
+				B2CC88C91840BD3D00C03503 /* libGoogleAnalytics_debug.a in Frameworks */,
 				B2CD5D04182252F700340E43 /* MapKit.framework in Frameworks */,
 				B2CD5D02182252EE00340E43 /* CoreLocation.framework in Frameworks */,
 				B232AC691831421700114E52 /* Crashlytics.framework in Frameworks */,
@@ -423,6 +426,8 @@
 				B2BA4ECE1836A35E0027CDDE /* UIColor+MBCategory.m */,
 				B200F1E81839112F00C7E957 /* NSString+HTML.h */,
 				B200F1E91839112F00C7E957 /* NSString+HTML.m */,
+				B2CC88CA18411BFF00C03503 /* UITextView+FitText.h */,
+				B2CC88CB18411BFF00C03503 /* UITextView+FitText.m */,
 				B296E6281830FB33005C09E9 /* Model */,
 				B2DFDA8618324E090080BA78 /* View */,
 				B296E6291830FB78005C09E9 /* Controllers */,
@@ -724,6 +729,7 @@
 				B2B9789E1838ADA700DE2CF2 /* ASIInputStream.m in Sources */,
 				B2DFDAA81832898D0080BA78 /* NSArray+KP.m in Sources */,
 				B2DFDAA4183281410080BA78 /* KPTreeNode.m in Sources */,
+				B2CC88CC18411BFF00C03503 /* UITextView+FitText.m in Sources */,
 				B2CD5CF91822431600340E43 /* MIICommunicator.m in Sources */,
 				B2B9789D1838ADA700DE2CF2 /* ASIHTTPRequest.m in Sources */,
 				B2094056183AD98700A6BA92 /* MIIJob.m in Sources */,
@@ -863,7 +869,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/genady/Dropbox/Development/Xcode/MappedInIsrael/MappedInIsrael,
+					/Users/genady/Dropbox/Development/MappedInIsrael/MappedInIsrael,
 				);
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
@@ -872,11 +878,11 @@
 				INFOPLIST_FILE = "MappedInIsrael/MappedInIsrael-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/genady/Dropbox/Development/Xcode/MappedInIsrael/MappedInIsrael/GoogleAnalytics,
-					/Users/genady/Dropbox/Development/Xcode/MappedInIsrael/MappedInIsrael/TestFlightSDK,
+					/Users/genady/Dropbox/Development/MappedInIsrael/MappedInIsrael/TestFlightSDK,
+					/Users/genady/Dropbox/Development/MappedInIsrael/MappedInIsrael/GoogleAnalytics,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1C11425A-984D-4FFE-A93E-84A8B257B640";
+				PROVISIONING_PROFILE = "DC25426B-DB92-47D6-98AB-37F4DF1F48B8";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -890,7 +896,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/genady/Dropbox/Development/Xcode/MappedInIsrael/MappedInIsrael,
+					/Users/genady/Dropbox/Development/MappedInIsrael/MappedInIsrael,
 				);
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
@@ -899,11 +905,11 @@
 				INFOPLIST_FILE = "MappedInIsrael/MappedInIsrael-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/genady/Dropbox/Development/Xcode/MappedInIsrael/MappedInIsrael/GoogleAnalytics,
-					/Users/genady/Dropbox/Development/Xcode/MappedInIsrael/MappedInIsrael/TestFlightSDK,
+					/Users/genady/Dropbox/Development/MappedInIsrael/MappedInIsrael/TestFlightSDK,
+					/Users/genady/Dropbox/Development/MappedInIsrael/MappedInIsrael/GoogleAnalytics,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "15EBB614-325D-4421-860E-4A0B0BF366DA";
+				PROVISIONING_PROFILE = "79135F30-9763-4EAE-BB12-715A517C8A75";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

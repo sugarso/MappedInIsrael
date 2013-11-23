@@ -7,10 +7,10 @@
 //
 
 #import "MIIJobViewController.h"
+#import "UITextView+FitText.h"
 
-@interface MIIJobViewController () {
-    NSString *_url;
-}
+@interface MIIJobViewController ()
+    @property (strong, nonatomic) NSString *url;
 @end
 
 @implementation MIIJobViewController
@@ -18,51 +18,25 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // GAITrackedViewController
     self.screenName = @"MIIJobViewController";
-    
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     self.title = self.job.title;
     self.jobTextView.text = self.job.description;
-    self.jobTextView.font = [UIFont fontWithName:@"Helvetica" size:15];
-    self.jobTextView.textColor = [UIColor grayColor];
-    
-    // Resize descriptionTextView
-    CGRect rect = [self.jobTextView.attributedText boundingRectWithSize:CGSizeMake(self.jobTextView.frame.size.width, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil];
-    
-    // Move jobTextView
-    self.jobTextView.frame = CGRectMake(self.jobTextView.frame.origin.x,
-                                        20,
-                                        self.jobTextView.frame.size.width,
-                                        rect.size.height+10);
-    
-    self.showWeb.frame = CGRectMake(self.showWeb.frame.origin.x,
-                                    self.jobTextView.frame.origin.x+
-                                    self.jobTextView.frame.size.height+20,
-                                    self.showWeb.frame.size.width,
-                                    self.showWeb.frame.size.height);
-    
+    self.textViewHeightConstraint.constant = [self.jobTextView fitTextHeight];
+
+    // Choose the right link or hide the button
     if ([self.job.jobLink isKindOfClass:[NSString class]]) {
-        _url = self.job.jobLink;
+        self.url = self.job.jobLink;
     } else if ([self.hiringPageURL isKindOfClass:[NSString class]]) {
-        _url = self.hiringPageURL;
+        self.url = self.hiringPageURL;
     } else {
         self.showWeb.hidden = YES;
     }
-    
-    if (self.showWeb.hidden) {
-        self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width,
-                                                 self.jobTextView.frame.size.height+2*20);
-    } else {
-        self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width,
-                                                 self.jobTextView.frame.size.height+self.showWeb.frame.size.height+3*20);
-    }
-    
 }
 
 - (IBAction)lookForJob:(id)sender
 {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: _url]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: self.url]]; // TBD: Google Analytics
 }
 
 @end

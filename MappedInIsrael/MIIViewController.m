@@ -14,7 +14,7 @@
 #import "MIICompanyViewController.h"
 
 @interface MIIViewController () {
-    KPTreeController *_treeController;
+    KPTreeController *_treeController; // TBD: make @propertys
     BOOL _fullScreen;
     CLLocationManager *_locationManager;
     CLLocation *_myHome;
@@ -27,6 +27,10 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    
     
     // NavigationBar
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(showSearch:)];
@@ -98,13 +102,13 @@
     singleTap.numberOfTapsRequired = 1;
     singleTap.delaysTouchesEnded = NO;
     singleTap.delegate = self;
-    //[self.mapView addGestureRecognizer:singleTap];
+    [self.mapView addGestureRecognizer:singleTap];
     
     // DoubleTap on mapView
     UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTapRecognized:)];
     doubleTap.numberOfTapsRequired = 2;
     doubleTap.delegate = self;
-    //[self.mapView addGestureRecognizer:doubleTap];
+    [self.mapView addGestureRecognizer:doubleTap];
     [singleTap requireGestureRecognizerToFail:doubleTap];
     
     // Location
@@ -264,24 +268,24 @@
             v.rightCalloutAccessoryView = btn;
             v.canShowCallout = YES;
             a.title = [NSString stringWithFormat:@"%d Organizations", [numberOfCompanies intValue]];
-            //v.canShowCallout = NO;
-            //if (self.company) {
-            //    for (MIIPointAnnotation *annotation in a.annotations) {
-            //        if ([annotation.company.companyName isEqual:self.company.companyName]) {
-            //            v.canShowCallout = YES;
-            //        }
-            //    }
-            //}
-            //a.title = [NSString stringWithFormat:@"%d Organizations", [numberOfCompanies intValue]];
-            //BOOL first = YES;
-            //for (MIIPointAnnotation *annotation in a.annotations) {
-            //    if (first) {
-            //        first = NO;
-            //        a.subtitle = annotation.company.companyName;
-            //    } else {
-            //        a.subtitle = [NSString stringWithFormat:@"%@, %@", a.subtitle, annotation.company.companyName];
-            //    }
-            //}
+            v.canShowCallout = NO;
+            if (self.company) {
+                for (MIIPointAnnotation *annotation in a.annotations) {
+                    if ([annotation.company.companyName isEqual:self.company.companyName]) {
+                        v.canShowCallout = YES;
+                    }
+                }
+            }
+            a.title = [NSString stringWithFormat:@"%d Organizations", [numberOfCompanies intValue]];
+            BOOL first = YES;
+            for (MIIPointAnnotation *annotation in a.annotations) {
+                if (first) {
+                    first = NO;
+                    a.subtitle = annotation.company.companyName;
+                } else {
+                    a.subtitle = [NSString stringWithFormat:@"%@, %@", a.subtitle, annotation.company.companyName];
+                }
+            }
             [clusterView addSubview:l];
             
             v.image = [MIIClusterView imageWithView:clusterView];
@@ -320,7 +324,6 @@
     [_treeController refresh:YES];
 }
 
-/*
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
     if ([view.annotation isKindOfClass:[KPAnnotation class]]) {
@@ -330,7 +333,6 @@
         }
     }
 }
-*/
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
@@ -404,7 +406,7 @@
     [self initMap:self];
 }
 
-- (void)serverError
+- (void)serverError // TBD: Google Analytics
 {
     if (_waitingForCompany) {
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil

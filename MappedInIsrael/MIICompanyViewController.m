@@ -12,6 +12,7 @@
 #import "MIIJobViewController.h"
 #import "MIIData.h"
 #import "MIIJob.h"
+#import "UITextView+FitText.h"
 
 @implementation MIICompanyViewController
 
@@ -29,25 +30,35 @@
 {
     [super viewDidLoad];
     
-    // GAITrackedViewController
-    self.screenName = @"MIICompanyViewController";
     
-    // Company
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    
+    
+    self.screenName = @"MIICompanyViewController";
     NSDictionary *category = (NSDictionary *)self.company.companyCategory;
     self.navigationItem.title = [[MIIData getAllFormatedCategories] objectAtIndex:[[MIIData getAllCategories] indexOfObject:[category valueForKey:@"categoryName"]]];
     self.hiringLabel.text = [NSString stringWithFormat:@"%@ is currently hiring:", self.company.companyName];
     self.nameLabel.text = self.company.companyName;
+    
+    
+    
     self.descriptionTextView.text = self.company.description;
-    self.descriptionTextView.font = [UIFont fontWithName:@"Helvetica" size:17];
-    self.descriptionTextView.textColor = [UIColor grayColor];
+    self.textViewHeightConstraint.constant = [self.descriptionTextView fitTextHeight];
+    
+    
+
+    self.tableViewHeightConstraint.constant = self.tableView.rowHeight*[self.company.jobs count];
     [self.contactButton setTitle:self.company.contactEmail forState:UIControlStateNormal];
     [self.homePageButton setTitle:self.company.websiteURL forState:UIControlStateNormal];
     [self.addressButton setTitle:[NSString stringWithFormat:@"%@ %@, %@, Israel",
                                   self.company.addressStreet,
                                   self.company.addressHouse,
                                   self.company.addressCity] forState:UIControlStateNormal];
-    
     [self.addressButton.titleLabel setLineBreakMode:NSLineBreakByWordWrapping];
+    
+    if (![self.company.jobs count]) {
+        self.labelHeightConstraint.constant = 0;
+    }
     
     // Map Annotation
     self.mapView.delegate = self;
@@ -71,56 +82,6 @@
     // Table
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    
-    // Move tableSuperView&tableView
-    if (![self.company.jobs count]) {
-        self.tableSuperView.frame = CGRectMake(self.tableSuperView.frame.origin.x,
-                                               self.tableSuperView.frame.origin.y,
-                                               self.tableSuperView.frame.size.width,
-                                               0);
-    } else {
-        self.tableSuperView.frame = CGRectMake(self.tableSuperView.frame.origin.x,
-                                               self.tableSuperView.frame.origin.y,
-                                               self.tableSuperView.frame.size.width,
-                                               self.tableView.frame.origin.y+
-                                               self.tableView.rowHeight*[self.company.jobs count]);
-        
-        self.tableView.frame = CGRectMake(self.tableView.frame.origin.x,
-                                          self.tableView.frame.origin.y,
-                                          self.tableView.frame.size.width,
-                                          self.tableView.rowHeight*[self.company.jobs count]);
-    }
-    
-    // Resize descriptionTextView
-    CGRect rect = [self.descriptionTextView.attributedText boundingRectWithSize:CGSizeMake(self.descriptionTextView.frame.size.width, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil];
-    
-    // Move nameSuperView
-    self.nameSuperView.frame = CGRectMake(self.nameSuperView.frame.origin.x,
-                                          self.mapView.frame.size.height+
-                                          self.tableSuperView.frame.size.height,
-                                          self.nameSuperView.frame.size.width,
-                                          self.descriptionTextView.frame.origin.y+
-                                          rect.size.height+30);
-    
-    self.descriptionTextView.frame = CGRectMake(self.descriptionTextView.frame.origin.x,
-                                                self.descriptionTextView.frame.origin.y,
-                                                self.descriptionTextView.frame.size.width,
-                                                rect.size.height+30);
-    
-    // Move iconsSuperView
-    self.iconsSuperView.frame = CGRectMake(self.iconsSuperView.frame.origin.x,
-                                           self.mapView.frame.size.height+
-                                           self.tableSuperView.frame.size.height+
-                                           self.nameSuperView.frame.size.height,
-                                           self.iconsSuperView.frame.size.width,
-                                           self.iconsSuperView.frame.size.height);
-    
-    // Resize scrollView
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width,
-                                             self.mapView.frame.size.height+
-                                             self.tableSuperView.frame.size.height+
-                                             self.nameSuperView.frame.size.height+
-                                             self.iconsSuperView.frame.size.height);
 }
 
 - (IBAction)openWebsite:(id)sender
@@ -153,7 +114,6 @@
     item.name = self.company.companyName;
     [item openInMapsWithLaunchOptions:nil];
 }
-
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -240,7 +200,6 @@
             break;
     }
     
-    // Close the Mail Interface
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
