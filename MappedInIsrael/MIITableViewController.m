@@ -64,6 +64,15 @@
     
     // Make sure pins on screen
     [self updateFilter:self];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataIsReady:) name:@"dataIsReady" object:nil];
+}
+
+- (void)dataIsReady:(NSNotification *)note
+{
+    MIIData *data = [[note userInfo] valueForKey:@"data"];
+    self.data = data;
+        [self updateFilter:self];
 }
 
 - (void)updateFilter:(id)sender

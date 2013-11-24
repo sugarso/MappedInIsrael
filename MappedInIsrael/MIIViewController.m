@@ -421,6 +421,9 @@
 - (void)dataIsReady
 {
     [self initMap:self];
+    
+    NSDictionary *dict = [NSDictionary dictionaryWithObject:self.data forKey:@"data"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"dataIsReady" object:nil userInfo:dict];
 }
 
 // TBD: show error in other views!
