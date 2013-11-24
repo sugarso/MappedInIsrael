@@ -20,7 +20,7 @@
     CLLocation *_myHome;
     //BOOL _waitingForCompany;
     BOOL _tbd;
-    BOOL _tbd2; // Not working!
+    //BOOL _tbd2; // Not working!
 }
 @end
 
@@ -125,18 +125,21 @@
     }
 }
 
+- (void)calloutTapped:(id)sender
+{
+    _fullScreen = NO;
+}
+
 - (void)singleTapRecognized:(UIGestureRecognizer *)gestureRecognizer
 {
     UIView *v = [self.mapView hitTest:[gestureRecognizer locationInView:self.mapView] withEvent:nil];
-    if (![v isKindOfClass:[MKAnnotationView class]]) {
+    //gestureRecognizer.view
+    
+    if ((![v isKindOfClass:[MKAnnotationView class]]) && (![v isKindOfClass:[MKPinAnnotationView class]])) {
         if (_fullScreen == NO) {
-            if (_tbd2) {
-                _tbd2 = NO;
-            } else {
-                [UIApplication sharedApplication].statusBarHidden = YES;
-                [self.navigationController setNavigationBarHidden:YES animated:YES];
-                _fullScreen = YES;
-            }
+            [UIApplication sharedApplication].statusBarHidden = YES;
+            [self.navigationController setNavigationBarHidden:YES animated:YES];
+            _fullScreen = YES;
         } else {
             [self.navigationController setNavigationBarHidden:NO animated:YES];
             [UIApplication sharedApplication].statusBarHidden = NO;
@@ -313,6 +316,11 @@
             
             a.title = [NSString stringWithFormat:@"%@", ((MKPointAnnotation *)annotation).title];
             a.subtitle = @""; //[NSString stringWithFormat:@"%@", ((MKPointAnnotation *)annotation).subtitle];
+            
+            UITapGestureRecognizer *tapGesture =
+            [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                    action:@selector(calloutTapped:)];
+            //[v addGestureRecognizer:tapGesture];
         }
     }
     
@@ -354,7 +362,7 @@
                 [self performSegueWithIdentifier:@"showCompanies:" sender:view];
             }
         } else {
-            _tbd2 = YES;
+           // _tbd2 = YES;
             
             KPAnnotation *annotation = (KPAnnotation *)view.annotation;
             MIIPointAnnotation *a = (MIIPointAnnotation *)[annotation.annotations anyObject];

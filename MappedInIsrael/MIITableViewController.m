@@ -26,6 +26,9 @@
 {
     [super viewWillAppear:animated];
     
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    [UIApplication sharedApplication].statusBarHidden = NO;
+    
     // Make sure to be the delegate every viewWillAppear
     //self.data.delegate = self;
 }
