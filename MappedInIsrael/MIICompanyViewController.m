@@ -35,6 +35,21 @@
     
     
     self.screenName = @"MIICompanyViewController";
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(companyIsReady:) name:@"companyIsReady" object:nil];
+
+
+    
+    // Table
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+}
+
+- (void)companyIsReady:(NSNotification *)note
+{
+    MIICompany *company = [[note userInfo] valueForKey:@"company"];
+    self.company = company;
+    
     NSDictionary *category = (NSDictionary *)self.company.companyCategory;
     self.navigationItem.title = [[MIIData getAllFormatedCategories] objectAtIndex:[[MIIData getAllCategories] indexOfObject:[category valueForKey:@"categoryName"]]];
     self.hiringLabel.text = [NSString stringWithFormat:@"%@ is currently hiring:", self.company.companyName];
@@ -46,7 +61,7 @@
     self.textViewHeightConstraint.constant = [self.descriptionTextView fitTextHeight];
     
     
-
+    
     self.tableViewHeightConstraint.constant = self.tableView.rowHeight*[self.company.jobs count];
     [self.contactButton setTitle:self.company.contactEmail forState:UIControlStateNormal];
     [self.homePageButton setTitle:self.company.websiteURL forState:UIControlStateNormal];
@@ -77,11 +92,9 @@
     region.center.longitude = coordinate.longitude;
     region.span.latitudeDelta = 0.03;
     region.span.longitudeDelta = 0.03;
-    [self.mapView setRegion:region animated:YES];
+    [self.mapView setRegion:region animated:NO];
     
-    // Table
-    self.tableView.dataSource = self;
-    self.tableView.delegate = self;
+    [self.tableView reloadData];
 }
 
 - (IBAction)openWebsite:(id)sender

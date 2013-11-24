@@ -16,7 +16,7 @@
 {
     NSArray *_tableData;
     NSArray *_searchData;
-    BOOL _waitingForCompany;
+   // BOOL _waitingForCompany;
 }
 @end
 
@@ -27,7 +27,7 @@
     [super viewWillAppear:animated];
     
     // Make sure to be the delegate every viewWillAppear
-    self.data.delegate = self;
+    //self.data.delegate = self;
 }
 
 - (void)viewDidLoad
@@ -197,10 +197,11 @@
         company = [[_tableData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     }
     
-    if (!_waitingForCompany) {
+   // if (!_waitingForCompany) {
         [self.data getCompany:company.id];
-        _waitingForCompany = YES;
-    }
+        [self performSegueWithIdentifier:@"showCompany:" sender:self];
+    //    _waitingForCompany = YES;
+   // }
 }
 
 #pragma mark - MIIDataDelegate
@@ -212,10 +213,10 @@
     [mapView initMap:self];
 }
 
-- (void)companyIsReady:(MIICompany *)company
+/*- (void)companyIsReady:(MIICompany *)company
 {
     if (_waitingForCompany) {
-        [self performSegueWithIdentifier:@"showCompany:" sender:company];
+        //[self performSegueWithIdentifier:@"showCompany:" sender:company];
         _waitingForCompany = NO;
     }
 }
@@ -231,6 +232,6 @@
         [alert show];
         _waitingForCompany = NO;
     }
-}
+}*/
 
 @end

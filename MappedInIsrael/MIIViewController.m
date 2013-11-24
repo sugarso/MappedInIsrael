@@ -18,7 +18,9 @@
     BOOL _fullScreen;
     CLLocationManager *_locationManager;
     CLLocation *_myHome;
-    BOOL _waitingForCompany;
+    //BOOL _waitingForCompany;
+    BOOL _tbd;
+    BOOL _tbd2; // Not working!
 }
 @end
 
@@ -58,6 +60,7 @@
                 if ([ann isCluster]) {
                     for (MIIPointAnnotation *a in ann.annotations) {
                         if ([a.company.companyName isEqual:self.company.companyName]) {
+                            _tbd = YES;
                             [self.mapView selectAnnotation:ann animated:NO];
                         }
                     }
@@ -102,7 +105,7 @@
     singleTap.numberOfTapsRequired = 1;
     singleTap.delaysTouchesEnded = NO;
     singleTap.delegate = self;
-    [self.mapView addGestureRecognizer:singleTap];
+    //[self.mapView addGestureRecognizer:singleTap];
     
     // DoubleTap on mapView
     UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTapRecognized:)];
@@ -127,9 +130,13 @@
     UIView *v = [self.mapView hitTest:[gestureRecognizer locationInView:self.mapView] withEvent:nil];
     if (![v isKindOfClass:[MKAnnotationView class]]) {
         if (_fullScreen == NO) {
-            [UIApplication sharedApplication].statusBarHidden = YES;
-            [self.navigationController setNavigationBarHidden:YES animated:YES];
-            _fullScreen = YES;
+            if (_tbd2) {
+                _tbd2 = NO;
+            } else {
+                [UIApplication sharedApplication].statusBarHidden = YES;
+                [self.navigationController setNavigationBarHidden:YES animated:YES];
+                _fullScreen = YES;
+            }
         } else {
             [self.navigationController setNavigationBarHidden:NO animated:YES];
             [UIApplication sharedApplication].statusBarHidden = NO;
@@ -329,7 +336,11 @@
     if ([view.annotation isKindOfClass:[KPAnnotation class]]) {
         KPAnnotation *annotation = (KPAnnotation *)view.annotation;
         if ([annotation isCluster]) {
-            [self performSegueWithIdentifier:@"showCompanies:" sender:view];
+            if (_tbd) {
+                _tbd = NO;
+            } else {
+                [self performSegueWithIdentifier:@"showCompanies:" sender:view];
+            }
         }
     }
 }
@@ -343,13 +354,16 @@
                 [self performSegueWithIdentifier:@"showCompanies:" sender:view];
             }
         } else {
+            _tbd2 = YES;
+            
             KPAnnotation *annotation = (KPAnnotation *)view.annotation;
             MIIPointAnnotation *a = (MIIPointAnnotation *)[annotation.annotations anyObject];
             
-            if (!_waitingForCompany) {
+            //if (!_waitingForCompany) {
                 [self.data getCompany:a.company.id];
-                _waitingForCompany = YES;
-            }
+                [self performSegueWithIdentifier:@"showCompany:" sender:self];
+                //_waitingForCompany = YES;
+            //}
         }
     }
 }
@@ -395,10 +409,13 @@
 
 - (void)companyIsReady:(MIICompany *)company
 {
-    if (_waitingForCompany) {
-        [self performSegueWithIdentifier:@"showCompany:" sender:company];
-        _waitingForCompany = NO;
-    }
+    NSDictionary *dict = [NSDictionary dictionaryWithObject:company forKey:@"company"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"companyIsReady" object:nil userInfo:dict];
+    
+    //if (_waitingForCompany) {
+        //[self performSegueWithIdentifier:@"showCompany:" sender:company];
+    //    _waitingForCompany = NO;
+    //}
 }
 
 - (void)dataIsReady
@@ -406,17 +423,18 @@
     [self initMap:self];
 }
 
+// TBD: show error in other views!
 - (void)serverError // TBD: Google Analytics
 {
-    if (_waitingForCompany) {
+    //if (_waitingForCompany) {
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil
                                                        message:@"Organization details are currently unavailable."
                                                       delegate:self
                                              cancelButtonTitle:nil
                                              otherButtonTitles:@"OK",nil];
         [alert show];
-        _waitingForCompany = NO;
-    }
+      //  _waitingForCompany = NO;
+    //}
 }
 
 #pragma mark - UIGestureRecognizerDelegate
