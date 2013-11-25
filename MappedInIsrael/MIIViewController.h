@@ -13,14 +13,10 @@
 #import "MIICompany.h"
 #import "MIIData.h"
 
-@interface MIIViewController : GAITrackedViewController <MKMapViewDelegate,UIGestureRecognizerDelegate,CLLocationManagerDelegate,KPTreeControllerDelegate,MIIDataDelegate>
+@interface MIIViewController : GAITrackedViewController <MKMapViewDelegate,CLLocationManagerDelegate,KPTreeControllerDelegate,MIIDataDelegate>
 
-@property (strong, nonatomic) MIIData *data;
 @property (weak, nonatomic) MIICompany *company;
-@property (weak, nonatomic) IBOutlet UIView *view;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
-@property (weak, nonatomic) IBOutlet UIButton *showCurrentLocation;
-
-- (void)initMap:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *showCurrentLocationButton;
 
 @end

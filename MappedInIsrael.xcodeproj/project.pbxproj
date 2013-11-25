@@ -420,14 +420,9 @@
 		B2CD5CC2182238B900340E43 /* MappedInIsrael */ = {
 			isa = PBXGroup;
 			children = (
+				B2EFE0911842796100E36BD2 /* Categorys */,
 				B2CD5CCB182238B900340E43 /* MIIAppDelegate.h */,
 				B2CD5CCC182238B900340E43 /* MIIAppDelegate.m */,
-				B2BA4ECD1836A35E0027CDDE /* UIColor+MBCategory.h */,
-				B2BA4ECE1836A35E0027CDDE /* UIColor+MBCategory.m */,
-				B200F1E81839112F00C7E957 /* NSString+HTML.h */,
-				B200F1E91839112F00C7E957 /* NSString+HTML.m */,
-				B2CC88CA18411BFF00C03503 /* UITextView+FitText.h */,
-				B2CC88CB18411BFF00C03503 /* UITextView+FitText.m */,
 				B296E6281830FB33005C09E9 /* Model */,
 				B2DFDA8618324E090080BA78 /* View */,
 				B296E6291830FB78005C09E9 /* Controllers */,
@@ -539,6 +534,19 @@
 				B2DFDA9E183281410080BA78 /* KPTreeNode.m */,
 			);
 			path = kingpin;
+			sourceTree = "<group>";
+		};
+		B2EFE0911842796100E36BD2 /* Categorys */ = {
+			isa = PBXGroup;
+			children = (
+				B2BA4ECD1836A35E0027CDDE /* UIColor+MBCategory.h */,
+				B2BA4ECE1836A35E0027CDDE /* UIColor+MBCategory.m */,
+				B200F1E81839112F00C7E957 /* NSString+HTML.h */,
+				B200F1E91839112F00C7E957 /* NSString+HTML.m */,
+				B2CC88CA18411BFF00C03503 /* UITextView+FitText.h */,
+				B2CC88CB18411BFF00C03503 /* UITextView+FitText.m */,
+			);
+			name = Categorys;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

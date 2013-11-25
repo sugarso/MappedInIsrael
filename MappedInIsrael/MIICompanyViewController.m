@@ -30,37 +30,23 @@
 {
     [super viewDidLoad];
     
-    
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
-    
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
+                                                                             style:UIBarButtonItemStylePlain
+                                                                            target:nil
+                                                                            action:nil];
     
     self.screenName = @"MIICompanyViewController";
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(companyIsReady:) name:@"companyIsReady" object:nil];
 
-
-    
-    // Table
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-}
 
-- (void)companyIsReady:(NSNotification *)note
-{
-    MIICompany *company = [[note userInfo] valueForKey:@"company"];
-    self.company = company;
-    
     NSDictionary *category = (NSDictionary *)self.company.companyCategory;
     self.navigationItem.title = [[MIIData getAllFormatedCategories] objectAtIndex:[[MIIData getAllCategories] indexOfObject:[category valueForKey:@"categoryName"]]];
     self.hiringLabel.text = [NSString stringWithFormat:@"%@ is currently hiring:", self.company.companyName];
     self.nameLabel.text = self.company.companyName;
     
-    
-    
     self.descriptionTextView.text = self.company.description;
     self.textViewHeightConstraint.constant = [self.descriptionTextView fitTextHeight];
-    
-    
     
     self.tableViewHeightConstraint.constant = self.tableView.rowHeight*[self.company.jobs count];
     [self.contactButton setTitle:self.company.contactEmail forState:UIControlStateNormal];
@@ -75,7 +61,6 @@
         self.labelHeightConstraint.constant = 0;
     }
     
-    // Map Annotation
     self.mapView.delegate = self;
     CLLocationCoordinate2D coordinate;
     coordinate.latitude = [self.company.lat doubleValue];
@@ -93,7 +78,6 @@
     region.span.latitudeDelta = 0.03;
     region.span.longitudeDelta = 0.03;
     [self.mapView setRegion:region animated:NO];
-    
     [self.tableView reloadData];
 }
 
@@ -138,8 +122,6 @@
         }
     }
 }
-
-#pragma mark - Table view data source
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
@@ -190,8 +172,6 @@
 {
     [self performSegueWithIdentifier:@"showJob:" sender:[self.company.jobs objectAtIndex:indexPath.row]];
 }
-
-#pragma mark - MFMailComposeViewControllerDelegate
 
 - (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
 {

@@ -18,13 +18,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
+                                                                             style:UIBarButtonItemStylePlain
+                                                                            target:nil
+                                                                            action:nil];
+
     self.screenName = @"MIIJobViewController";
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+
     self.title = self.job.title;
     self.jobTextView.text = self.job.description;
     self.textViewHeightConstraint.constant = [self.jobTextView fitTextHeight];
 
-    // Choose the right link or hide the button
     if ([self.job.jobLink isKindOfClass:[NSString class]]) {
         self.url = self.job.jobLink;
     } else if ([self.hiringPageURL isKindOfClass:[NSString class]]) {

@@ -13,36 +13,27 @@
 #import "MIIViewController.h"
 
 @interface MIITableViewController ()
-{
-    NSArray *_tableData;
-    NSArray *_searchData;
-   // BOOL _waitingForCompany;
-}
+    @property (strong, nonatomic) NSArray *tableData;
+    @property (strong, nonatomic) NSArray *searchData;
+    @property (nonatomic) BOOL waitingForCompany;
 @end
 
 @implementation MIITableViewController
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
-    [UIApplication sharedApplication].statusBarHidden = NO;
-    
-    // Make sure to be the delegate every viewWillAppear
-    //self.data.delegate = self;
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
+                                                                             style:UIBarButtonItemStylePlain
+                                                                            target:nil
+                                                                            action:nil];
     
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
-    
-    
-    // GAITrackedViewController
     self.screenName = @"MIITableViewController";
+    
+    // Notifications from main view controller
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataIsReady:) name:@"dataIsReady" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(companyIsReady:) name:@"companyIsReady" object:nil];
     
     // Search or cluster view
     if (self.clusterAnnotation) {
@@ -67,41 +58,63 @@
     
     // Make sure pins on screen
     [self updateFilter:self];
+}
+
+- (void)updateFilter:(id)sender
+{
+    if (self.whosHiring.selectedSegmentIndex == 0) {
+        if (self.clusterAnnotation) {
+            self.tableData = [self.data getClusterAnnotationWhosHiring:NO];
+        } else {
+            self.tableData = [self.data getCompaniesWhosHiring:NO];
+        }
+    } else {
+        if (self.clusterAnnotation) {
+            self.tableData = [self.data getClusterAnnotationWhosHiring:YES];
+        } else {
+            self.tableData = [self.data getCompaniesWhosHiring:YES];
+        }
+    }
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataIsReady:) name:@"dataIsReady" object:nil];
+    int count = 0;
+    for (int i = 0; i < [MIIData getAllFormatedCategories].count; i++) {
+        count += [self.tableData[i] count];
+    }
+    self.searchDisplayController.searchBar.placeholder = [NSString stringWithFormat:@"Search %d Organizations", count];
+    
+    self.searchData = [self.tableData copy];
+    [self.tableView reloadData];
+}
+
+- (void)updateSearch:(NSString *)searchText
+{
+    if ((searchText == nil) || ([searchText isEqualToString:@""])) {
+        self.searchData = [self.tableData copy];
+    } else {
+        NSMutableArray *companies = [[NSMutableArray alloc] init];
+        for (int i = 0; i < [MIIData getAllFormatedCategories].count; i++) {
+            [companies insertObject:[[NSMutableArray alloc] init] atIndex:i];
+            for (MIICompany *company in [self.tableData objectAtIndex:i]) {
+                if ([company.companyName rangeOfString:searchText options:NSCaseInsensitiveSearch].length) {
+                    [[companies objectAtIndex:i] addObject:company];
+                }
+            }
+        }
+        self.searchData = [companies copy];
+    }
+}
+
+- (void)companyIsReady:(NSNotification *)note // TBD: Google Analytics, timeout?
+{
+    MIICompany *company = [[note userInfo] valueForKey:@"company"];
+    [self performSegueWithIdentifier:@"showCompany:" sender:company];
 }
 
 - (void)dataIsReady:(NSNotification *)note
 {
     MIIData *data = [[note userInfo] valueForKey:@"data"];
     self.data = data;
-        [self updateFilter:self];
-}
-
-- (void)updateFilter:(id)sender
-{
-    //NSLog(@"SegmentIndex: %d", self.whosHiring.selectedSegmentIndex);
-    
-    if (self.whosHiring.selectedSegmentIndex == 0) {
-        if (self.clusterAnnotation) {
-            _tableData = [self.data getClusterAnnotationWhosHiring:NO];
-        } else {
-            _tableData = [self.data getCompaniesWhosHiring:NO];
-        }
-    } else {
-        if (self.clusterAnnotation) {
-            _tableData = [self.data getClusterAnnotationWhosHiring:YES];
-        } else {
-            _tableData = [self.data getCompaniesWhosHiring:YES];
-        }
-    }
-    int count = 0;
-    for (int i = 0; i < [MIIData getAllFormatedCategories].count; i++) {
-        count += [_tableData[i] count];
-    }
-    self.searchDisplayController.searchBar.placeholder = [NSString stringWithFormat:@"Search %d Organizations", count];
-    _searchData = [_tableData copy];
-    [self.tableView reloadData];
+    [self updateFilter:self];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -111,25 +124,8 @@
             MIICompany *company = (MIICompany *)sender;
             MIICompanyViewController *controller = (MIICompanyViewController *)segue.destinationViewController;
             controller.company = company;
+            self.waitingForCompany = NO;
         }
-    }
-}
-
-- (void)updateSearch:(NSString *)searchText
-{
-    if ((searchText == nil) || ([searchText isEqualToString:@""])) {
-        _searchData = [_tableData copy];
-    } else {
-        NSMutableArray *companies = [[NSMutableArray alloc] init];
-        for (int i = 0; i < [MIIData getAllFormatedCategories].count; i++) {
-            [companies insertObject:[[NSMutableArray alloc] init] atIndex:i];
-            for (MIICompany *company in [_tableData objectAtIndex:i]) {
-                if ([company.companyName rangeOfString:searchText options:NSCaseInsensitiveSearch].length) {
-                    [[companies objectAtIndex:i] addObject:company];
-                }
-            }
-        }
-        _searchData = [companies copy];
     }
 }
 
@@ -139,8 +135,6 @@
     return YES;
 }
 
-#pragma mark - Table view data source
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return [[MIIData getAllFormatedCategories] count];
@@ -149,18 +143,18 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if (tableView == self.searchDisplayController.searchResultsTableView) {
-        return ((NSArray *)[_searchData objectAtIndex:section]).count ? [[MIIData getAllFormatedCategories] objectAtIndex:section] : nil;
+        return ((NSArray *)[self.searchData objectAtIndex:section]).count ? [[MIIData getAllFormatedCategories] objectAtIndex:section] : nil;
     } else {
-        return ((NSArray *)[_tableData objectAtIndex:section]).count ? [[MIIData getAllFormatedCategories] objectAtIndex:section] : nil;
+        return ((NSArray *)[self.tableData objectAtIndex:section]).count ? [[MIIData getAllFormatedCategories] objectAtIndex:section] : nil;
     }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView == self.searchDisplayController.searchResultsTableView) {
-        return ((NSArray *)[_searchData objectAtIndex:section]).count;
+        return ((NSArray *)[self.searchData objectAtIndex:section]).count;
     } else {
-        return ((NSArray *)[_tableData objectAtIndex:section]).count;
+        return ((NSArray *)[self.tableData objectAtIndex:section]).count;
     }
 }
 
@@ -175,9 +169,9 @@
     
     MIICompany *company;
     if (tableView == self.searchDisplayController.searchResultsTableView) {
-        company = [[_searchData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        company = [[self.searchData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     } else {
-        company = [[_tableData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        company = [[self.tableData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     }
     
     cell.textLabel.text = company.companyName;
@@ -191,12 +185,11 @@
     MIIViewController *mapView = [self.navigationController.viewControllers objectAtIndex:0];
     MIICompany *company;
     if (tableView == self.searchDisplayController.searchResultsTableView) {
-        company = [[_searchData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        company = [[self.searchData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     } else {
-        company = [[_tableData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        company = [[self.tableData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     }
     mapView.company = company;
-    mapView.data = self.data;
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -204,46 +197,15 @@
 {
     MIICompany *company;
     if (tableView == self.searchDisplayController.searchResultsTableView) {
-        company = [[_searchData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        company = [[self.searchData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     } else {
-        company = [[_tableData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        company = [[self.tableData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     }
     
-   // if (!_waitingForCompany) {
+    if (!self.waitingForCompany) {
         [self.data getCompany:company.id];
-        [self performSegueWithIdentifier:@"showCompany:" sender:self];
-    //    _waitingForCompany = YES;
-   // }
-}
-
-#pragma mark - MIIDataDelegate
-
-- (void)dataIsReady
-{
-    [self updateFilter:self];
-    MIIViewController *mapView = [self.navigationController.viewControllers objectAtIndex:0];
-    [mapView initMap:self];
-}
-
-/*- (void)companyIsReady:(MIICompany *)company
-{
-    if (_waitingForCompany) {
-        //[self performSegueWithIdentifier:@"showCompany:" sender:company];
-        _waitingForCompany = NO;
+        self.waitingForCompany = YES;
     }
 }
-
-- (void)serverError // TBD: Google Analytics
-{
-    if (_waitingForCompany) {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil
-                                                       message:@"Organization details are currently unavailable."
-                                                      delegate:self
-                                             cancelButtonTitle:nil
-                                             otherButtonTitles:@"OK",nil];
-        [alert show];
-        _waitingForCompany = NO;
-    }
-}*/
 
 @end

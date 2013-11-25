@@ -8,9 +8,8 @@
 
 #import "MIIClusterView.h"
 
-@interface MIIClusterView () {
-    UIColor *_color;
-}
+@interface MIIClusterView ()
+    @property (strong, nonatomic) UIColor *color;
 @end
 
 @implementation MIIClusterView
@@ -20,7 +19,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.opaque = NO;
-        _color = color;
+        self.color = color;
     }
     return self;
 }
@@ -28,9 +27,8 @@
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context, _color.CGColor);
-    //CGContextSetShadowWithColor(context, CGSizeMake(-1,1), 1, [UIColor grayColor].CGColor);
-    CGContextFillEllipseInRect(context, CGRectMake(0, 2, self.frame.size.width-15, self.frame.size.height-2));
+    CGContextSetFillColorWithColor(context, self.color.CGColor);
+    CGContextFillEllipseInRect(context, CGRectMake(0, CLUSTER_Y_OFF, self.frame.size.width-CLUSTER_X_OFF, self.frame.size.height-CLUSTER_Y_OFF));
 }
 
 + (UIImage *)imageWithView:(UIView *)view
