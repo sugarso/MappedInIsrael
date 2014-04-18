@@ -1,0 +1,13 @@
+PODS:
+  - Fingertips (0.3.0)
+  - GoogleAnalytics-iOS-SDK (3.0.6)
+
+DEPENDENCIES:
+  - Fingertips
+  - GoogleAnalytics-iOS-SDK
+
+SPEC CHECKSUMS:
+  Fingertips: 0c690bf99d1e07e4dd9e0b23f6a453fdf63a2575
+  GoogleAnalytics-iOS-SDK: 16dfcc0c4491148bf372edc85a8470cc405ffb72
+
+COCOAPODS: 0.32.1

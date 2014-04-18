@@ -10,11 +10,21 @@
 #import "GAI.h"
 #import <Crashlytics/Crashlytics.h>
 #import "TestFlight.h"
+#import <Fingertips/MBFingerTipWindow.h>
 
 @implementation MIIAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+
+#ifdef CONFIGURATION_Debug
+    UIViewController *vc = self.window.rootViewController;
+    CGRect frame = [[UIScreen mainScreen] bounds];
+    self.window = [[MBFingerTipWindow alloc] initWithFrame:frame];
+    self.window.rootViewController = vc;
+    [self.window makeKeyAndVisible];
+#endif
+    
 #ifdef CONFIGURATION_Beta
     // TestFlight
     [TestFlight takeOff:@"a6d3ce40-d3a2-4ab4-ba36-e99ce94a5284"];

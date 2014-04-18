@@ -14,7 +14,7 @@
 + (UIColor *)colorWithHexString:(NSString *)str  alpah:(CGFloat)alpah
 {
     const char *cStr = [str cStringUsingEncoding:NSASCIIStringEncoding];
-    long x = strtol(cStr+1, NULL, 16);
+    unsigned int x = (unsigned int)strtol(cStr+1, NULL, 16);
     return [UIColor colorWithHex:x alpah:alpah];
 }
 

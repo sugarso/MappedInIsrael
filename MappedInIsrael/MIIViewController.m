@@ -254,7 +254,7 @@
                 v = [[MKPinAnnotationView alloc] initWithAnnotation:a reuseIdentifier:@"Cluster"];
             }
             
-            NSString *numberOfCompanies = [NSString stringWithFormat:@"%d", a.annotations.count];
+            NSString *numberOfCompanies = [NSString stringWithFormat:@"%lu", (unsigned long)a.annotations.count];
             UILabel *clusterLabel;
             MIIClusterView *clusterView;
             if ([numberOfCompanies intValue] < SMALL_CLUSTER) {
