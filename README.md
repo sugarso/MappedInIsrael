@@ -9,9 +9,9 @@ Startups lets you:
 - Locate near by social organisations supporting the startup eco-system. 
 - Search companies by name, and contact them directly via email. 
 
-Startups was built by Iodie Studio, in cooperation with http://mappedinisrael.com, and is released under MIT open source license as a service for the community. 
+Startups was built by Sugar So Studio, in cooperation with http://mappedinisrael.com, and is released under MIT open source license as a service for the community. 
 
-For feedback, hiring us for a project or comments hello@iodie.com (We won't bite, unless you deserve it).
+For feedback, hiring us for a project or comments hello@sugar.so (We won't bite, unless you deserve it).
 
 ##Screenshots:
 ![alt screenshots](/MappedInIsrael/Images/startups5/photo_0.png)
