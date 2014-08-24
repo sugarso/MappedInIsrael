@@ -75,11 +75,6 @@
 		B2CD5CCD182238B900340E43 /* MIIAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CD5CCC182238B900340E43 /* MIIAppDelegate.m */; };
 		B2CD5CD3182238B900340E43 /* MIIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CD5CD2182238B900340E43 /* MIIViewController.m */; };
 		B2CD5CD5182238B900340E43 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2CD5CD4182238B900340E43 /* Images.xcassets */; };
-		B2CD5CDC182238B900340E43 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2CD5CDB182238B900340E43 /* XCTest.framework */; };
-		B2CD5CDD182238B900340E43 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2CD5CBC182238B900340E43 /* Foundation.framework */; };
-		B2CD5CDE182238B900340E43 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2CD5CC0182238B900340E43 /* UIKit.framework */; };
-		B2CD5CE6182238B900340E43 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B2CD5CE4182238B900340E43 /* InfoPlist.strings */; };
-		B2CD5CE8182238B900340E43 /* MappedInIsraelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CD5CE7182238B900340E43 /* MappedInIsraelTests.m */; };
 		B2CD5CF3182239A400340E43 /* MIICompany.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CD5CF2182239A400340E43 /* MIICompany.m */; };
 		B2CD5CF91822431600340E43 /* MIICommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CD5CF81822431600340E43 /* MIICommunicator.m */; };
 		B2CD5CFC1822452500340E43 /* MIICompanyBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CD5CFB1822452500340E43 /* MIICompanyBuilder.m */; };
@@ -97,16 +92,6 @@
 		B2F3A2E018355C7A00AE608E /* View.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2CD5CCE182238B900340E43 /* View.storyboard */; };
 		E29F6335D4BC4DE3848CC0FC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C452A9CA18094A61B76B3BBE /* libPods.a */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		B2CD5CDF182238B900340E43 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B2CD5CB1182238B900340E43 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B2CD5CB8182238B900340E43;
-			remoteInfo = MappedInIsrael;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		B200F1E81839112F00C7E957 /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HTML.h"; sourceTree = "<group>"; };
@@ -209,11 +194,7 @@
 		B2CD5CD1182238B900340E43 /* MIIViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MIIViewController.h; sourceTree = "<group>"; };
 		B2CD5CD2182238B900340E43 /* MIIViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MIIViewController.m; sourceTree = "<group>"; };
 		B2CD5CD4182238B900340E43 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		B2CD5CDA182238B900340E43 /* MappedInIsraelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MappedInIsraelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2CD5CDB182238B900340E43 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		B2CD5CE3182238B900340E43 /* MappedInIsraelTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MappedInIsraelTests-Info.plist"; sourceTree = "<group>"; };
-		B2CD5CE5182238B900340E43 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B2CD5CE7182238B900340E43 /* MappedInIsraelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MappedInIsraelTests.m; sourceTree = "<group>"; };
 		B2CD5CF1182239A400340E43 /* MIICompany.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIICompany.h; sourceTree = "<group>"; };
 		B2CD5CF2182239A400340E43 /* MIICompany.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIICompany.m; sourceTree = "<group>"; };
 		B2CD5CF41822427600340E43 /* MIICommunicatorDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MIICommunicatorDelegate.h; sourceTree = "<group>"; };
@@ -263,16 +244,6 @@
 				B2CD5CC1182238B900340E43 /* UIKit.framework in Frameworks */,
 				B2CD5CBD182238B900340E43 /* Foundation.framework in Frameworks */,
 				E29F6335D4BC4DE3848CC0FC /* libPods.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B2CD5CD7182238B900340E43 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B2CD5CDC182238B900340E43 /* XCTest.framework in Frameworks */,
-				B2CD5CDE182238B900340E43 /* UIKit.framework in Frameworks */,
-				B2CD5CDD182238B900340E43 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,7 +332,6 @@
 			isa = PBXGroup;
 			children = (
 				B2CD5CC2182238B900340E43 /* MappedInIsrael */,
-				B2CD5CE1182238B900340E43 /* MappedInIsraelTests */,
 				B281679218780A90008C0FDA /* TestFlightSDK2.2.0 */,
 				B2CD5CBB182238B900340E43 /* Frameworks */,
 				B2CD5CBA182238B900340E43 /* Products */,
@@ -373,7 +343,6 @@
 			isa = PBXGroup;
 			children = (
 				B2CD5CB9182238B900340E43 /* MappedInIsrael.app */,
-				B2CD5CDA182238B900340E43 /* MappedInIsraelTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -427,24 +396,6 @@
 				B2CD5CC8182238B900340E43 /* main.m */,
 				B2CD5CCA182238B900340E43 /* MappedInIsrael-Prefix.pch */,
 				B223499B183B6677002962E9 /* companies.data */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		B2CD5CE1182238B900340E43 /* MappedInIsraelTests */ = {
-			isa = PBXGroup;
-			children = (
-				B2CD5CE7182238B900340E43 /* MappedInIsraelTests.m */,
-				B2CD5CE2182238B900340E43 /* Supporting Files */,
-			);
-			path = MappedInIsraelTests;
-			sourceTree = "<group>";
-		};
-		B2CD5CE2182238B900340E43 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				B2CD5CE3182238B900340E43 /* MappedInIsraelTests-Info.plist */,
-				B2CD5CE4182238B900340E43 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -554,24 +505,6 @@
 			productReference = B2CD5CB9182238B900340E43 /* MappedInIsrael.app */;
 			productType = "com.apple.product-type.application";
 		};
-		B2CD5CD9182238B900340E43 /* MappedInIsraelTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B2CD5CEE182238B900340E43 /* Build configuration list for PBXNativeTarget "MappedInIsraelTests" */;
-			buildPhases = (
-				B2CD5CD6182238B900340E43 /* Sources */,
-				B2CD5CD7182238B900340E43 /* Frameworks */,
-				B2CD5CD8182238B900340E43 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				B2CD5CE0182238B900340E43 /* PBXTargetDependency */,
-			);
-			name = MappedInIsraelTests;
-			productName = MappedInIsraelTests;
-			productReference = B2CD5CDA182238B900340E43 /* MappedInIsraelTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -579,14 +512,11 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = MII;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "Genady Okrain";
 				TargetAttributes = {
 					B2CD5CB8182238B900340E43 = {
 						DevelopmentTeam = SZHLQT8428;
-					};
-					B2CD5CD9182238B900340E43 = {
-						TestTargetID = B2CD5CB8182238B900340E43;
 					};
 				};
 			};
@@ -604,7 +534,6 @@
 			projectRoot = "";
 			targets = (
 				B2CD5CB8182238B900340E43 /* MappedInIsrael */,
-				B2CD5CD9182238B900340E43 /* MappedInIsraelTests */,
 			);
 		};
 /* End PBXProject section */
@@ -653,14 +582,6 @@
 				B2BA4EF3183791810027CDDE /* company-email@2x.png in Resources */,
 				B2BA4EE11836C4980027CDDE /* AppIcon60x60@2x.png in Resources */,
 				B2BA4EDC1836C4980027CDDE /* AppIcon29x29.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B2CD5CD8182238B900340E43 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B2CD5CE6182238B900340E43 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -765,23 +686,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B2CD5CD6182238B900340E43 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B2CD5CE8182238B900340E43 /* MappedInIsraelTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		B2CD5CE0182238B900340E43 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B2CD5CB8182238B900340E43 /* MappedInIsrael */;
-			targetProxy = B2CD5CDF182238B900340E43 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B2CD5CC5182238B900340E43 /* InfoPlist.strings */ = {
@@ -798,14 +703,6 @@
 				B2CD5CCF182238B900340E43 /* Base */,
 			);
 			name = View.storyboard;
-			sourceTree = "<group>";
-		};
-		B2CD5CE4182238B900340E43 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B2CD5CE5182238B900340E43 /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -849,6 +746,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EXCLUDED_SOURCE_FILE_NAMES = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -864,26 +763,8 @@
 					"$(PROJECT_DIR)/**",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3E140BD6-D7E0-4869-B788-7C8C0E35DD79";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
-			};
-			name = Beta;
-		};
-		B2224F16187811DA005D478F /* Beta */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MappedInIsrael.app/MappedInIsrael";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MappedInIsrael/MappedInIsrael-Prefix.pch";
-				INFOPLIST_FILE = "MappedInIsraelTests/MappedInIsraelTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
 			};
 			name = Beta;
 		};
@@ -919,6 +800,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -961,6 +843,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EXCLUDED_SOURCE_FILE_NAMES = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -976,7 +860,7 @@
 					"$(PROJECT_DIR)/**",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "EBC634FF-0817-488C-B0DD-F12EA071D805";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -987,6 +871,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EXCLUDED_SOURCE_FILE_NAMES = "*libTestFlight.a";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1002,48 +888,8 @@
 					"$(PROJECT_DIR)/**",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7949B889-8775-4F7C-9443-7282066BAFFB";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		B2CD5CEF182238B900340E43 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MappedInIsrael.app/MappedInIsrael";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MappedInIsrael/MappedInIsrael-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "MappedInIsraelTests/MappedInIsraelTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		B2CD5CF0182238B900340E43 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MappedInIsrael.app/MappedInIsrael";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MappedInIsrael/MappedInIsrael-Prefix.pch";
-				INFOPLIST_FILE = "MappedInIsraelTests/MappedInIsraelTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
 		};
@@ -1066,16 +912,6 @@
 				B2CD5CEC182238B900340E43 /* Debug */,
 				B2CD5CED182238B900340E43 /* Release */,
 				B2224F15187811DA005D478F /* Beta */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		B2CD5CEE182238B900340E43 /* Build configuration list for PBXNativeTarget "MappedInIsraelTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B2CD5CEF182238B900340E43 /* Debug */,
-				B2CD5CF0182238B900340E43 /* Release */,
-				B2224F16187811DA005D478F /* Beta */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

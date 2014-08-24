@@ -7,7 +7,7 @@ DEPENDENCIES:
   - GoogleAnalytics-iOS-SDK
 
 SPEC CHECKSUMS:
-  Fingertips: 0c690bf99d1e07e4dd9e0b23f6a453fdf63a2575
-  GoogleAnalytics-iOS-SDK: 16dfcc0c4491148bf372edc85a8470cc405ffb72
+  Fingertips: 09d223a390349b317a51d4c941d778bdb661c4e1
+  GoogleAnalytics-iOS-SDK: 4577fb25381a71c5beac455b18ebb288fc4f44e9
 
-COCOAPODS: 0.32.1
+COCOAPODS: 0.33.1
