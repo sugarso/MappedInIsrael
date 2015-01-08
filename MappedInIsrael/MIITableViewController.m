@@ -13,6 +13,7 @@
 #import "MIIViewController.h"
 
 @interface MIITableViewController ()
+    @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
     @property (strong, nonatomic) NSArray *tableData;
     @property (strong, nonatomic) NSArray *searchData;
     @property (nonatomic) BOOL waitingForCompany;
@@ -41,7 +42,7 @@
     }
     
     // UIReturnKeyDone
-    for (UIView *subView in [self.searchDisplayController.searchBar subviews]) {
+    for (UIView *subView in [self.searchBar subviews]) {
         if ([subView conformsToProtocol:@protocol(UITextInputTraits)]) {
             [(UITextField *)subView setReturnKeyType: UIReturnKeyDone];
         } else {
@@ -80,7 +81,7 @@
     for (int i = 0; i < [MIIData getAllFormatedCategories].count; i++) {
         count += [self.tableData[i] count];
     }
-    self.searchDisplayController.searchBar.placeholder = [NSString stringWithFormat:@"Search %d Organizations", count];
+    self.searchBar.placeholder = [NSString stringWithFormat:@"Search %d Organizations", count];
     
     self.searchData = [self.tableData copy];
     [self.tableView reloadData];
@@ -142,7 +143,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
+    if (tableView != self.tableView) {
         return ((NSArray *)(self.searchData)[section]).count ? [MIIData getAllFormatedCategories][section] : nil;
     } else {
         return ((NSArray *)(self.tableData)[section]).count ? [MIIData getAllFormatedCategories][section] : nil;
@@ -151,7 +152,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
+    if (tableView != self.tableView) {
         return ((NSArray *)(self.searchData)[section]).count;
     } else {
         return ((NSArray *)(self.tableData)[section]).count;
@@ -168,7 +169,7 @@
     }
     
     MIICompany *company;
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
+    if (tableView != self.tableView) {
         company = (self.searchData)[indexPath.section][indexPath.row];
     } else {
         company = (self.tableData)[indexPath.section][indexPath.row];
@@ -184,7 +185,7 @@
 {
     MIIViewController *mapView = (self.navigationController.viewControllers)[0];
     MIICompany *company;
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
+    if (tableView != self.tableView) {
         company = (self.searchData)[indexPath.section][indexPath.row];
     } else {
         company = (self.tableData)[indexPath.section][indexPath.row];
@@ -196,7 +197,7 @@
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
     MIICompany *company;
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
+    if (tableView != self.tableView) {
         company = (self.searchData)[indexPath.section][indexPath.row];
     } else {
         company = (self.tableData)[indexPath.section][indexPath.row];
