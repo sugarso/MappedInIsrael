@@ -35,9 +35,11 @@
     [self.searchController.searchBar sizeToFit];
     self.tableView.tableHeaderView = self.searchController.searchBar;
     self.searchController.delegate = self;
+    self.searchController.dimsBackgroundDuringPresentation = NO;
     self.searchController.searchBar.delegate = self;
     self.searchController.searchBar.searchBarStyle = UISearchBarStyleMinimal;
     self.searchController.searchBar.placeholder = @"Search Organizations";
+    self.definesPresentationContext = YES;
 
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
                                                                              style:UIBarButtonItemStylePlain
@@ -104,6 +106,7 @@
         }
         self.searchData = [companies copy];
     }
+    [self.tableView reloadData];
 }
 
 - (void)companyIsReady:(NSNotification *)note // TBD: Google Analytics, timeout?
@@ -136,7 +139,6 @@
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController
 {
     [self updateSearch:searchController.searchBar.text];
-    [self.tableView reloadData];
 }
 
 #pragma mark - UITableViewDelegate
