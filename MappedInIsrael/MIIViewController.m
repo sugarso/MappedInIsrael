@@ -103,7 +103,7 @@
     self.treeController = [[KPTreeController alloc] initWithMapView:self.mapView];
     self.treeController.delegate = self;
     self.treeController.animationOptions = UIViewAnimationOptionCurveEaseOut;
-    self.treeController.gridSize = CGSizeMake(20.f, 20.f);
+    self.treeController.gridSize = CGSizeMake(150.f, 150.f);
     
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
