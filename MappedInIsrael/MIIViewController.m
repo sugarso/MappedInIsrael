@@ -309,7 +309,7 @@
             }
 
             NSString *subtitle = ((MKPointAnnotation *)annotation).subtitle;
-            UIImage *i = [UIImage imageNamed:[NSString stringWithFormat:@"%@%@", subtitle, @".png"]];
+            UIImage *i = [UIImage imageNamed:subtitle];
             v.image = i;
             
             UIButton *btn = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
