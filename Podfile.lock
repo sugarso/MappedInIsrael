@@ -15,18 +15,18 @@ PODS:
   - GoogleAnalytics-iOS-SDK (3.10):
     - GoogleAnalytics-iOS-SDK/Core (= 3.10)
   - GoogleAnalytics-iOS-SDK/Core (3.10)
-  - kingpin (0.2.beta)
+  - kingpin (0.1.4)
   - Reachability (3.2)
 
 DEPENDENCIES:
   - ASIHTTPRequest
   - GoogleAnalytics-iOS-SDK
-  - kingpin (= 0.2.beta)
+  - kingpin
 
 SPEC CHECKSUMS:
   ASIHTTPRequest: 2c8335b49410c0e2ad42829c438e74d454b77590
   GoogleAnalytics-iOS-SDK: f422062075d9ccb1ea8d783fc5ba3829461e9502
-  kingpin: 080953063d3d59c07f512623879b69f63c129f84
+  kingpin: 3438e5bab8dba418d2059f5ade745445e344c33f
   Reachability: 1ef8adf5c4e3d362f96515d4278f68dad3c26930
 
 COCOAPODS: 0.36.0.beta.1

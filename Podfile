@@ -3,4 +3,4 @@ inhibit_all_warnings!
 
 pod 'GoogleAnalytics-iOS-SDK'
 pod 'ASIHTTPRequest'
-pod 'kingpin', '0.2.beta'
+pod 'kingpin'
