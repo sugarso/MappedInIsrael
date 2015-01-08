@@ -56,42 +56,6 @@
         <scene sceneID="mMM-oO-mkn">
             <objects>
                 <tableViewController id="KnT-ws-pnS" customClass="MIITableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="8H4-xb-oD8">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" placeholder="Search Organizations" id="TRr-Qz-51a">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <textInputTraits key="textInputTraits"/>
-                            <connections>
-                                <outlet property="delegate" destination="KnT-ws-pnS" id="A3t-uB-0ze"/>
-                            </connections>
-                        </searchBar>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="detailButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="diG-sW-liw" style="IBUITableViewCellStyleDefault" id="pQx-F9-TCT">
-                                <rect key="frame" x="0.0" y="130" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pQx-F9-TCT" id="lqb-TD-dFf">
-                                    <rect key="frame" x="0.0" y="0.0" width="273" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="diG-sW-liw">
-                                            <rect key="frame" x="15" y="0.0" width="258" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="KnT-ws-pnS" id="eiZ-N5-06U"/>
-                            <outlet property="delegate" destination="KnT-ws-pnS" id="qKP-8D-uDv"/>
-                        </connections>
-                    </tableView>
                     <navigationItem key="navigationItem" id="tij-zJ-av4">
                         <nil key="title"/>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="eQe-7o-6gi">
@@ -104,22 +68,11 @@
                         </segmentedControl>
                     </navigationItem>
                     <connections>
-                        <outlet property="searchBar" destination="TRr-Qz-51a" id="A2y-ra-FrM"/>
-                        <outlet property="searchDisplayController" destination="Vpo-mW-gNE" id="2ah-JS-JkX"/>
-                        <outlet property="tableView" destination="8H4-xb-oD8" id="sfU-12-FGE"/>
                         <outlet property="whosHiring" destination="eQe-7o-6gi" id="HLE-HK-l1b"/>
                         <segue destination="9uK-M2-kGv" kind="push" identifier="showCompany:" id="YcO-ec-Sjt"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r7y-WW-jzN" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="Vpo-mW-gNE">
-                    <connections>
-                        <outlet property="delegate" destination="KnT-ws-pnS" id="1i8-ar-i1q"/>
-                        <outlet property="searchContentsController" destination="KnT-ws-pnS" id="EpP-Mk-0v4"/>
-                        <outlet property="searchResultsDataSource" destination="KnT-ws-pnS" id="0yr-UV-kNE"/>
-                        <outlet property="searchResultsDelegate" destination="KnT-ws-pnS" id="vpc-Y2-ebf"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1162" y="-800"/>
         </scene>
