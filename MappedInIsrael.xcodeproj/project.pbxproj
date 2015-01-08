@@ -419,7 +419,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"\nproductVersion=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"$INFOPLIST_FILE\")\n/usr/libexec/PlistBuddy -c \"Set PreferenceSpecifiers:2:DefaultValue $buildNumber\" MappedInIsrael/Settings.bundle/Root.plist\n/usr/libexec/PlistBuddy -c \"Set PreferenceSpecifiers:1:DefaultValue $productVersion\" MappedInIsrael/Settings.bundle/Root.plist";
+			shellScript = "if [ \"$CONFIGURATION\" == \"Release\" ]; then\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"\nproductVersion=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"$INFOPLIST_FILE\")\n/usr/libexec/PlistBuddy -c \"Set PreferenceSpecifiers:2:DefaultValue $buildNumber\" MappedInIsrael/Settings.bundle/Root.plist\n/usr/libexec/PlistBuddy -c \"Set PreferenceSpecifiers:1:DefaultValue $productVersion\" MappedInIsrael/Settings.bundle/Root.plist\nfi";
 		};
 		E95D182ED7CA4DAA9103A9E7 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
