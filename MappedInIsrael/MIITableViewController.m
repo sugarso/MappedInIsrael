@@ -130,11 +130,11 @@
     }
 }
 
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
-{
-    [self updateSearch:searchString];
-    return YES;
-}
+//- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+//{
+//    [self updateSearch:searchString];
+//    return YES;
+//}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
