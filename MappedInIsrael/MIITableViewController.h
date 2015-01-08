@@ -10,11 +10,9 @@
 #import "GAITrackedViewController.h"
 #import "MIIData.h"
 
-@interface MIITableViewController : GAITrackedViewController <UISearchControllerDelegate, UISearchBarDelegate, UITableViewDataSource>
+@interface MIITableViewController : GAITrackedViewController
 
-@property (strong, nonatomic) MIIData *data;
-@property (strong, nonatomic) NSArray *clusterAnnotation;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *whosHiring;
+@property (nonatomic) MIIData *data;
+@property (nonatomic) NSArray *clusterAnnotation;
 
 @end

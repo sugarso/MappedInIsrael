@@ -12,11 +12,15 @@
 #import "MIICompany.h"
 #import "MIIViewController.h"
 
-@interface MIITableViewController ()
-    @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-    @property (strong, nonatomic) NSArray *tableData;
-    @property (strong, nonatomic) NSArray *searchData;
-    @property (nonatomic) BOOL waitingForCompany;
+@interface MIITableViewController () <UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating, UITableViewDelegate>
+
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property (nonatomic, weak) IBOutlet UISegmentedControl *whosHiring;
+@property (nonatomic) UISearchController *searchController;
+@property (nonatomic) NSArray *tableData;
+@property (nonatomic) NSArray *searchData;
+@property (nonatomic) BOOL waitingForCompany;
+
 @end
 
 @implementation MIITableViewController
@@ -24,12 +28,36 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
+    // searchController
+    self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+    self.searchController.searchResultsUpdater = self;
+    [self.searchController.searchBar sizeToFit];
+    self.tableView.tableHeaderView = self.searchController.searchBar;
+    self.searchController.delegate = self;
+    self.searchController.dimsBackgroundDuringPresentation = NO;
+    self.searchController.searchBar.delegate = self;
+    self.searchController.searchBar.searchBarStyle = UISearchBarStyleMinimal;
+    self.searchController.searchBar.placeholder = @"Search Organizations";
+
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
                                                                              style:UIBarButtonItemStylePlain
                                                                             target:nil
                                                                             action:nil];
-    
+
+    // UIReturnKeyDone
+    for (UIView *subView in self.searchController.searchBar.subviews) {
+        if ([subView conformsToProtocol:@protocol(UITextInputTraits)]) {
+            [(UITextField *)subView setReturnKeyType:UIReturnKeyDone];
+        } else {
+            for (UIView *subSubView in [subView subviews]) {
+                if ([subSubView conformsToProtocol:@protocol(UITextInputTraits)]) {
+                    [(UITextField *)subSubView setReturnKeyType:UIReturnKeyDone];
+                }
+            }
+        }
+    }
+
     self.screenName = @"MIITableViewController";
     
     // Notifications from main view controller
@@ -40,20 +68,7 @@
     if (self.clusterAnnotation) {
         [self.data setClusterAnnotation:self.clusterAnnotation];
     }
-    
-    // UIReturnKeyDone
-    for (UIView *subView in [self.searchBar subviews]) {
-        if ([subView conformsToProtocol:@protocol(UITextInputTraits)]) {
-            [(UITextField *)subView setReturnKeyType: UIReturnKeyDone];
-        } else {
-            for (UIView *subSubView in [subView subviews]) {
-                if ([subSubView conformsToProtocol:@protocol(UITextInputTraits)]) {
-                    [(UITextField *)subSubView setReturnKeyType: UIReturnKeyDone];
-                }
-            }
-        }
-    }
-    
+
     // updateFilter every UIControlEventValueChanged
     [self.whosHiring addTarget:self action:@selector(updateFilter:) forControlEvents:UIControlEventValueChanged];
     
@@ -81,8 +96,8 @@
     for (int i = 0; i < [MIIData getAllFormatedCategories].count; i++) {
         count += [self.tableData[i] count];
     }
-    self.searchBar.placeholder = [NSString stringWithFormat:@"Search %d Organizations", count];
-    
+    self.searchController.searchBar.placeholder = [NSString stringWithFormat:@"Search %d Organizations", count];
+
     self.searchData = [self.tableData copy];
     [self.tableView reloadData];
 }
@@ -130,79 +145,55 @@
     }
 }
 
-//- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
-//{
-//    [self updateSearch:searchString];
-//    return YES;
-//}
+#pragma mark - UISearchResultsUpdating
+
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController
+{
+    [self updateSearch:searchController.searchBar.text];
+    [self.tableView reloadData];
+}
+
+#pragma mark - UITableViewDelegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [[MIIData getAllFormatedCategories] count];
+    return [MIIData getAllFormatedCategories].count;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if (tableView != self.tableView) {
-        return ((NSArray *)(self.searchData)[section]).count ? [MIIData getAllFormatedCategories][section] : nil;
-    } else {
-        return ((NSArray *)(self.tableData)[section]).count ? [MIIData getAllFormatedCategories][section] : nil;
-    }
+    return ((NSArray *)self.searchData[section]).count ? [MIIData getAllFormatedCategories][section] : nil;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (tableView != self.tableView) {
-        return ((NSArray *)(self.searchData)[section]).count;
-    } else {
-        return ((NSArray *)(self.tableData)[section]).count;
-    }
+    return ((NSArray *)self.searchData[section]).count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    
-    MIICompany *company;
-    if (tableView != self.tableView) {
-        company = (self.searchData)[indexPath.section][indexPath.row];
-    } else {
-        company = (self.tableData)[indexPath.section][indexPath.row];
-    }
-    
+    MIICompany *company = self.searchData[indexPath.section][indexPath.row];
     cell.textLabel.text = company.companyName;
     cell.detailTextLabel.text = company.companySubCategory;
-    
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MIIViewController *mapView = (self.navigationController.viewControllers)[0];
-    MIICompany *company;
-    if (tableView != self.tableView) {
-        company = (self.searchData)[indexPath.section][indexPath.row];
-    } else {
-        company = (self.tableData)[indexPath.section][indexPath.row];
-    }
+    MIIViewController *mapView = self.navigationController.viewControllers[0];
+    MIICompany *company = self.searchData[indexPath.section][indexPath.row];
     mapView.company = company;
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
-    MIICompany *company;
-    if (tableView != self.tableView) {
-        company = (self.searchData)[indexPath.section][indexPath.row];
-    } else {
-        company = (self.tableData)[indexPath.section][indexPath.row];
-    }
-    
+    MIICompany *company = self.searchData[indexPath.section][indexPath.row];
     if (!self.waitingForCompany) {
         [self.data getCompany:company.id];
         self.waitingForCompany = YES;
