@@ -35,9 +35,7 @@
     [self.searchController.searchBar sizeToFit];
     self.tableView.tableHeaderView = self.searchController.searchBar;
     self.searchController.delegate = self;
-    self.searchController.dimsBackgroundDuringPresentation = NO;
     self.searchController.searchBar.delegate = self;
-    self.searchController.hidesNavigationBarDuringPresentation = NO;
     self.searchController.searchBar.searchBarStyle = UISearchBarStyleMinimal;
     self.searchController.searchBar.placeholder = @"Search Organizations";
 
@@ -45,19 +43,6 @@
                                                                              style:UIBarButtonItemStylePlain
                                                                             target:nil
                                                                             action:nil];
-
-    // UIReturnKeyDone
-    for (UIView *subView in self.searchController.searchBar.subviews) {
-        if ([subView conformsToProtocol:@protocol(UITextInputTraits)]) {
-            [(UITextField *)subView setReturnKeyType:UIReturnKeyDone];
-        } else {
-            for (UIView *subSubView in [subView subviews]) {
-                if ([subSubView conformsToProtocol:@protocol(UITextInputTraits)]) {
-                    [(UITextField *)subSubView setReturnKeyType:UIReturnKeyDone];
-                }
-            }
-        }
-    }
 
     self.screenName = @"MIITableViewController";
     
