@@ -41,7 +41,7 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>This will show your current location on the map</string>
 	<key>UILaunchStoryboardName</key>
-	<string>View</string>
+	<string>Launch</string>
 	<key>UIMainStoryboardFile</key>
 	<string>View</string>
 	<key>UIRequiredDeviceCapabilities</key>
