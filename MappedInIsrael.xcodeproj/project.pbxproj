@@ -43,11 +43,6 @@
 		B2D87A2E1A5EB7070050D81E /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2D87A2D1A5EB7070050D81E /* Fabric.framework */; };
 		B2D87A311A5EF3F10050D81E /* Launch.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2D87A2F1A5EF3F10050D81E /* Launch.xib */; };
 		B2DFDA8518324E000080BA78 /* MIIClusterView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DFDA8418324E000080BA78 /* MIIClusterView.m */; };
-		B2DFDAA1183281410080BA78 /* KPAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DFDA98183281410080BA78 /* KPAnnotation.m */; };
-		B2DFDAA2183281410080BA78 /* KPAnnotationTree.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DFDA9A183281410080BA78 /* KPAnnotationTree.m */; };
-		B2DFDAA3183281410080BA78 /* KPTreeController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DFDA9C183281410080BA78 /* KPTreeController.m */; };
-		B2DFDAA4183281410080BA78 /* KPTreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DFDA9E183281410080BA78 /* KPTreeNode.m */; };
-		B2DFDAA81832898D0080BA78 /* NSArray+KP.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DFDAA71832898D0080BA78 /* NSArray+KP.m */; };
 		B2F3A2E018355C7A00AE608E /* View.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2CD5CCE182238B900340E43 /* View.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -112,16 +107,6 @@
 		B2D87A301A5EF3F10050D81E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = MappedInIsrael/Base.lproj/Launch.xib; sourceTree = "<group>"; };
 		B2DFDA8318324E000080BA78 /* MIIClusterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIIClusterView.h; sourceTree = "<group>"; };
 		B2DFDA8418324E000080BA78 /* MIIClusterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIIClusterView.m; sourceTree = "<group>"; };
-		B2DFDA97183281410080BA78 /* KPAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPAnnotation.h; sourceTree = "<group>"; };
-		B2DFDA98183281410080BA78 /* KPAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPAnnotation.m; sourceTree = "<group>"; };
-		B2DFDA99183281410080BA78 /* KPAnnotationTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPAnnotationTree.h; sourceTree = "<group>"; };
-		B2DFDA9A183281410080BA78 /* KPAnnotationTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPAnnotationTree.m; sourceTree = "<group>"; };
-		B2DFDA9B183281410080BA78 /* KPTreeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPTreeController.h; sourceTree = "<group>"; };
-		B2DFDA9C183281410080BA78 /* KPTreeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPTreeController.m; sourceTree = "<group>"; };
-		B2DFDA9D183281410080BA78 /* KPTreeNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPTreeNode.h; sourceTree = "<group>"; };
-		B2DFDA9E183281410080BA78 /* KPTreeNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPTreeNode.m; sourceTree = "<group>"; };
-		B2DFDAA61832898D0080BA78 /* NSArray+KP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+KP.h"; sourceTree = "<group>"; };
-		B2DFDAA71832898D0080BA78 /* NSArray+KP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+KP.m"; sourceTree = "<group>"; };
 		CF0EDF0D68446D5AD5657906 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		FB23B2B0452C0B59A4A8CB96 /* Pods.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.beta.xcconfig; path = "Pods/Target Support Files/Pods/Pods.beta.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -248,7 +233,6 @@
 				B296E6281830FB33005C09E9 /* Model */,
 				B2DFDA8618324E090080BA78 /* View */,
 				B296E6291830FB78005C09E9 /* Controllers */,
-				B2DFDA96183281410080BA78 /* kingpin */,
 				B2CD5CD4182238B900340E43 /* Images.xcassets */,
 				B2CD5CC3182238B900340E43 /* Supporting Files */,
 			);
@@ -277,23 +261,6 @@
 				B2DFDA8418324E000080BA78 /* MIIClusterView.m */,
 			);
 			name = View;
-			sourceTree = "<group>";
-		};
-		B2DFDA96183281410080BA78 /* kingpin */ = {
-			isa = PBXGroup;
-			children = (
-				B2DFDAA61832898D0080BA78 /* NSArray+KP.h */,
-				B2DFDAA71832898D0080BA78 /* NSArray+KP.m */,
-				B2DFDA97183281410080BA78 /* KPAnnotation.h */,
-				B2DFDA98183281410080BA78 /* KPAnnotation.m */,
-				B2DFDA99183281410080BA78 /* KPAnnotationTree.h */,
-				B2DFDA9A183281410080BA78 /* KPAnnotationTree.m */,
-				B2DFDA9B183281410080BA78 /* KPTreeController.h */,
-				B2DFDA9C183281410080BA78 /* KPTreeController.m */,
-				B2DFDA9D183281410080BA78 /* KPTreeNode.h */,
-				B2DFDA9E183281410080BA78 /* KPTreeNode.m */,
-			);
-			path = kingpin;
 			sourceTree = "<group>";
 		};
 		B2EFE0911842796100E36BD2 /* Categorys */ = {
@@ -447,22 +414,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2DFDAA3183281410080BA78 /* KPTreeController.m in Sources */,
 				B200F1EA1839112F00C7E957 /* NSString+HTML.m in Sources */,
 				B22C811D1831651A006E192E /* MIIData.m in Sources */,
 				B2DFDA8518324E000080BA78 /* MIIClusterView.m in Sources */,
 				B2CD5D001822488200340E43 /* MIIManager.m in Sources */,
 				B2BA4ECF1836A35E0027CDDE /* UIColor+MBCategory.m in Sources */,
 				B2BA4EFD1837E2B40027CDDE /* MIIJobViewController.m in Sources */,
-				B2DFDAA1183281410080BA78 /* KPAnnotation.m in Sources */,
 				B2CD5CCD182238B900340E43 /* MIIAppDelegate.m in Sources */,
-				B2DFDAA2183281410080BA78 /* KPAnnotationTree.m in Sources */,
 				B2CD5CFC1822452500340E43 /* MIICompanyBuilder.m in Sources */,
 				B2CD5CF3182239A400340E43 /* MIICompany.m in Sources */,
 				B274D0321832D88A00FEF3E6 /* MIITableViewController.m in Sources */,
 				B274D0481833789700FEF3E6 /* MIIPointAnnotation.m in Sources */,
-				B2DFDAA81832898D0080BA78 /* NSArray+KP.m in Sources */,
-				B2DFDAA4183281410080BA78 /* KPTreeNode.m in Sources */,
 				B2CC88CC18411BFF00C03503 /* UITextView+FitText.m in Sources */,
 				B2CD5CF91822431600340E43 /* MIICommunicator.m in Sources */,
 				B2094056183AD98700A6BA92 /* MIIJob.m in Sources */,
