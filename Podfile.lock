@@ -12,7 +12,9 @@ PODS:
     - Reachability
   - ASIHTTPRequest/S3 (1.8.2):
     - ASIHTTPRequest/Core
-  - GoogleAnalytics-iOS-SDK (3.0.6)
+  - GoogleAnalytics-iOS-SDK (3.10):
+    - GoogleAnalytics-iOS-SDK/Core (= 3.10)
+  - GoogleAnalytics-iOS-SDK/Core (3.10)
   - Reachability (3.2)
 
 DEPENDENCIES:
@@ -21,7 +23,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   ASIHTTPRequest: 2c8335b49410c0e2ad42829c438e74d454b77590
-  GoogleAnalytics-iOS-SDK: 4577fb25381a71c5beac455b18ebb288fc4f44e9
+  GoogleAnalytics-iOS-SDK: f422062075d9ccb1ea8d783fc5ba3829461e9502
   Reachability: 1ef8adf5c4e3d362f96515d4278f68dad3c26930
 
 COCOAPODS: 0.36.0.beta.1
