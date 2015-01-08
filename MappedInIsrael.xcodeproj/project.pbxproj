@@ -15,7 +15,6 @@
 		B232AC6B18314AAC00114E52 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B232AC6A18314AAC00114E52 /* AdSupport.framework */; };
 		B274D0321832D88A00FEF3E6 /* MIITableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B274D0311832D88A00FEF3E6 /* MIITableViewController.m */; };
 		B274D0481833789700FEF3E6 /* MIIPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = B274D0471833789700FEF3E6 /* MIIPointAnnotation.m */; };
-		B281679718780A90008C0FDA /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B281679318780A90008C0FDA /* libTestFlight.a */; };
 		B2A387A9182FED7D00989B4D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2A387A8182FED7D00989B4D /* CoreData.framework */; };
 		B2A387AB182FEDA000989B4D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2A387AA182FEDA000989B4D /* SystemConfiguration.framework */; };
 		B2A387AD182FEDAF00989B4D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B2A387AC182FEDAF00989B4D /* libz.dylib */; };
@@ -48,7 +47,6 @@
 		B2DFDAA4183281410080BA78 /* KPTreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DFDA9E183281410080BA78 /* KPTreeNode.m */; };
 		B2DFDAA81832898D0080BA78 /* NSArray+KP.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DFDAA71832898D0080BA78 /* NSArray+KP.m */; };
 		B2F3A2E018355C7A00AE608E /* View.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2CD5CCE182238B900340E43 /* View.storyboard */; };
-		E29F6335D4BC4DE3848CC0FC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C452A9CA18094A61B76B3BBE /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,7 +65,6 @@
 		B274D0311832D88A00FEF3E6 /* MIITableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIITableViewController.m; sourceTree = "<group>"; };
 		B274D0461833789600FEF3E6 /* MIIPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIIPointAnnotation.h; sourceTree = "<group>"; };
 		B274D0471833789700FEF3E6 /* MIIPointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIIPointAnnotation.m; sourceTree = "<group>"; };
-		B281679318780A90008C0FDA /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTestFlight.a; path = TestFlightSDK2.2.0/libTestFlight.a; sourceTree = "<group>"; };
 		B2A387A8182FED7D00989B4D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B2A387AA182FEDA000989B4D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		B2A387AC182FEDAF00989B4D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -96,7 +93,6 @@
 		B2CD5CD1182238B900340E43 /* MIIViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MIIViewController.h; sourceTree = "<group>"; };
 		B2CD5CD2182238B900340E43 /* MIIViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MIIViewController.m; sourceTree = "<group>"; };
 		B2CD5CD4182238B900340E43 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		B2CD5CDB182238B900340E43 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		B2CD5CF1182239A400340E43 /* MIICompany.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIICompany.h; sourceTree = "<group>"; };
 		B2CD5CF2182239A400340E43 /* MIICompany.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIICompany.m; sourceTree = "<group>"; };
 		B2CD5CF41822427600340E43 /* MIICommunicatorDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MIICommunicatorDelegate.h; sourceTree = "<group>"; };
@@ -122,7 +118,6 @@
 		B2DFDA9E183281410080BA78 /* KPTreeNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPTreeNode.m; sourceTree = "<group>"; };
 		B2DFDAA61832898D0080BA78 /* NSArray+KP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+KP.h"; sourceTree = "<group>"; };
 		B2DFDAA71832898D0080BA78 /* NSArray+KP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+KP.m"; sourceTree = "<group>"; };
-		C452A9CA18094A61B76B3BBE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF0EDF0D68446D5AD5657906 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		FB23B2B0452C0B59A4A8CB96 /* Pods.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.beta.xcconfig; path = "Pods/Target Support Files/Pods/Pods.beta.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -132,7 +127,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B281679718780A90008C0FDA /* libTestFlight.a in Frameworks */,
 				B2B978C01838AE2D00DE2CF2 /* MobileCoreServices.framework in Frameworks */,
 				B2B978BE1838AE2100DE2CF2 /* CFNetwork.framework in Frameworks */,
 				B232AC6B18314AAC00114E52 /* AdSupport.framework in Frameworks */,
@@ -146,7 +140,6 @@
 				B2D87A2E1A5EB7070050D81E /* Fabric.framework in Frameworks */,
 				B2CD5CC1182238B900340E43 /* UIKit.framework in Frameworks */,
 				B2CD5CBD182238B900340E43 /* Foundation.framework in Frameworks */,
-				E29F6335D4BC4DE3848CC0FC /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,7 +217,6 @@
 			isa = PBXGroup;
 			children = (
 				B2D87A2D1A5EB7070050D81E /* Fabric.framework */,
-				B281679318780A90008C0FDA /* libTestFlight.a */,
 				B2B978BF1838AE2D00DE2CF2 /* MobileCoreServices.framework */,
 				B2B978BD1838AE2100DE2CF2 /* CFNetwork.framework */,
 				B232AC681831421700114E52 /* Crashlytics.framework */,
@@ -237,8 +229,6 @@
 				B2CD5CBC182238B900340E43 /* Foundation.framework */,
 				B2CD5CBE182238B900340E43 /* CoreGraphics.framework */,
 				B2CD5CC0182238B900340E43 /* UIKit.framework */,
-				B2CD5CDB182238B900340E43 /* XCTest.framework */,
-				C452A9CA18094A61B76B3BBE /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
