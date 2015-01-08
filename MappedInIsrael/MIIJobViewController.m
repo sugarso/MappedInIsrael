@@ -28,7 +28,7 @@
     self.screenName = @"MIIJobViewController";
 
     self.title = self.job.title;
-    self.jobTextView.text = self.job.description;
+    self.jobTextView.text = self.job.desc;
     self.textViewHeightConstraint.constant = [self.jobTextView fitTextHeight];
 
     if ([self.job.jobLink isKindOfClass:[NSString class]]) {

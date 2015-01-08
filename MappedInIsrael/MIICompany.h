@@ -21,7 +21,7 @@
 @property (strong, nonatomic) NSString *hiring;
 
 // Data
-@property (strong, nonatomic) NSString *description;
+@property (strong, nonatomic) NSString *desc;
 @property (strong, nonatomic) NSString *websiteURL;
 @property (strong, nonatomic) NSString *contactEmail;
 @property (strong, nonatomic) NSString *addressCity;

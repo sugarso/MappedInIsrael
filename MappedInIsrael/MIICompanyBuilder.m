@@ -36,9 +36,9 @@
         for (NSString *key in companyDic) {
             if ([company respondsToSelector:NSSelectorFromString(key)]) {
                 if ([[companyDic valueForKey:key] isKindOfClass:[NSString class]]) {
-                    [company setValue:[[companyDic valueForKey:key] stringByDecodingXMLEntities] forKey:key];
+                    [company setValue:[companyDic[key] stringByDecodingXMLEntities] forKey:key];
                 } else {
-                    [company setValue:[companyDic valueForKey:key] forKey:key];
+                    [company setValue:companyDic[key] forKey:key];
                 }
             }
         }
@@ -65,11 +65,13 @@
     
     MIICompany *company = [[MIICompany alloc] init];
     for (NSString *key in organization) {
-        if ([company respondsToSelector:NSSelectorFromString(key)]) {
-            if ([[organization valueForKey:key] isKindOfClass:[NSString class]]) {
-                [company setValue:[[organization valueForKey:key] stringByDecodingXMLEntities] forKey:key];
+        if ([key isEqualToString:@"description"]) {
+            [company setValue:[organization[key] stringByDecodingXMLEntities] forKey:@"desc"];
+        } else if ([company respondsToSelector:NSSelectorFromString(key)]) {
+            if ([organization[key] isKindOfClass:[NSString class]]) {
+                [company setValue:[organization[key] stringByDecodingXMLEntities] forKey:key];
             } else {
-                [company setValue:[organization valueForKey:key] forKey:key];
+                [company setValue:organization[key] forKey:key];
             }
         }
     }
@@ -78,11 +80,13 @@
     for (NSDictionary *job in jobs) {
         MIIJob *jobL = [[MIIJob alloc] init];
         for (NSString *key in job) {
-            if ([jobL respondsToSelector:NSSelectorFromString(key)]) {
-                if ([[job valueForKey:key] isKindOfClass:[NSString class]]) {
-                    [jobL setValue:[[job valueForKey:key] stringByDecodingXMLEntities] forKey:key];
+            if ([key isEqualToString:@"description"]) {
+                [jobL setValue:[organization[key] stringByDecodingXMLEntities] forKey:@"desc"];
+            } else if ([jobL respondsToSelector:NSSelectorFromString(key)]) {
+                if ([job[key] isKindOfClass:[NSString class]]) {
+                    [jobL setValue:[job[key] stringByDecodingXMLEntities] forKey:key];
                 } else {
-                    [jobL setValue:[job valueForKey:key] forKey:key];
+                    [jobL setValue:job[key] forKey:key];
                 }
             }
         }

@@ -45,7 +45,7 @@
     self.hiringLabel.text = [NSString stringWithFormat:@"%@ is currently hiring:", self.company.companyName];
     self.nameLabel.text = self.company.companyName;
     
-    self.descriptionTextView.text = self.company.description;
+    self.descriptionTextView.text = self.company.desc;
     self.textViewHeightConstraint.constant = [self.descriptionTextView fitTextHeight];
     
     self.tableViewHeightConstraint.constant = self.tableView.rowHeight*[self.company.jobs count];
