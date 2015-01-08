@@ -9,21 +9,11 @@
 #import "MIIAppDelegate.h"
 #import "GAI.h"
 #import <Crashlytics/Crashlytics.h>
-#import <Fingertips/MBFingerTipWindow.h>
 
 @implementation MIIAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-
-#ifdef CONFIGURATION_Debug
-    UIViewController *vc = self.window.rootViewController;
-    CGRect frame = [[UIScreen mainScreen] bounds];
-    self.window = [[MBFingerTipWindow alloc] initWithFrame:frame];
-    self.window.rootViewController = vc;
-    [self.window makeKeyAndVisible];
-#endif
-    
     // GAI
     [[GAI sharedInstance] trackerWithTrackingId:@"UA-45602986-1"];
     

@@ -1,13 +1,10 @@
 PODS:
-  - Fingertips (0.3.0)
   - GoogleAnalytics-iOS-SDK (3.0.6)
 
 DEPENDENCIES:
-  - Fingertips
   - GoogleAnalytics-iOS-SDK
 
 SPEC CHECKSUMS:
-  Fingertips: 09d223a390349b317a51d4c941d778bdb661c4e1
   GoogleAnalytics-iOS-SDK: 4577fb25381a71c5beac455b18ebb288fc4f44e9
 
 COCOAPODS: 0.36.0.beta.1
