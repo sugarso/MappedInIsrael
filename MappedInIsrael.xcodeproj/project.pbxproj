@@ -41,6 +41,7 @@
 		B2CD5D02182252EE00340E43 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2CD5D01182252EE00340E43 /* CoreLocation.framework */; };
 		B2CD5D04182252F700340E43 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2CD5D03182252F700340E43 /* MapKit.framework */; };
 		B2D87A2E1A5EB7070050D81E /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2D87A2D1A5EB7070050D81E /* Fabric.framework */; };
+		B2D87A311A5EF3F10050D81E /* Launch.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2D87A2F1A5EF3F10050D81E /* Launch.xib */; };
 		B2DFDA8518324E000080BA78 /* MIIClusterView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DFDA8418324E000080BA78 /* MIIClusterView.m */; };
 		B2DFDAA1183281410080BA78 /* KPAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DFDA98183281410080BA78 /* KPAnnotation.m */; };
 		B2DFDAA2183281410080BA78 /* KPAnnotationTree.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DFDA9A183281410080BA78 /* KPAnnotationTree.m */; };
@@ -108,6 +109,7 @@
 		B2CD5D01182252EE00340E43 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B2CD5D03182252F700340E43 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		B2D87A2D1A5EB7070050D81E /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		B2D87A301A5EF3F10050D81E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = MappedInIsrael/Base.lproj/Launch.xib; sourceTree = "<group>"; };
 		B2DFDA8318324E000080BA78 /* MIIClusterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIIClusterView.h; sourceTree = "<group>"; };
 		B2DFDA8418324E000080BA78 /* MIIClusterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIIClusterView.m; sourceTree = "<group>"; };
 		B2DFDA97183281410080BA78 /* KPAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPAnnotation.h; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 		B2DFDA8618324E090080BA78 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B2D87A2F1A5EF3F10050D81E /* Launch.xib */,
 				B2CD5CCE182238B900340E43 /* View.storyboard */,
 				B2DFDA8318324E000080BA78 /* MIIClusterView.h */,
 				B2DFDA8418324E000080BA78 /* MIIClusterView.m */,
@@ -372,6 +375,7 @@
 				B2C50F3D183552E400DAFE28 /* Settings.bundle in Resources */,
 				B223499C183B6677002962E9 /* companies.data in Resources */,
 				B2CD5CC7182238B900340E43 /* InfoPlist.strings in Resources */,
+				B2D87A311A5EF3F10050D81E /* Launch.xib in Resources */,
 				B2F3A2E018355C7A00AE608E /* View.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -485,6 +489,15 @@
 				B2CD5CCF182238B900340E43 /* Base */,
 			);
 			name = View.storyboard;
+			sourceTree = "<group>";
+		};
+		B2D87A2F1A5EF3F10050D81E /* Launch.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B2D87A301A5EF3F10050D81E /* Base */,
+			);
+			name = Launch.xib;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
