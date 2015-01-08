@@ -38,6 +38,8 @@
 	</dict>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This will show your current location on the map</string>
 	<key>UILaunchStoryboardName</key>
 	<string>View</string>
 	<key>UIMainStoryboardFile</key>
