@@ -24,6 +24,8 @@
 	<string>3732</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>UILaunchStoryboardName</key>
+	<string>View</string>
 	<key>UIMainStoryboardFile</key>
 	<string>View</string>
 	<key>UIRequiredDeviceCapabilities</key>
