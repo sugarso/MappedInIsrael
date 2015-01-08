@@ -20,7 +20,7 @@
 
 @implementation MIIData
 
-- (id)init {
+- (instancetype)init {
     self = [super init];
     if (self) {
         // Init _manager
@@ -50,24 +50,24 @@
     for (MIICompany *company in _companies) {
         NSString *companyCategory = company.companyCategory;
         NSUInteger categoryIndex = [[MIIData getAllCategories] indexOfObject:companyCategory];
-        [[companiesTemp objectAtIndex:categoryIndex] addObject:company];
+        [companiesTemp[categoryIndex] addObject:company];
         
         // Check whos hiring
         if ((company.hiring != nil) &&
             (![company.hiring isKindOfClass:[NSNull class]]) &&
             (![company.hiring isEqualToString:@""])) {
-            [[companiesHiringTemp objectAtIndex:categoryIndex] addObject:company];
+            [companiesHiringTemp[categoryIndex] addObject:company];
         } else if ((![company.hiringPageURL isKindOfClass:[NSNull class]]) &&
             (![company.hiringPageURL isEqualToString:@""])) {
-            [[companiesHiringTemp objectAtIndex:categoryIndex] addObject:company];
+            [companiesHiringTemp[categoryIndex] addObject:company];
         }
     }
     
     // Order companies
     for (int i = 0; i < [MIIData getAllFormatedCategories].count; i++) {
         NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"companyName" ascending:YES];
-        [[companiesTemp objectAtIndex:i] sortUsingDescriptors:[NSArray arrayWithObject:sort]];
-        [[companiesHiringTemp objectAtIndex:i] sortUsingDescriptors:[NSArray arrayWithObject:sort]];
+        [companiesTemp[i] sortUsingDescriptors:@[sort]];
+        [companiesHiringTemp[i] sortUsingDescriptors:@[sort]];
     }
     
     // Copy
@@ -138,24 +138,24 @@
         MIICompany *company = companyAnnotation.company;
         NSString *companyCategory = company.companyCategory;
         NSUInteger categoryIndex = [[MIIData getAllCategories] indexOfObject:companyCategory];
-        [[companies objectAtIndex:categoryIndex] addObject:company];
+        [companies[categoryIndex] addObject:company];
         
         // Check whos hiring
         if ((company.hiring != nil) &&
             (![company.hiring isKindOfClass:[NSNull class]]) &&
             (![company.hiring isEqualToString:@""])) {
-            [[companiesHiring objectAtIndex:categoryIndex] addObject:company];
+            [companiesHiring[categoryIndex] addObject:company];
         } else if ((![company.hiringPageURL isKindOfClass:[NSNull class]]) &&
             (![company.hiringPageURL isEqualToString:@""])) {
-            [[companiesHiring objectAtIndex:categoryIndex] addObject:company];
+            [companiesHiring[categoryIndex] addObject:company];
         }
     }
     
     // Order companies
     for (int i = 0; i < [MIIData getAllFormatedCategories].count; i++) {
         NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"companyName" ascending:YES];
-        [[companies objectAtIndex:i] sortUsingDescriptors:[NSArray arrayWithObject:sort]];
-        [[companiesHiring objectAtIndex:i] sortUsingDescriptors:[NSArray arrayWithObject:sort]];
+        [companies[i] sortUsingDescriptors:@[sort]];
+        [companiesHiring[i] sortUsingDescriptors:@[sort]];
     }
     
     // Copy

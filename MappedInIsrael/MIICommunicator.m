@@ -22,7 +22,7 @@
 
 + (NSString *)getDstPath
 {
-    NSString *docPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *docPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
     return [docPath stringByAppendingPathComponent:[MIICommunicator fileName]];
 }
 

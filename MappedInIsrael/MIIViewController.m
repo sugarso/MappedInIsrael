@@ -177,7 +177,7 @@
     [self.treeController setAnnotations:annotations];
     
     // Send data to table view (if table view is the active screen and data just arrived now)
-    NSDictionary *dict = [NSDictionary dictionaryWithObject:self.data forKey:@"data"];
+    NSDictionary *dict = @{@"data": self.data};
     [[NSNotificationCenter defaultCenter] postNotificationName:@"dataIsReady" object:nil userInfo:dict];
 }
 
@@ -186,7 +186,7 @@
     if ([self.navigationController.visibleViewController isKindOfClass:[MIIViewController class]]) {
         [self performSegueWithIdentifier:@"showCompany:" sender:company];
     } else {
-        NSDictionary *dict = [NSDictionary dictionaryWithObject:company forKey:@"company"];
+        NSDictionary *dict = @{@"company": company};
         [[NSNotificationCenter defaultCenter] postNotificationName:@"companyIsReady" object:nil userInfo:dict];
     }
 }

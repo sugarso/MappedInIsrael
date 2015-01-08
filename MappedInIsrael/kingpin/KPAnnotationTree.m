@@ -33,7 +33,7 @@
 
 @implementation KPAnnotationTree
 
-- (id)initWithAnnotations:(NSArray *)annotations {
+- (instancetype)initWithAnnotations:(NSArray *)annotations {
     
     self = [super init];
     
@@ -140,7 +140,7 @@
     // store median in tree and recurse through left and right sub arrays
     NSInteger medianIdx = [sortedAnnotations count] / 2;
     
-    n.annotation = [sortedAnnotations objectAtIndex:medianIdx];
+    n.annotation = sortedAnnotations[medianIdx];
     n.mapPoint = MKMapPointForCoordinate(n.annotation.coordinate);
 
     n.left = [self buildTree:[sortedAnnotations subarrayWithRange:NSMakeRange(0, medianIdx)] 

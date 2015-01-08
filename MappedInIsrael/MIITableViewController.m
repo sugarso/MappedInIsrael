@@ -94,9 +94,9 @@
         NSMutableArray *companies = [[NSMutableArray alloc] init];
         for (int i = 0; i < [MIIData getAllFormatedCategories].count; i++) {
             [companies insertObject:[[NSMutableArray alloc] init] atIndex:i];
-            for (MIICompany *company in [self.tableData objectAtIndex:i]) {
+            for (MIICompany *company in (self.tableData)[i]) {
                 if ([company.companyName rangeOfString:searchText options:NSCaseInsensitiveSearch].length) {
-                    [[companies objectAtIndex:i] addObject:company];
+                    [companies[i] addObject:company];
                 }
             }
         }
@@ -143,18 +143,18 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if (tableView == self.searchDisplayController.searchResultsTableView) {
-        return ((NSArray *)[self.searchData objectAtIndex:section]).count ? [[MIIData getAllFormatedCategories] objectAtIndex:section] : nil;
+        return ((NSArray *)(self.searchData)[section]).count ? [MIIData getAllFormatedCategories][section] : nil;
     } else {
-        return ((NSArray *)[self.tableData objectAtIndex:section]).count ? [[MIIData getAllFormatedCategories] objectAtIndex:section] : nil;
+        return ((NSArray *)(self.tableData)[section]).count ? [MIIData getAllFormatedCategories][section] : nil;
     }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView == self.searchDisplayController.searchResultsTableView) {
-        return ((NSArray *)[self.searchData objectAtIndex:section]).count;
+        return ((NSArray *)(self.searchData)[section]).count;
     } else {
-        return ((NSArray *)[self.tableData objectAtIndex:section]).count;
+        return ((NSArray *)(self.tableData)[section]).count;
     }
 }
 
@@ -169,9 +169,9 @@
     
     MIICompany *company;
     if (tableView == self.searchDisplayController.searchResultsTableView) {
-        company = [[self.searchData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        company = (self.searchData)[indexPath.section][indexPath.row];
     } else {
-        company = [[self.tableData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        company = (self.tableData)[indexPath.section][indexPath.row];
     }
     
     cell.textLabel.text = company.companyName;
@@ -182,12 +182,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MIIViewController *mapView = [self.navigationController.viewControllers objectAtIndex:0];
+    MIIViewController *mapView = (self.navigationController.viewControllers)[0];
     MIICompany *company;
     if (tableView == self.searchDisplayController.searchResultsTableView) {
-        company = [[self.searchData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        company = (self.searchData)[indexPath.section][indexPath.row];
     } else {
-        company = [[self.tableData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        company = (self.tableData)[indexPath.section][indexPath.row];
     }
     mapView.company = company;
     [self.navigationController popViewControllerAnimated:YES];
@@ -197,9 +197,9 @@
 {
     MIICompany *company;
     if (tableView == self.searchDisplayController.searchResultsTableView) {
-        company = [[self.searchData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        company = (self.searchData)[indexPath.section][indexPath.row];
     } else {
-        company = [[self.tableData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        company = (self.tableData)[indexPath.section][indexPath.row];
     }
     
     if (!self.waitingForCompany) {

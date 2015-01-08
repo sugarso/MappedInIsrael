@@ -13,7 +13,7 @@
 
 @interface MIIClusterView : UIView
 
-- (id)initWithFrame:(CGRect)frame color:(UIColor *)color;
+- (instancetype)initWithFrame:(CGRect)frame color:(UIColor *)color NS_DESIGNATED_INITIALIZER;
 + (UIImage *)imageWithView:(UIView *)view;
 
 @end

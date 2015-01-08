@@ -18,10 +18,10 @@
 
 @property (weak, nonatomic) id<MIIDataDelegate> delegate;
 
-- (id)init;
+- (instancetype)init NS_DESIGNATED_INITIALIZER;
 + (NSArray *)getAllCategories;
 + (NSArray *)getAllFormatedCategories;
-- (NSArray *)getAllCompanies;
+@property (NS_NONATOMIC_IOSONLY, getter=getAllCompanies, readonly, copy) NSArray *allCompanies;
 - (NSArray *)getCompaniesWhosHiring:(BOOL)whosHiring;
 - (void)getCompany:(NSString *)id;
 - (void)setClusterAnnotation:(NSArray *)clusterAnnotation;

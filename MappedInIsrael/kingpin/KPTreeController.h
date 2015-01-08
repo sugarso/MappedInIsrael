@@ -39,7 +39,7 @@
  */
 @property (nonatomic, readonly) NSArray *gridPolylines;
 
-- (id)initWithMapView:(MKMapView *)mapView;
+- (instancetype)initWithMapView:(MKMapView *)mapView NS_DESIGNATED_INITIALIZER;
 - (void)setAnnotations:(NSArray *)annoations;
 - (void)refresh:(BOOL)animated;
 

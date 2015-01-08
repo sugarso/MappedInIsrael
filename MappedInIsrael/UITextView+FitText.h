@@ -10,6 +10,6 @@
 
 @interface UITextView (FitText)
 
-- (CGFloat)fitTextHeight;
+@property (NS_NONATOMIC_IOSONLY, readonly) CGFloat fitTextHeight;
 
 @end

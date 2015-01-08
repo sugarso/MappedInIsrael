@@ -10,6 +10,6 @@
 
 @interface NSString (HTML)
 
-- (NSString *)stringByDecodingXMLEntities;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *stringByDecodingXMLEntities;
 
 @end

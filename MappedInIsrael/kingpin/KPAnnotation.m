@@ -26,11 +26,11 @@
 @implementation KPAnnotation
 
 
-- (id)initWithAnnotations:(NSArray *)annotations {
+- (instancetype)initWithAnnotations:(NSArray *)annotations {
     return [self initWithAnnotationSet:[NSSet setWithArray:annotations]];
 }
 
-- (id)initWithAnnotationSet:(NSSet *)set {
+- (instancetype)initWithAnnotationSet:(NSSet *)set {
     self = [super init];
     
     if(self){

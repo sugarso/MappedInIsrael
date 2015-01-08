@@ -28,13 +28,13 @@
 @property (nonatomic, readonly) NSSet *annotations;
 
 
-- (id)initWithAnnotations:(NSArray *)annotations;
-- (id)initWithAnnotationSet:(NSSet *)set;
+- (instancetype)initWithAnnotations:(NSArray *)annotations;
+- (instancetype)initWithAnnotationSet:(NSSet *)set NS_DESIGNATED_INITIALIZER;
 
 // Helpers
 
 // returns NO if the KPAnnotation only contains one annotation
-- (BOOL)isCluster;
+@property (NS_NONATOMIC_IOSONLY, getter=isCluster, readonly) BOOL cluster;
 
 
 // Private (used by the internal clustering algorithm)
