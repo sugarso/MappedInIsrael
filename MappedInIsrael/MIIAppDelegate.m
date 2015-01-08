@@ -8,6 +8,7 @@
 
 #import "MIIAppDelegate.h"
 #import "GAI.h"
+#import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 
 @implementation MIIAppDelegate
@@ -18,8 +19,8 @@
     [[GAI sharedInstance] trackerWithTrackingId:@"UA-45602986-1"];
     
     // Crashlytics
-    [Crashlytics startWithAPIKey:@"8a47ccbf8db717681b6ae83cb615504de6fe5eb7"];
-    
+    [Fabric with:@[CrashlyticsKit]];
+
     // Override point for customization after application launch.
     return YES;
 }

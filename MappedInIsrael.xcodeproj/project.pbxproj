@@ -40,6 +40,7 @@
 		B2CD5D001822488200340E43 /* MIIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CD5CFF1822488200340E43 /* MIIManager.m */; };
 		B2CD5D02182252EE00340E43 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2CD5D01182252EE00340E43 /* CoreLocation.framework */; };
 		B2CD5D04182252F700340E43 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2CD5D03182252F700340E43 /* MapKit.framework */; };
+		B2D87A2E1A5EB7070050D81E /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2D87A2D1A5EB7070050D81E /* Fabric.framework */; };
 		B2DFDA8518324E000080BA78 /* MIIClusterView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DFDA8418324E000080BA78 /* MIIClusterView.m */; };
 		B2DFDAA1183281410080BA78 /* KPAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DFDA98183281410080BA78 /* KPAnnotation.m */; };
 		B2DFDAA2183281410080BA78 /* KPAnnotationTree.m in Sources */ = {isa = PBXBuildFile; fileRef = B2DFDA9A183281410080BA78 /* KPAnnotationTree.m */; };
@@ -108,6 +109,7 @@
 		B2CD5CFF1822488200340E43 /* MIIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIIManager.m; sourceTree = "<group>"; };
 		B2CD5D01182252EE00340E43 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B2CD5D03182252F700340E43 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		B2D87A2D1A5EB7070050D81E /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		B2DFDA8318324E000080BA78 /* MIIClusterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIIClusterView.h; sourceTree = "<group>"; };
 		B2DFDA8418324E000080BA78 /* MIIClusterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIIClusterView.m; sourceTree = "<group>"; };
 		B2DFDA97183281410080BA78 /* KPAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPAnnotation.h; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				B2CD5D02182252EE00340E43 /* CoreLocation.framework in Frameworks */,
 				B232AC691831421700114E52 /* Crashlytics.framework in Frameworks */,
 				B2CD5CBF182238B900340E43 /* CoreGraphics.framework in Frameworks */,
+				B2D87A2E1A5EB7070050D81E /* Fabric.framework in Frameworks */,
 				B2CD5CC1182238B900340E43 /* UIKit.framework in Frameworks */,
 				B2CD5CBD182238B900340E43 /* Foundation.framework in Frameworks */,
 				E29F6335D4BC4DE3848CC0FC /* libPods.a in Frameworks */,
@@ -220,6 +223,7 @@
 		B2CD5CBB182238B900340E43 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B2D87A2D1A5EB7070050D81E /* Fabric.framework */,
 				B281679318780A90008C0FDA /* libTestFlight.a */,
 				B2B978BF1838AE2D00DE2CF2 /* MobileCoreServices.framework */,
 				B2B978BD1838AE2100DE2CF2 /* CFNetwork.framework */,
@@ -407,7 +411,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Crashlytics.framework/run 8a47ccbf8db717681b6ae83cb615504de6fe5eb7";
+			shellScript = "./Fabric.framework/run 8a47ccbf8db717681b6ae83cb615504de6fe5eb7 bf71d8eee9d314649b9cf5e1d193477e98fdad9468d1585a9fcf9983c20afd1d";
 		};
 		B28AECB61823B32C0089D35C /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -572,6 +576,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/**",
+					"$(PROJECT_DIR)",
 				);
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
@@ -599,6 +604,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/**",
+					"$(PROJECT_DIR)",
 				);
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
