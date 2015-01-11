@@ -79,7 +79,7 @@
 
 - (void)fetchingCompaniesFailedWithError:(NSError *)error
 {
-    NSLog(@"Error %@; %@", error, [error localizedDescription]);
+    HelloBug(@"Error %@; %@", error, [error localizedDescription]);
     [self.delegate serverError];
 }
 
@@ -113,7 +113,7 @@
 
 - (void)fetchingCompanyFailedWithError:(NSError *)error
 {
-    NSLog(@"Error %@; %@", error, [error localizedDescription]);
+    HelloBug(@"Error %@; %@", error, [error localizedDescription]);
     [self.delegate serverError];
 }
 

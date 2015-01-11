@@ -125,7 +125,7 @@
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
-    NSLog(@"didFailWithError error: %@", error);
+    HelloBug(@"didFailWithError error: %@", error);
     [self showDefault:self];
 }
 
@@ -136,7 +136,7 @@
                                                                      longitude:DEFAULT_LONGITUDE]];
 
     if (distance > USER_LOCATION_MAXIMUM_DISTANCE) {
-        NSLog(@"distance: %f", distance);
+        Hello(@"distance: %f", distance);
         [self showDefault:self];
     } else {
         self.showCurrentLocationButton.hidden = NO;

@@ -34,13 +34,13 @@
                                                  error:nil];
     }
     
-    NSLog(@"getStaticData");
+    Hello(@"getStaticData");
     return [[NSFileManager defaultManager] contentsAtPath:[MIICommunicator getDstPath]];
 }
 
 + (void)setStaticData:(NSData *)data
 {
-    NSLog(@"setStaticData");
+    Hello(@"setStaticData");
     [data writeToFile:[MIICommunicator getDstPath] atomically:YES];
 }
 
@@ -48,7 +48,7 @@
 {
     NSString *urlAsString = [NSString stringWithFormat:@"http://www.mappedinisrael.com/api/site/companies?page=%d&pageSize=%d", PAGE, PAGESIZE];
     NSURL *url = [[NSURL alloc] initWithString:urlAsString];
-    NSLog(@"getAllCompanies URL: %@", urlAsString);
+    Hello(@"getAllCompanies URL: %@", urlAsString);
     
     __weak ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
     [request setCompletionBlock:^{
@@ -68,7 +68,7 @@
 {
     NSString *urlAsString = [NSString stringWithFormat:@"http://www.mappedinisrael.com/api/site/organization/%@", id];
     NSURL *url = [[NSURL alloc] initWithString:urlAsString];
-    NSLog(@"getCompany URL: %@", urlAsString);
+    Hello(@"getCompany URL: %@", urlAsString);
     
     __weak ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
     [request setCompletionBlock:^{

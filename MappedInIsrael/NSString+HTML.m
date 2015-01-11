@@ -77,7 +77,7 @@
                 
                 //[scanner scanUpToString:@";" intoString:&unknownEntity];
                 //[result appendFormat:@"&#%@%@;", xForHex, unknownEntity];
-                NSLog(@"Expected numeric character entity but got &#%@%@;", xForHex, unknownEntity);
+                HelloBug(@"Expected numeric character entity but got &#%@%@;", xForHex, unknownEntity);
                 
             }
             

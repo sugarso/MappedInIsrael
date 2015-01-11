@@ -16,6 +16,7 @@
 		B232AC6B18314AAC00114E52 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B232AC6A18314AAC00114E52 /* AdSupport.framework */; };
 		B274D0321832D88A00FEF3E6 /* MIITableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B274D0311832D88A00FEF3E6 /* MIITableViewController.m */; };
 		B274D0481833789700FEF3E6 /* MIIPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = B274D0471833789700FEF3E6 /* MIIPointAnnotation.m */; };
+		B2790EFF1A6284B500024C19 /* HelloDebug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2790EFE1A6284B500024C19 /* HelloDebug.framework */; };
 		B2A387A9182FED7D00989B4D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2A387A8182FED7D00989B4D /* CoreData.framework */; };
 		B2A387AB182FEDA000989B4D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2A387AA182FEDA000989B4D /* SystemConfiguration.framework */; };
 		B2A387AD182FEDAF00989B4D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B2A387AC182FEDAF00989B4D /* libz.dylib */; };
@@ -63,6 +64,7 @@
 		B274D0311832D88A00FEF3E6 /* MIITableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIITableViewController.m; sourceTree = "<group>"; };
 		B274D0461833789600FEF3E6 /* MIIPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIIPointAnnotation.h; sourceTree = "<group>"; };
 		B274D0471833789700FEF3E6 /* MIIPointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIIPointAnnotation.m; sourceTree = "<group>"; };
+		B2790EFE1A6284B500024C19 /* HelloDebug.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HelloDebug.framework; sourceTree = "<group>"; };
 		B2A387A8182FED7D00989B4D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B2A387AA182FEDA000989B4D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		B2A387AC182FEDAF00989B4D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -128,6 +130,7 @@
 				B232AC691831421700114E52 /* Crashlytics.framework in Frameworks */,
 				B2CD5CBF182238B900340E43 /* CoreGraphics.framework in Frameworks */,
 				B2CD5CC1182238B900340E43 /* UIKit.framework in Frameworks */,
+				B2790EFF1A6284B500024C19 /* HelloDebug.framework in Frameworks */,
 				B2CD5CBD182238B900340E43 /* Foundation.framework in Frameworks */,
 				1651EEB19DDEA28CE77E9B72 /* libPods.a in Frameworks */,
 			);
@@ -206,6 +209,7 @@
 		B2CD5CBB182238B900340E43 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B2790EFE1A6284B500024C19 /* HelloDebug.framework */,
 				B2D87A2D1A5EB7070050D81E /* Fabric.framework */,
 				B2B978BF1838AE2D00DE2CF2 /* MobileCoreServices.framework */,
 				B2B978BD1838AE2100DE2CF2 /* CFNetwork.framework */,
