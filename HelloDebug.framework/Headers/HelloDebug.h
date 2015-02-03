@@ -9,6 +9,7 @@
 #import <CoreTelephony/CTCarrier.h>
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
 #import <SystemConfiguration/SystemConfiguration.h>
+#import <Security/Security.h>
 
 #if DEBUG
 #define HD_DEVMACHINE YES
