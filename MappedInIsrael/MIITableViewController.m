@@ -111,8 +111,10 @@
 
 - (void)companyIsReady:(NSNotification *)note // TBD: Google Analytics, timeout?
 {
-    MIICompany *company = [[note userInfo] valueForKey:@"company"];
-    [self performSegueWithIdentifier:@"showCompany:" sender:company];
+    if (self.navigationController.visibleViewController == self) {
+        MIICompany *company = [[note userInfo] valueForKey:@"company"];
+        [self performSegueWithIdentifier:@"showCompany:" sender:company];
+    }
 }
 
 - (void)dataIsReady:(NSNotification *)note
