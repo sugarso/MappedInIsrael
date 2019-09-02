@@ -11,4 +11,4 @@ Startups lets you:
 
 Startups was built by Sugar So Studio, in cooperation with http://mappedinisrael.com, and is released under MIT open source license as a service for the community. 
 
-For feedback, hiring us for a project or comments hello@sugar.so (We won't bite, unless you deserve it).
+For feedback, hiring us for a project or comments hello@sugar.so
